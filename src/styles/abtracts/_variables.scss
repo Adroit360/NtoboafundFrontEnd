@@ -1,0 +1,49 @@
+
+//Colors
+:root{
+    --transparentWhite:rgba(255,255,255,.8);
+    --myWhite:white;
+    --input-background: rgba(212, 214, 219, 0.8);
+    --input-text-inactive: #625959;
+    --input-text-active: #000;
+    --error-color: #ae1414;
+    --bordercolor: #efefef;
+    --lightGrey: #bebfc3;
+    --deepGrey: #a5a6ab;
+    --royalBlue: rgba(0,35,102,1);
+    --lightRoyalBlue:#002366c9;
+    --transparentRoyalBlue:rgba(0,35,102,.8);
+    --fineRed:#e74c3c;
+    --transparentBlack:rgba(0,0,0,.5);
+    
+    --iconColor:#72777a;
+    --iconHoverColor:#72777a;
+    --textFaded: #a7abc3;
+    --textNormal:#464457;
+    --shadowColor:rgba(0,0,0,.25);
+    
+    //text
+    
+    
+    //shadows
+    --bottom-shadow:0 1px 3px 0 rgba(0,0,0,0.25);
+    // --shadow:0 1px 3px 0 rgba(0,0,0,0.25);
+    --shadow:0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --lightShadow:0px 0px 13px 0px rgba(82, 63, 105, 0.05); 
+    --leftDownShadow:-1px 1px 3px rgba(0,0,0,0.25);
+    
+    
+    //z-indexes
+    --level-one:5;
+    --level-two:10;
+    --level-three:15;
+    --level-four:20;
+    --level-five:25;
+    --level-six:30;
+    --level-highest:5000;
+
+
+    //borders
+    --frame-border:1px solid var(--lightGrey);
+    --image-border:1px solid grey;
+}

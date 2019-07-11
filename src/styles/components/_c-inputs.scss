@@ -1,0 +1,185 @@
+// <div class="c-input">
+//          <input formControlName="email" type="text" placeholder="Email Address"/>
+//          <i class="c-addon fa fa-envelope"></i>
+//          <b class="val-msg"></b>
+// </div>
+
+  .c-input {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 1.5rem;
+    padding: 0 6% !important;
+    background: var(--input-background);
+    height: 3.5rem;
+    & .val-msg {
+      position: absolute;
+      left: 0rem;
+      right: 0rem;
+      top: 90%;
+      z-index: 999;
+      min-height: .2rem;
+      font-size: 1rem;
+      text-align: center;
+      border-bottom-left-radius: .2rem;
+      border-bottom-right-radius: .2rem;
+      background-position: 0% 0%;
+      background-color: white;
+      margin: 0% 5% !important;
+      color: #ae1414;
+      & * {
+        left: 0rem;
+        right: 0rem;
+        position: absolute;
+        background-color: white;
+        margin: 0% 5% !important;
+      }
+      //background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
+    }
+  
+    &.checkbox::after {
+      content: "";
+      width: 1rem;
+      height: 1rem;
+      background-color: transparent;
+      position: absolute;
+      right: 1.5rem;
+      border-left: .3rem solid #625f59;
+      border-bottom: .3rem solid #625959;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      top: .9rem;
+    }
+  }
+  
+  .c-input input {
+    flex-grow: 1;
+    color: var(--input-text-active);
+    line-height: 1.5rem;
+    vertical-align: middle;
+    overflow: hidden;
+    font-size: 1.3rem;
+    &::-webkit-input-placeholder {
+      color: var(--input-text-inactive);
+    }
+  }
+  
+  .c-input select {
+    position: absolute;
+    top: .3rem;
+    width: calc(100% - 1rem);
+    left: .5rem;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: .1rem;
+    text-overflow: "";
+    background-color: transparent;
+    color: var(--input-text-active);
+    padding-left: 3% !important;
+    font-size: 1.4rem;
+    &:select::-ms-expand {
+      display: none; /* hide the default arrow in ie10 and ie11 */
+    }
+  
+    &:focus {
+      border: none;
+      background-color: transparent;
+      color: var(--input-text-active);
+      box-shadow: none;
+    }
+  }
+  
+  .c-input .c-addon {
+    color: var(--input-text-inactive);
+    font-size: 1.5rem;
+    vertical-align: middle;
+    transition: color 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0 1rem;
+    &:hover {
+      color: var(--input-text-active);
+    }
+  }
+  
+  //Custom Button
+  .cbtn {
+    padding: .5rem;
+    margin: .5rem;
+    background-color: var(--input-background);
+  }
+  
+  //Custom Checkbox
+  .c-checkbox {
+    margin: 1rem;
+    position: relative;
+    padding-left: 2.5rem;
+    user-select: none;
+    //get the current heirachical selector into a variable
+    $c-checkbox: &;
+  
+    & > input[type="checkbox"] {
+      display: none;
+  
+      &:checked ~ span {
+        background-color: var(--royalBlue) !important;
+        &::after{
+          display: inline-block;
+        }
+      }
+    }
+  
+    & > span {
+      transition: all .2s;
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: .4rem;
+      width: 2rem;
+      height: 2rem;
+      background-color: var(--lightGrey);
+      border-radius: .3rem;
+  
+      &::after{
+        display: none;
+        content: "";
+        border-left:.2rem solid white;
+        border-bottom:.2rem solid white;
+        width: 60%;
+        height: 30%;
+        top: 26%;
+        left: 20%;
+        position: absolute;
+        transform: rotate(-45deg);
+      }
+    }
+    &:hover > span {
+      background-color:var(--deepGrey);
+    }
+  }
+
+  .c-file-input{
+    
+  }
+
+  /**
+  Transparent TextBox That takes the size of its container
+  */
+  .tb-styless{
+    color: var(--input-text-active);
+    line-height: 1.5rem;
+    vertical-align: middle;
+    overflow: hidden;
+    font-size: 1.3rem;
+    border: none;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+    &::-webkit-input-placeholder {
+      color: var(--input-text-inactive);
+    }
+  }

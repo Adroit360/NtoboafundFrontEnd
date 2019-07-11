@@ -1,0 +1,31 @@
+
+.ucase{
+    text-transform: uppercase;
+}
+
+.h3{
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: .5rem;
+    margin: 1rem;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+}
+// <div class="detail-block">
+// <div class="detail-block--left"></div>
+// <div class="detail-block--right"></div>
+// </div>
+.detail-block{
+    display: flex;
+    justify-content: center;
+    &--left{
+        flex:1 1 50%;
+    }
+    &--right{
+        flex:1 1 50%;
+    }
+}

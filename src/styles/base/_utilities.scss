@@ -1,0 +1,35 @@
+.shd {
+  box-shadow: var(--shadow);
+}
+
+.d-flex {
+  display: flex;
+  align-items: stretch;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+.faded {
+  opacity: 0.001 !important;
+}
+
+.t-center {
+  text-align: center;
+}
+
+.bdr {
+  border: 1px solid var(--bordercolor);
+}
+
+/*element with border bottom*/
+.bd-bottom {
+  border-bottom: 1px solid var(--bordercolor);
+}
+
+.img-bordered {
+  border-radius: 500rem;
+  border: 0.2rem solid var(--bordercolor);
+  padding: 0.2rem;
+}
