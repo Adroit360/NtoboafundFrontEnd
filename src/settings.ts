@@ -1,3 +1,4 @@
 export const settings = {
-    apiUrl:"https://localhost:44311"
+    apiUrl:"https://ntoboafund.gear.host",
+    sapiUrl:"https://localhost:44311"
 }
