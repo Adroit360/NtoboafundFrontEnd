@@ -1,0 +1,53 @@
+@import "../../styles/abstracts/mixins";
+
+.register-body{
+    width:calc(100vw);
+    height:calc(100vh);
+    background-image: url(../../assets/images/rgbg.jpg);
+    background-size: cover;
+    h3,h4,h5{
+        text-align: center;
+    }
+    .register-box{
+        background-color: rgba(white,.8);
+        @include absCenter();
+        box-shadow: var(--shadow);
+        width:50%;
+        padding: 1rem;
+        &__header{
+
+        }
+        &__body{
+            padding: 1rem;
+            .c-input{
+                margin: 1rem;
+            }
+           
+        }
+        .registerbtnpane{
+            display: flex;
+            justify-content: space-around;
+
+            a{
+                cursor: pointer;
+                font-size: 1.5rem;
+            }
+        }
+        .socials{
+            display: flex;
+            justify-content: center;
+            .slink{
+                width:5rem;
+                height: 5rem;
+                border-radius: 50%;
+                overflow:hidden;
+                margin: .4rem;
+                cursor: pointer;
+            }
+        }
+        &__footer{
+
+        }
+    
+    }
+}

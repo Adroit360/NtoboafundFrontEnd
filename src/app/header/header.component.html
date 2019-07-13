@@ -1,0 +1,35 @@
+<div class="header-body container">
+    <div class="brand-logo">
+      <img src="../../../images/image.jpg" alt="">
+    </div>
+    <div class="nav-links">
+      <ul>
+        <li><a href="" routerLink="">Scholarship</a></li>
+        <li><a routerLink="">Business</a></li>
+        <li><a routerLink="luckyme">Lucky Me</a></li>
+        <li><a routerLink="">Insurance</a></li>
+      </ul>
+    </div>
+    <div class="account-actions">
+      <div *ngIf="isAuthenticated" class="loggedIn">
+          <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 <div id="user-det">
+                    <p>Hello</p><p>{{currentUser.email}}</p>
+                 </div>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+        
+      </div>
+      <div *ngIf="!isAuthenticated" class="notLoggedIn">
+          <a class="btn-local" routerLink="/login">Login</a>
+          <a class="btn-local" routerLink="/register">Sign Up</a>
+      </div>
+     
+    </div>
+</div>

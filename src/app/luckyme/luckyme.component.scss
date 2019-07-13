@@ -1,0 +1,109 @@
+@import "../../styles/abstracts/mixins";
+.luckyme-body {
+  background-image: url(../../assets/images/bgglobal.jpg);
+  background-size: cover;
+  height: calc(100vh);
+  padding: 2rem;
+  .choice-scrolls {
+    margin-top: 2rem;
+    white-space: nowrap;
+    overflow: auto;
+    .choice-box {
+      //width: 10rem;
+      margin: 0.5rem;
+      background-color: white;
+      display: inline-block;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      position: relative;
+      .choice-amount {
+        text-align: center;
+        font-size: 4rem;
+      }
+      .choice-description {
+        p {
+          text-align: center;
+          font-size: 1.6rem;
+          text-transform: uppercase;
+          letter-spacing: 0.2rem;
+          &:not(:last-child) {
+            border-bottom: 1px solid var(--lightGrey);
+          }
+        }
+      }
+
+      &:hover {
+        .choice-selector__background{
+          opacity: 1;
+          .choice-selector {
+            opacity: 1;
+          }
+        }
+        
+      }
+
+      .choice-selector__radio {
+        display: none;
+        &:checked {
+          & ~ .choice-selector__background{
+            opacity: 1;
+            .choice-selector {
+              opacity: 1;
+              background-color: #7c7cd0;
+              &::after {
+                border-bottom: 0.2rem solid white;
+                border-right: 0.2rem solid white;
+              }
+            }
+          }
+         
+        }
+      }
+      
+      .choice-selector__background {
+        @include floatAndCover();
+        background-color: var(--transparentBlack);
+        opacity: 0;
+        transition: all 0.3s;
+        .choice-selector {
+          @include absCenter();
+          width: 5rem;
+          height: 5rem;
+          border-radius: 50%;
+          background-color: #7c7cd0;
+          opacity: 0;
+          transition: all 0.2s;
+          z-index: var(--level-two);
+          cursor: pointer;
+          &:hover{
+            transform:translate(-50%, -50%) scale(1.2);
+          }
+  
+          &::after {
+            content: "";
+            position: absolute;
+            top: 43%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(40deg);
+            width: 1.5rem;
+            height: 2.5rem;
+          }
+        }
+      }
+    }
+  }
+  .payment-pane {
+    text-align: center;
+
+    margin-top: 3rem;
+    a {
+      font-size: 3rem;
+      border-radius: .5rem;
+      color: ghostwhite;
+      &:hover{
+        color: white;
+      }
+    }
+  }
+}

@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+//Css Resets
+
+//abstract
+@import "abstracts/variables";
+@import "abstracts/functions";
+@import "abstracts/mixins";
+
+//base
+@import "base/base";
+@import "base/utilities";
+@import "base/typography";
+@import "base/animations";
+
+//components
+@import "components/button";
+@import "components/c-inputs";
+@import "components/svgs";
+@import "components/tooltip";
+@import "components/popup";
+
+
+::-webkit-scrollbar {
+	width: 8px;
+    height: 8px;
+  //  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-track {
+    background:transparent;
+    border:none;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(to left, #fff, #e4e4e4);
+    border: 1px solid #aaa;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #fff;
+  }
+  
+  ::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(to left, grey, rgba(grey,.8));
+  }

@@ -1,13 +1,16 @@
 @import "../abstracts/variables";
 
 .btn{
+    border-radius: .2rem;
     &.btn-primary{
-      background-color: var(--royalBlue) !important;
-      transition: all .2s;
+      padding: .5rem;
+      background-color: White;
+      transition: all .1s;
       backface-visibility: hidden;
+      color:black;
       &:hover{
-        background-color: var(--lightRoyalBlue) !important;
-        transform: scale(1.03);
+        background-color: rgba(black,.2);
+        color: white;
       }
     }
     
@@ -19,11 +22,12 @@
     &,&:link,&:visited{
       border-radius: .2rem;
       background-color: transparent;
-      border-bottom: 1.5px solid var(--royalBlue);
+      border: 1px solid var(--royalBlue);
       padding: 1rem;
       background-size: 200%;
       background-position: 100%;
       background-image:linear-gradient(to right,var(--royalBlue) 50%,var(--royalBlue) 50%,transparent 50%);
+
       cursor: pointer;
       transition: all .1s;
       outline: none;
@@ -34,13 +38,14 @@
       background-position: 0;
       transform: scale(1.06);
       outline: none;
+      color: white;
     }
   }
 
   .btn-local{
     font-size: 1.5rem;
     &,&:link,&:visited{
-      border-radius: .5rem;
+      border-radius: .2rem;
       background-color: transparent;
       color:rgba( black,.7);
       padding: .5rem;

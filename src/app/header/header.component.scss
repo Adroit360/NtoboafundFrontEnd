@@ -1,0 +1,54 @@
+.header-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    
+   // box-shadow: var(--bottom-shadow);
+    .brand-logo {
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      background-color: pink;
+      background-image: url(../../../node_modules/bootstrap/js/dist/dropdown.js)
+    }
+    .nav-links {
+      ul {
+        list-style: none;
+        display: flex;
+        & > li {
+          margin: 0.5rem;
+          padding: 0.5rem;
+          cursor: pointer;
+          a{
+              &,&:active,&:link{
+                  color:white;
+              }
+              &:hover{
+                  color:var(--lightGrey);
+              }
+          }
+        }
+      }
+    }
+    .account-actions {
+      .dropdown-toggle{
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center
+      }
+      #user-det{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+      p{
+        margin: .3rem;
+      }
+      a {
+        margin-right: 1rem;
+        border-color:white;
+        color:white;
+      }
+    }
+  }

@@ -1,0 +1,48 @@
+@import "../../styles/abstracts/mixins";
+
+.h-body {
+
+  .h-top {
+    color: white;
+    height: calc(100vh);
+    background-image: url(../../assets/images/bgglobal.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    &__brand-name {
+      font-size: 3rem;
+      text-transform: uppercase;
+      width: calc(100vw);
+      text-align: center;
+      letter-spacing: 0.3rem;
+      margin-top: 3rem;
+    }
+    .info-pane {
+      display: flex;
+      margin: 2rem;
+      .info-card {
+        background-color: var(--lightGrey);
+        box-shadow: var(--shadow);
+        flex: 1 1 30rem;
+        margin: 2rem;
+        border-radius: 0.3rem;
+      }
+    }
+  }
+  // .h-bottom {
+  //   background-color: white;
+    .info-pane {
+      display: flex;
+      margin: 2rem;
+      .info-card {
+        background-color: var(--lightGrey);
+        box-shadow: var(--shadow);
+        height: 40rem;
+        flex: 1 1 30rem;
+        margin: 2rem;
+        border-radius: 0.3rem;
+      }
+    }
+ // }
+}

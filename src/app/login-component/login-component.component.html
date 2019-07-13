@@ -1,0 +1,32 @@
+<div class="login-body">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-box">
+    <div class="login-box__header">
+      <h3>Login</h3>
+    </div>
+    <div class="login-box__body">
+      <div class="c-input">
+        <input  type="email" formControlName="email" placeholder="Email Or Number" />
+        <i class="c-addon fa fa-envelope"></i>
+        <b class="val-msg"></b>
+      </div>
+      <div class="c-input">
+        <input  type="password" formControlName="password" placeholder="Password" />
+        <i class="c-addon fa fa-envelope"></i>
+        <b class="val-msg"></b>
+      </div>
+    </div>
+    <div class="loginbtnpane">
+      <a class="redirect-link" routerLink="../register">Register Instead</a>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+    <h4>Or Login With</h4>
+    <div class="socials">
+        <a href="" class="slink"><img src="assets/images/fblogo.png" alt="facebook"></a>
+        <a href="" class="slink"><img src="assets/images/googlelogo.png" alt="google"></a>
+        <a href="" class="slink"><img src="assets/images/twitterlogo.png" alt="twitter"></a>
+    </div>
+    <div class="login-box__footer">
+
+    </div>
+  </form>
+</div>
