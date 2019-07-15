@@ -7,6 +7,6 @@ export class UsersService{
     constructor(private http: HttpClient) { }
 
     getAll() {
-        return this.http.get<User[]>(`${settings.apiUrl}/users`);
+        return this.http.get<User[]>(`${settings.currentApiUrl}/users`);
     }
 }

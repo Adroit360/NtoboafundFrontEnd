@@ -1,15 +1,25 @@
 @import "../../styles/abstracts/mixins";
-.luckyme-body {
+.luckyme-bg {
+  position: fixed;
   background-image: url(../../assets/images/bgglobal.jpg);
   background-size: cover;
   height: calc(100vh);
+  width: calc(100vw);
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+.luckyme-body {
   padding: 2rem;
+  z-index: var(--level-three);
   .choice-scrolls {
     margin-top: 2rem;
-    white-space: nowrap;
-    overflow: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     .choice-box {
       //width: 10rem;
+      flex: 0 0 20rem;
       margin: 0.5rem;
       background-color: white;
       display: inline-block;
@@ -34,19 +44,18 @@
       }
 
       &:hover {
-        .choice-selector__background{
+        .choice-selector__background {
           opacity: 1;
           .choice-selector {
             opacity: 1;
           }
         }
-        
       }
 
       .choice-selector__radio {
         display: none;
         &:checked {
-          & ~ .choice-selector__background{
+          & ~ .choice-selector__background {
             opacity: 1;
             .choice-selector {
               opacity: 1;
@@ -57,10 +66,9 @@
               }
             }
           }
-         
         }
       }
-      
+
       .choice-selector__background {
         @include floatAndCover();
         background-color: var(--transparentBlack);
@@ -76,10 +84,10 @@
           transition: all 0.2s;
           z-index: var(--level-two);
           cursor: pointer;
-          &:hover{
-            transform:translate(-50%, -50%) scale(1.2);
+          &:hover {
+            transform: translate(-50%, -50%) scale(1.2);
           }
-  
+
           &::after {
             content: "";
             position: absolute;
@@ -99,10 +107,56 @@
     margin-top: 3rem;
     a {
       font-size: 3rem;
-      border-radius: .5rem;
+      border-radius: 0.5rem;
       color: ghostwhite;
-      &:hover{
+      display: inline-block;
+      &:hover {
         color: white;
+      }
+    }
+  }
+  .choice-period {
+    .header {
+      margin-top: 2rem;
+      text-transform: uppercase;
+      letter-spacing: .3rem;
+      font-weight: 500;
+    }
+    .body {
+      margin-top:2rem;
+      display: flex;
+      justify-content: center;
+      .periods {
+        display: flex;
+        border-radius: 0.3rem;
+        justify-content: center;
+        align-items: center;
+        border:1px solid grey;
+        .period-choice {
+          cursor: pointer;
+          margin-bottom: 0rem;
+          input{
+            display: none;
+            &:checked{
+              &+.text{
+                background-color: grey;
+                color: white;
+              }
+            }
+          }
+          .text{
+            padding: 1rem;
+            font-size: 1.5rem;
+            transition: all .2s;
+          }
+          &:hover{
+            background-color: grey;
+            color:white;
+            .text{
+              transform: scale(1.2);
+            }
+          }
+        }
       }
     }
   }

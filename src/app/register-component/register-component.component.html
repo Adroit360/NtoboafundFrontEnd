@@ -1,32 +1,48 @@
 <div class="register-body">
-  <div class="register-box">
+  <form class="register-box" [formGroup]="registrationForm" (ngSubmit)="register()">
     <div class="register-box__header">
       <h3>register</h3>
     </div>
     <div class="register-box__body">
+        <div class="c-input">
+            <input type="text" placeholder="First Name" formControlName="firstName"/>
+            <i class="c-addon fa fa-user"></i>
+            <b class="val-msg">
+              <p *ngIf="!registrationForm.get('firstName').valid && registrationForm.get('firstName').touched">This Field Is Required</p>
+            </b>
+          </div>
+          <div class="c-input">
+            <input type="text" placeholder="Last Name" formControlName="lastName"/>
+            <i class="c-addon fa fa-user"></i>
+            <b class="val-msg">
+                <p *ngIf="!registrationForm.get('lastName').valid && registrationForm.get('lastName').touched">This Field Is Required</p>
+              </b>
+            </div>
       <div class="c-input">
-        <input type="email" placeholder="Email Or Number" />
+        <input type="email" placeholder="Email Or Number" formControlName="emailOrNumber"/>
         <i class="c-addon fa fa-envelope"></i>
-        <b class="val-msg"></b>
-      </div>
+        <b class="val-msg">
+            <p *ngIf="!registrationForm.get('emailOrNumber').valid && registrationForm.get('emailOrNumber').touched">This Field Is Required</p>
+          </b>
+    </div>
       <div class="c-input">
-        <input type="password" placeholder="Password" />
-        <i class="c-addon fa fa-envelope"></i>
-        <b class="val-msg"></b>
-      </div>
+        <input type="password" placeholder="Password" formControlName="password"/>
+        <i class="c-addon fa fa-lock"></i>
+        <b class="val-msg">
+            <p *ngIf="!registrationForm.get('password').valid && registrationForm.get('password').touched">This Field Is Required</p>
+          </b>
+    </div>
       <div class="c-input">
-        <input type="text" placeholder="Mobile Number" />
-        <i class="c-addon fa fa-envelope"></i>
-        <b class="val-msg"></b>
-      </div>
-      <div class="c-input">
-        <input type="datetime" placeholder="DOB" />
-        <i class="c-addon fa fa-envelope"></i>
-        <b class="val-msg"></b>
-      </div>
+          <input type="password" placeholder="Confirm Password" formControlName="confirmPassword"/>
+          <i class="c-addon fa fa-lock"></i>
+          <b class="val-msg">
+              <p *ngIf="!registrationForm.get('confirmPassword').valid && registrationForm.get('confirmPassword').touched">This Field Is Required</p>
+            </b>
+        </div>
+  
     </div>
     <div class="registerbtnpane">
-      <a class="btn btn-primary">register</a>
+      <button type="submit" class="btn btn-primary">register</button>
     </div>
     <h5>Or Continue With</h5>
     <div class="socials">
@@ -37,5 +53,5 @@
     <div class="register-box__footer">
 
     </div>
-  </div>
+  </form>
 </div>

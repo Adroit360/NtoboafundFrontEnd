@@ -1,5 +1,8 @@
 @import "../../styles/abstracts/mixins";
 
+.loader{
+    visibility: hidden; 
+}
 .login-body{
     width:calc(100vw);
     height:calc(100vh);
@@ -7,11 +10,15 @@
     h3,h4{
         text-align: center;
     }
+    display: flex;
+    justify-content: center;
+    align-items:center;
     .login-box{
-        @include absCenter();
+       // @include absCenter();
         box-shadow: var(--shadow);
-        width:50%;
+        flex: 0 1 40rem;
         padding: 1rem;
+        margin: 1rem;
         background-color:rgba(white,.8);
         &__header{
             box-shadow: var(--shadow);
@@ -26,24 +33,35 @@
             }
            
         }
+        .error-msg{
+            text-align: center;
+            padding: 1rem;
+            color: var(--error-color);
+
+        }
         .loginbtnpane{
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
             .redirect-link{
                 text-decoration: underline;
+                margin-right: 3rem;
             }
-            a{cursor: pointer; font-size: 1.5rem;}
+            button{cursor: pointer; font-size: 1.5rem !important;}
         }
         .socials{
             display: flex;
             justify-content: center;
             .slink{
-                width:5rem;
-                height: 5rem;
+                width:3rem;
+                height: 3rem;
                 border-radius: 50%;
                 overflow:hidden;
                 margin: .4rem;
+                transition:all .2s;
+                &:hover{
+                    transform: scale(1.2);
+                }
             }
         }
         &__footer{

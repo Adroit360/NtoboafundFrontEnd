@@ -3,14 +3,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    
+    border-bottom: 1px solid grey;
    // box-shadow: var(--bottom-shadow);
     .brand-logo {
-      width: 6rem;
       height: 6rem;
-      border-radius: 50%;
-      background-color: pink;
-      background-image: url(../../../node_modules/bootstrap/js/dist/dropdown.js)
     }
     .nav-links {
       ul {
@@ -36,6 +32,38 @@
         font-size: 1.5rem;
         display: flex;
         align-items: center
+      }
+      #dropdown-checker{
+        display: none;
+        &:checked{
+          &~.my-dropdown{
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+      }
+      .my-dropdown{
+        visibility: hidden;
+        opacity: 0;
+        position:absolute;
+        display: flex;
+        flex-direction: column;
+        right: 0;
+        background-color: white;
+        border-radius: .5rem;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition: all .1s;
+        &__item{
+          color:black;
+          padding: 1rem;
+          text-align: center;
+          margin-right: 0rem;
+          &:hover{
+            background-color: grey;
+            color:white;
+          }
+        }
       }
       #user-det{
         display: flex;

@@ -12,13 +12,28 @@ export class AuthService{
         this.isAuthenticated = this.checkAuthenticationStatus();
      }
 
+     register(firstName:string,lastName:string,emailOrNumber: string, password: string,confirmPassword:string) {
+        return this.http.post<any>(`${settings.currentApiUrl}/users/register`, {firstName,lastName,emailOrNumber, password,confirmPassword });
+            // .pipe(map(user => {
+            //     if (user && user.token) {
+            //         // store user details and jwt token in local storage to keep user logged in between page refreshes
+            //         localStorage.setItem('currentUser', JSON.stringify(user));
+            //         this.isAuthenticated = true;
+            //     }
+            //     console.log(user);
+            //     return user;
+            // }));
+    }
+
+
     login(email: string, password: string) {
-        return this.http.post<any>(`${settings.apiUrl}/users/authenticate`, { email, password })
+        return this.http.post<any>(`${settings.currentApiUrl}/users/authenticate`, { email, password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.isAuthenticated = true;
                 }
                 console.log(user);
                 return user;

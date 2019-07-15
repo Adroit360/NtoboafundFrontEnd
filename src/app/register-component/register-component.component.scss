@@ -5,22 +5,25 @@
     height:calc(100vh);
     background-image: url(../../assets/images/rgbg.jpg);
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items:center;
     h3,h4,h5{
         text-align: center;
     }
     .register-box{
         background-color: rgba(white,.8);
-        @include absCenter();
         box-shadow: var(--shadow);
-        width:50%;
+        flex: 0 1 40rem;
         padding: 1rem;
+        margin: 1rem;
         &__header{
 
         }
         &__body{
             padding: 1rem;
             .c-input{
-                margin: 1rem;
+                margin-top: 2rem;
             }
            
         }
@@ -28,9 +31,10 @@
             display: flex;
             justify-content: space-around;
 
-            a{
+            button{
                 cursor: pointer;
                 font-size: 1.5rem;
+                color:white;
             }
         }
         .socials{

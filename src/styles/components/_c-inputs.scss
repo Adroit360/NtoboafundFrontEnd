@@ -11,9 +11,20 @@
     width: 100%;
     margin: 0 auto;
     border-radius: .2rem;
-    padding: 0 6% !important;
+    padding: 0 1rem !important;
     background: var(--input-background);
     height: 3.5rem;
+    font-size: 1.5rem;  
+    input{
+      &.ng-invalid.ng-touched{
+       
+        &~.val-msg{
+          background-color:#c74545;
+          color:white;
+        }
+        
+      }
+    }
     & .val-msg {
       position: absolute;
       left: 0rem;
@@ -28,13 +39,14 @@
       background-position: 0% 0%;
       background-color: white;
       margin: 0% 5% !important;
-      color: #ae1414;
+      color: #b57777;
       & * {
         left: 0rem;
         right: 0rem;
         position: absolute;
-        background-color: white;
-        margin: 0% 5% !important;
+        background-color: #b57777;
+        
+        margin: 0% .2rem !important;
       }
       //background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
     }
@@ -52,6 +64,7 @@
       transform: rotate(-45deg);
       top: .9rem;
     }
+    
   }
   
   .c-input input {

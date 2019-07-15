@@ -1,20 +1,20 @@
 @import "../abstracts/variables";
 
-.btn{
-    border-radius: .2rem;
-    &.btn-primary{
-      padding: .5rem;
-      background-color: White;
-      transition: all .1s;
-      backface-visibility: hidden;
-      color:black;
-      &:hover{
-        background-color: rgba(black,.2);
-        color: white;
-      }
-    }
+// .btn{
+//     border-radius: .2rem;
+//     &.btn-primary{
+//       padding: .5rem;
+//       background-color: White;
+//       transition: all .1s;
+//       backface-visibility: hidden;
+//       color:black;
+//       &:hover{
+//         background-color: rgba(black,.2);
+//         color: white;
+//       }
+//     }
     
-  }
+//   }
 
   //user must specify normal and hover color
   .transbtn{

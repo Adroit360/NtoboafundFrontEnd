@@ -12,6 +12,7 @@ import { ReactiveFormsModule }    from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptor } from 'src/interceptors/error.interceptor';
 import { JwtInterceptor } from 'src/interceptors/jwt.interceptor';
+import { BusyComponent } from './busy/busy.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { JwtInterceptor } from 'src/interceptors/jwt.interceptor';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
-    LuckymeComponent
+    LuckymeComponent,
+    BusyComponent
   ],
   imports: [
     BrowserModule,

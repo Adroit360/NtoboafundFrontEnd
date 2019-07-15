@@ -1,6 +1,6 @@
-<div class="header-body container">
+<div class="header-body">
     <div class="brand-logo">
-      <img src="../../../images/image.jpg" alt="">
+      <img src="../../assets/images/ntlog.png" alt="">
     </div>
     <div class="nav-links">
       <ul>
@@ -13,15 +13,14 @@
     <div class="account-actions">
       <div *ngIf="isAuthenticated" class="loggedIn">
           <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <input type="checkbox" id="dropdown-checker">
+              <label for="dropdown-checker" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton">
                  <div id="user-det">
-                    <p>Hello</p><p>{{currentUser.email}}</p>
+                    <p>Hello</p><p>{{currentUser.firstName}}</p>
                  </div>
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+              </label>
+              <div class="my-dropdown">
+                <a class="my-dropdown__item" href="" (click)="logout()">Logout</a>
               </div>
             </div>
         
