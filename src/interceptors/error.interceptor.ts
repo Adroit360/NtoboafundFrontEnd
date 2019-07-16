@@ -3,6 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/services/authservice';
+import { isObject } from 'util';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -15,8 +16,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.authenticationService.logout();
                 location.reload(true);
             }
-            
-            const error = err.error.message || err.statusText;
+            let error = err.error;
+            if(isObject(error))
+                error= "Sorry An Error Occured";
+
             return throwError(error);
         }))
     }

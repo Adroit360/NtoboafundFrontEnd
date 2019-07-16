@@ -32,30 +32,36 @@ export class RegisterComponent implements OnInit {
   register() {
     this.loading = true;
     this.error = null;
-    this.authService.register(
-      this.registrationForm.value["firstName"],
-      this.registrationForm.value["lastName"],
-      this.registrationForm.value["email"],
-      this.registrationForm.value["phoneNumber"],
-      this.registrationForm.value["password"],
-      this.registrationForm.value["confirmPassword"],
-    ).subscribe(
-      user => {
-        console.log("Success");
-        console.log(user)
-        if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.authService.isAuthenticated = true;
-          this.router.navigate(['']);
+    if(this.registrationForm.valid){
+      this.authService.register(
+        this.registrationForm.value["firstName"],
+        this.registrationForm.value["lastName"],
+        this.registrationForm.value["email"],
+        this.registrationForm.value["phoneNumber"],
+        this.registrationForm.value["password"],
+        this.registrationForm.value["confirmPassword"],
+      ).subscribe(
+        user => {
+          console.log("Success");
+          console.log(user)
+          if (user && user.token) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.authService.isAuthenticated = true;
+            this.router.navigate(['']);
+          }
+          this.loading = false;
+          
+        },
+        error => {
+          this.error = error;
+          this.loading = false;
         }
-        this.loading = false;
-        
-      },
-      error => {
-        this.error = error;
-        this.loading = false;
-      }
-    );
+      );
+    }else{
+      this.loading = false;
+      this.error = "Form Contains Invalid Fields";
+    }
+
 
   }
 

@@ -20,12 +20,20 @@
               </b>
             </div>
       <div class="c-input">
-        <input type="email" placeholder="Email Or Number" formControlName="emailOrNumber"/>
+        <input type="email" placeholder="Email" formControlName="email"/>
         <i class="c-addon fa fa-envelope"></i>
         <b class="val-msg">
-            <p *ngIf="!registrationForm.get('emailOrNumber').valid && registrationForm.get('emailOrNumber').touched">This Field Is Required</p>
+            <p *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched">This Field Is Required</p>
           </b>
     </div>
+    <div class="c-input">
+        <input type="text" placeholder="Phone Number" formControlName="phoneNumber"/>
+        <i class="c-addon fa fa-envelope"></i>
+        <b class="val-msg">
+            <p *ngIf="!registrationForm.get('phoneNumber').valid && registrationForm.get('phoneNumber').touched">This Field Is Required</p>
+          </b>
+    </div>
+
       <div class="c-input">
         <input type="password" placeholder="Password" formControlName="password"/>
         <i class="c-addon fa fa-lock"></i>
