@@ -1,11 +1,23 @@
 @import "../../styles/abstracts/mixins";
 
+.bg{
+  position: fixed;
+  top:0;
+  left:0;
+  height: calc(100vh);
+  background-image: url(../../assets/images/homebg.jpg);
+  width: calc(100vw);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: var(--level-one);
+}
 .h-body {
-
+  z-index: var(--level-two);
+  position: relative;
   .h-top {
     color: white;
-    height: calc(100vh);
-    background-image: url(../../assets/images/homebg.jpg);
+    
+    
     background-size: cover;
     background-position: center;
     display: flex;
@@ -27,6 +39,79 @@
         flex: 1 1 30rem;
         margin: 2rem;
         border-radius: 0.3rem;
+        display: flex;
+        flex-direction: column;
+        &__head{
+          display: flex;
+          color:black; 
+          justify-content: space-around;
+          align-items: center;
+          font-size: 2rem;
+          padding: 1rem;
+          box-shadow: var(--shadow);
+          &--icon{
+            margin-left: 2rem;
+            height: 4rem;
+            width: 4rem;
+          }
+          &--text{
+            text-transform: uppercase;
+            flex: 1 1;
+            text-align: center;
+            letter-spacing: .3rem;
+          }
+        }
+        &__body{
+
+          overflow: auto;
+          .winner-item{
+            display: flex;
+            align-items: center;
+            height: 7rem;
+            margin: 2rem 2rem;
+            background-color: rgba(blue,.1);
+            padding: 1rem;
+            &__image{
+                height:5rem;
+                width: 5rem;
+                border-radius: 50%;
+                border:1px solid var(--bordercolor);
+                overflow: hidden;
+            }
+            &__description{
+              color:black;
+              flex: 1 1;
+              margin:0rem 1rem;
+              display: flex;
+              flex-direction: column;
+              .winner-name{
+                letter-spacing: .15rem;
+                font-weight: 400;
+              }
+              .winning-details{
+                display: flex;
+                font-size: 1.3rem;
+                >*{
+                  background-color: rgba(white,.9);
+                  padding: .3rem .4rem;
+                  border-radius: .2rem;
+                  box-shadow: var(--shadow);
+                  white-space: nowrap;
+                    &:not(:first-child){
+                      margin: 0rem .5rem;
+                    }
+                }
+              }
+            }
+            &__actions{
+              .period{
+                background-color: orange;
+                display: inline-block;
+                padding: .3rem .4rem;
+              }
+            }
+          }
+        }
       }
     }
   }
