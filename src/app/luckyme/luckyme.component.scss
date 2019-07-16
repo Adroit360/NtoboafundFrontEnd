@@ -1,7 +1,7 @@
 @import "../../styles/abstracts/mixins";
 .luckyme-bg {
   position: fixed;
-  background-image: url(../../assets/images/globalbg.jpg);
+  background-image: url(../../assets/images/luckyme.jpeg);
   background-size: cover;
   height: calc(100vh);
   width: calc(100vw);
@@ -10,6 +10,7 @@
   z-index: 0;
 }
 .luckyme-body {
+  position: relative;
   padding: 2rem;
   z-index: var(--level-three);
   .choice-scrolls {
@@ -116,17 +117,25 @@
     }
   }
   .choice-period {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .header {
+      display: inline-block;
       margin-top: 2rem;
       text-transform: uppercase;
       letter-spacing: .3rem;
       font-weight: 500;
+      padding: .5rem;
+      background-image: linear-gradient(to right,transparent,rgba(white,.6),transparent);
     }
     .body {
+      
       margin-top:2rem;
       display: flex;
       justify-content: center;
       .periods {
+        background-color: white;
         display: flex;
         border-radius: 0.3rem;
         justify-content: center;
@@ -135,6 +144,20 @@
         .period-choice {
           cursor: pointer;
           margin-bottom: 0rem;
+          position: relative;
+          &:not(:last-child){
+          
+            &::after{
+              content: "";
+              position: absolute;
+              height: 90%;
+              width: 1px;
+              top:5%;
+              right:0;
+              background-color:var(--deepGrey);
+            }
+
+          }
           input{
             display: none;
             &:checked{
