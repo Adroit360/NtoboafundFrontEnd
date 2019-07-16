@@ -20,11 +20,12 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registrationForm = new FormGroup({
-      'firstName': new FormControl(null,[Validators.required]),
-      'lastName': new FormControl(null,[Validators.required]),
-      'emailOrNumber': new FormControl(null,[Validators.required]),
-      'password': new FormControl(null,[Validators.required]),
-      'confirmPassword': new FormControl(null,[Validators.required])
+      'firstName': new FormControl(null,Validators.required),
+      'lastName': new FormControl(null,Validators.required),
+      'email': new FormControl(null,[Validators.required,Validators.email]),
+      'phoneNumber': new FormControl(null,Validators.required),
+      'password': new FormControl(null,Validators.required),
+      'confirmPassword': new FormControl(null,Validators.required)
     })
   }
 
@@ -34,7 +35,8 @@ export class RegisterComponent implements OnInit {
     this.authService.register(
       this.registrationForm.value["firstName"],
       this.registrationForm.value["lastName"],
-      this.registrationForm.value["emailOrNumber"],
+      this.registrationForm.value["email"],
+      this.registrationForm.value["phoneNumber"],
       this.registrationForm.value["password"],
       this.registrationForm.value["confirmPassword"],
     ).subscribe(

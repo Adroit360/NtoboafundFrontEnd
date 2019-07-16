@@ -4,7 +4,7 @@
 .register-body{
     width:calc(100vw);
     height:calc(100vh);
-    background-image: url(../../assets/images/rgbg.jpg);
+    background-image: url(../../assets/images/globalbg.jpg);
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -19,7 +19,10 @@
         padding: 1rem;
         margin: 1rem;
         &__header{
-
+            box-shadow: var(--shadow);
+            padding: 1rem;
+            color:white;
+            background-image: linear-gradient(to right,transparent,rgba(green,.8),transparent)
         }
         &__body{
             padding: 1rem;

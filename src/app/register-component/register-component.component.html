@@ -6,7 +6,7 @@
     </div>
     <div class="register-box__body">
         <div class="c-input">
-            <input type="text" placeholder="First Name" formControlName="firstName"/>
+            <input type="text" placeholder="First Name" [formControlName]="'firstName'"/>
             <i class="c-addon fa fa-user"></i>
             <b class="val-msg">
               <p *ngIf="!registrationForm.get('firstName').valid && registrationForm.get('firstName').touched">This Field Is Required</p>

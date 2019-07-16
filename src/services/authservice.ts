@@ -12,8 +12,8 @@ export class AuthService{
         this.isAuthenticated = this.checkAuthenticationStatus();
      }
 
-     register(firstName:string,lastName:string,emailOrNumber: string, password: string,confirmPassword:string) {
-        return this.http.post<any>(`${settings.currentApiUrl}/users/register`, {firstName,lastName,emailOrNumber, password,confirmPassword });
+     register(firstName:string,lastName:string,email: string,phoneNumber:string, password: string,confirmPassword:string) {
+        return this.http.post<any>(`${settings.currentApiUrl}/users/register`, {firstName,lastName,email,phoneNumber, password,confirmPassword });
             // .pipe(map(user => {
             //     if (user && user.token) {
             //         // store user details and jwt token in local storage to keep user logged in between page refreshes

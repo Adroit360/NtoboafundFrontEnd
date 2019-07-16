@@ -1,7 +1,8 @@
 export class User {
     id: number;
     username: string;
-    emailOrNumber:string;
+    email:string;
+    phoneNumber:string;
     firstName: string;
     lastName: string;
     token:string;

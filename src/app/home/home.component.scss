@@ -5,7 +5,7 @@
   .h-top {
     color: white;
     height: calc(100vh);
-    background-image: url(../../assets/images/bgglobal.jpg);
+    background-image: url(../../assets/images/homebg.jpg);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -20,9 +20,9 @@
     }
     .info-pane {
       display: flex;
-      margin: 2rem;
+      margin:4rem 2rem 1rem 2rem;
       .info-card {
-        background-color: var(--lightGrey);
+        background-color: rgba(white,.7);
         box-shadow: var(--shadow);
         flex: 1 1 30rem;
         margin: 2rem;
