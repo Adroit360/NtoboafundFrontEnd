@@ -1,3 +1,4 @@
+<app-busy [ngClass]="{'visible':loading,'invisible':!loading}" #loader></app-busy>
 <div class="register-body">
   <form class="register-box" [formGroup]="registrationForm" (ngSubmit)="register()">
     <div class="register-box__header">
@@ -41,8 +42,9 @@
         </div>
   
     </div>
+    <div *ngIf="error" class="error-pane">{{error}}</div>
     <div class="registerbtnpane">
-      <button type="submit" class="btn btn-primary">register</button>
+      <button type="submit" class="btn btn-primary">Register</button>
     </div>
     <h5>Or Continue With</h5>
     <div class="socials">

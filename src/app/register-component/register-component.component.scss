@@ -1,4 +1,5 @@
 @import "../../styles/abstracts/mixins";
+@import "../../styles/abstracts/variables";
 
 .register-body{
     width:calc(100vw);
@@ -27,7 +28,13 @@
             }
            
         }
+        .error-pane{
+            text-align: center;
+            color:var(--error-color);
+            padding: 1rem;
+        }
         .registerbtnpane{
+            
             display: flex;
             justify-content: space-around;
 

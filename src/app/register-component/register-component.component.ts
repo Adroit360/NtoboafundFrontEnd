@@ -13,8 +13,10 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 export class RegisterComponent implements OnInit {
 
   registrationForm: FormGroup;
-
+  loading = false;
+  error = null;
   constructor(private authService: AuthService,private router:Router) { }
+
 
   ngOnInit() {
     this.registrationForm = new FormGroup({
@@ -27,6 +29,8 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    this.loading = true;
+    this.error = null;
     this.authService.register(
       this.registrationForm.value["firstName"],
       this.registrationForm.value["lastName"],
@@ -42,11 +46,12 @@ export class RegisterComponent implements OnInit {
           this.authService.isAuthenticated = true;
           this.router.navigate(['']);
         }
-
+        this.loading = false;
+        
       },
       error => {
-        console.log("Error");
-        console.log(error);
+        this.error = error;
+        this.loading = false;
       }
     );
 
