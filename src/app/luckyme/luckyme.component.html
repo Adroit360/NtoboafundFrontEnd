@@ -10,7 +10,7 @@
         <p>Mutiply Choice By 5</p>
         <p>5 Cedis for 5000</p>
       </div> -->
-      <input id="rfive" class="choice-selector__radio" type="radio" name="choice" />
+      <input id="rfive" (change)="selectChoice($event,5.00)" class="choice-selector__radio" type="radio" name="choice" />
       <div class="choice-selector__background">
         <label for="rfive" class="choice-selector">
         </label>
@@ -23,7 +23,7 @@
         <p>Mutiply Choice By 5</p>
         <p>5 Cedis for 5000</p>
       </div> -->
-      <input id="rten" class="choice-selector__radio" type="radio" name="choice" />
+      <input id="rten" (change)="selectChoice($event,10.00)" class="choice-selector__radio" type="radio" name="choice" />
       <div class="choice-selector__background">
         <label for="rten" class="choice-selector">
         </label>
@@ -37,7 +37,7 @@
         <p>Mutiply Choice By 5</p>
         <p>5 Cedis for 5000</p>
       </div> -->
-      <input id="rtwenty" class="choice-selector__radio" type="radio" name="choice" />
+      <input id="rtwenty" (change)="selectChoice($event,20.00)" class="choice-selector__radio" type="radio" name="choice" />
       <div class="choice-selector__background">
 
         <label for="rtwenty" class="choice-selector">
@@ -51,7 +51,7 @@
         <p>Mutiply Choice By 5</p>
         <p>5 Cedis for 5000</p>
       </div> -->
-      <input id="rfifty" class="choice-selector__radio" type="radio" name="choice" />
+      <input id="rfifty" (change)="selectChoice($event,50.00)" class="choice-selector__radio" type="radio" name="choice" />
       <div class="choice-selector__background">
         <label for="rfifty" class="choice-selector"></label>
       </div>
@@ -62,7 +62,7 @@
         <p>Mutiply Choice By 5</p>
         <p>5 Cedis for 5000</p>
       </div> -->
-      <input id="rhundred" class="choice-selector__radio" type="radio" name="choice" />
+      <input id="rhundred" (change)="selectChoice($event,100.00)" class="choice-selector__radio" type="radio" name="choice" />
       <div class="choice-selector__background">
 
         <label for="rhundred" class="choice-selector">
@@ -76,7 +76,7 @@
         <p>Mutiply Choice By 5</p>
         <p>5 Cedis for 5000</p>
       </div> -->
-      <input id="rfivehundred" class="choice-selector__radio" type="radio" name="choice" />
+      <input id="rfivehundred" (change)="selectChoice($event,500.00)" class="choice-selector__radio" type="radio" name="choice" />
       <div class="choice-selector__background">
         <label for="rfivehundred" class="choice-selector">
         </label>
@@ -90,15 +90,15 @@
     <div class="body">
       <div class="periods">
         <label class="period-choice" for="dailyperiod">
-          <input type="radio" name="period" id="dailyperiod">
+          <input type="radio" (change)="selectPeriod($event,'Daily')"  name="period" id="dailyperiod">
           <div class="text">Daily</div>
         </label>
         <label class="period-choice" for="weeklyperiod">
-          <input type="radio" name="period" id="weeklyperiod">
+          <input type="radio" (change)="selectPeriod($event,'Weekly')" name="period" id="weeklyperiod">
           <div class="text">Weekly</div>
         </label>
         <label class="period-choice" for="monthlyperiod">
-          <input type="radio" name="period" id="monthlyperiod">
+          <input type="radio" (change)="selectPeriod($event,'Monthly')" name="period" id="monthlyperiod">
           <div class="text">Monthly</div>
         </label>
       </div>
@@ -107,5 +107,23 @@
   </div>
   <div class="payment-pane">
     <a (click)="pay()" class="transbtn">Make Payment</a>
+  </div>
+</div>
+
+
+<div [ngClass]="{'visible':errorShown,'invisible':!errorShown}" class="popup regular" id="error-box">
+  <div class="popup__content">
+      <div class="popup__content--toolbar">
+          <div class="toolbar--left">Error !</div>
+          <div class="toolbar--right">
+              <a (click)="closePopup()" class="closebtn">
+                      <span class="fa fa-times"></span>
+              </a>
+          </div>
+      </div>
+      <div class="popup__content--body">
+        {{error}}
+      </div>
+      <div class="popup__content--footer"></div>
   </div>
 </div>

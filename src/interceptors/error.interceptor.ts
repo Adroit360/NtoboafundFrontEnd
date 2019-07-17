@@ -18,7 +18,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
             let error = err.error;
             if(isObject(error))
-                error= "Sorry An Error Occured";
+                error= JSON.stringify(error);
 
             return throwError(error);
         }))

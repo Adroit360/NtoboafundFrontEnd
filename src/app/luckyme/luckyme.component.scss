@@ -1,4 +1,10 @@
 @import "../../styles/abstracts/mixins";
+app-busy{
+  position: absolute;
+  z-index: var(--level-five);
+  width: calc(100vw);
+  height: calc(100vh);
+}
 .luckyme-bg {
   position: fixed;
   background-image: url(../../assets/images/luckyme.jpeg);

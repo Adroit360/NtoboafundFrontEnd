@@ -12,7 +12,10 @@ import { Router } from '@angular/router';
 export class LuckymeComponent implements OnInit {
 
   loading = false;
-
+  selectedChoice = null;
+  selectedPeriod = null;
+  errorShown = false;
+  error = null;
   constructor(private http: HttpClient, private authService: AuthService,
     private router: Router) { }
 
@@ -23,13 +26,25 @@ export class LuckymeComponent implements OnInit {
     let name = "";
     let unitPrice = "";
     if (this.authService.isAuthenticated) {
+      
+
+      if(!this.selectedChoice){
+        this.error = "Please Select a Choice";
+        this.errorShown = true;
+        return;
+      }
+      if(!this.selectedPeriod){
+        this.error = "Please Select a Period";
+        this.errorShown = true;
+        return;
+      }
+
       this.loading = true;
-      this.http.post<any>(`${settings.currentApiUrl}/transaction/pay`, { name, unitPrice })
+      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurl`, { name, unitPrice })
         .subscribe(
-          data => {
-            console.log("Success");
-            console.log(data);
+          response => {
             this.loading = false;
+            window.location.href = response.data.checkoutUrl;
           },
           error => {
             console.log("Error");
@@ -42,5 +57,24 @@ export class LuckymeComponent implements OnInit {
     }
 
 
+  }
+
+  selectChoice(event,selectedChoice:number){
+    if(event.target.checked){
+      this.selectedChoice = selectedChoice;
+    }
+  }
+
+  selectPeriod(event,selectedPeriod:string){
+
+    if(event.target.checked){
+      this.selectedPeriod = selectedPeriod;
+    }
+
+  }
+
+  closePopup(){
+    this.error = null;
+    this.errorShown = false;
   }
 }
