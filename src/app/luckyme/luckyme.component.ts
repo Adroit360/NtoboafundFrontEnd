@@ -40,7 +40,7 @@ export class LuckymeComponent implements OnInit {
       }
 
       this.loading = true;
-      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurl`, { name, unitPrice })
+      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurl`, {amount:this.selectedChoice,userId:this.authService.getCurrentUser().id})
         .subscribe(
           response => {
             this.loading = false;
