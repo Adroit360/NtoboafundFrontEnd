@@ -118,7 +118,7 @@
       </div>
     </div>
     <div class="luckyme-body__right">
-      <div class="recentsbox">
+      <div *ngIf="luckymes.length>0" class="recentsbox">
         <div class="recentsbox__header">
           <div class="recentsbox__header--left">
             <span class="fa fa-history"></span>
@@ -127,7 +127,7 @@
             Recent Stakes
           </div>
         </div>
-        <div class="recentsbox__body">
+        <div  class="recentsbox__body">
           <div *ngFor="let luckyme of luckymes" class="recent-stake-item">
             <div class="recent-stake-item--top">
               <div class="period">{{luckyme.period}}</div>

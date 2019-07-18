@@ -23,6 +23,7 @@ app-busy{
   &--content{
     display: flex;
     .luckyme-body__left{
+      flex:1 1;
       .choice-scrolls {
         margin-top: 2rem;
         display: flex;
