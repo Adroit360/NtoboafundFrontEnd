@@ -41,8 +41,6 @@ export class LuckymeComponent implements OnInit {
     else{
       this.getUserLuckyMes()
     }
-
-   
   }
 
   pay() {
