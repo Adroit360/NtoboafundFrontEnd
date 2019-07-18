@@ -60,7 +60,7 @@ export class LuckymeComponent implements OnInit {
           response => {
             this.loading = false;
             this.luckymes.push(response.luckyMe);
-            window.location.href = response.resultString.checkoutUrl;
+            window.location.href = JSON.parse(response.resultString).data.checkoutUrl;
           },
           error => {
             console.log("Error");
