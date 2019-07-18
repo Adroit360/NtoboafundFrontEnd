@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { settings } from 'src/settings';
 import { AuthService } from 'src/services/authservice';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LuckyMe } from 'src/models/luckyMe';
 
 @Component({
@@ -19,22 +19,30 @@ export class LuckymeComponent implements OnInit {
   error = null;
   luckymes:Array<LuckyMe>;
   constructor(private http: HttpClient, private authService: AuthService,
-    private router: Router) { }
+    private router: Router,private currentRoute:ActivatedRoute) { }
 
   ngOnInit() {
     this.loading = false;
     this.luckymes = new Array<LuckyMe>();
-    this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${this.authService.getCurrentUser().id}`).subscribe(
-      (response:Array<LuckyMe>)=>{
-        response.forEach((value)=>{
-          this.luckymes.push(value);
-        })
-      },
-      error=>{
-        console.log("Error getting luckyme's");
-        console.log(error);
-      }
-    )
+
+    var checkoutId =this.currentRoute.snapshot.queryParams["checkoutId"];
+    if(checkoutId){
+      this.http.delete(`${settings.currentApiUrl}/luckymes/${localStorage.getItem(checkoutId)}`).
+      subscribe(
+        response=>{
+          console.log(response);
+          this.getUserLuckyMes()
+        },
+        error=>{console.log(error);
+          this.getUserLuckyMes()
+        }
+      )
+    }
+    else{
+      this.getUserLuckyMes()
+    }
+
+   
   }
 
   pay() {
@@ -60,7 +68,9 @@ export class LuckymeComponent implements OnInit {
           response => {
             this.loading = false;
             this.luckymes.push(response.luckyMe);
-            window.location.href = JSON.parse(response.resultString).data.checkoutUrl;
+            let resultString =JSON.parse(response.resultString)
+            window.location.href = resultString.data.checkoutUrl;
+            localStorage.setItem(resultString.data.checkoutId,response.luckyMe.id);
           },
           error => {
             console.log("Error");
@@ -92,5 +102,19 @@ export class LuckymeComponent implements OnInit {
   closePopup(){
     this.error = null;
     this.errorShown = false;
+  }
+
+  getUserLuckyMes(){
+    this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${this.authService.getCurrentUser().id}`).subscribe(
+      (response:Array<LuckyMe>)=>{
+        response.forEach((value)=>{
+          this.luckymes.push(value);
+        })
+      },
+      error=>{
+        console.log("Error getting luckyme's");
+        console.log(error);
+      }
+    )
   }
 }
