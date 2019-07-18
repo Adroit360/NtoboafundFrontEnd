@@ -11,7 +11,7 @@ const routes: Routes = [
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
   {path:"luckyme",component:LuckymeComponent},
-  {path:"luckyme",component:TnxluckymeComponent}
+  {path:"tnxluckyme",component:TnxluckymeComponent}
 
 ];
 

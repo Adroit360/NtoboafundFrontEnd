@@ -22,6 +22,7 @@ export class LuckymeComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.loading = false;
     this.luckymes = new Array<LuckyMe>();
     this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${this.authService.getCurrentUser().id}`).subscribe(
       (response:Array<LuckyMe>)=>{
