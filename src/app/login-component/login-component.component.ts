@@ -55,7 +55,6 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          if (this.isAuthenticated)
             this.router.navigate([""]);
 
             this.loading = false; 

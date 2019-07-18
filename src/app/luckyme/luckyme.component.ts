@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { settings } from 'src/settings';
 import { AuthService } from 'src/services/authservice';
 import { Router } from '@angular/router';
+import { LuckyMe } from 'src/models/luckyMe';
 
 @Component({
   selector: 'app-luckyme',
@@ -16,10 +17,23 @@ export class LuckymeComponent implements OnInit {
   selectedPeriod = null;
   errorShown = false;
   error = null;
+  luckymes:Array<LuckyMe>;
   constructor(private http: HttpClient, private authService: AuthService,
     private router: Router) { }
 
   ngOnInit() {
+    this.luckymes = new Array<LuckyMe>();
+    this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${this.authService.getCurrentUser().id}`).subscribe(
+      (response:Array<LuckyMe>)=>{
+        response.forEach((value)=>{
+          this.luckymes.push(value);
+        })
+      },
+      error=>{
+        console.log("Error getting luckyme's");
+        console.log(error);
+      }
+    )
   }
 
   pay() {
@@ -40,11 +54,12 @@ export class LuckymeComponent implements OnInit {
       }
 
       this.loading = true;
-      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurl`, {amount:this.selectedChoice,userId:this.authService.getCurrentUser().id})
+      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurl`, {amount:this.selectedChoice,period:this.selectedPeriod,userId:this.authService.getCurrentUser().id})
         .subscribe(
           response => {
             this.loading = false;
-            window.location.href = response.data.checkoutUrl;
+            this.luckymes.push(response.data.luckyMe);
+            window.location.href = response.data.resultString.checkoutUrl;
           },
           error => {
             console.log("Error");

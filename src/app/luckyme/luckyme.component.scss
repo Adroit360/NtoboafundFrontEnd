@@ -19,174 +19,248 @@ app-busy{
   position: relative;
   padding: 2rem;
   z-index: var(--level-three);
-  .choice-scrolls {
-    margin-top: 2rem;
+  
+  &--content{
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    .choice-box {
-      //width: 10rem;
-      flex: 0 0 20rem;
-      margin: 0.5rem;
-      background-color: white;
-      display: inline-block;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      padding: 1rem;
-      position: relative;
-      .choice-amount {
-        text-align: center;
-        font-size: 4rem;
-      }
-      .choice-description {
-        p {
-          text-align: center;
-          font-size: 1.6rem;
-          text-transform: uppercase;
-          letter-spacing: 0.2rem;
-          &:not(:last-child) {
-            border-bottom: 1px solid var(--lightGrey);
-          }
-        }
-      }
-
-      &:hover {
-        .choice-selector__background {
-          opacity: 1;
-          .choice-selector {
-            opacity: 1;
-          }
-        }
-      }
-
-      .choice-selector__radio {
-        display: none;
-        &:checked {
-          & ~ .choice-selector__background {
-            opacity: 1;
-            .choice-selector {
-              opacity: 1;
-              background-color: #7c7cd0;
-              &::after {
-                border-bottom: 0.2rem solid white;
-                border-right: 0.2rem solid white;
-              }
-            }
-          }
-        }
-      }
-
-      .choice-selector__background {
-        @include floatAndCover();
-        background-color: var(--transparentBlack);
-        opacity: 0;
-        transition: all 0.3s;
-        .choice-selector {
-          @include absCenter();
-          width: 5rem;
-          height: 5rem;
-          border-radius: 50%;
-          background-color: #7c7cd0;
-          opacity: 0;
-          transition: all 0.2s;
-          z-index: var(--level-two);
-          cursor: pointer;
-          &:hover {
-            transform: translate(-50%, -50%) scale(1.2);
-          }
-
-          &::after {
-            content: "";
-            position: absolute;
-            top: 43%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(40deg);
-            width: 1.5rem;
-            height: 2.5rem;
-          }
-        }
-      }
-    }
-  }
-  .payment-pane {
-    text-align: center;
-
-    margin-top: 3rem;
-    a {
-      font-size: 3rem;
-      border-radius: 0.5rem;
-      color: ghostwhite;
-      display: inline-block;
-      &:hover {
-        color: white;
-      }
-    }
-  }
-  .choice-period {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .header {
-      display: inline-block;
-      margin-top: 2rem;
-      text-transform: uppercase;
-      letter-spacing: .3rem;
-      font-weight: 500;
-      padding: .5rem;
-      background-image: linear-gradient(to right,transparent,rgba(white,.6),transparent);
-    }
-    .body {
-      
-      margin-top:2rem;
-      display: flex;
-      justify-content: center;
-      .periods {
-        background-color: white;
+    .luckyme-body__left{
+      .choice-scrolls {
+        margin-top: 2rem;
         display: flex;
-        border-radius: 0.3rem;
         justify-content: center;
-        align-items: center;
-        border:1px solid grey;
-        .period-choice {
-          cursor: pointer;
-          margin-bottom: 0rem;
+        flex-wrap: wrap;
+        .choice-box {
+          //width: 10rem;
+          flex: 0 0 20rem;
+          margin: 0.5rem;
+          background-color: white;
+          display: inline-block;
+          overflow: hidden;
+          box-shadow: var(--shadow);
+          padding: 1rem;
           position: relative;
-          &:not(:last-child){
-          
-            &::after{
-              content: "";
-              position: absolute;
-              height: 90%;
-              width: 1px;
-              top:5%;
-              right:0;
-              background-color:var(--deepGrey);
-            }
-
+          .choice-amount {
+            text-align: center;
+            font-size: 4rem;
           }
-          input{
-            display: none;
-            &:checked{
-              &+.text{
-                background-color: grey;
-                color: white;
+          .choice-description {
+            p {
+              text-align: center;
+              font-size: 1.6rem;
+              text-transform: uppercase;
+              letter-spacing: 0.2rem;
+              &:not(:last-child) {
+                border-bottom: 1px solid var(--lightGrey);
               }
             }
           }
-          .text{
-            padding: 1rem;
-            font-size: 1.5rem;
-            transition: all .2s;
+    
+          &:hover {
+            .choice-selector__background {
+              opacity: 1;
+              .choice-selector {
+                opacity: 1;
+              }
+            }
           }
-          &:hover{
-            background-color: grey;
-            color:white;
-            .text{
-              transform: scale(1.2);
+    
+          .choice-selector__radio {
+            display: none;
+            &:checked {
+              & ~ .choice-selector__background {
+                opacity: 1;
+                .choice-selector {
+                  opacity: 1;
+                  background-color: #7c7cd0;
+                  &::after {
+                    border-bottom: 0.2rem solid white;
+                    border-right: 0.2rem solid white;
+                  }
+                }
+              }
+            }
+          }
+    
+          .choice-selector__background {
+            @include floatAndCover();
+            background-color: var(--transparentBlack);
+            opacity: 0;
+            transition: all 0.3s;
+            .choice-selector {
+              @include absCenter();
+              width: 5rem;
+              height: 5rem;
+              border-radius: 50%;
+              background-color: #7c7cd0;
+              opacity: 0;
+              transition: all 0.2s;
+              z-index: var(--level-two);
+              cursor: pointer;
+              &:hover {
+                transform: translate(-50%, -50%) scale(1.2);
+              }
+    
+              &::after {
+                content: "";
+                position: absolute;
+                top: 43%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(40deg);
+                width: 1.5rem;
+                height: 2.5rem;
+              }
+            }
+          }
+        }
+      }
+      .payment-pane {
+        text-align: center;
+    
+        margin-top: 3rem;
+        a {
+          font-size: 3rem;
+          border-radius: 0.5rem;
+          color: ghostwhite;
+          display: inline-block;
+          &:hover {
+            color: white;
+          }
+        }
+      }
+      .choice-period {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .header {
+          display: inline-block;
+          margin-top: 2rem;
+          text-transform: uppercase;
+          letter-spacing: .3rem;
+          font-weight: 500;
+          padding: .5rem;
+          background-image: linear-gradient(to right,transparent,rgba(white,.6),transparent);
+        }
+        .body {
+          
+          margin-top:2rem;
+          display: flex;
+          justify-content: center;
+          .periods {
+            background-color: white;
+            display: flex;
+            border-radius: 0.3rem;
+            justify-content: center;
+            align-items: center;
+            border:1px solid grey;
+            .period-choice {
+              cursor: pointer;
+              margin-bottom: 0rem;
+              position: relative;
+              &:not(:last-child){
+              
+                &::after{
+                  content: "";
+                  position: absolute;
+                  height: 90%;
+                  width: 1px;
+                  top:5%;
+                  right:0;
+                  background-color:var(--deepGrey);
+                }
+    
+              }
+              input{
+                display: none;
+                &:checked{
+                  &+.text{
+                    background-color: grey;
+                    color: white;
+                  }
+                }
+              }
+              .text{
+                padding: 1rem;
+                font-size: 1.5rem;
+                transition: all .2s;
+              }
+              &:hover{
+                background-color: grey;
+                color:white;
+                .text{
+                  transform: scale(1.2);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .luckyme-body__right{
+      margin: 1rem;
+      .recentsbox{
+        background-color: rgba(white,.9);
+        padding: 1rem;
+        &__header{
+          display: flex;
+          font-size: 1.7rem;
+          align-items: center;
+
+          &--left{
+            margin-left: 1rem;
+            font-size: 3rem;
+          }
+          &--right{
+            text-transform: uppercase;
+            letter-spacing: .2rem;
+            text-align: center;
+            flex: 1 1;
+            border-bottom: 1px solid var(--borderColor);
+          }
+        }
+        &__body{
+          padding: 1rem;
+          max-height: calc(60vh);
+          overflow: auto;
+          .recent-stake-item{
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(#7c7cd0,.3);
+            padding: 1rem;
+            margin:.5rem;
+            &--top{
+              display: flex;
+              align-items: center;
+              white-space: nowrap;
+              .period{
+                padding: .3rem .6rem;
+                background-color: rgba(orange,.7);
+              }
+              .amount{
+                padding: .3rem .6rem;
+                background-color: rgba(blue, 1);
+                color:white;
+                border-radius: 1rem;
+              }
+              .date{
+                padding: .3rem .6rem;
+                background-color: white;
+              }
+              div{
+                margin: .5rem;
+              }
+            }
+            &--bottom{
+              display: flex;
+              flex-wrap: nowrap;
+              white-space: nowrap;
+              div{
+                margin: .5rem;
+              }
             }
           }
         }
       }
     }
   }
+ 
+
 }

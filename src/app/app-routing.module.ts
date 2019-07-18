@@ -4,12 +4,14 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login-component/login-component.component';
 import { RegisterComponent } from './register-component/register-component.component';
 import { LuckymeComponent } from './luckyme/luckyme.component';
+import { TnxluckymeComponent } from './tnxluckyme/tnxluckyme.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
-  {path:"luckyme",component:LuckymeComponent}
+  {path:"luckyme",component:LuckymeComponent},
+  {path:"luckyme",component:TnxluckymeComponent}
 
 ];
 

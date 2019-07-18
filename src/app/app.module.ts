@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptor } from 'src/interceptors/error.interceptor';
 import { JwtInterceptor } from 'src/interceptors/jwt.interceptor';
 import { BusyComponent } from './busy/busy.component';
+import { TnxluckymeComponent } from './tnxluckyme/tnxluckyme.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BusyComponent } from './busy/busy.component';
     RegisterComponent,
     HeaderComponent,
     LuckymeComponent,
-    BusyComponent
+    BusyComponent,
+    TnxluckymeComponent
   ],
   imports: [
     BrowserModule,
