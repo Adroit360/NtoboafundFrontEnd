@@ -10,7 +10,7 @@ const routes: Routes = [
   {path:"",component:HomeComponent},
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
-  {path:"luckyme/:checkoutId?",component:LuckymeComponent},
+  {path:"luckyme",component:LuckymeComponent},
   {path:"tnxluckyme",component:TnxluckymeComponent}
 
 ];
