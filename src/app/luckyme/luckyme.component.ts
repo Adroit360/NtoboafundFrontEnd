@@ -58,8 +58,8 @@ export class LuckymeComponent implements OnInit {
         .subscribe(
           response => {
             this.loading = false;
-            this.luckymes.push(response.data.luckyMe);
-            window.location.href = response.data.resultString.checkoutUrl;
+            this.luckymes.push(response.luckyMe);
+            window.location.href = response.resultString.checkoutUrl;
           },
           error => {
             console.log("Error");
