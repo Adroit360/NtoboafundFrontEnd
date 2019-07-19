@@ -32,7 +32,7 @@
       .dropdown-toggle{
         font-size: 1.5rem;
         display: flex;
-        align-items: center
+        align-items: center;
       }
       #dropdown-checker{
         display: none;
@@ -70,6 +70,13 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        img{
+          width:3rem;
+          height: 3rem;
+          border-radius: 50%;
+          margin:0rem .5rem 0rem 0rem;
+          overflow: hidden;
+        }
       }
       p{
         margin: .3rem;

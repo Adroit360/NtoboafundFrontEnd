@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   registrationForm: FormGroup;
   loading = false;
   error = null;
+  selectedImages
   constructor(private authService: AuthService,private router:Router) { }
 
 
@@ -26,20 +27,32 @@ export class RegisterComponent implements OnInit {
       'phoneNumber': new FormControl(null,Validators.required),
       'password': new FormControl(null,Validators.required),
       'confirmPassword': new FormControl(null,Validators.required)
+      
     })
+    this.selectedImages = null;
   }
 
   register() {
     this.loading = true;
     this.error = null;
     if(this.registrationForm.valid){
+      var formData = new FormData();
+      formData.append('images',this.selectedImages)
+      formData.append('firstName',this.registrationForm.value["firstName"])
+      formData.append('lastName',this.registrationForm.value["lastName"])
+      formData.append('email',this.registrationForm.value["email"])
+      formData.append('phoneNumber',this.registrationForm.value["phoneNumber"])
+      formData.append('password',this.registrationForm.value["password"])
+      formData.append('confirmPassword',this.registrationForm.value["confirmPassword"])
       this.authService.register(
-        this.registrationForm.value["firstName"],
-        this.registrationForm.value["lastName"],
-        this.registrationForm.value["email"],
-        this.registrationForm.value["phoneNumber"],
-        this.registrationForm.value["password"],
-        this.registrationForm.value["confirmPassword"],
+        formData
+        /* this.selectedImages,
+         this.registrationForm.value["firstName"],
+         this.registrationForm.value["lastName"],
+         this.registrationForm.value["email"],
+         this.registrationForm.value["phoneNumber"],
+         this.registrationForm.value["password"],
+         this.registrationForm.value["confirmPassword"]*/
       ).subscribe(
         user => {
           console.log("Success");
@@ -63,6 +76,12 @@ export class RegisterComponent implements OnInit {
     }
 
 
+  }
+
+  imageSelected(event){
+    console.log(event);
+
+    this.selectedImages = event.file;
   }
 
 }

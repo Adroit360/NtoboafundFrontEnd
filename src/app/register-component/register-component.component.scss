@@ -1,67 +1,73 @@
 @import "../../styles/abstracts/mixins";
 @import "../../styles/abstracts/variables";
 
-.register-body{
-    width:calc(100vw);
-    height:calc(100vh);
-    background-image: url(../../assets/images/globalbg.jpg);
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items:center;
-    h3,h4,h5{
-        text-align: center;
+.register-body {
+  width: calc(100vw);
+  height: calc(100vh);
+  background-image: url(../../assets/images/globalbg.jpg);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h3,
+  h4,
+  h5 {
+    text-align: center;
+  }
+  .register-box {
+    background-color: rgba(white, 0.8);
+    box-shadow: var(--shadow);
+    flex: 0 1 40rem;
+    padding: 1rem;
+    margin: 1rem;
+    &__header {
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      color: white;
+      background-image: linear-gradient(to right, transparent, rgba(green, 0.8), transparent);
     }
-    .register-box{
-        background-color: rgba(white,.8);
-        box-shadow: var(--shadow);
-        flex: 0 1 40rem;
-        padding: 1rem;
-        margin: 1rem;
-        &__header{
-            box-shadow: var(--shadow);
-            padding: 1rem;
-            color:white;
-            background-image: linear-gradient(to right,transparent,rgba(green,.8),transparent)
+    &__body {
+      .userImage {
+        display: flex;
+        justify-content: center;
+        app-custom-file-input {
+          width: 15rem;
+          height: 15rem;
         }
-        &__body{
-            padding: 1rem;
-            .c-input{
-                margin-top: 2rem;
-            }
-           
-        }
-        .error-pane{
-            text-align: center;
-            color:var(--error-color);
-            padding: 1rem;
-        }
-        .registerbtnpane{
-            
-            display: flex;
-            justify-content: space-around;
-
-            button{
-                cursor: pointer;
-                font-size: 1.5rem;
-                color:white;
-            }
-        }
-        .socials{
-            display: flex;
-            justify-content: center;
-            .slink{
-                width:5rem;
-                height: 5rem;
-                border-radius: 50%;
-                overflow:hidden;
-                margin: .4rem;
-                cursor: pointer;
-            }
-        }
-        &__footer{
-
-        }
-    
+      }
+      padding: 1rem;
+      .c-input {
+        margin-top: 2rem;
+      }
     }
+    .error-pane {
+      text-align: center;
+      color: var(--error-color);
+      padding: 1rem;
+    }
+    .registerbtnpane {
+      display: flex;
+      justify-content: space-around;
+
+      button {
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: white;
+      }
+    }
+    .socials {
+      display: flex;
+      justify-content: center;
+      .slink {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0.4rem;
+        cursor: pointer;
+      }
+    }
+    &__footer {
+    }
+  }
 }

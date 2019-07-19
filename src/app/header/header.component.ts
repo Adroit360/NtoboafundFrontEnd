@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/models/user';
 import { AuthService } from 'src/services/authservice';
+import { settings } from 'src/settings';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +12,12 @@ export class HeaderComponent implements OnInit {
 
   isAuthenticated:Boolean;
   currentUser:User;
+  apiPath:string;
   constructor(private authenticationService: AuthService) { }
 
   ngOnInit() {
     this.authenticationStatusChanged()
+    this.apiPath = settings.currentApiUrl;
   }
 
   logout(){

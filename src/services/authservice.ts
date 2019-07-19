@@ -11,9 +11,10 @@ export class AuthService{
     constructor(private http: HttpClient) {
         this.isAuthenticated = this.checkAuthenticationStatus();
      }
-
-     register(firstName:string,lastName:string,email: string,phoneNumber:string, password: string,confirmPassword:string) {
-        return this.http.post<any>(`${settings.currentApiUrl}/users/register`, {firstName,lastName,email,phoneNumber, password,confirmPassword });
+    //  images:File[],firstName:string,lastName:string,email: string,phoneNumber:string, password: string,confirmPassword:string
+    //{images,firstName,lastName,email,phoneNumber, password,confirmPassword }
+     register(formData:FormData) {
+        return this.http.post<any>(`${settings.currentApiUrl}/users/register`,formData );
             // .pipe(map(user => {
             //     if (user && user.token) {
             //         // store user details and jwt token in local storage to keep user logged in between page refreshes

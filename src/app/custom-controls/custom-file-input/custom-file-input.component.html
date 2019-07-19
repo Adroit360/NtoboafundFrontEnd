@@ -1,0 +1,9 @@
+<div #cImageInput class="c-image-input">
+    <div class="c-image-input__image">
+        <img  [src]="selectedImageUrl" alt="">
+    </div>
+    <input #input class="c-image-input__input" type="file" (change)="onImageSelected($event)"
+      [accept]="Accept">
+      <!-- Append the hide class if the input value is not empty -->
+    <label #label [ngClass]="{hide:hasHideClass}" class="c-image-input__label" (click)="label_Click()" [innerText]="labelText"></label>
+  </div>
