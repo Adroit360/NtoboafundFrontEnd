@@ -1,25 +1,32 @@
 @import "../../styles/abstracts/mixins";
 @import "../../styles/abstracts/variables";
 
-.register-body {
+.register-bg{
+  position: fixed;
   width: calc(100vw);
   height: calc(100vh);
   background-image: url(../../assets/images/globalbg.jpg);
   background-size: cover;
+  z-index: var(--level-one);
+}
+.register-body {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: var(--level-two);
+  
   h3,
   h4,
   h5 {
     text-align: center;
   }
   .register-box {
+    margin: 2rem;
     background-color: rgba(white, 0.8);
     box-shadow: var(--shadow);
     flex: 0 1 40rem;
     padding: 1rem;
-    margin: 1rem;
     &__header {
       box-shadow: var(--shadow);
       padding: 1rem;

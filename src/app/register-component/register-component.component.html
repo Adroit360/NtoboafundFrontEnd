@@ -1,4 +1,5 @@
 <app-busy [ngClass]="{'visible':loading,'invisible':!loading}" #loader></app-busy>
+<div class="register-bg"></div>
 <div class="register-body">
   <form class="register-box" [formGroup]="registrationForm" (ngSubmit)="register()">
     <div class="register-box__header">
