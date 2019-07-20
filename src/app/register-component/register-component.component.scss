@@ -1,6 +1,10 @@
 @import "../../styles/abstracts/mixins";
 @import "../../styles/abstracts/variables";
 
+app-busy{
+  position: absolute;
+  z-index: var(--level-three);
+}
 .register-bg{
   position: fixed;
   width: calc(100vw);
