@@ -108,6 +108,7 @@
       box-shadow: var(--shadow);
       overflow: hidden;
       transition: all 0.1s;
+      z-index: var(--level-five);
       &__item {
         color: black;
         padding: 1rem;
