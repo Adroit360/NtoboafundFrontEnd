@@ -16,6 +16,7 @@ import { BusyComponent } from './busy/busy.component';
 import { TnxluckymeComponent } from './tnxluckyme/tnxluckyme.component';
 import { CustomFileInputComponent } from './custom-controls/custom-file-input/custom-file-input.component';
 import { RotBorderComponent } from './custom-controls/rot-border/rot-border.component';
+import { ManageComponent } from './manage/manage.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RotBorderComponent } from './custom-controls/rot-border/rot-border.comp
     BusyComponent,
     TnxluckymeComponent,
     CustomFileInputComponent,
-    RotBorderComponent
+    RotBorderComponent,
+    ManageComponent
   ],
   imports: [
     BrowserModule,
