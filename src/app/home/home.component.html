@@ -13,6 +13,7 @@
           <div class="info-card__head--text">Winners</div>
         </div>
         <div class="info-card__body">
+          <div *ngIf="winnings">
             <div *ngFor="let key of ObjectKeys(winnings)" class="winner-group">
               <div class="winner-group__header">
                 Winners For {{key}}
@@ -35,6 +36,7 @@
               </div>
             </div>
           </div>
+        </div>
       </div>
       <div class="info-card">
         <div class="info-card__head">

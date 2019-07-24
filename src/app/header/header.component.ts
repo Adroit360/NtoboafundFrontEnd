@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { User } from 'src/models/user';
 import { AuthService } from 'src/services/authservice';
 import { settings } from 'src/settings';

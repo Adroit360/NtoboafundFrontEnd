@@ -12,7 +12,7 @@ import { groupBy } from 'src/operations';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  winnings:{};
+  winnings:any;
   ObjectKeys = Object.keys;
   apiPath:string;
   constructor(private http: HttpClient) { }

@@ -15,6 +15,7 @@ import { JwtInterceptor } from 'src/interceptors/jwt.interceptor';
 import { BusyComponent } from './busy/busy.component';
 import { TnxluckymeComponent } from './tnxluckyme/tnxluckyme.component';
 import { CustomFileInputComponent } from './custom-controls/custom-file-input/custom-file-input.component';
+import { RotBorderComponent } from './custom-controls/rot-border/rot-border.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CustomFileInputComponent } from './custom-controls/custom-file-input/cu
     LuckymeComponent,
     BusyComponent,
     TnxluckymeComponent,
-    CustomFileInputComponent
+    CustomFileInputComponent,
+    RotBorderComponent
   ],
   imports: [
     BrowserModule,

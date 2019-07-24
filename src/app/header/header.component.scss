@@ -1,90 +1,144 @@
+@import "../../styles/base/animations";
 .header-body {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-   // box-shadow: var(--bottom-shadow);
-    .brand-logo {
-      //height: 6rem;
-    }
-    .nav-links {
-      ul {
-        list-style: none;
-        display: flex;
-        & > li {
-          margin: 0.5rem;
-          padding: 0.5rem;
-          cursor: pointer;
-          a{
-            font-size: 2rem;
-            text-transform: uppercase;
-              &,&:active,&:link{
-                  color:black;
-              }
-              &:hover{
-                  color:var(--lightGrey);
-              }
-          }
-        }
-      }
-    }
-    .account-actions {
-      .dropdown-toggle{
-        font-size: 1.5rem;
-        display: flex;
-        align-items: center;
-      }
-      #dropdown-checker{
-        display: none;
-        &:checked{
-          &~.my-dropdown{
-            visibility: visible;
-            opacity: 1;
-          }
-        }
-      }
-      .my-dropdown{
-        visibility: hidden;
-        opacity: 0;
-        position:absolute;
-        display: flex;
-        flex-direction: column;
-        right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  // box-shadow: var(--bottom-shadow);
+  .brand-logo {
+    //height: 6rem;
+  }
+  .nav-links {
+    ul {
+      list-style: none;
+      display: flex;
+      & > li {
+        margin: 0.5rem;
+        padding: 0.5rem;
+        cursor: pointer;
+        padding: 1rem;
         background-color: white;
-        border-radius: .5rem;
-        box-shadow: var(--shadow);
-        overflow: hidden;
+        font-family: 'Metal Mania', cursive;
         transition: all .1s;
-        &__item{
-          color:black;
-          padding: 1rem;
-          text-align: center;
-          margin-right: 0rem;
-          &:hover{
-            background-color: grey;
-            color:white;
+        backface-visibility: hidden;
+        color: black;
+        box-shadow: var(--shadow);
+        app-rot-border{
+          background-color: blue;
+        }
+        a {
+          font-size: 2rem;
+          text-transform: uppercase;
+          letter-spacing: .2rem;
+          transition: all .1s;
+          position: relative;
+          z-index: 5;
+          &,
+          &:active,
+          &:link {
+            color: inherit;
+            margin: 1rem;
+            display: inline-block;
           }
         }
-      }
-      #user-det{
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        img{
-          width:3rem;
-          height: 3rem;
-          border-radius: 50%;
-          margin:0rem .5rem 0rem 0rem;
-          overflow: hidden;
+        &:first-child {
+          animation: beep 1s cubic-bezier(.55,-0.25,.33,1.34) 1s;
         }
-      }
-      p{
-        margin: .3rem;
-      }
-      a {
-        margin-right: 1rem;
-        border-color:white;
-        color:white;
+        &:nth-child(2) {
+          animation: beep 1s cubic-bezier(.55,-0.25,.33,1.34) 1.5s;
+        }
+        &:nth-child(3) {
+          animation: beep 1s cubic-bezier(.55,-0.25,.33,1.34) 2s;
+        }
+        &:nth-child(4) {
+          animation: beep 1s cubic-bezier(.55,-0.25,.33,1.34) 2.5s;
+        }
+        .dashing{
+          display: none !important;
+        }
+        &:hover{
+          background-color:black;
+          transform: scale(1.2);
+          color: white;
+          .dashing{
+            display: block;
+          }
+        }
       }
     }
   }
+  .account-actions {
+    .dropdown-toggle {
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: .1rem;
+      background-color: white;
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      &::after{
+        color: black;
+        font-size: 3rem;
+        margin-top: .5rem;
+      }
+      &:hover::after{
+        color:rgba(black,.7);
+      }
+    }
+    #dropdown-checker {
+      display: none;
+      &:checked {
+        & ~ .my-dropdown {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+    .my-dropdown {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      right: 0;
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: all 0.1s;
+      &__item {
+        color: black;
+        padding: 1rem;
+        text-align: center;
+        margin-right: 0rem;
+        &:hover {
+          background-color: grey;
+          color: white;
+        }
+      }
+    }
+    #user-det {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      img {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        margin: 0rem 0.5rem 0rem 0rem;
+        overflow: hidden;
+      }
+    }
+    p {
+      margin: 0.3rem;
+      flex:1 1;
+    }
+    a {
+      margin-right: 1rem;
+      border-color: white;
+      color: white;
+    }
+  }
+}

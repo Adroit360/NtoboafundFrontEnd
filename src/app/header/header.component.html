@@ -4,17 +4,17 @@
     </a>
     <div class="nav-links">
       <ul>
-        <li><a href="" routerLink="">Scholarship</a></li>
-        <li><a routerLink="">Business</a></li>
-        <li><a routerLink="/luckyme">Lucky Me</a></li>
-        <li><a routerLink="">Insurance</a></li>
+          <li><app-rot-border><a href="" routerLink="">Scholarship</a></app-rot-border></li>
+        <li><app-rot-border><a routerLink="">Business</a></app-rot-border></li>
+        <li><app-rot-border><a routerLink="/luckyme">Lucky Me</a></app-rot-border></li>
+        <li><app-rot-border><a routerLink="">Insurance</a></app-rot-border></li>
       </ul>
     </div>
     <div class="account-actions">
       <div *ngIf="isAuthenticated" class="loggedIn">
           <div class="dropdown">
               <input type="checkbox" id="dropdown-checker">
-              <label for="dropdown-checker" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton">
+              <label for="dropdown-checker" class="dropdown-toggle" id="dropdownMenuButton">
                  <div id="user-det">
                     <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt="">
                     <p>Hello</p>
@@ -25,7 +25,6 @@
                 <a class="my-dropdown__item" href="" (click)="logout()">Logout</a>
               </div>
             </div>
-        
       </div>
       <div *ngIf="!isAuthenticated" class="notLoggedIn">
           <a class="btn-local" routerLink="/login">Login</a>

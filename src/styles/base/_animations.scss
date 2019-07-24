@@ -23,3 +23,20 @@
         transform: scaleX(0%)
     }
 }
+
+@keyframes beep{
+    0%{
+        background-color: white;
+        color:black;
+    }
+    50%{
+        transform:scale(1.2);
+        background-color: black;
+        color:white;
+    }
+    100%{
+        transform: scale(1);
+        background-color: white;
+        color:black;
+    }
+}
