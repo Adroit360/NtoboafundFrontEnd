@@ -9,4 +9,6 @@ export class UsersService{
     getAll() {
         return this.http.get<User[]>(`${settings.currentApiUrl}/users`);
     }
+
+    
 }

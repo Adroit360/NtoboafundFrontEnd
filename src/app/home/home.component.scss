@@ -67,50 +67,62 @@
         &__body{
 
           overflow: auto;
-          .winner-item{
-            display: flex;
-            align-items: center;
-            height: 7rem;
-            margin: 2rem 2rem;
-            background-color: rgba(blue,.1);
-            padding: 1rem;
-            &__image{
-                height:5rem;
-                width: 5rem;
-                border-radius: 50%;
-                border:1px solid var(--bordercolor);
-                overflow: hidden;
+          .winner-group{
+            background-color: rgba(black,.2);
+            margin:1rem;
+            padding:.5rem;
+            &__header{
+              padding: .5rem;
+              background-color: #00cc7c;
+              display: inline-block;
+              font-size: 1.6rem;
             }
-            &__description{
-              color:black;
-              flex: 1 1;
-              margin:0rem 1rem;
+           
+            .winner-item{
               display: flex;
-              flex-direction: column;
-              .winner-name{
-                letter-spacing: .15rem;
-                font-weight: 400;
+              align-items: center;
+              height: 7rem;
+              margin: 2rem 2rem;
+              background-color: rgba(blue,.1);
+              padding: 1rem;
+              &__image{
+                  height:5rem;
+                  width: 5rem;
+                  border-radius: 50%;
+                  border:1px solid var(--bordercolor);
+                  overflow: hidden;
               }
-              .winning-details{
+              &__description{
+                color:black;
+                flex: 1 1;
+                margin:0rem 1rem;
                 display: flex;
-                font-size: 1.3rem;
-                >*{
-                  background-color: rgba(white,.9);
-                  padding: .3rem .4rem;
-                  border-radius: .2rem;
-                  box-shadow: var(--shadow);
-                  white-space: nowrap;
-                    &:not(:first-child){
-                      margin: 0rem .5rem;
-                    }
+                flex-direction: column;
+                .winner-name{
+                  letter-spacing: .15rem;
+                  font-weight: 400;
+                }
+                .winning-details{
+                  display: flex;
+                  font-size: 1.3rem;
+                  >*{
+                    background-color: rgba(white,.9);
+                    padding: .3rem .4rem;
+                    border-radius: .2rem;
+                    box-shadow: var(--shadow);
+                    white-space: nowrap;
+                      &:not(:first-child){
+                        margin: 0rem .5rem;
+                      }
+                  }
                 }
               }
-            }
-            &__actions{
-              .period{
-                background-color: orange;
-                display: inline-block;
-                padding: .3rem .4rem;
+              &__actions{
+                .period{
+                  background-color: orange;
+                  display: inline-block;
+                  padding: .3rem .4rem;
+                }
               }
             }
           }

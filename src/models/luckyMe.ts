@@ -8,6 +8,6 @@ export class LuckyMe{
     status:string;
     amountToWin:number;
     userId:string;
-    isWinner:boolean;
+    dateDeclared:boolean;
     user:User
 }
