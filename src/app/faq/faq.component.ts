@@ -9,7 +9,7 @@ import { FaqService } from 'src/services/faqService';
 export class FaqComponent implements OnInit {
 
   
-  constructor(private faqService:FaqService) { }
+  constructor(public faqService:FaqService) { }
 
   ngOnInit() {
   }

@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   isAuthenticated:Boolean;
   currentUser:User;
   apiPath:string;
-  constructor(private authenticationService: AuthService,private faqService:FaqService) { }
+  constructor(private authenticationService: AuthService,public faqService:FaqService) { }
 
   ngOnInit() {
     this.authenticationStatusChanged()
