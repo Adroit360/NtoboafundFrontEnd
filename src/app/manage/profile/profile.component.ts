@@ -7,7 +7,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
+  loading = false;
+  error = null;
+  selectedImages:any;
   registrationForm:FormGroup
   constructor() { }
 

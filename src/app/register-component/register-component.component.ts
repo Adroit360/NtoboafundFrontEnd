@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   registrationForm: FormGroup;
   loading = false;
   error = null;
-  selectedImages
+  selectedImages;
   constructor(private authService: AuthService,private router:Router) { }
 
 
