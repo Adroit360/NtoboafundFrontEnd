@@ -36,11 +36,13 @@
         background-color: rgba(black,.2);
         margin:1rem;
         padding:.5rem;
+        overflow: auto;
         &__header{
           padding: .5rem;
           background-color: #00cc7c;
           display: inline-block;
           font-size: 1.6rem;
+          white-space: nowrap;
         }
        
         .winner-item{
@@ -50,9 +52,12 @@
           margin: 2rem 2rem;
           background-color: rgba(blue,.1);
           padding: 1rem;
+          overflow-x: auto;
+          overflow-y: hidden;
           &__image{
               height:5rem;
               width: 5rem;
+              min-width: 5rem;
               border-radius: 50%;
               border:1px solid var(--bordercolor);
               overflow: hidden;

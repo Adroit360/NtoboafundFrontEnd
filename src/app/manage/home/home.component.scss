@@ -1,4 +1,7 @@
 .mhome-body{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #dcddde;
     .info-pane{
         display: flex;
         justify-content: center;
@@ -21,5 +24,11 @@
                 font-size: 2rem;
             }
         }
+    }
+    .records-pane{
+        flex:1 1 50%;
+        background-color: orange;
+        height: calc(100vh - 8rem);
+        background-attachment: fixed;
     }
 }

@@ -198,69 +198,7 @@ app-busy{
     }
     .luckyme-body__right{
       margin: 1rem;
-      .recentsbox{
-        background-color: rgba(white,.9);
-        padding: 1rem;
-        &__header{
-          display: flex;
-          font-size: 1.7rem;
-          align-items: center;
-
-          &--left{
-            margin-left: 1rem;
-            font-size: 3rem;
-          }
-          &--right{
-            text-transform: uppercase;
-            letter-spacing: .2rem;
-            text-align: center;
-            flex: 1 1;
-            border-bottom: 1px solid var(--borderColor);
-          }
-        }
-        &__body{
-          padding: 1rem;
-          max-height: calc(60vh);
-          overflow: auto;
-          .recent-stake-item{
-            display: flex;
-            flex-direction: column;
-            background-color: rgba(#7c7cd0,.3);
-            padding: 1rem;
-            margin:.5rem;
-            &--top{
-              display: flex;
-              align-items: center;
-              white-space: nowrap;
-              .period{
-                padding: .3rem .6rem;
-                background-color: rgba(orange,.7);
-              }
-              .amount{
-                padding: .3rem .6rem;
-                background-color: rgba(blue, 1);
-                color:white;
-                border-radius: 1rem;
-              }
-              .date{
-                padding: .3rem .6rem;
-                background-color: white;
-              }
-              div{
-                margin: .5rem;
-              }
-            }
-            &--bottom{
-              display: flex;
-              flex-wrap: nowrap;
-              white-space: nowrap;
-              div{
-                margin: .5rem;
-              }
-            }
-          }
-        }
-      }
+    
     }
   }
  

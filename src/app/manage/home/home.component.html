@@ -16,8 +16,34 @@
     </div>
 
     <div class="info-tip">
-        <div class="info-tip__top">Total Profit</div>
-        <div class="info-tip__bottom">GHS 2970</div>
+      <div class="info-tip__top">Total Profit</div>
+      <div class="info-tip__bottom">GHS 2970</div>
+    </div>
+  </div>
+  <div class="records-pane">
+    <div *ngIf="luckymes.length > 0" class="recentsbox">
+      <div class="recentsbox__header">
+        <div class="recentsbox__header--left">
+          <span class="fa fa-history"></span>
+        </div>
+        <div class="recentsbox__header--right">
+          Recent Stakes
+        </div>
       </div>
+      <div class="recentsbox__body">
+        <div *ngFor="let luckyme of luckymes" class="recent-stake-item">
+          <div class="recent-stake-item--top">
+            <div class="period">{{luckyme.period}}</div>
+            <div class="amount">GHS {{luckyme.amount}}</div>
+            <div class="date">Date Staked : {{luckyme.date}}</div>
+          </div>
+          <div class="recent-stake-item--bottom">
+            <div class="status">Status : {{luckyme.status}}</div>
+            <div *ngIf="luckyme.isWinner" class="amount-won">Amount Won : GHS {{luckyme.amountToWin}}</div>
+            <div *ngIf="!luckyme.isWinner" class="potential-returns">Potential Winning : GHS 2000</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

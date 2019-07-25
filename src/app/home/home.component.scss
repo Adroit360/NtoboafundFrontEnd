@@ -39,8 +39,10 @@
   .info-pane {
     display: flex;
     margin: 2rem;
+    flex-wrap: wrap;
     .info-card {
       // background-color: var(--lightGrey);
+      min-width: 0;
       &.links{
        // background-color: transparent;
        // box-shadow: none;
@@ -117,10 +119,10 @@
       }
     }
     .info-card:first-child {
-      flex: 1 1 20rem;
+     // flex: 1 1 20rem;
     }
     .info-card:nth-child(2) {
-      flex: 1 1 20rem;
+      //flex: 1 1 20rem;
     }
   }
   // }

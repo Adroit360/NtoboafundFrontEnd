@@ -8,9 +8,9 @@
     
             <div class="main-header__right">
                 <div class="main-header__right--user">
-                    <img src="assets/images/fblogo.png" alt="User Image" class="userimage img-bordered">
+                    <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt="" class="userimage img-bordered">
     
-                    <span class="username">Justice Addico</span>
+                    <span class="username">{{currentUser.firstName}}</span>
                     <!-- <img src="assets/Icons/caret-down.svg"/> -->
                     <svg class="icon icon-min">
                         <use href="../../assets/Icons/svgs.svg#icon-chevron-small-down" />
