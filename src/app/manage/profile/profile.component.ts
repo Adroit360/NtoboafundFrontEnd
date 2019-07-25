@@ -26,4 +26,13 @@ export class ProfileComponent implements OnInit {
 
   }
 
+  register() {
+  
+  }
+
+  imageSelected(event){
+    console.log(event);
+
+    this.selectedImages = event.file;
+  }
 }
