@@ -4,9 +4,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: calc(100vh);
+  height: 100%;
   background-image: url(../../assets/images/homebg2.jpg);
-  width: calc(100vw);
+  width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   z-index: var(--level-one);
