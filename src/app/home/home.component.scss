@@ -46,12 +46,18 @@
       &.links{
        // background-color: transparent;
        // box-shadow: none;
+       .info-card__body{
+         overflow: hidden;
+       }
       }
       box-shadow: var(--shadow);
       height: 40rem;
       flex: 1 1 30rem;
       margin: 2rem;
       border-radius: 0.3rem;
+      &__body{
+        height: 35rem;
+      }
       .link-group {
         display: flex;
         flex-direction: column;
@@ -98,11 +104,10 @@
               justify-content: center;
               align-items: center;
               background-color: rgba(black, 0.7);
-              font-size: 2rem;
+              font-size: 1.4rem;
               transition: opacity 0.2s;
               color: white;
-              text-transform: uppercase;
-              letter-spacing: 0.2rem;
+              text-align: center;
             }
             &:hover {
               svg {
@@ -118,12 +123,7 @@
         }
       }
     }
-    .info-card:first-child {
-     // flex: 1 1 20rem;
-    }
-    .info-card:nth-child(2) {
-      //flex: 1 1 20rem;
-    }
+   
   }
   // }
 }
