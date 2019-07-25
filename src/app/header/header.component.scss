@@ -6,7 +6,7 @@
   padding: 1rem;
   // box-shadow: var(--bottom-shadow);
   .brand-logo {
-    //height: 6rem;
+    transform: scale(.6);
   }
   .nav-links {
     ul {
@@ -14,20 +14,16 @@
       display: flex;
       & > li {
         margin: 0.5rem;
-        padding: 0.5rem;
         cursor: pointer;
-        padding: 1rem;
         background-color: white;
-        font-family: 'Metal Mania', cursive;
+        font-family: cursive;
         transition: all .1s;
         backface-visibility: hidden;
         color: black;
         box-shadow: var(--shadow);
-        app-rot-border{
-          background-color: blue;
-        }
+        white-space: nowrap;
         a {
-          font-size: 2rem;
+          font-size: 1.3rem;
           text-transform: uppercase;
           letter-spacing: .2rem;
           transition: all .1s;
@@ -37,7 +33,7 @@
           &:active,
           &:link {
             color: inherit;
-            margin: 1rem;
+            margin: .6rem;
             display: inline-block;
           }
         }
@@ -52,6 +48,9 @@
         }
         &:nth-child(4) {
           animation: beep .5s cubic-bezier(.55,-0.25,.33,1.34) 1.4s;
+        }
+        &:nth-child(5) {
+          animation: beep .5s cubic-bezier(.55,-0.25,.33,1.34) 1.7s;
         }
         .dashing{
           display: none !important;
@@ -69,7 +68,7 @@
   }
   .account-actions {
     .dropdown-toggle {
-      font-size: 2rem;
+      font-size: 1.4rem;
       display: flex;
       align-items: center;
       cursor: pointer;
@@ -77,11 +76,11 @@
       letter-spacing: .1rem;
       background-color: white;
       box-shadow: var(--shadow);
-      padding: 1rem;
+      padding: .3rem;
       &::after{
         color: black;
-        font-size: 3rem;
-        margin-top: .5rem;
+        font-size: 2rem;
+        margin-right: .3rem;
       }
       &:hover::after{
         color:rgba(black,.7);

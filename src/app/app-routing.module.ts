@@ -6,6 +6,8 @@ import { RegisterComponent } from './register-component/register-component.compo
 import { LuckymeComponent } from './luckyme/luckyme.component';
 import { TnxluckymeComponent } from './tnxluckyme/tnxluckyme.component';
 import { ManageComponent } from './manage/manage.component';
+import { MHomeComponent } from './manage/home/home.component';
+import { ProfileComponent } from './manage/profile/profile.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -13,7 +15,11 @@ const routes: Routes = [
   {path:"register",component:RegisterComponent},
   {path:"luckyme",component:LuckymeComponent},
   {path:"tnxluckyme",component:TnxluckymeComponent},
-  {path:"manage",component:ManageComponent}
+  {path:"manage",component:ManageComponent,children:[
+    {path:"",component:MHomeComponent,pathMatch:"full"},
+    {path:"home",component:MHomeComponent},
+    {path:"profile",component:ProfileComponent}
+  ]}
 
 ];
 

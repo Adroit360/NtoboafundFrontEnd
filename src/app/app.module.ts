@@ -17,6 +17,10 @@ import { TnxluckymeComponent } from './tnxluckyme/tnxluckyme.component';
 import { CustomFileInputComponent } from './custom-controls/custom-file-input/custom-file-input.component';
 import { RotBorderComponent } from './custom-controls/rot-border/rot-border.component';
 import { ManageComponent } from './manage/manage.component';
+import { FaqComponent } from './faq/faq.component';
+import { FaqService } from 'src/services/faqService';
+import { ProfileComponent } from './manage/profile/profile.component';
+import { MHomeComponent } from './manage/home/home.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,10 @@ import { ManageComponent } from './manage/manage.component';
     TnxluckymeComponent,
     CustomFileInputComponent,
     RotBorderComponent,
-    ManageComponent
+    ManageComponent,
+    FaqComponent,
+    ProfileComponent,
+    MHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +48,7 @@ import { ManageComponent } from './manage/manage.component';
   providers: [  
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    FaqService
 ],
   bootstrap: [AppComponent]
 })

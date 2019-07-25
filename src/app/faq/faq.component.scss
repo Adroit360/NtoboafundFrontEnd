@@ -1,0 +1,10 @@
+//this component contains inf-card has styles in a global component file called info-card.scss
+.closebtn{
+    font-size: 2rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    color: #e66464;
+    &:hover{
+        color: #e88f8f;
+    }
+}

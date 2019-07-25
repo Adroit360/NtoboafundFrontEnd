@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { User } from 'src/models/user';
 import { AuthService } from 'src/services/authservice';
 import { settings } from 'src/settings';
+import { FaqService } from 'src/services/faqService';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
   isAuthenticated:Boolean;
   currentUser:User;
   apiPath:string;
-  constructor(private authenticationService: AuthService) { }
+  constructor(private authenticationService: AuthService,private faqService:FaqService) { }
 
   ngOnInit() {
     this.authenticationStatusChanged()
@@ -35,4 +36,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  openFaq(){
+    this.faqService.isShown = true;
+  }
 }
