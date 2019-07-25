@@ -15,6 +15,7 @@ export class MHomeComponent implements OnInit {
   constructor(private http: HttpClient,private authService: AuthService) { }
 
   ngOnInit() {
+    this.luckymes = new Array<LuckyMe>();
     this.getUserLuckyMes();
   }
   getUserLuckyMes(){

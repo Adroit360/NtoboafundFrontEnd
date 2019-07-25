@@ -1,0 +1,96 @@
+@import "../../../styles/abstracts/mixins";
+@import "../../../styles/abstracts/variables";
+
+app-busy{
+  position: absolute;
+  z-index: var(--level-three);
+}
+.profile-bg{
+  position: fixed;
+  width: calc(100vw);
+  height: calc(100vh);
+  //background-image: url(../../assets/images/globalbg.jpg);
+  background-size: cover;
+  z-index: var(--level-one);
+}
+.profile-content{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    &__left{
+        flex:1 1;
+        .profile-body {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: var(--level-two);
+            
+            h3,
+            h4,
+            h5 {
+              text-align: center;
+            }
+            .profile-box {
+              margin: 2rem;
+              background-color: rgba(white, 0.8);
+              flex: 0 1 40rem;
+              padding: 1rem;
+              &__header {
+                box-shadow: var(--shadow);
+                padding: 1rem;
+                color: white;
+                background-image: linear-gradient(to right, transparent, rgba(green, 0.8), transparent);
+              }
+              &__body {
+                .userImage {
+                  display: flex;
+                  justify-content: center;
+                  app-custom-file-input {
+                    width: 15rem;
+                    height: 15rem;
+                  }
+                }
+                padding: 1rem;
+                .c-input {
+                  margin-top: 2rem;
+                }
+              }
+              .error-pane {
+                text-align: center;
+                color: var(--error-color);
+                padding: 1rem;
+              }
+              .registerbtnpane {
+                display: flex;
+                justify-content: space-around;
+          
+                button {
+                  cursor: pointer;
+                  font-size: 1.5rem;
+                  color: white;
+                }
+              }
+              .socials {
+                display: flex;
+                justify-content: center;
+                .slink {
+                  width: 5rem;
+                  height: 5rem;
+                  border-radius: 50%;
+                  overflow: hidden;
+                  margin: 0.4rem;
+                  cursor: pointer;
+                }
+              }
+              &__footer {
+              }
+            }
+          }
+          
+    }
+    &__right{
+        flex:1 1;
+
+    }
+}

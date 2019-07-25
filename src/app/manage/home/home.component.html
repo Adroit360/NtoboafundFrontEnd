@@ -1,33 +1,66 @@
 <div class="mhome-body">
-  <div class="info-pane">
-    <div class="info-tip">
-      <div class="info-tip__top">Total Stakes</div>
-      <div class="info-tip__bottom">30</div>
+  <div class="mhome-body__left">
+    <div class="info-pane">
+      <div class="info-pane__header">
+        <div class="text">Lucky Me</div>
+      </div>
+      <div class="info-pane__tips">
+        <div class="info-tip">
+          <div class="info-tip__top">Total Stakes</div>
+          <div class="info-tip__bottom">30</div>
+        </div>
+
+        <div class="info-tip">
+          <div class="info-tip__top">Total Won</div>
+          <div class="info-tip__bottom">GHS 3000</div>
+        </div>
+
+        <div class="info-tip">
+          <div class="info-tip__top">Total Lost</div>
+          <div class="info-tip__bottom">GHS 30</div>
+        </div>
+
+        <div class="info-tip">
+          <div class="info-tip__top">Total Profit</div>
+          <div class="info-tip__bottom">GHS 2970</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-pane">
+      <div class="info-pane__header">
+        <div class="text">Scholarships</div>
+      </div>
+      <div class="info-pane__tips">
+          <div class="text">No Records</div>
+      </div>
+    </div>
+    <div class="info-pane">
+      <div class="info-pane__header">
+        <div class="text">Business</div>
+      </div>
+      <div class="info-pane__tips">
+          <div class="text">No Records</div>
+      </div>
+    </div>
+    <div class="info-pane">
+      <div class="info-pane__header">
+        <div class="text">Insurance</div>
+      </div>
+      <div class="info-pane__tips">
+        <div class="text">No Records</div>
+      </div>
     </div>
 
-    <div class="info-tip">
-      <div class="info-tip__top">Total Won</div>
-      <div class="info-tip__bottom">GHS 3000</div>
-    </div>
 
-    <div class="info-tip">
-      <div class="info-tip__top">Total Lost</div>
-      <div class="info-tip__bottom">GHS 30</div>
-    </div>
-
-    <div class="info-tip">
-      <div class="info-tip__top">Total Profit</div>
-      <div class="info-tip__bottom">GHS 2970</div>
-    </div>
   </div>
   <div class="records-pane">
-    <div *ngIf="luckymes.length > 0" class="recentsbox">
+    <div *ngIf="luckymes.length > 0;else norecent" class="recentsbox">
       <div class="recentsbox__header">
         <div class="recentsbox__header--left">
           <span class="fa fa-history"></span>
         </div>
         <div class="recentsbox__header--right">
-          Recent Stakes
+          Recent LuckyMe
         </div>
       </div>
       <div class="recentsbox__body">
@@ -45,5 +78,11 @@
         </div>
       </div>
     </div>
+    <ng-template #norecent>
+      <div class="norecents">
+        <span class="fa fa-history"></span>
+        <div class="text">No Recent Stakes</div>
+      </div>
+    </ng-template>
   </div>
 </div>
