@@ -1,63 +1,42 @@
 <header class="main-header">
-        <div class="main-header__toppane">
-            <div class="main-header__left">
-                <div class="app-header">
-                   <img src="../../assets/images/ntlog.png" alt="">
-                </div>
-            </div>
-    
-            <div class="main-header__right">
-                <div class="main-header__right--user">
-                    <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt="" class="userimage img-bordered">
-    
-                    <span class="username">{{currentUser.firstName}}</span>
-                    <!-- <img src="assets/Icons/caret-down.svg"/> -->
-                    <svg class="icon icon-min">
-                        <use href="../../assets/Icons/svgs.svg#icon-chevron-small-down" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="main-body">
-        <aside class="main-aside">
-            <div class="main-header__brand">
-                <a id="collapseBtn-container" class="d-inline-block">
-                    <svg class="collapseBtn icon icon-min">
-                        <use href="../../assets/Icons/svgs.svg#icon-menu" />
-                    </svg>
-                </a>
-                <a class="d-inline-block">
-                    <!-- <img class="brand-Image" src="../../assets/images/ntlog.png" /> -->
-                </a>
-            </div>
-            <nav class="side-nav">
-                <ul class="top-list">
-                    <li class="top-list-item">
-                        <a routerLink="home">
-                            <label class="top-link">
-                                        <svg class="linkicon icon icon-mid" style="fill:green;">
-                                                <use href="../../assets/Icons/svgs.svg#icon-home" />
-                                        </svg>
-                                <a routerLink="home" class="d-inline-block top-link__name">Home</a>
-                            </label>
-                        </a>
-                    </li>
-                    <li class="top-list-item">
-                        <a routerLink="profile">
-                            <label class="top-link">
-                                    <svg class="linkicon icon icon-mid" style="fill:rebeccapurple;">
-                                            <use href="../../assets/Icons/svgs.svg#icon-user" />
-                                    </svg>
-                                <a routerLink="profile" class="d-inline-block top-link__name">Profile</a>
-                            </label>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-    
-        </aside>
-        <div class="body-content">
-            <router-outlet></router-outlet>
+    <div class="main-header__left">
+        <div class="app-brand">
+            <img src="../../assets/images/ntlog.png" alt="">
         </div>
     </div>
+
+    <div class="main-header__right">
+        <div class="main-header__right--user">
+            <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt=""
+                class="userimage img-bordered">
+
+            <span class="username">{{currentUser.firstName}}</span>
+            <!-- <img src="assets/Icons/caret-down.svg"/> -->
+            <svg class="icon icon-min">
+                <use href="../../assets/Icons/svgs.svg#icon-chevron-small-down" />
+            </svg>
+        </div>
+    </div>
+</header>
+<div class="main-body">
+    <nav class="main-nav">
+        <ul class="links">
+            <li>
+                <input type="radio" [checked]="isHomePage" id="homechecker" name="navchecker">
+                <label for="homechecker" (click)="check('home')">
+                    <a routerLink="home">Home</a>
+                </label>
+            </li>
+            <li >
+                <input type="radio" [checked]="!isHomePage" id="profilechecker" name="navchecker">
+                <label for="profilechecker" (click)="check('profile')">
+                    <a routerLink="profile">Profile</a>
+                </label>
+
+            </li>
+        </ul>
+    </nav>
+    <div class="body-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

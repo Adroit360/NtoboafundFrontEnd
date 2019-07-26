@@ -17,7 +17,7 @@ export class CustomFileInputComponent implements OnInit {
   @ViewChild("input") inputElement:ElementRef;
   @ViewChild("label") labelElement:ElementRef;
   @ViewChild("cImageInput") cImageInput:ElementRef;
-
+  @Input() src:any;
   selectedFile:File;
   selectedFiles:File[];
   selectedImageUrl:String;
@@ -27,7 +27,8 @@ export class CustomFileInputComponent implements OnInit {
   ngOnInit() {
     console.log("main Element");
     this.hasHideClass = false;
-    this.changeLabelText()
+    this.changeLabelText();
+    this.selectedImageUrl = this.src;
   }
 
   changeLabelText(){

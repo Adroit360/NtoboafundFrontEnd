@@ -74,8 +74,6 @@ export class RegisterComponent implements OnInit {
       this.loading = false;
       this.error = "Form Contains Invalid Fields";
     }
-
-
   }
 
   imageSelected(event){

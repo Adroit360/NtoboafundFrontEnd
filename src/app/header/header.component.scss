@@ -86,15 +86,13 @@
         color:rgba(black,.7);
       }
     }
-    #dropdown-checker {
-      display: none;
-      &:checked {
-        & ~ .my-dropdown {
+  
+      &:hover {
+        .my-dropdown {
           visibility: visible;
           opacity: 1;
         }
       }
-    }
     .my-dropdown {
       visibility: hidden;
       opacity: 0;

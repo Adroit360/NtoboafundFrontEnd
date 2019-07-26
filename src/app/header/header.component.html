@@ -14,7 +14,7 @@
     <div class="account-actions">
       <div *ngIf="isAuthenticated" class="loggedIn">
           <div class="dropdown">
-              <input type="checkbox" id="dropdown-checker">
+              <!-- <input type="checkbox" id="dropdown-checker"> -->
               <label for="dropdown-checker" class="dropdown-toggle" id="dropdownMenuButton">
                  <div id="user-det">
                     <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt="">
