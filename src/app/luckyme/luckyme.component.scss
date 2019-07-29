@@ -16,13 +16,21 @@ app-busy{
   left: 0;
   z-index: 0;
 }
+
 .luckyme-body {
   position: relative;
   padding: 2rem;
+  //padding-top: 6rem;
+  top:6rem;
+  height: calc(100vh - 6rem);
+  width: calc(100vw);
+  overflow: auto;
   z-index: var(--level-three);
-  
+
   &--content{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     .luckyme-body__left{
       flex:1 1;
       .choice-scrolls {

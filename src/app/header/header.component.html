@@ -1,37 +1,52 @@
 <div class="header-body">
-    <a routerLink="" class="brand-logo">
-      <img src="../../assets/images/logo.png" alt="">
-    </a>
-    <div class="nav-links">
-      <ul>
-          <li><app-rot-border><a href="" routerLink="">Scholarship</a></app-rot-border></li>
-        <li><app-rot-border><a routerLink="">Business</a></app-rot-border></li>
-        <li><app-rot-border><a routerLink="/luckyme">Lucky Me</a></app-rot-border></li>
-        <li><app-rot-border><a routerLink="">Insurance</a></app-rot-border></li>
-        <li><app-rot-border><a (click)="openFaq()">FAQ</a></app-rot-border></li>
-      </ul>
+  <input id="toggler-check" type="checkbox" />
+  <label for="toggler-check" class="nav-toggler">
+    <div  class="icon">
     </div>
-    <div class="account-actions">
-      <div *ngIf="isAuthenticated" class="loggedIn">
-          <div class="dropdown">
-              <!-- <input type="checkbox" id="dropdown-checker"> -->
-              <label for="dropdown-checker" class="dropdown-toggle" id="dropdownMenuButton">
-                 <div id="user-det">
-                    <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt="">
-                    <p>Hello</p>
-                    <p>{{currentUser.firstName}}</p>
-                 </div>
-              </label>
-              <div class="my-dropdown">
-                <a class="my-dropdown__item" href="" (click)="logout()">Logout</a>
-                <a routerLink="/manage" class="my-dropdown__item" href="">Manage</a>
-              </div>
-            </div>
+  </label>
+  <a routerLink="" class="brand-logo">
+    <img src="../../assets/images/logo.png" alt="">
+  </a>
+  <div class="nav-links">
+    <ul>
+      <li>
+        <app-rot-border><a href="" routerLink="">Scholarship</a></app-rot-border>
+      </li>
+      <li>
+        <app-rot-border><a routerLink="">Business</a></app-rot-border>
+      </li>
+      <li>
+        <app-rot-border><a routerLink="/luckyme">Lucky Me</a></app-rot-border>
+      </li>
+      <li>
+        <app-rot-border><a routerLink="">Insurance</a></app-rot-border>
+      </li>
+      <li>
+        <app-rot-border><a (click)="openFaq()">FAQ</a></app-rot-border>
+      </li>
+    </ul>
+  </div>
+  <div class="account-actions">
+    <div *ngIf="isAuthenticated" class="loggedIn">
+      <div class="dropdown">
+        <!-- <input type="checkbox" id="dropdown-checker"> -->
+        <label for="dropdown-checker" class="dropdown-toggle" id="dropdownMenuButton">
+          <div id="user-det">
+            <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt="">
+            <p>Hello</p>
+            <p>{{currentUser.firstName}}</p>
+          </div>
+        </label>
+        <div class="my-dropdown">
+          <a class="my-dropdown__item" href="" (click)="logout()">Logout</a>
+          <a routerLink="/manage" class="my-dropdown__item" href="">Manage</a>
+        </div>
       </div>
-      <div *ngIf="!isAuthenticated" class="notLoggedIn">
-          <a class="btn-local" routerLink="/login">Login</a>
-          <a class="btn-local" routerLink="/register">Sign Up</a>
-      </div>
-     
     </div>
+    <div *ngIf="!isAuthenticated" style="white-space: nowrap" class="notLoggedIn">
+      <a class="btn-local" routerLink="/login">Login</a>
+      <a class="btn-local" routerLink="/register">Sign Up</a>
+    </div>
+
+  </div>
 </div>
