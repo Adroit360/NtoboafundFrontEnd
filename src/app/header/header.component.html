@@ -1,6 +1,6 @@
 <div class="header-body">
-  <input id="toggler-check" type="checkbox" />
-  <label for="toggler-check" class="nav-toggler">
+  <input id="toggler-check" [checked]="isTogglerChecked" type="checkbox" />
+  <label (click)="toggleNavigation()" class="nav-toggler">
     <div  class="icon">
     </div>
   </label>

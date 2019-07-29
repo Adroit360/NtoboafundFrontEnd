@@ -14,11 +14,13 @@ export class HeaderComponent implements OnInit {
   isAuthenticated:Boolean;
   currentUser:User;
   apiPath:string;
+  isTogglerChecked:boolean;
   constructor(private authenticationService: AuthService,public faqService:FaqService) { }
 
   ngOnInit() {
     this.authenticationStatusChanged()
     this.apiPath = settings.currentApiUrl;
+    this.isTogglerChecked = false;
   }
 
   logout(){
@@ -38,5 +40,10 @@ export class HeaderComponent implements OnInit {
 
   openFaq(){
     this.faqService.isShown = true;
+    this.isTogglerChecked = false;
+  }
+
+  toggleNavigation(){
+    this.isTogglerChecked = !this.isTogglerChecked;
   }
 }
