@@ -70,33 +70,6 @@
 
     </div>
     <div class="info-pane">
-      <div class="info-card">
-        <div class="info-card__head">
-          <div class="info-card__head--icon">
-            <img src="../../assets/images/trophy.png" alt="">
-          </div>
-          <div class="info-card__head--text">All Winners</div>
-        </div>
-        <div class="info-card__body">
-          <div *ngIf="winnings">
-            <div *ngFor="let key of ObjectKeys(winnings)" class="winner-group">
-              <div class="winner-group__header">
-                {{key}}
-              </div>
-              <div *ngFor="let winner of winnings[key]" class="winner-item">
-                <div class="winner-item__description">
-                  <span class="winner-name">{{winner.user.firstName }} {{winner.user.lastName}}</span>
-                  <span class="winning-details">
-                    <span class="amount-won"> Won <span class="period"> {{winner.period}} </span>GH₵
-                      {{winner.amountToWin}}</span>
-                    <span class="amount-staked"> with GH₵ {{winner.amount}}</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="ancment-cards">
         <div class="first">
           <div class="ancment-card">
@@ -176,6 +149,33 @@
         </div>
 
       </div>
+      <div class="info-card">
+          <div class="info-card__head">
+            <div class="info-card__head--icon">
+              <img src="../../assets/images/trophy.png" alt="">
+            </div>
+            <div class="info-card__head--text">All Winners</div>
+          </div>
+          <div class="info-card__body">
+            <div *ngIf="winnings">
+              <div *ngFor="let key of ObjectKeys(winnings)" class="winner-group">
+                <div class="winner-group__header">
+                  {{key}}
+                </div>
+                <div *ngFor="let winner of winnings[key]" class="winner-item">
+                  <div class="winner-item__description">
+                    <span class="winner-name">{{winner.user.firstName }} {{winner.user.lastName}}</span>
+                    <span class="winning-details">
+                      <span class="amount-won"> Won <span class="period"> {{winner.period}} </span>GH₵
+                        {{winner.amountToWin}}</span>
+                      <span class="amount-staked"> with GH₵ {{winner.amount}}</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
   <div class="h-bottom">

@@ -163,12 +163,18 @@
     flex-wrap: wrap;
     justify-content: center;
     height:68rem;
+    @media (max-width:763px){
+      .ancment-cards{
+        order: 1;
+      }
+    }
     .ancment-cards{
       background-color: white;
       box-shadow: var(--shadow);
       flex:1 1;
+      min-width: 30rem;
       margin: 2rem 1rem 2rem 2rem;
-      overflow:auto;
+      overflow-y:auto;
       &>div{
         display: flex;
         justify-content:center;
@@ -177,7 +183,7 @@
       }
       .ancment-card{
         display: block;
-        //width: 30rem;
+        width: 30rem;
         flex: 1 1 25rem;
         max-width: 25rem;
         margin:2rem;
