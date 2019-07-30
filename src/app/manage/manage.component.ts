@@ -20,7 +20,9 @@ export class ManageComponent implements OnInit {
   ngOnInit() {
     this.authenticationStatusChanged()
     this.apiPath = settings.currentApiUrl;
-    if (((this.router.snapshot as any)._routerState.url as string).includes("home")) {
+    if (((this.router.snapshot as any)._routerState.url as string).includes("profile")) {
+      this.isHomePage = false;
+    }else{
       this.isHomePage = true;
     }
   }

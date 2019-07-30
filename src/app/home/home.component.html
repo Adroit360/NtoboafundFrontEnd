@@ -1,7 +1,15 @@
 <app-header></app-header>
 <div class="h-body">
   <div class="h-top">
-    
+    <div  *ngIf="luckyMeSeconds>=0" class="countdown">
+      <div class="header">Next LuckyMe Draw In</div>
+      <div class="counters">
+          <!-- <div class="ctd">{{luckyMeDays}} <span>Days</span></div> -->
+          <div class="ctd">{{luckyMeHours}} <span>Hours</span></div>
+          <div class="ctd">{{luckyMeMinutes}} <span>Minutes</span></div>
+          <div class="ctd">{{luckyMeSeconds}} <span>Seconds</span></div>
+      </div>
+    </div>
     <div class="h-top__link-cards">
       <a href="#" class="link-card">
         <div class="link-card__head">
@@ -25,7 +33,8 @@
           <div class="text">Business</div>
         </div>
         <div class="link-card__bottom">
-          <div class="cover-text">Start a membership business to develop a direct relationship with others and generate predictable, recurring revenue from our work from friends who pay you..
+          <div class="cover-text">Start a membership business to develop a direct relationship with others and generate
+            predictable, recurring revenue from our work from friends who pay you..
           </div>
           <div class="play-btn">Visit</div>
         </div>
@@ -39,7 +48,7 @@
         </div>
         <div class="link-card__bottom">
           <div class="cover-text">Be a part of Ntoboa fund and stand a chance of winning a scholarship to furthur your
-            education or that of your loved one. 
+            education or that of your loved one.
           </div>
           <div class="play-btn">Visit</div>
         </div>
@@ -52,7 +61,8 @@
           <div class="text">Insurance</div>
         </div>
         <div class="link-card__bottom">
-          <div class="cover-text">Ntoboafund insures you of any future occurrence. You are secured and just at the right time.
+          <div class="cover-text">Ntoboafund insures you of any future occurrence. You are secured and just at the right
+            time.
           </div>
           <div class="play-btn">Visit</div>
         </div>
@@ -60,103 +70,109 @@
 
     </div>
     <div class="info-pane">
-        <div class="info-card">
-            <div class="info-card__head">
-              <div class="info-card__head--icon">
-                <img src="../../assets/images/trophy.png" alt="">
+      <div class="info-card">
+        <div class="info-card__head">
+          <div class="info-card__head--icon">
+            <img src="../../assets/images/trophy.png" alt="">
+          </div>
+          <div class="info-card__head--text">All Winners</div>
+        </div>
+        <div class="info-card__body">
+          <div *ngIf="winnings">
+            <div *ngFor="let key of ObjectKeys(winnings)" class="winner-group">
+              <div class="winner-group__header">
+                {{key}}
               </div>
-              <div class="info-card__head--text">All Winners</div>
-            </div>
-            <div class="info-card__body">
-              <div *ngIf="winnings">
-                <div *ngFor="let key of ObjectKeys(winnings)" class="winner-group">
-                  <div class="winner-group__header">
-                    {{key}}
-                  </div>
-                  <div *ngFor="let winner of winnings[key]" class="winner-item">
-                    <div class="winner-item__description">
-                      <span class="winner-name">{{winner.user.firstName }} {{winner.user.lastName}}</span>
-                      <span class="winning-details">
-                        <span class="amount-won"> Won <span class="period"> {{winner.period}} </span>GH₵ {{winner.amountToWin}}</span>
-                        <span class="amount-staked"> with GH₵ {{winner.amount}}</span>
-                      </span>
-                    </div>
-                  </div>
+              <div *ngFor="let winner of winnings[key]" class="winner-item">
+                <div class="winner-item__description">
+                  <span class="winner-name">{{winner.user.firstName }} {{winner.user.lastName}}</span>
+                  <span class="winning-details">
+                    <span class="amount-won"> Won <span class="period"> {{winner.period}} </span>GH₵
+                      {{winner.amountToWin}}</span>
+                    <span class="amount-staked"> with GH₵ {{winner.amount}}</span>
+                  </span>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
       <div class="ancment-cards">
         <div class="first">
-            <div class="ancment-card">
-                <div class="ancment-card__head">
-                    <svg class="ancmenticon icon icon-mid">
-                      <use href="../../assets/Icons/svgs.svg#icon-dollar" />
-                    </svg>
-                    <div class="text">Prizes Paid</div>
-                  </div>
-                  <div class="ancment-card__bottom">
-                    <div style="font-size: 2rem;color:black;font-weight:bolder;" class="maxprizes">GH₵ 220,000</div>
-                    <div class="cover-text">Ntoboafund insures you of any future occurrence. You are secured and just at the right time.
-                    </div>
-                    <div class="action-btn">Read More &rarr;</div>
-                  </div>
+          <div class="ancment-card">
+            <div class="ancment-card__head">
+              <svg class="ancmenticon icon icon-mid">
+                <use href="../../assets/Icons/svgs.svg#icon-dollar" />
+              </svg>
+              <div class="text">Prizes Paid</div>
             </div>
-            <div class="ancment-card">
-                <div class="ancment-card__head">
-                    <svg class="ancmenticon icon icon-mid">
-                      <use href="../../assets/Icons/svgs.svg#icon-user" />
-                    </svg>
-                    <div class="text">Insurance</div>
-                  </div>
-                  <div class="ancment-card__bottom">
-                    <div class="cover-text">Ntoboafund insures you of any future occurrence. You are secured and just at the right time.
-                    </div>
-                    <div class="action-btn">Visit</div>
-                  </div>
+            <div class="ancment-card__bottom">
+              <div style="font-size: 2rem;color:black;font-weight:bolder;" class="maxprizes">GH₵ 220,000</div>
+              <div class="cover-text">Ntoboafund insures you of any future occurrence. You are secured and just at the
+                right time.
+              </div>
+              <div class="action-btn">Read More &rarr;</div>
             </div>
-            <div class="ancment-card">
-                <div class="ancment-card__head">
-                    <svg class="ancmenticon icon icon-mid">
-                      <use href="../../assets/Icons/svgs.svg#icon-user" />
-                    </svg>
-                    <div class="text">Insurance</div>
-                  </div>
-                  <div class="ancment-card__bottom">
-                    <div class="cover-text">Ntoboafund insures you of any future occurrence. You are secured and just at the right time.
-                    </div>
-                    <div class="action-btn">Visit</div>
-                  </div>
+          </div>
+          <div class="ancment-card">
+            <div class="ancment-card__head">
+              <svg class="ancmenticon icon icon-mid">
+                <use href="../../assets/Icons/svgs.svg#icon-user" />
+              </svg>
+              <div class="text">Insurance</div>
             </div>
+            <div class="ancment-card__bottom">
+              <div class="cover-text">Ntoboafund insures you of any future occurrence. You are secured and just at the
+                right time.
+              </div>
+              <div class="action-btn">Visit</div>
+            </div>
+          </div>
+          <div class="ancment-card">
+            <div class="ancment-card__head">
+              <svg class="ancmenticon icon icon-mid">
+                <use href="../../assets/Icons/svgs.svg#icon-user" />
+              </svg>
+              <div class="text">Insurance</div>
+            </div>
+            <div class="ancment-card__bottom">
+              <div class="cover-text">Ntoboafund insures you of any future occurrence. You are secured and just at the
+                right time.
+              </div>
+              <div class="action-btn">Visit</div>
+            </div>
+          </div>
 
         </div>
         <div class="second">
-            <div class="ancment-card">
-                <div class="ancment-card__head">
-                    <svg class="ancmenticon icon icon-mid">
-                      <use href="../../assets/Icons/svgs.svg#icon-lock" />
-                    </svg>
-                    <div class="text">Security</div>
-                  </div>
-                  <div class="ancment-card__bottom">
-                    <div class="cover-text">Ntoboafund insures you of any future occurrence. You are secured and just at the right time.
-                    </div>
-                    <div class="action-btn">Read More &rarr;</div>
-                  </div>
+          <div class="ancment-card">
+            <div class="ancment-card__head">
+              <svg class="ancmenticon icon icon-mid">
+                <use href="../../assets/Icons/svgs.svg#icon-lock" />
+              </svg>
+              <div class="text">Security</div>
             </div>
-            <div class="ancment-card">
-                <div class="ancment-card__head">
-                    <svg class="ancmenticon icon icon-mid">
-                      <use href="../../assets/Icons/svgs.svg#icon-support" />
-                    </svg>
-                    <div class="text">Customer Support</div>
-                  </div>
-                  <div class="ancment-card__bottom">
-                    <div class="cover-text">Ntoboafund insures you of any future occurrence. You are secured and just at the right time.
-                    </div>
-                    <div class="action-btn">Visit</div>
-                  </div>
+            <div class="ancment-card__bottom">
+              <div class="cover-text">Ntoboafund insures you of any future occurrence. You are secured and just at the
+                right time.
+              </div>
+              <div class="action-btn">Read More &rarr;</div>
             </div>
+          </div>
+          <div class="ancment-card">
+            <div class="ancment-card__head">
+              <svg class="ancmenticon icon icon-mid">
+                <use href="../../assets/Icons/svgs.svg#icon-support" />
+              </svg>
+              <div class="text">Customer Support</div>
+            </div>
+            <div class="ancment-card__bottom">
+              <div class="cover-text">Ntoboafund insures you of any future occurrence. You are secured and just at the
+                right time.
+              </div>
+              <div class="action-btn">Visit</div>
+            </div>
+          </div>
         </div>
 
       </div>

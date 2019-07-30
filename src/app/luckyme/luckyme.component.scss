@@ -7,8 +7,9 @@ app-busy{
 }
 .luckyme-bg {
   position: fixed;
-  background-image: url(../../assets/images/luckyme2.jpg);
-  background-position: bottom right;
+ // background-image: url(../../assets/images/luckyme2.jpg);
+ background:url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png) center center no-repeat #3ab3d2; 
+ background-position: bottom right;
   background-size: cover;
   height: calc(100vh);
   width: calc(100vw);
