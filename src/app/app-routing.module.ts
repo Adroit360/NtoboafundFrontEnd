@@ -17,7 +17,7 @@ const routes: Routes = [
   {path:"tnxluckyme",component:TnxluckymeComponent},
   {path:"manage",component:ManageComponent,children:[
     {path:"",component:MHomeComponent,pathMatch:"full"},
-    {path:"home",component:MHomeComponent},
+    {path:"overview",component:MHomeComponent},
     {path:"profile",component:ProfileComponent}
   ]}
 

@@ -1,4 +1,5 @@
 @import "../../styles/abstracts/mixins";
+@import "../../styles/base/animations";
 
 .bg {
   position: fixed;
@@ -74,9 +75,10 @@
         //width: 30rem;
         flex: 1 1 25rem;
         max-width: 25rem;
-        height: 35rem;
+        height: 31rem;
         margin:2rem;
         overflow: hidden;
+        border:1px solid var(--bordercolor);
         &,&:link,&:active{
           color: black;
         }
@@ -87,8 +89,9 @@
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: center;
           position: relative;
-          height:50%;
+          height:40%;
           z-index: 2;
           svg{
             width:10rem;
@@ -125,19 +128,22 @@
           background-color: white;
           padding: 2rem;
           text-align: center;
-          height: 50%;
+          height: 60%;
           display:flex;
           align-items: center;
           flex-direction: column;
           position: relative;
+          .cover-text{
+            margin-bottom: 3.5rem;
+            height: 100%;
+            overflow:auto;
+          }
           .play-btn{
             position: absolute;
             padding: .5rem 1.5rem; 
             background-color: orangered;
             color:white;
             bottom: 1rem;
-            left:50%;
-            transform: translateX(-50%);
             box-shadow: var(--shadow);
           }
         }
@@ -259,38 +265,53 @@
   // }
 }
 
-@keyframes bounce {
-  from,
-  2.0%,
-  5.3%,
-  8.0%,
-  to {
-    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+@media (max-width:588px){
+  .h-body {
+    .h-top {
+      &__link-cards {
+        .link-card{
+          flex: 1 1 19rem;
+          max-width: 19rem;
+          min-width:0rem;
+          height: 35rem;
+          margin:.5rem;
+          &,&:link,&:active{
+            color: black;
+          }
+      
+          &__head{
+            padding: 1rem 1.5rem;
+            svg{
+              width:6rem;
+              height:6rem;
+            }
+            .text{
+              font-size: 1.6rem;
+            }
+            &::after{
+              content: "";
+              height: 0rem;
+              border-top: 1.5rem solid #ffad01;
+              border-left:1.5rem solid transparent;
+              border-right: 1.5rem solid transparent;
+              border-bottom:1.5rem solid transparent;
+              position: absolute;
+              bottom: -3rem;
+            }
+          }
+          &__bottom{
+           
+            padding: 1rem;
+            font-size: 1.5rem;
+            .play-btn{
+              bottom: .7rem;
+            }
+          }
+        }
+      }
+    }
   }
+  
 
-  4.0%,
-  4.3% {
-    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    -webkit-transform: translate3d(0, -30px, 0);
-    transform: translate3d(0, -30px, 0);
-  }
-
-  7.0% {
-    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    -webkit-transform: translate3d(0, -15px, 0);
-    transform: translate3d(0, -15px, 0);
-  }
-
-  9.0% {
-    -webkit-transform: translate3d(0, -4px, 0);
-    transform: translate3d(0, -4px, 0);
-  }
-  10%{
-    transform: translate3d(0, 0, 0);
-  }
 }
+

@@ -1,23 +1,44 @@
 .mhome-body{
     display: flex;
     justify-content: space-evenly;
-    background-color: #dcddde;
-    &__left{
+    flex-direction: column;
+    &__charts{
+        text-align: center;
+        .anum{
+            display: inline-block;
+            margin: .5rem;
+        }
+        .monthly{
+            display: inline-block;
+            margin: .5rem;
+        }
+    }
+    &__info{
+        display: flex;
+        overflow: auto;
+        padding: 1rem;
+        margin:2rem 0rem;
+        background-color: white;
+        box-shadow: var(--shadow);
         .info-pane{
+            box-shadow: var(--shadow);
+            margin: 1rem;
+            min-width: 30rem;
             &__header{
-                text-align: center;
-                margin:1rem;
+                padding:1rem 2rem;
+                border-top:1px solid var(--bordercolor);
+                border-bottom:1px solid var(--bordercolor);
                 .text{
                     position: relative;
-                    padding: 1rem;
+                    padding: .2rem 1rem;
                     display: inline-block;
                     background-color: #66c386;
                     font-size: 1.5rem;
-                    width:20rem;
                     color: white;
+                    text-align: center;
                     &::before{
                         content: "";
-                        width: 2rem;
+                        width: 1.5rem;
                         height: 35%;
                         background-color: white;
                         position: absolute;
@@ -28,7 +49,7 @@
                     }
                     &::after{
                         content: "";
-                        width: 2rem;
+                        width: 1.5rem;
                         height: 35%;
                         background-color: white;
                         position: absolute;
@@ -38,10 +59,12 @@
                         box-shadow: var(--shadow);
                     }
                 }
+              
             }
             &__tips{
                 display: flex;
                 justify-content: center;
+                flex-wrap: wrap;
                 .info-tip{
                     height: 10rem;
                     width:13rem;
@@ -79,8 +102,9 @@
         flex:1 1 50%;
         height: calc(100vh - 8rem);
         background-attachment: fixed;
-        padding: 1rem;
+        margin: 2rem 0rem;
         border-left: 1px solid white;
+        box-shadow: var(--shadow);
         .norecents{
             display: flex;
             justify-content: center;

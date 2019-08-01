@@ -21,6 +21,7 @@ import { FaqComponent } from './faq/faq.component';
 import { FaqService } from 'src/services/faqService';
 import { ProfileComponent } from './manage/profile/profile.component';
 import { MHomeComponent } from './manage/home/home.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -43,12 +44,17 @@ import { MHomeComponent } from './manage/home/home.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule
+  ],
+  exports:[
+    ChartsModule
   ],
   providers: [  
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     FaqService
+    
 ],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import { User } from 'src/models/user';
 import { AuthService } from 'src/services/authservice';
 import { settings } from 'src/settings';
 import { ActivatedRoute } from '@angular/router';
+import { overrideProvider } from '@angular/core/src/view';
 
 @Component({
   selector: 'app-manage',
@@ -14,17 +15,20 @@ export class ManageComponent implements OnInit {
   currentUser: User;
   apiPath: any;
   isAuthenticated: Boolean;
-  isHomePage: boolean;
+  currentPage: string = 'overview';
   constructor(private authenticationService: AuthService, private router: ActivatedRoute) { }
 
   ngOnInit() {
     this.authenticationStatusChanged()
     this.apiPath = settings.currentApiUrl;
-    if (((this.router.snapshot as any)._routerState.url as string).includes("profile")) {
-      this.isHomePage = false;
-    }else{
-      this.isHomePage = true;
+    var route = ((this.router.snapshot as any)._routerState.url as string);
+    if(route == "/manage"){
+      this.currentPage = 'overview'
     }
+    else{
+      this.currentPage = route.replace("/manage/","");
+    }
+    console.log(this.currentPage);
   }
 
   logout() {
@@ -42,12 +46,14 @@ export class ManageComponent implements OnInit {
     }
   }
 
-  check(page) {
-    if (page == "home")
-      this.isHomePage = true;
-    else
-      this.isHomePage = false;
+  navigate(page) {
+    this.currentPage = page;
+  }
 
+  isOnPage(page) {
+    if (page == this.currentPage)
+      return true;
+    return false;
   }
 
 }

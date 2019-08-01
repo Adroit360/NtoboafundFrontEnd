@@ -1,42 +1,47 @@
-<header class="main-header">
-    <div class="main-header__left">
-        <div class="app-brand">
-            <img src="../../assets/images/ntlog.png" alt="">
+<div class="d-body">
+    <aside class="d-body__aside">
+        <div class="brand-image">
+
         </div>
-    </div>
-
-    <div class="main-header__right">
-        <div class="main-header__right--user">
-            <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt=""
-                class="userimage img-bordered">
-
-            <span class="username">{{currentUser.firstName}}</span>
-            <!-- <img src="assets/Icons/caret-down.svg"/> -->
-            <svg class="icon icon-min">
-                <use href="../../assets/Icons/svgs.svg#icon-chevron-small-down" />
-            </svg>
+        <nav class="navlinks">
+            <a (click)="navigate('overview')" routerLink="overview" class="navlink">
+                <span class="bar" [ngClass]="{isactive:isOnPage('overview')}"></span>
+                <div class="navlink__icon">
+                    <svg>
+                        <use href="../../assets/Icons/svgs.svg#icon-codesandbox" />
+                    </svg>
+                </div>
+                <div class="navlink__text">Overview</div>
+            </a>
+            <a (click)="navigate('profile')" routerLink="profile" class="navlink">
+                <span class="bar" [ngClass]="{isactive:isOnPage('profile')}"></span>
+                <div class="navlink__icon">
+                    <svg>
+                        <use href="../../assets/Icons/svgs.svg#icon-user" />
+                    </svg>
+                </div>
+                <div class="navlink__text">Profile</div>
+            </a>
+        </nav>
+    </aside>
+    <div class="d-body__preface"></div>
+    <div class="d-body__main">
+        <div class="head">
+            <div class="header-text">Overview</div>
+            <div class="notification">
+                <div class="icon">
+                    <svg>
+                        <use href="../../assets/Icons/svgs.svg#icon-moneybag" />
+                    </svg>
+                </div>
+            </div>
+            <div class="user-det">
+                <div class="username">Justice</div>
+                <div class="dropdown"></div>
+            </div>
         </div>
-    </div>
-</header>
-<div class="main-body">
-    <nav class="main-nav">
-        <ul class="links">
-            <li>
-                <input type="radio" [checked]="isHomePage" id="homechecker" name="navchecker">
-                <label for="homechecker" (click)="check('home')">
-                    <a routerLink="home">Home</a>
-                </label>
-            </li>
-            <li >
-                <input type="radio" [checked]="!isHomePage" id="profilechecker" name="navchecker">
-                <label for="profilechecker" (click)="check('profile')">
-                    <a routerLink="profile">Profile</a>
-                </label>
-
-            </li>
-        </ul>
-    </nav>
-    <div class="body-content">
-        <router-outlet></router-outlet>
+        <div class="body">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
