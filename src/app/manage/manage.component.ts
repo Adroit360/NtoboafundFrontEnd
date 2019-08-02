@@ -18,7 +18,7 @@ export class ManageComponent implements OnInit {
   isAuthenticated: Boolean;
   currentPage: string = 'overview';
   constructor(private authenticationService: AuthService,
-     private router: ActivatedRoute,private userDashboardService:UserDashBoardService) { }
+     private router: ActivatedRoute,public userDashboardService:UserDashBoardService) { }
 
   ngOnInit() {
     this.authenticationStatusChanged()
