@@ -8,9 +8,7 @@
         [colors]="lineChartColors"
         [legend]="lineChartLegend"
         [chartType]="lineChartType"
-        [plugins]="lineChartPlugins"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)"></canvas>
+       ></canvas>
     </div>
     <div class="monthly">
         <canvas baseChart width="400" height="400"
@@ -19,10 +17,7 @@
         [options]="lineChartOptions"
         [colors]="lineChartColors"
         [legend]="lineChartLegend"
-        [chartType]="lineChartType"
-        [plugins]="lineChartPlugins"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)"></canvas>
+        [chartType]="lineChartType"></canvas>
     </div>
   </div>
   <div class="mhome-body__info">
@@ -164,3 +159,7 @@
     </ng-template>
   </div>
 </div>
+
+<!-- [plugins]="lineChartPlugins"
+(chartHover)="chartHovered($event)"
+(chartClick)="chartClicked($event)" -->
