@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
 
     
     if(this.isAuthenticated){
-      this.currentUser = this.authenticationService.getCurrentUser();
+      this.currentUser = this.authenticationService.currentUser
     }
   }
 

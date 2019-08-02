@@ -1,135 +1,147 @@
-<!-- <app-busy [ngClass]="{'visible':loading,'invisible':!loading}" #loader></app-busy> -->
-<!-- <div class="profile-bg"></div> -->
+<app-busy [ngClass]="{'visible':loading,'invisible':!loading}" #loader></app-busy>
+<div class="profile-bg"></div>
 <div class="profile-content">
+  <div class="mode-box">{{mode}}</div>
+  <div [ngClass]="{shown:isMessageShown}" class="message">{{message}}</div>
   <div class="profile-content__left">
-      <nav class="main-nav">
-          <ul class="links">
-              <input type="radio" (click)="check('null')" style="display: none" id="null" name="profilenavchecker">
-              <li>
-                  <input type="radio" [checked]="isSelected('view')" id="viewProfile" name="profilenavchecker">
-                  <label for="viewProfile" (click)="check('view')">
-                      <a routerLink="home">View Profile</a>
-                  </label>
-              </li>
-              <li >
-                  <input type="radio" [checked]="isSelected('edit')" id="editProfile" name="profilenavchecker">
-                  <label for="editProfile" (click)="check('edit')">
-                      <a routerLink="profile">Edit Profile</a>
-                  </label>
-              </li>
-              <li id="cpassword-toggler">
-                  <input type="radio" [checked]="isSelected('profile')" id="changePswd" name="profilenavchecker">
-                  <label for="changePswd" (click)="check('profile')">
-                      <a routerLink="profile">Change Password</a>
-                  </label>
-                  
-                  <div class="cpassword-box">
-                    <div class="cpassword-box__header">
-                      <div class="text">Change Password</div>
-                      <label for="null" class="fa fa-times"></label>
-                    </div>
-                    <div class="cpassword-box__body">
-                        <form [formGroup]="cPasswordForm">
-            
-                            <div class="cpassword-box__body"> 
-                              <div class="c-input">
-                                <input type="text" placeholder="Enter Old Password" />
-                                <i class="c-addon fa fa-lock"></i>
-                                <b class="val-msg">
-                                  <!-- <p *ngIf="!registrationForm.get('firstName').valid && registrationForm.get('firstName').touched">This Field Is
-                                    Required</p> -->
-                                </b>
-                              </div>
-                              <div class="c-input">
-                                <input type="text" placeholder="Enter New Password" />
-                                <i class="c-addon fa fa-lock"></i>
-                                <b class="val-msg">
-                                  <!-- <p *ngIf="!registrationForm.get('lastName').valid && registrationForm.get('lastName').touched">This Field Is
-                                    Required</p> -->
-                                </b>
-                              </div>
-                              <div class="c-input">
-                                  <input type="text" placeholder="Confirm New Password" />
-                                  <i class="c-addon fa fa-lock"></i>
-                                  <b class="val-msg">
-                                    <!-- <p *ngIf="!registrationForm.get('lastName').valid && registrationForm.get('lastName').touched">This Field Is
-                                      Required</p> -->
-                                  </b>
-                                </div>
-  
-                            </div>
-                            <!-- <div *ngIf="error" class="error-pane"></div> -->
-                            <!-- *ngIf="cPasswordForm.touched"  -->
-                            <div class="cPasswordbtnpane">
-                              <button type="submit" class="btn btn-primary">Save Changes</button>
-                            </div>
-                            <div class="profile-box__footer">
-                        
-                            </div>
-                         
-                
-                    </form>
-                    </div>
-                  </div>
-              </li>
+    <nav class="main-nav">
+      <ul class="links">
+        <input type="radio" style="display: none" id="null" name="navchecker">
+        <li class="view-profile">
+          <input type="radio" [checked]="isSelected('view')" id="viewProfile" name="profilenavchecker">
+          <label for="viewProfile" (click)="changeMode(false)">
+              <svg>
+                <use href="../../assets/Icons/svgs.svg#icon-eye" />
+              </svg>
+          </label>
+        </li>
+        <li class="edit-profile">
+          <input type="radio" [checked]="isSelected('edit')" id="editProfile" name="profilenavchecker">
+          <label for="editProfile" (click)="changeMode(true)">
+              <svg>
+                <use href="../../assets/Icons/svgs.svg#icon-pencil" />
+              </svg>
+          </label>
+        </li>
+        <li id="cpassword-toggler">
+          <input type="radio" id="changePswd" name="navchecker">
+          <label for="changePswd">
+              <svg>
+                <use href="../../assets/Icons/svgs.svg#icon-moneybag" />
+              </svg>
+          </label>
+          <div class="bg">
+            <div class="cpassword-box">
+              <div class="cpassword-box__header">
+                <div class="text">Change Password</div>
+                <label for="null" class="fa fa-times"></label>
+              </div>
+              <div class="cpassword-box__body">
+                <form [formGroup]="cPasswordForm">
 
-          </ul>
-      </nav>
-  
+                  <div class="cpassword-box__body">
+                    <div class="c-input">
+                      <input type="text" placeholder="Enter Old Password" />
+                      <i class="c-addon fa fa-lock"></i>
+                      <b class="val-msg">
+                        <!-- <p *ngIf="!registrationForm.get('firstName').valid && registrationForm.get('firstName').touched">This Field Is
+                                          Required</p> -->
+                      </b>
+                    </div>
+                    <div class="c-input">
+                      <input type="text" placeholder="Enter New Password" />
+                      <i class="c-addon fa fa-lock"></i>
+                      <b class="val-msg">
+                        <!-- <p *ngIf="!registrationForm.get('lastName').valid && registrationForm.get('lastName').touched">This Field Is
+                                          Required</p> -->
+                      </b>
+                    </div>
+                    <div class="c-input">
+                      <input type="text" placeholder="Confirm New Password" />
+                      <i class="c-addon fa fa-lock"></i>
+                      <b class="val-msg">
+                        <!-- <p *ngIf="!registrationForm.get('lastName').valid && registrationForm.get('lastName').touched">This Field Is
+                                            Required</p> -->
+                      </b>
+                    </div>
+
+                  </div>
+                  <!-- <div *ngIf="error" class="error-pane"></div> -->
+                  <!-- *ngIf="cPasswordForm.touched"  -->
+                  <div class="cPasswordbtnpane">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                  </div>
+                  <div class="profile-box__footer">
+
+                  </div>
+
+
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </li>
+      </ul>
+    </nav>
+
   </div>
   <div class="profile-content__right">
-      <div class="profile-body">
-          <form class="profile-box" [formGroup]="registrationForm" (ngSubmit)="updateProfile()">
-            
-            <div class="profile-box__body">
-              <div class="userImage">
-                <app-custom-file-input [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" (inputChanged)="imageSelected($event)"  defaultLabelText="Choose Image" hiddenLabelText="Remove Image">
-                </app-custom-file-input>
-        
-              </div>
-              <div class="c-input">
-                <input type="text" placeholder="First Name" [formControlName]="'firstName'" />
-                <i class="c-addon fa fa-user"></i>
-                <b class="val-msg">
-                  <p *ngIf="!registrationForm.get('firstName').valid && registrationForm.get('firstName').touched">This Field Is
-                    Required</p>
-                </b>
-              </div>
-              <div class="c-input">
-                <input type="text" placeholder="Last Name" formControlName="lastName" />
-                <i class="c-addon fa fa-user"></i>
-                <b class="val-msg">
-                  <p *ngIf="!registrationForm.get('lastName').valid && registrationForm.get('lastName').touched">This Field Is
-                    Required</p>
-                </b>
-              </div>
-              <div class="c-input">
-                <input type="email" placeholder="Email" formControlName="email" />
-                <i class="c-addon fa fa-envelope"></i>
-                <b class="val-msg">
-                  <p *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched">This Field Is
-                    Required</p>
-                </b>
-              </div>
-              <div class="c-input">
-                <input type="text" placeholder="Phone Number" formControlName="phoneNumber" />
-                <i class="c-addon fa fa-phone"></i>
-                <b class="val-msg">
-                  <p *ngIf="!registrationForm.get('phoneNumber').valid && registrationForm.get('phoneNumber').touched">This
-                    Field Is Required</p>
-                </b>
-              </div>
-        
-        
-            </div>
-            <div *ngIf="error" class="error-pane">{{error}}</div>
-            <div *ngIf="registrationForm.touched" class="registerbtnpane">
-              <button type="submit" class="btn btn-primary">Save Changes</button>
-            </div>
-            <div class="profile-box__footer">
-        
-            </div>
-          </form>
+    <div class="profile-body">
+      <form class="profile-box" [formGroup]="registrationForm" (ngSubmit)="updateProfile()">
+
+        <div class="profile-box__body">
+          <div class="userImage">
+            <app-custom-file-input [ngClass]="{disabled:!isEditMode}" [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]"
+              (inputChanged)="imageSelected($event)" defaultLabelText="Choose Image" hiddenLabelText="Remove Image">
+            </app-custom-file-input>
+
+          </div>
+          <div [ngClass]="{disabled:!isEditMode}" class="c-input">
+            <input type="text" placeholder="First Name" [formControlName]="'firstName'" />
+            <i class="c-addon fa fa-user"></i>
+            <b class="val-msg">
+              <p *ngIf="!registrationForm.get('firstName').valid && registrationForm.get('firstName').touched">This
+                Field Is
+                Required</p>
+            </b>
+          </div>
+          <div [ngClass]="{disabled:!isEditMode}" class="c-input">
+            <input type="text" placeholder="Last Name" formControlName="lastName" />
+            <i class="c-addon fa fa-user"></i>
+            <b class="val-msg">
+              <p *ngIf="!registrationForm.get('lastName').valid && registrationForm.get('lastName').touched">This Field
+                Is
+                Required</p>
+            </b>
+          </div>
+          <div [ngClass]="{disabled:!isEditMode}" class="c-input">
+            <input type="email" placeholder="Email" formControlName="email" />
+            <i class="c-addon fa fa-envelope"></i>
+            <b class="val-msg">
+              <p *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched">This Field Is
+                Required</p>
+            </b>
+          </div>
+          <div [ngClass]="{disabled:!isEditMode}" class="c-input">
+            <input type="text" placeholder="Phone Number" formControlName="phoneNumber" />
+            <i class="c-addon fa fa-phone"></i>
+            <b class="val-msg">
+              <p *ngIf="!registrationForm.get('phoneNumber').valid && registrationForm.get('phoneNumber').touched">This
+                Field Is Required</p>
+            </b>
+          </div>
+
+
         </div>
+        <div *ngIf="error" class="error-pane">{{error}}</div>
+        <div *ngIf="registrationForm.touched && isEditMode" class="registerbtnpane">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+        <div class="profile-box__footer">
+
+        </div>
+      </form>
+    </div>
   </div>
 </div>

@@ -22,6 +22,7 @@ import { FaqService } from 'src/services/faqService';
 import { ProfileComponent } from './manage/profile/profile.component';
 import { MHomeComponent } from './manage/home/home.component';
 import { ChartsModule } from 'ng2-charts';
+import { UserDashBoardService } from 'src/services/userdashbord.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ChartsModule } from 'ng2-charts';
   providers: [  
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    FaqService
+    FaqService,
+    UserDashBoardService
     
 ],
   bootstrap: [AppComponent]

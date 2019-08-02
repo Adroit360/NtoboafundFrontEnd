@@ -5,6 +5,7 @@ import { settings } from 'src/settings';
 import { AuthService } from 'src/services/authservice';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
+import { UserDashBoardService } from 'src/services/userdashbord.service';
 //import * as pluginAnnotations from 'chartjs-plugin-annotation';
 
 @Component({
@@ -15,7 +16,7 @@ import { Label, Color } from 'ng2-charts';
 export class MHomeComponent implements OnInit {
 
   luckymes:Array<LuckyMe>;
-  constructor(private http: HttpClient,private authService: AuthService) { }
+  constructor(private http: HttpClient,private authService: AuthService,private userDashboardService:UserDashBoardService) { }
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59,90], label: 'Profits' },
     { data: [28, 48, 40], label: 'Losses' },
@@ -94,9 +95,10 @@ export class MHomeComponent implements OnInit {
   ngOnInit() {
     this.luckymes = new Array<LuckyMe>();
     this.getUserLuckyMes();
+    this.userDashboardService.headerText = "Overview";
   }
   getUserLuckyMes(){
-    this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${this.authService.getCurrentUser().id}`).subscribe(
+    this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${this.authService.currentUser.id}`).subscribe(
       (response:Array<LuckyMe>)=>{
         response.forEach((value)=>{
           this.luckymes.push(value);

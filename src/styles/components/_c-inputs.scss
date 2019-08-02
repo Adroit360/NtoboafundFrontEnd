@@ -16,6 +16,7 @@
     height: 3.5rem;
     font-size: 1.5rem;  
     input{
+      font-size: inherit;
       &.ng-invalid.ng-touched{
        
         &~.val-msg{
@@ -50,7 +51,6 @@
       }
       //background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
     }
-  
     &.checkbox::after {
       content: "";
       width: 1rem;
@@ -63,8 +63,12 @@
       -webkit-transform: rotate(-45deg);
       transform: rotate(-45deg);
       top: .9rem;
-    }
-    
+    } 
+  }
+
+  .c-input.disabled{
+    background:white;
+    border:1px solid black;
   }
   
   .c-input input {

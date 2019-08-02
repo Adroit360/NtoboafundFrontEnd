@@ -27,17 +27,29 @@
     <div class="d-body__preface"></div>
     <div class="d-body__main">
         <div class="head">
-            <div class="header-text">Overview</div>
+            <div class="header-text">{{userDashboardService.headerText}}</div>
             <div class="notification">
                 <div class="icon">
                     <svg>
-                        <use href="../../assets/Icons/svgs.svg#icon-moneybag" />
+                        <use href="../../assets/Icons/svgs.svg#icon-tools" />
                     </svg>
                 </div>
             </div>
-            <div class="user-det">
-                <div class="username">Justice</div>
-                <div class="dropdown"></div>
+            <div class="account-actions">
+                <div class="dropdown">
+                    <!-- <input type="checkbox" id="dropdown-checker"> -->
+                    <label for="dropdown-checker" class="dropdown-toggle" id="dropdownMenuButton">
+                        <div id="user-det">
+                            <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt="">
+                            <p>Hello</p>
+                            <p>{{currentUser.firstName}}</p>
+                        </div>
+                    </label>
+                    <div class="my-dropdown">
+                        <a routerLink="" class="my-dropdown__item" href="">Back To Home</a>
+                        <a class="my-dropdown__item" href="" (click)="logout()">Logout</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="body">

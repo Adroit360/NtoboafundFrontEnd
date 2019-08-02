@@ -61,7 +61,7 @@ export class LuckymeComponent implements OnInit {
       }
 
       this.loading = true;
-      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurl`, {amount:this.selectedChoice,period:this.selectedPeriod,userId:this.authService.getCurrentUser().id})
+      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurl`, {amount:this.selectedChoice,period:this.selectedPeriod,userId:this.authService.currentUser.id})
         .subscribe(
           response => {
             this.loading = false;
@@ -103,7 +103,7 @@ export class LuckymeComponent implements OnInit {
   }
 
   getUserLuckyMes(){
-    this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${this.authService.getCurrentUser().id}`).subscribe(
+    this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${this.authService.currentUser.id}`).subscribe(
       (response:Array<LuckyMe>)=>{
         response.forEach((value)=>{
           this.luckymes.push(value);

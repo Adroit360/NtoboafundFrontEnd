@@ -4,6 +4,7 @@ import { AuthService } from 'src/services/authservice';
 import { settings } from 'src/settings';
 import { ActivatedRoute } from '@angular/router';
 import { overrideProvider } from '@angular/core/src/view';
+import { UserDashBoardService } from 'src/services/userdashbord.service';
 
 @Component({
   selector: 'app-manage',
@@ -16,7 +17,8 @@ export class ManageComponent implements OnInit {
   apiPath: any;
   isAuthenticated: Boolean;
   currentPage: string = 'overview';
-  constructor(private authenticationService: AuthService, private router: ActivatedRoute) { }
+  constructor(private authenticationService: AuthService,
+     private router: ActivatedRoute,private userDashboardService:UserDashBoardService) { }
 
   ngOnInit() {
     this.authenticationStatusChanged()
@@ -42,7 +44,7 @@ export class ManageComponent implements OnInit {
 
 
     if (this.isAuthenticated) {
-      this.currentUser = this.authenticationService.getCurrentUser();
+      this.currentUser = this.authenticationService.currentUser
     }
   }
 
