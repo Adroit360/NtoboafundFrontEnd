@@ -1,0 +1,29 @@
+<app-busy class="invisible" [ngClass]="{'visible':loading,'invisible':!loading}"></app-busy>
+
+<div class="insurance-bg"></div>
+<app-header></app-header>
+<div class="insurance-body">
+  <div class="insurance-body--content">
+    
+  </div>
+</div>
+
+<!-- [ngClass]="{'visible':errorShown,'invisible':!errorShown}" -->
+<div  class="popup regular" id="error-box">
+  <div class="popup__content">
+    <div class="popup__content--toolbar">
+      <div class="toolbar--left">Error !</div>
+      <div class="toolbar--right">
+        <a (click)="closePopup()" class="closebtn">
+          <span class="fa fa-times"></span>
+        </a>
+      </div>
+    </div>
+    <div class="popup__content--body">
+      {{error}}
+    </div>
+    <div class="popup__content--footer"></div>
+  </div>
+</div>
+
+<app-faq></app-faq>

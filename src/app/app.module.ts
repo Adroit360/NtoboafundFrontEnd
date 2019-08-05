@@ -23,6 +23,9 @@ import { ProfileComponent } from './manage/profile/profile.component';
 import { MHomeComponent } from './manage/home/home.component';
 import { ChartsModule } from 'ng2-charts';
 import { UserDashBoardService } from 'src/services/userdashbord.service';
+import { ScholarshipComponent } from './scholarship/scholarship.component';
+import { InsuranceComponent } from './insurance/insurance.component';
+import { BusinessComponent } from './business/business.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { UserDashBoardService } from 'src/services/userdashbord.service';
     ManageComponent,
     FaqComponent,
     ProfileComponent,
-    MHomeComponent
+    MHomeComponent,
+    ScholarshipComponent,
+    InsuranceComponent,
+    BusinessComponent
   ],
   imports: [
     BrowserModule,

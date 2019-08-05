@@ -40,10 +40,14 @@ export class HeaderComponent implements OnInit {
 
   openFaq(){
     this.faqService.isShown = true;
-    this.isTogglerChecked = false;
+    this.navClicked();
   }
 
   toggleNavigation(){
     this.isTogglerChecked = !this.isTogglerChecked;
+  }
+
+  navClicked(){
+    this.isTogglerChecked = false;
   }
 }

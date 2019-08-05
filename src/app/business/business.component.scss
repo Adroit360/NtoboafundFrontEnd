@@ -1,0 +1,36 @@
+@import "../../styles/abstracts/mixins";
+app-busy{
+  position: absolute;
+  z-index: var(--level-five);
+  width: calc(100vw);
+  height: calc(100vh);
+}
+.business-bg {
+  position: fixed;
+ // background-image: url(../../assets/images/luckyme2.jpg);
+ background:url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png) center center no-repeat #d2bd3a; 
+ background-position: bottom right;
+  background-size: cover;
+  height: calc(100vh);
+  width: calc(100vw);
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.business-body {
+  position: relative;
+  padding: 2rem;
+  //padding-top: 6rem;
+  top:6rem;
+  height: calc(100vh - 6rem);
+  width: calc(100vw);
+  overflow: auto;
+  z-index: var(--level-three);
+
+  &--content{
+   
+  }
+ 
+
+}

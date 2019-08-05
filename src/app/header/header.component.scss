@@ -42,24 +42,24 @@
           &:active,
           &:link {
             color: inherit;
-            margin: 0.6rem;
+            padding: 1rem;
             display: inline-block;
           }
         }
         &:first-child {
-          animation: beep 0.5s cubic-bezier(0.55, -0.25, 0.33, 1.34) 0.5s;
+          animation: bounce 10s cubic-bezier(0.55, -0.25, 0.33, 1.34) 0.5s;
         }
         &:nth-child(2) {
-          animation: beep 0.5s cubic-bezier(0.55, -0.25, 0.33, 1.34) 0.8s;
+          animation: bounce 10s cubic-bezier(0.55, -0.25, 0.33, 1.34) 0.8s;
         }
         &:nth-child(3) {
-          animation: beep 0.5s cubic-bezier(0.55, -0.25, 0.33, 1.34) 1.1s;
+          animation: bounce 10s cubic-bezier(0.55, -0.25, 0.33, 1.34) 1.1s;
         }
         &:nth-child(4) {
-          animation: beep 0.5s cubic-bezier(0.55, -0.25, 0.33, 1.34) 1.4s;
+          animation: bounce 10s cubic-bezier(0.55, -0.25, 0.33, 1.34) 1.4s;
         }
         &:nth-child(5) {
-          animation: beep 0.5s cubic-bezier(0.55, -0.25, 0.33, 1.34) 1.7s;
+          animation: bounce 10s cubic-bezier(0.55, -0.25, 0.33, 1.34) 1.7s;
         }
         .dashing {
           display: none !important;
@@ -232,12 +232,15 @@
             &:active,
             &:link {
               color: inherit;
-              margin: 0.6rem;
+              padding: 1.5rem;
               display: inline-block;
             }
           }
           &:first-child {
             animation: beep 0.5s cubic-bezier(0.55, -0.25, 0.33, 1.34) 0.5s;
+            .rotating-dashed{
+              background-color: red;
+            }
           }
           &:nth-child(2) {
             animation: beep 0.5s cubic-bezier(0.55, -0.25, 0.33, 1.34) 0.8s;

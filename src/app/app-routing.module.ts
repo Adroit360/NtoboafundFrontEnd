@@ -8,12 +8,18 @@ import { TnxluckymeComponent } from './tnxluckyme/tnxluckyme.component';
 import { ManageComponent } from './manage/manage.component';
 import { MHomeComponent } from './manage/home/home.component';
 import { ProfileComponent } from './manage/profile/profile.component';
+import { ScholarshipComponent } from './scholarship/scholarship.component';
+import { BusinessComponent } from './business/business.component';
+import { InsuranceComponent } from './insurance/insurance.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
   {path:"luckyme",component:LuckymeComponent},
+  {path:"scholarship",component:ScholarshipComponent},
+  {path:"business",component:BusinessComponent},
+  {path:"insurance",component:InsuranceComponent},
   {path:"tnxluckyme",component:TnxluckymeComponent},
   {path:"manage",component:ManageComponent,children:[
     {path:"",component:MHomeComponent,pathMatch:"full"},
