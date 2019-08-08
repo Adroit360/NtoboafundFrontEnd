@@ -17,29 +17,31 @@ export class LuckymeComponent implements OnInit {
   selectedPeriod = null;
   errorShown = false;
   error = null;
-  luckymes:Array<LuckyMe>;
+  luckymes: Array<LuckyMe>;
   constructor(private http: HttpClient, private authService: AuthService,
-    private router: Router,private currentRoute:ActivatedRoute) { }
+    private router: Router, private currentRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.loading = false;
     this.luckymes = new Array<LuckyMe>();
 
-    var checkoutId =this.currentRoute.snapshot.queryParams["checkoutId"];
-    if(checkoutId){
+    var checkoutId = this.currentRoute.snapshot.queryParams["checkoutId"];
+    if (checkoutId) {
       this.http.delete(`${settings.currentApiUrl}/luckymes/${localStorage.getItem(checkoutId)}`).
-      subscribe(
-        response=>{
-          console.log(response);
-          this.getUserLuckyMes()
-        },
-        error=>{console.log(error);
-          this.getUserLuckyMes()
-        }
-      )
+        subscribe(
+          response => {
+            console.log(response);
+            this.getUserLuckyMes()
+          },
+          error => {
+            console.log(error);
+            this.getUserLuckyMes()
+          }
+        )
     }
-    else{
-      this.getUserLuckyMes()
+    else {
+      if (this.authService.isAuthenticated)
+        this.getUserLuckyMes()
     }
   }
 
@@ -47,28 +49,28 @@ export class LuckymeComponent implements OnInit {
     let name = "";
     let unitPrice = "";
     if (this.authService.isAuthenticated) {
-      
 
-      if(!this.selectedChoice){
+
+      if (!this.selectedChoice) {
         this.error = "Please Select a Choice";
         this.errorShown = true;
         return;
       }
-      if(!this.selectedPeriod){
+      if (!this.selectedPeriod) {
         this.error = "Please Select a Period";
         this.errorShown = true;
         return;
       }
 
       this.loading = true;
-      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurl`, {amount:this.selectedChoice,period:this.selectedPeriod,userId:this.authService.currentUser.id})
+      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurl`, { amount: this.selectedChoice, period: this.selectedPeriod, userId: this.authService.currentUser.id })
         .subscribe(
           response => {
             this.loading = false;
             this.luckymes.push(response.luckyMe);
-            let resultString =JSON.parse(response.resultString)
+            let resultString = JSON.parse(response.resultString)
             window.location.href = resultString.data.checkoutUrl;
-            localStorage.setItem(resultString.data.checkoutId,response.luckyMe.id);
+            localStorage.setItem(resultString.data.checkoutId, response.luckyMe.id);
           },
           error => {
             console.log("Error");
@@ -83,33 +85,33 @@ export class LuckymeComponent implements OnInit {
 
   }
 
-  selectChoice(event,selectedChoice:number){
-    if(event.target.checked){
+  selectChoice(event, selectedChoice: number) {
+    if (event.target.checked) {
       this.selectedChoice = selectedChoice;
     }
   }
 
-  selectPeriod(event,selectedPeriod:string){
+  selectPeriod(event, selectedPeriod: string) {
 
-    if(event.target.checked){
+    if (event.target.checked) {
       this.selectedPeriod = selectedPeriod;
     }
 
   }
 
-  closePopup(){
+  closePopup() {
     this.error = null;
     this.errorShown = false;
   }
 
-  getUserLuckyMes(){
+  getUserLuckyMes() {
     this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${this.authService.currentUser.id}`).subscribe(
-      (response:Array<LuckyMe>)=>{
-        response.forEach((value)=>{
+      (response: Array<LuckyMe>) => {
+        response.forEach((value) => {
           this.luckymes.push(value);
         })
       },
-      error=>{
+      error => {
         console.log("Error getting luckyme's");
         console.log(error);
       }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CountDownService } from 'src/services/countdownservice';
 
 @Component({
   selector: 'app-scholarship',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScholarshipComponent implements OnInit {
 
-  constructor() { }
+  scholarshipDays:number;
+  scholarshipHours:number;
+  scholarshipMinutes:number;
+  scholarshipSeconds:number;
+
+  constructor(private countDownService:CountDownService) {
+
+   }
 
   ngOnInit() {
+    this.countDownService.QuaterlyDaysTime.subscribe((days:number)=>{this.scholarshipDays = days});
+    this.countDownService.QuaterlyHoursTime.subscribe((hours:number)=>{this.scholarshipHours = hours});
+    this.countDownService.QuaterlyMinutesTime.subscribe((minutes:number)=>{this.scholarshipMinutes = minutes});
+    this.countDownService.QuaterlySecondsTime.subscribe((seconds:number)=>{this.scholarshipSeconds = seconds});
+
   }
 
 }

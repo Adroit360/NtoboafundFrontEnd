@@ -1,0 +1,32 @@
+.countdown{
+    text-align:center;
+    font-size: 1.7rem;
+    margin-top: 1rem;
+    
+    .header{
+      font-family: 'Courier New', Courier, monospace;
+      text-transform: uppercase;
+      letter-spacing: .2rem;
+    }
+    .counters{
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      .ctd{
+        display: inline-block;
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: .5rem;
+        width:10rem;
+        font-size: 3rem;
+        span{
+          font-size: 1.5rem;
+          letter-spacing: .1rem;
+        }
+      }
+    }
+
+  }

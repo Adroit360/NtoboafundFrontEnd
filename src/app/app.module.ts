@@ -26,6 +26,7 @@ import { UserDashBoardService } from 'src/services/userdashbord.service';
 import { ScholarshipComponent } from './scholarship/scholarship.component';
 import { InsuranceComponent } from './insurance/insurance.component';
 import { BusinessComponent } from './business/business.component';
+import { CountDownService } from 'src/services/countdownservice';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { BusinessComponent } from './business/business.component';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     FaqService,
-    UserDashBoardService
+    UserDashBoardService,
+    CountDownService
     
 ],
   bootstrap: [AppComponent]

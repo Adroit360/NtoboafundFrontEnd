@@ -6,12 +6,14 @@ import { User } from 'src/models/user';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    isAuthenticated: Boolean;
+    get isAuthenticated(): Boolean{
+        return this.checkAuthenticationStatus()
+    }
     get currentUser(): User {
         return this.getCurrentUser2();
     }
     constructor(private http: HttpClient) {
-        this.isAuthenticated = this.checkAuthenticationStatus();
+        //this.isAuthenticated = this.checkAuthenticationStatus();
     }
     //  images:File[],firstName:string,lastName:string,email: string,phoneNumber:string, password: string,confirmPassword:string
     //{images,firstName,lastName,email,phoneNumber, password,confirmPassword }
@@ -40,9 +42,7 @@ export class AuthService {
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.isAuthenticated = true;
                 }
-                console.log(user);
                 return user;
             }));
     }

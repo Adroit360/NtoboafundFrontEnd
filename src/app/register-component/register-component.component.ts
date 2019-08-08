@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
           console.log(user)
           if (user && user.token) {
             localStorage.setItem('currentUser', JSON.stringify(user));
-            this.authService.isAuthenticated = true;
+            //this.authService.isAuthenticated = true;
             this.router.navigate(['']);
           }
           this.loading = false;

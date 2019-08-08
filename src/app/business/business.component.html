@@ -3,27 +3,150 @@
 <div class="business-bg"></div>
 <app-header></app-header>
 <div class="business-body">
-  <div class="business-body--content">
-    
-  </div>
-</div>
+  <div class="business-body__content">
+    <div class="business-body__content--header">
 
-<!-- [ngClass]="{'visible':errorShown,'invisible':!errorShown}" -->
-<div  class="popup regular" id="error-box">
-  <div class="popup__content">
-    <div class="popup__content--toolbar">
-      <div class="toolbar--left">Error !</div>
-      <div class="toolbar--right">
-        <a (click)="closePopup()" class="closebtn">
-          <span class="fa fa-times"></span>
-        </a>
+      <div class="business-body__content--headerleft">
+        <div class="info-card participants">
+          <div class="info-card__head">Current Participants</div>
+          <div class="info-card__body">
+            <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
+            <div class="winner-group">
+              <div class="winner-group__header">
+                Today
+              </div>
+              <!-- *ngFor="let winner of winnings[key]" -->
+              <div class="winner-item">
+                <div class="winner-item__description">
+                  <span class="winner-name">Justice Addico</span>
+                  <span class="winning-details">
+                    <span class="amount-won"> Won <span class="period"> </span>GH₵
+                      10000</span>
+                    <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="popup__content--body">
-      {{error}}
-    </div>
-    <div class="popup__content--footer"></div>
-  </div>
-</div>
 
-<app-faq></app-faq>
+      <div class="business-body__content--headercenter">
+        <div *ngIf="businessSeconds>=0" class="countdown">
+          <div class="header">Next business Draw In</div>
+          <div class="counters">
+            <!-- <div class="ctd">{{businessDays}} <span>Days</span></div> -->
+            <div class="ctd">{{businessDays}} <span>Days</span></div>
+            <div class="ctd">{{businessHours}} <span>Hours</span></div>
+            <div class="ctd">{{businessMinutes}} <span>Minutes</span></div>
+            <div class="ctd">{{businessSeconds}} <span>Seconds</span></div>
+          </div>
+        </div>
+        <div class="stake-box">
+          <div class="stake-box-header">
+            <div class="text">Choose an option to play</div>
+            <div class="arrow">
+              <span class="fa fa-arrow-down"></span>
+            </div>
+          </div>
+          <div class="selector">
+            <input id="select100" (change)="selectChoice($event,100.00)" class="selector-item__radio" type="radio"
+              name="selectedamount" />
+            <label for="select100" class="selector-item">
+              <div class="selector-item__amount">GH₵ 100</div>
+            </label>
+            <input id="select200" (change)="selectChoice($event,500.00)" class="selector-item__radio" type="radio"
+              name="selectedamount" />
+            <label for="select200" class="selector-item">
+              <div class="selector-item__amount">GH₵ 500</div>
+            </label>
+            <input id="select300" (change)="selectChoice($event,1000.00)" class="selector-item__radio" type="radio"
+              name="selectedamount" />
+            <label for="select300" class="selector-item">
+              <div class="selector-item__amount">GH₵ 1000</div>
+            </label>
+            <input id="select400" (change)="selectChoice($event,2000)" class="selector-item__radio" type="radio"
+              name="selectedamount" />
+            <label for="select400" class="selector-item">
+              <div class="selector-item__amount">GH₵ 2000</div>
+            </label>
+          </div>
+          <div class="selector-info" [ngClass]="{'shown':selectedAmount!=null}">
+            <div class="chosen-amt inf">
+              <span class="text">Chosen Amount</span>
+              <span class="amount">GH₵ {{selectedAmount}}</span>
+            </div>
+            <div class="pot-ret inf">
+              <div class="text">Potential Returns</div>
+              <span class="amount">{{potentialReturns}}</span>
+            </div>
+            <div class="actions">
+              <button class="btn btn-danger">Play</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="business-body__content--headerright">
+          <div class="info-card winnerscard">
+            <div class="info-card__head">Past Winners</div>
+            <div class="info-card__body">
+              <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
+              <div class="winner-group">
+                <div class="winner-group__header">
+                  Last Three Months
+                </div>
+                <!-- *ngFor="let winner of winnings[key]" -->
+                <div class="winner-item">
+                  <div class="winner-item__description">
+                    <span class="winner-name">Justice Addico</span>
+                    <span class="winning-details">
+                      <span class="amount-won"> Won <span class="period"> </span>GH₵
+                        10000</span>
+                      <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </div>
+    <div class="business-body__content--details">
+        <div class="tab-box">
+          <ul class="nav nav-tabs">
+            <li class="nav-item active">
+              <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#where" role="tab" data-toggle="tab">Where</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="how">...</div>
+            <div role="tabpanel" class="tab-pane fade" id="where">bbb</div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!-- [ngClass]="{'visible':errorShown,'invisible':!errorShown}" -->
+  <div class="popup regular" id="error-box">
+    <div class="popup__content">
+      <div class="popup__content--toolbar">
+        <div class="toolbar--left">Error !</div>
+        <div class="toolbar--right">
+          <a (click)="closePopup()" class="closebtn">
+            <span class="fa fa-times"></span>
+          </a>
+        </div>
+      </div>
+      <div class="popup__content--body">
+        {{error}}
+      </div>
+      <div class="popup__content--footer"></div>
+    </div>
+  </div>
+
+  <app-faq></app-faq>

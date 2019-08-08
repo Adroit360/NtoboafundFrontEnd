@@ -3,13 +3,141 @@
 <div class="scholarship-bg"></div>
 <app-header></app-header>
 <div class="scholarship-body">
-  <div class="scholarship-body--content">
-    
+  <div class="scholarship-body__content">
+    <div class="scholarship-body__content--header">
+
+      <div class="scholarship-body__content--headerleft">
+        <div class="info-card participants">
+          <div class="info-card__head">Current Participants</div>
+          <div class="info-card__body">
+            <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
+            <div class="winner-group">
+              <div class="winner-group__header">
+                Today
+              </div>
+              <!-- *ngFor="let winner of winnings[key]" -->
+              <div class="winner-item">
+                <div class="winner-item__description">
+                  <span class="winner-name">Justice Addico</span>
+                  <span class="winning-details">
+                    <span class="amount-won"> Won <span class="period"> </span>GH₵
+                      10000</span>
+                    <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scholarship-body__content--headercenter">
+        <div *ngIf="scholarshipSeconds>=0" class="countdown">
+          <div class="header">Next scholarship Draw In</div>
+          <div class="counters">
+            <!-- <div class="ctd">{{scholarshipDays}} <span>Days</span></div> -->
+            <div class="ctd">{{scholarshipDays}} <span>Days</span></div>
+            <div class="ctd">{{scholarshipHours}} <span>Hours</span></div>
+            <div class="ctd">{{scholarshipMinutes}} <span>Minutes</span></div>
+            <div class="ctd">{{scholarshipSeconds}} <span>Seconds</span></div>
+          </div>
+        </div>
+        <div class="stake-box">
+          <div class="stake-box__header">
+            <div class="text">Ntoboa scholarship</div>
+          </div>
+          <input type="checkbox" id="stakeboxcontroller">
+          <div class="stake-box__body">
+            <div class="stake-box__body__info">
+              <div class="content">
+                The first scholarship lottery of its kind. Its very easy to win this amazing jackpot.
+                Every quater of a year, a lucky student is selected to win this once in a lifetime jackpot.
+              </div>
+              <div class="footer">
+                <label for="stakeboxcontroller" class="btn btn-info i-want">I Want to play the Jackpot</label>
+              </div>
+            </div>
+            <div class="stake-box__body__staker">
+              <div class="content">
+                <div class="stake-form">
+                  <div class="form-group">
+                    <label for="exampleInputInstitution">Which institution do you belong to</label>
+                    <input type="text" class="form-control" id="exampleInputInstitution"
+                      aria-describedby="InstitutionHelp" placeholder="Enter Institution">
+                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                      else.</small> -->
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputProgram">Which program do you offer</label>
+                    <input type="text" class="form-control" id="exampleInputProgram" aria-describedby="ProgramHelp"
+                      placeholder="Enter Program">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputStudentId">What is your student Id number</label>
+                    <input type="text" class="form-control" id="exampleInputStudentId" aria-describedby="StudentIdHelp"
+                      placeholder="Enter Student Id">
+                  </div>
+                </div>
+              </div>
+              <div class="footer">
+                <label for="stakeboxcontroller" class="btn btn-info i-resign">Resign</label>
+                <label class="btn btn-primary i-play">Play for <span class="pay-amt">₵100</span>   </label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="scholarship-body__content--headerright">
+        <div class="info-card winnerscard">
+          <div class="info-card__head">Past Winners</div>
+          <div class="info-card__body">
+            <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
+            <div class="winner-group">
+              <div class="winner-group__header">
+                Last Three Months
+              </div>
+              <!-- *ngFor="let winner of winnings[key]" -->
+              <div class="winner-item">
+                <div class="winner-item__description">
+                  <span class="winner-name">Justice Addico</span>
+                  <span class="winning-details">
+                    <span class="amount-won"> Won <span class="period"> </span>GH₵
+                      10000</span>
+                    <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="scholarship-body__content--details">
+      <div class="tab-box">
+        <ul class="nav nav-tabs">
+          <li class="nav-item active">
+            <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#where" role="tab" data-toggle="tab">Where</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane fade in active" id="how">...</div>
+          <div role="tabpanel" class="tab-pane fade" id="where">bbb</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- [ngClass]="{'visible':errorShown,'invisible':!errorShown}" -->
-<div  class="popup regular" id="error-box">
+<div class="popup regular" id="error-box">
   <div class="popup__content">
     <div class="popup__content--toolbar">
       <div class="toolbar--left">Error !</div>

@@ -72,3 +72,42 @@ body {
   .disabled{
     pointer-events: none;
 }
+
+//overriding bootstrap nav
+.nav-tabs{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  background-color: #459dd9;
+  //height: ;
+  .nav-item{
+    width: 100%;
+    text-align: center;
+    color:white;
+    letter-spacing: .1rem;
+    //padding: 1rem 1rem 0rem 1rem;
+    &.active{
+      //color:black;
+      //background-color: white;
+    }
+    .nav-link{
+      color:inherit;
+      text-transform: uppercase;
+      border: none;
+      padding-bottom:1rem;
+      transition: all .2s;
+      &:hover{
+        border:none;
+      }
+      &.active{
+        border-bottom: 2px solid #459dd9;
+        color:black;
+      }
+    }
+  }
+
+}
+.tab-content{
+  background-color:white;
+  height: 26rem;
+}
