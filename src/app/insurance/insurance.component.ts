@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InsuranceComponent implements OnInit {
 
+  loading = false;
+  error = null;
+  errorShown = false;
+  closePopup() {
+    this.error = null;
+    this.errorShown = false;
+  }
   constructor() { }
 
   ngOnInit() {

@@ -12,7 +12,9 @@ export class ScholarshipComponent implements OnInit {
   scholarshipHours:number;
   scholarshipMinutes:number;
   scholarshipSeconds:number;
-
+  loading = false;
+  error = null;
+  errorShown = false;
   constructor(private countDownService:CountDownService) {
 
    }
@@ -23,6 +25,11 @@ export class ScholarshipComponent implements OnInit {
     this.countDownService.QuaterlyMinutesTime.subscribe((minutes:number)=>{this.scholarshipMinutes = minutes});
     this.countDownService.QuaterlySecondsTime.subscribe((seconds:number)=>{this.scholarshipSeconds = seconds});
 
+  }
+
+  closePopup() {
+    this.error = null;
+    this.errorShown = false;
   }
 
 }

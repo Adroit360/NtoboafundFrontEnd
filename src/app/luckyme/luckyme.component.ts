@@ -12,11 +12,11 @@ import { LuckyMe } from 'src/models/luckyMe';
 })
 export class LuckymeComponent implements OnInit {
 
-  loading = false;
   selectedChoice = null;
   selectedPeriod = null;
-  errorShown = false;
+  loading = false;
   error = null;
+  errorShown = false;
   luckymes: Array<LuckyMe>;
   constructor(private http: HttpClient, private authService: AuthService,
     private router: Router, private currentRoute: ActivatedRoute) { }
@@ -98,7 +98,6 @@ export class LuckymeComponent implements OnInit {
     }
 
   }
-
   closePopup() {
     this.error = null;
     this.errorShown = false;

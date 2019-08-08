@@ -14,6 +14,13 @@ export class BusinessComponent implements OnInit {
 
   selectedAmount:any;
   potentialReturns:any;
+  loading = false;
+  error = null;
+  errorShown = false;
+  closePopup() {
+    this.error = null;
+    this.errorShown = false;
+  }
   constructor(private countDownService:CountDownService) {
 
    }
