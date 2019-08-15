@@ -39,8 +39,8 @@ export class LuckymeComponent implements OnInit {
 
 
   constructor(private http: HttpClient, private authService: AuthService,
-    private router: Router, private currentRoute: ActivatedRoute, private countDownService: CountDownService
-    , private winnerSelectionService: WinnerSelectionService, private signalRService: SignalRService) { }
+    private router: Router, private currentRoute: ActivatedRoute, public countDownService: CountDownService
+    , public winnerSelectionService: WinnerSelectionService, public signalRService: SignalRService) { }
 
   ngOnInit() {
     this.loading = false;

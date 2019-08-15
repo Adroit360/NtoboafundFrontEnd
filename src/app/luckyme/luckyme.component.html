@@ -6,6 +6,7 @@
   <div class="luckyme-body--content">
     <div class="luckyme-body__left">
       <div class="countdown-container">
+          <!-- style="display: none" -->
         <div *ngIf="luckyMeDailySeconds>=0" class="countdown">
           <div class="header">Next Daily LuckyMe Draw In</div>
           <div class="counters">
@@ -14,7 +15,7 @@
             <div class="ctd">{{luckyMeDailySeconds}} <span>Seconds</span></div>
           </div>
         </div>
-        <div *ngIf="luckyMeWeeklySeconds>=0" class="countdown">
+        <div style="display: none" *ngIf="luckyMeWeeklySeconds>=0" class="countdown">
           <div class="header">Next Weekly LuckyMe Draw In</div>
           <div class="counters">
             <div class="ctd">{{luckyMeWeeklyDays}} <span>Days</span></div>
@@ -23,7 +24,7 @@
             <div class="ctd">{{luckyMeWeeklySeconds}} <span>Seconds</span></div>
           </div>
         </div>
-        <div *ngIf="luckyMeMonthlySeconds>=0" class="countdown">
+        <div style="display: none" *ngIf="luckyMeMonthlySeconds>=0" class="countdown">
           <div class="header">Next Monthly LuckyMe Draw In</div>
           <div class="counters">
             <div class="ctd">{{luckyMeMonthlyDays}} <span>Days</span></div>
