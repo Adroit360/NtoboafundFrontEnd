@@ -11,7 +11,7 @@
     .counters{
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
+      //flex-wrap: wrap;
       .ctd{
         display: inline-block;
         padding: 1rem 1.5rem;
@@ -26,6 +26,10 @@
           font-size: 1.5rem;
           letter-spacing: .1rem;
         }
+      }
+      @media (max-width:500px){
+        //display: flex;
+        flex-wrap: wrap;
       }
     }
 

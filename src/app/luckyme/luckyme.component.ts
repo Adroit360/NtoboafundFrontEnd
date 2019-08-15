@@ -4,6 +4,9 @@ import { settings } from 'src/settings';
 import { AuthService } from 'src/services/authservice';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LuckyMe } from 'src/models/luckyMe';
+import { CountDownService } from 'src/services/countdownservice';
+import { WinnerSelectionService } from 'src/services/winnerselection.service';
+import { SignalRService } from 'src/services/signalr.service';
 
 @Component({
   selector: 'app-luckyme',
@@ -18,20 +21,53 @@ export class LuckymeComponent implements OnInit {
   error = null;
   errorShown = false;
   luckymes: Array<LuckyMe>;
+
+  luckyMeDailyHours: number;
+  luckyMeDailyMinutes: number;
+  luckyMeDailySeconds: number;
+
+  luckyMeWeeklyDays: number;
+  luckyMeWeeklyHours: number;
+  luckyMeWeeklyMinutes: number;
+  luckyMeWeeklySeconds: number;
+
+
+  luckyMeMonthlyDays: number;
+  luckyMeMonthlyHours: number;
+  luckyMeMonthlyMinutes: number;
+  luckyMeMonthlySeconds: number;
+
+
   constructor(private http: HttpClient, private authService: AuthService,
-    private router: Router, private currentRoute: ActivatedRoute) { }
+    private router: Router, private currentRoute: ActivatedRoute, private countDownService: CountDownService
+    , private winnerSelectionService: WinnerSelectionService, private signalRService: SignalRService) { }
 
   ngOnInit() {
     this.loading = false;
     this.luckymes = new Array<LuckyMe>();
 
+    this.countDownService.DailyHoursTime.subscribe((hours: number) => { this.luckyMeDailyHours = hours });
+    this.countDownService.DailyMinutesTime.subscribe((minutes: number) => { this.luckyMeDailyMinutes = minutes });
+    this.countDownService.DailySecondsTime.subscribe((seconds: number) => { this.luckyMeDailySeconds = seconds });
+
+    this.countDownService.WeeklyDaysTime.subscribe((days: number) => { this.luckyMeWeeklyDays = days });
+    this.countDownService.WeeklyHoursTime.subscribe((hours: number) => { this.luckyMeWeeklyHours = hours });
+    this.countDownService.WeeklyMinutesTime.subscribe((minutes: number) => { this.luckyMeWeeklyMinutes = minutes });
+    this.countDownService.WeeklySecondsTime.subscribe((seconds: number) => { this.luckyMeWeeklySeconds = seconds });
+
+    this.countDownService.MonthlyDaysTime.subscribe((days: number) => { this.luckyMeMonthlyDays = days });
+    this.countDownService.MonthlyHoursTime.subscribe((hours: number) => { this.luckyMeMonthlyHours = hours });
+    this.countDownService.MonthlyMinutesTime.subscribe((minutes: number) => { this.luckyMeMonthlyMinutes = minutes });
+    this.countDownService.MonthlySecondsTime.subscribe((seconds: number) => { this.luckyMeMonthlySeconds = seconds });
+
     var checkoutId = this.currentRoute.snapshot.queryParams["checkoutId"];
     if (checkoutId) {
-      this.http.delete(`${settings.currentApiUrl}/luckymes/${localStorage.getItem(checkoutId)}`).
+      this.http.delete(`${settings.currentApiUrl}/scholarships/${localStorage.getItem(checkoutId)}`).
         subscribe(
           response => {
             console.log(response);
             this.getUserLuckyMes()
+            localStorage.removeItem(checkoutId)
           },
           error => {
             console.log(error);
@@ -63,7 +99,7 @@ export class LuckymeComponent implements OnInit {
       }
 
       this.loading = true;
-      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurl`, { amount: this.selectedChoice, period: this.selectedPeriod, userId: this.authService.currentUser.id })
+      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurlforluckyme`, { amount: this.selectedChoice, period: this.selectedPeriod, userId: this.authService.currentUser.id })
         .subscribe(
           response => {
             this.loading = false;
@@ -98,6 +134,7 @@ export class LuckymeComponent implements OnInit {
     }
 
   }
+
   closePopup() {
     this.error = null;
     this.errorShown = false;

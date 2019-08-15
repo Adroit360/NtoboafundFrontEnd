@@ -27,6 +27,8 @@ import { ScholarshipComponent } from './scholarship/scholarship.component';
 import { InsuranceComponent } from './insurance/insurance.component';
 import { BusinessComponent } from './business/business.component';
 import { CountDownService } from 'src/services/countdownservice';
+import { SignalRService } from 'src/services/signalr.service';
+import { WinnerSelectionService } from 'src/services/winnerselection.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ import { CountDownService } from 'src/services/countdownservice';
     HttpClientModule,
     ReactiveFormsModule,
     ChartsModule
+    
   ],
   exports:[
     ChartsModule
@@ -63,7 +66,9 @@ import { CountDownService } from 'src/services/countdownservice';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     FaqService,
     UserDashBoardService,
-    CountDownService
+    CountDownService,
+    SignalRService,
+    WinnerSelectionService
     
 ],
   bootstrap: [AppComponent]

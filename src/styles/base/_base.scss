@@ -88,7 +88,7 @@ body {
     //padding: 1rem 1rem 0rem 1rem;
     &.active{
       //color:black;
-      //background-color: white;
+      background-color: rbga(white,.5);
     }
     .nav-link{
       color:inherit;
@@ -108,6 +108,8 @@ body {
 
 }
 .tab-content{
-  background-color:white;
+  background-color:rgba(white,.5);
   height: 26rem;
+  padding:1rem;
+  overflow: auto;
 }

@@ -1,0 +1,28 @@
+.ongoingdraw{
+    .header{
+
+    }
+    .drawbox{
+      text-align: center;
+      margin: 1rem;
+      flex: 1 1;
+      width: 50rem;
+      height: 20rem;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      //align-items: center;
+      .loader{
+        position: absolute;
+      }
+      .participants{
+        margin: 1rem;
+        box-shadow: none;
+        padding: 1rem;
+        background-color: transparent;
+        .info-card__body{
+          overflow: hidden;
+        }
+      }
+    }
+  }

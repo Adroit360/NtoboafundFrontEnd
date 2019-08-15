@@ -16,12 +16,12 @@
                 Today
               </div>
               <!-- *ngFor="let winner of winnings[key]" -->
-              <div class="winner-item">
+              <div *ngFor="let participant of signalRservice.businessParticipants" class="winner-item">
                 <div class="winner-item__description">
-                  <span class="winner-name">Justice Addico</span>
+                  <span class="winner-name">{{participant.userName}}</span>
                   <span class="winning-details">
-                    <span class="amount-won"> Won <span class="period"> </span>GH₵
-                      10000</span>
+                    <span class="amount-won"> staked <span class="period"> </span>GH₵
+                      {{participant.amountStaked}}</span>
                     <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
                   </span>
                 </div>
@@ -32,7 +32,7 @@
       </div>
 
       <div class="business-body__content--headercenter">
-        <div *ngIf="businessSeconds>=0" class="countdown">
+        <div *ngIf="!winnerSelectionService.isMonthlyDrawOngoing && businessSeconds>=0" class="countdown">
           <div class="header">Next business Draw In</div>
           <div class="counters">
             <!-- <div class="ctd">{{businessDays}} <span>Days</span></div> -->
@@ -42,7 +42,36 @@
             <div class="ctd">{{businessSeconds}} <span>Seconds</span></div>
           </div>
         </div>
-        <div class="stake-box">
+        <div *ngIf="winnerSelectionService.isMonthlyDrawOngoing" class="ongoingdraw">
+          <div class="header">Business Draw is ongoing</div>
+          <div class="drawbox">
+            <div class="lds-hourglass loader"></div>
+            <div class="participants info-card">
+              <div class="info-card__body">
+                <div class="winner-group">
+                  <div *ngFor="let participant of signalRservice.businessParticipants" class="winner-item">
+                    <div class="winner-item__description">
+                      <span class="winner-name">{{participant.userName}}</span>
+                      <span class="winning-details">
+                        <span class="amount-won"> staked <span class="period"> </span>GH₵
+                          {{participant.amountStaked}}</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!winnerSelectionService.isMonthlyDrawOngoing && winnerSelectionService.currentBusinessWinner"
+          class="winnerbox">
+          <!-- <div class="winnerbox"> -->
+          <div class="title">Latest Business Winner</div>
+          <!-- <div class="body">Justice Addico</div> -->
+          <div class="body">{{winnerSelectionService.currentBusinessWinner.userName}}</div>
+        </div>
+
+        <div *ngIf="!winnerSelectionService.isMonthlyDrawOngoing" class="stake-box">
           <div class="stake-box-header">
             <div class="text">Choose an option to play</div>
             <div class="arrow">
@@ -81,54 +110,54 @@
               <span class="amount">{{potentialReturns}}</span>
             </div>
             <div class="actions">
-              <button class="btn btn-danger">Play</button>
+              <button (click)="pay()" class="btn btn-danger">Play</button>
             </div>
           </div>
         </div>
       </div>
 
       <div class="business-body__content--headerright">
-          <div class="info-card winnerscard">
-            <div class="info-card__head">Past Winners</div>
-            <div class="info-card__body">
-              <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
-              <div class="winner-group">
-                <div class="winner-group__header">
-                  Last Three Months
-                </div>
-                <!-- *ngFor="let winner of winnings[key]" -->
-                <div class="winner-item">
-                  <div class="winner-item__description">
-                    <span class="winner-name">Justice Addico</span>
-                    <span class="winning-details">
-                      <span class="amount-won"> Won <span class="period"> </span>GH₵
-                        10000</span>
-                      <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
-                    </span>
-                  </div>
+        <div class="info-card winnerscard">
+          <div class="info-card__head">Past Winners</div>
+          <div class="info-card__body">
+            <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
+            <div class="winner-group">
+              <div class="winner-group__header">
+                Last Three Months
+              </div>
+              <!-- *ngFor="let winner of winnings[key]" -->
+              <div *ngFor="let participant of winnerSelectionService.businessWinners" class="winner-item">
+                <div class="winner-item__description">
+                  <span class="winner-name">Justice Addico</span>
+                  <span class="winning-details">
+                    <span class="amount-won"> Won <span class="period"> </span>GH₵
+                      10000</span>
+                    <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                  </span>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
+
+      </div>
     </div>
     <div class="business-body__content--details">
-        <div class="tab-box">
-          <ul class="nav nav-tabs">
-            <li class="nav-item active">
-              <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#where" role="tab" data-toggle="tab">Where</a>
-            </li>
-          </ul>
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="how">...</div>
-            <div role="tabpanel" class="tab-pane fade" id="where">bbb</div>
-          </div>
+      <div class="tab-box">
+        <ul class="nav nav-tabs">
+          <li class="nav-item active">
+            <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#where" role="tab" data-toggle="tab">Where</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane fade in active" id="how">...</div>
+          <div role="tabpanel" class="tab-pane fade" id="where">bbb</div>
         </div>
       </div>
+    </div>
   </div>
 
   <!-- [ngClass]="{'visible':errorShown,'invisible':!errorShown}" -->

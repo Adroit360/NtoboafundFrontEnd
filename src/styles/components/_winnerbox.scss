@@ -1,0 +1,17 @@
+.winnerbox{
+    background-color: #cd7fc9;
+    margin: 1rem;
+    display: flex;
+    white-space: nowrap;
+    font-size: 1.6rem;
+    letter-spacing: .1rem;
+    color:white;
+    .title{
+      padding: 1rem 4rem 1rem 1rem;
+      background-color: green;
+      clip-path: polygon(0% 0%,100% 0%,90% 100%,0% 100%);
+    }
+    .body{
+      padding: 1rem;
+    }
+  }

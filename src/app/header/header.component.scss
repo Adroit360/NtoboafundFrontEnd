@@ -13,7 +13,7 @@
   //background-color: pink;
   //background-image: linear-gradient(to bottom right, yellow, green);
   height: 6rem;
-  box-shadow: var(--bottom-shadow);
+  //box-shadow: var(--bottom-shadow);
   .brand-logo {
     transform: scale(0.6);
   }
@@ -25,11 +25,10 @@
       & > li {
         margin: 0.5rem;
         cursor: pointer;
-        background-color: white;
-        font-family: cursive;
+        //background-color: white;
+        //font-family: cursive;
         transition: all 0.1s;
         backface-visibility: hidden;
-        color: black;
         box-shadow: var(--shadow);
         white-space: nowrap;
         a {
@@ -66,9 +65,9 @@
           display: none !important;
         }
         &:hover {
-          background-color: black;
-          transform: scale(1.2);
-          color: white;
+          background-color: white;
+          //transform: scaleX(1.1);
+          color: black;
           .dashing {
             display: block;
           }
@@ -90,7 +89,6 @@
       //box-shadow: var(--shadow);
       padding: 0.3rem;
       &::after {
-        color: black;
         font-size: 2rem;
         margin-right: 0.3rem;
       }
@@ -133,7 +131,6 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      color: black;
       img {
         width: 3rem;
         height: 3rem;
@@ -213,11 +210,11 @@
         & > li {
           margin: 2rem;
           cursor: pointer;
-          background-color: white;
-          font-family: cursive;
+         // background-color: white;
+          //font-family: cursive;
           transition: all 0.1s;
           backface-visibility: hidden;
-          color: black;
+          color: white;
           box-shadow: var(--shadow);
           white-space: nowrap;
           a {
@@ -258,9 +255,9 @@
             display: none !important;
           }
           &:hover {
-            background-color: black;
-            transform: scale(1.2);
-            color: white;
+            background-color: white;
+            //transform: scale(1.2);
+            color: black;
             .dashing {
               display: block;
             }

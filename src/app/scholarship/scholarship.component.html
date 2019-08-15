@@ -12,16 +12,16 @@
           <div class="info-card__body">
             <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
             <div class="winner-group">
-              <div class="winner-group__header">
+              <!-- <div class="winner-group__header">
                 Today
-              </div>
+              </div> -->
               <!-- *ngFor="let winner of winnings[key]" -->
-              <div class="winner-item">
+              <div *ngFor="let participant of signalRservice.scholarshipParticipants" class="winner-item">
                 <div class="winner-item__description">
-                  <span class="winner-name">Justice Addico</span>
+                  <span class="winner-name">{{participant.userName}}</span>
                   <span class="winning-details">
-                    <span class="amount-won"> Won <span class="period"> </span>GH₵
-                      10000</span>
+                    <span class="amount-won"> staked <span class="period"> </span>GH₵
+                      {{participant.amountStaked}}</span>
                     <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
                   </span>
                 </div>
@@ -32,7 +32,8 @@
       </div>
 
       <div class="scholarship-body__content--headercenter">
-        <div *ngIf="scholarshipSeconds>=0" class="countdown">
+          <!-- && scholarshipSeconds>=0 -->
+        <div *ngIf="!winnerSelectionService.isQuaterlyDrawOngoing && scholarshipSeconds>=0 " class="countdown">
           <div class="header">Next scholarship Draw In</div>
           <div class="counters">
             <!-- <div class="ctd">{{scholarshipDays}} <span>Days</span></div> -->
@@ -42,13 +43,41 @@
             <div class="ctd">{{scholarshipSeconds}} <span>Seconds</span></div>
           </div>
         </div>
-        <div class="stake-box">
+        <div *ngIf="winnerSelectionService.isQuaterlyDrawOngoing" class="ongoingdraw">
+          <div class="header">Scholarship Draw is ongoing</div>
+          <div class="drawbox">
+            <div class="lds-hourglass loader"></div>
+            <div class="participants info-card">
+              <div class="info-card__body">
+                <div class="winner-group">
+                  <div *ngFor="let participant of signalRservice.scholarshipParticipants" class="winner-item">
+                    <div class="winner-item__description">
+                      <span class="winner-name">{{participant.userName}}</span>
+                      <span class="winning-details">
+                        <span class="amount-won"> staked <span class="period"> </span>GH₵
+                          {{participant.amountStaked}}</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!winnerSelectionService.isQuaterlyDrawOngoing && winnerSelectionService.currentScholarshipWinner"
+          class="winnerbox">
+          <!-- <div class="winnerbox"> -->
+          <div class="title">Latest Scholarship Winner</div>
+          <!-- <div class="body">Justice Addico</div> -->
+          <div class="body">{{winnerSelectionService.currentScholarshipWinner.userName}}</div>
+        </div>
+        <div *ngIf="!winnerSelectionService.isQuaterlyDrawOngoing" class="stake-box">
           <div class="stake-box__header">
             <div class="text">Ntoboa scholarship</div>
           </div>
-          <input type="checkbox" id="stakeboxcontroller">
+          <!-- <input type="checkbox" id="stakeboxcontroller"> -->
           <div class="stake-box__body">
-            <div class="stake-box__body__info">
+            <!-- <div class="stake-box__body__info">
               <div class="content">
                 The first scholarship lottery of its kind. Its very easy to win this amazing jackpot.
                 Every quater of a year, a lucky student is selected to win this once in a lifetime jackpot.
@@ -56,13 +85,13 @@
               <div class="footer">
                 <label for="stakeboxcontroller" class="btn btn-info i-want">I Want to play the Jackpot</label>
               </div>
-            </div>
+            </div> -->
             <div class="stake-box__body__staker">
               <div class="content">
-                <div class="stake-form">
+                <form class="stake-form" [formGroup]="scholarshipForm">
                   <div class="form-group">
                     <label for="exampleInputInstitution">Which institution do you belong to</label>
-                    <input type="text" class="form-control" id="exampleInputInstitution"
+                    <input type="text" class="form-control" id="exampleInputInstitution" formControlName="Institution"
                       aria-describedby="InstitutionHelp" placeholder="Enter Institution">
                     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                       else.</small> -->
@@ -70,18 +99,19 @@
                   <div class="form-group">
                     <label for="exampleInputProgram">Which program do you offer</label>
                     <input type="text" class="form-control" id="exampleInputProgram" aria-describedby="ProgramHelp"
-                      placeholder="Enter Program">
+                      placeholder="Enter Program" formControlName="Program">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputStudentId">What is your student Id number</label>
                     <input type="text" class="form-control" id="exampleInputStudentId" aria-describedby="StudentIdHelp"
-                      placeholder="Enter Student Id">
+                      placeholder="Enter Student Id" formControlName="StudentId">
                   </div>
-                </div>
+                </form>
               </div>
               <div class="footer">
-                <label for="stakeboxcontroller" class="btn btn-info i-resign">Resign</label>
-                <label class="btn btn-primary i-play">Play for <span class="pay-amt">₵100</span>   </label>
+                <!-- <label for="stakeboxcontroller" class="btn btn-info i-resign">Resign</label> -->
+                <label (click)="pay()" class="btn btn-primary i-play">Play for <span class="pay-amt">₵100</span>
+                </label>
               </div>
             </div>
           </div>
@@ -96,16 +126,15 @@
           <div class="info-card__body">
             <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
             <div class="winner-group">
-              <div class="winner-group__header">
-                Last Three Months
-              </div>
+              <!-- <div class="winner-group__header">
+              </div> -->
               <!-- *ngFor="let winner of winnings[key]" -->
-              <div class="winner-item">
+              <div *ngFor="let winner of winnerSelectionService.scholarshipWinners" class="winner-item">
                 <div class="winner-item__description">
-                  <span class="winner-name">Justice Addico</span>
+                  <span class="winner-name">{{winner.userName}}</span>
                   <span class="winning-details">
                     <span class="amount-won"> Won <span class="period"> </span>GH₵
-                      10000</span>
+                      {{winner.amountToWin}}</span>
                     <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
                   </span>
                 </div>
@@ -121,15 +150,53 @@
       <div class="tab-box">
         <ul class="nav nav-tabs">
           <li class="nav-item active">
-            <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How</a>
+            <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How To Play</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#where" role="tab" data-toggle="tab">Where</a>
+            <a class="nav-link" href="#where" role="tab" data-toggle="tab">The Must Knows</a>
           </li>
         </ul>
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane fade in active" id="how">...</div>
-          <div role="tabpanel" class="tab-pane fade" id="where">bbb</div>
+          <div role="tabpanel" class="tab-pane fade in show active" id="how">
+            <div class="panel" style="background-color: orange;color:black">
+              <div class="number">1</div>
+              <div class="text">Enter the name of your Instution eg. "University of Mines and Technology"</div>
+            </div>
+            <div class="panel" style="background-color: #f06292">
+              <div class="number">2</div>
+              <div class="text">Press the "play" button to proceed to payment</div>
+            </div>
+            <div class="panel" style="background-color: #01c851">
+              <div class="number">3</div>
+              <div class="text">Enter your mobile money number and click "continue"</div>
+            </div>
+            <div class="panel" style="background-color: #7383a7">
+              <div class="number">4</div>
+              <div class="text">Enter your pin to confirm the mobile money prompt on your phone to complete the stake process</div>
+            </div>
+            <div class="panel" style="background-color: #a563c7">
+                <div class="number">5</div>
+                <div class="text">Wait for a winner to be announce and your money paid</div>
+              </div>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="where">
+              <div class="panel" style="background-color: rgb(138, 112, 63)">
+                  <div class="number">*</div>
+                  <div class="text">One Scholarship Winner is announced every three months after which other participants withing the same period are considered to have lost</div>
+                </div>
+                <div class="panel" style="background-color: #9aa349">
+                  <div class="number">*</div>
+                  <div class="text">The winner sould be paid via the mode of contribution eg. mobile money</div>
+                </div>
+                <div class="panel" style="background-color: #399191">
+                  <div class="number">*</div>
+                  <div class="text">Staked Amount is not refundable</div>
+                </div>
+                <div class="panel" style="background-color: #324675">
+                  <div class="number">*</div>
+                  <div class="text">Scholarship contributions only have a single stake value which is GH₵ 100</div>
+                </div>
+          </div>
         </div>
       </div>
     </div>

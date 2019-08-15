@@ -1,0 +1,28 @@
+.panel{
+    box-shadow: var(--shadow);
+    color: black;
+    display: flex;
+    margin: 1rem;
+    background-color: #3f51b5;
+    color: white;
+    border-radius: .3rem;
+    overflow: hidden;
+    flex-wrap: nowrap;
+    .number{
+        
+        color: black;
+        padding: 2rem;
+        line-height: 100%;
+        display: flex;
+        align-items: center;
+        font-size: 1.7rem;
+    }
+    .text{
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+}
