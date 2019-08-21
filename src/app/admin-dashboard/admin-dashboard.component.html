@@ -1,0 +1,95 @@
+<div class="d-body">
+    <aside class="d-body__aside">
+        <div class="brand-image">
+
+        </div>
+        <nav class="navlinks">
+            <a (click)="navigate('overview')" routerLink="overview" class="navlink">
+                <span class="bar" [ngClass]="{isactive:isOnPage('overview')}"></span>
+                <div class="navlink__icon">
+                    <svg>
+                        <use href="../../assets/Icons/svgs.svg#icon-codesandbox" />
+                    </svg>
+                </div>
+                <div class="navlink__text">Overview</div>
+            </a>
+            <a (click)="navigate('profile')" routerLink="adprofile" class="navlink">
+                <span class="bar" [ngClass]="{isactive:isOnPage('profile')}"></span>
+                <div class="navlink__icon">
+                    <svg>
+                        <use href="../../assets/Icons/svgs.svg#icon-user" />
+                    </svg>
+                </div>
+                <div class="navlink__text">Profile</div>
+            </a>
+            <a (click)="navigate('users')" routerLink="adusers" class="navlink">
+                <span class="bar" [ngClass]="{isactive:isOnPage('users')}"></span>
+                <div class="navlink__icon">
+                    <svg>
+                        <use href="../../assets/Icons/svgs.svg#icon-user" />
+                    </svg>
+                </div>
+                <div class="navlink__text">User</div>
+            </a>
+            <a (click)="navigate('luckymes')" routerLink="adluckymes" class="navlink">
+                <span class="bar" [ngClass]="{isactive:isOnPage('luckymes')}"></span>
+                <div class="navlink__icon">
+                    <svg>
+                        <use href="../../assets/Icons/svgs.svg#icon-user" />
+                    </svg>
+                </div>
+                <div class="navlink__text">LuckyMe</div>
+            </a>
+            <a (click)="navigate('scholarships')" routerLink="adscholarships" class="navlink">
+                <span class="bar" [ngClass]="{isactive:isOnPage('scholarships')}"></span>
+                <div class="navlink__icon">
+                    <svg>
+                        <use href="../../assets/Icons/svgs.svg#icon-user" />
+                    </svg>
+                </div>
+                <div class="navlink__text">Scholarship</div>
+            </a>
+            <a (click)="navigate('businesses')" routerLink="adbusinesses" class="navlink">
+                <span class="bar" [ngClass]="{isactive:isOnPage('businesses')}"></span>
+                <div class="navlink__icon">
+                    <svg>
+                        <use href="../../assets/Icons/svgs.svg#icon-user" />
+                    </svg>
+                </div>
+                <div class="navlink__text">Business</div>
+            </a>
+
+        </nav>
+    </aside>
+    <div class="d-body__main">
+        <div class="head">
+            <!-- <div class="header-text">{{userDashboardService.headerText}}</div> -->
+            <div class="notification">
+                <a class="icon" routerLink="adsettings">
+                    <svg>
+                        <use href="../../assets/Icons/svgs.svg#icon-tools" />
+                    </svg>
+                </a>
+            </div>
+            <div class="account-actions">
+                <div class="dropdown">
+                    <!-- <input type="checkbox" id="dropdown-checker"> -->
+                    <label for="dropdown-checker" class="dropdown-toggle" id="dropdownMenuButton">
+                        <div id="user-det">
+                            <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt="">
+                            <p>Hello</p>
+                            <p>{{currentUser.firstName}}</p>
+                        </div>
+                    </label>
+                    <div class="my-dropdown">
+                        <a routerLink="" class="my-dropdown__item" href="">Back To Home</a>
+                        <a class="my-dropdown__item" href="" (click)="logout()">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { settings } from 'src/settings';
 import { User } from 'src/models/user';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -12,7 +13,7 @@ export class AuthService {
     get currentUser(): User {
         return this.getCurrentUser2();
     }
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,private router:Router) {
         //this.isAuthenticated = this.checkAuthenticationStatus();
     }
     //  images:File[],firstName:string,lastName:string,email: string,phoneNumber:string, password: string,confirmPassword:string
@@ -61,6 +62,10 @@ export class AuthService {
     }
 
     getCurrentUser2(): User {
-        return JSON.parse(localStorage.getItem('currentUser'));
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if(!currentUser){
+            this.router.navigate(["login"]);
+        }
+        return currentUser;
     }
 }

@@ -1,165 +1,68 @@
 <div class="mhome-body">
-  <div class="mhome-body__charts">
-    <div class="anum">
-        <canvas baseChart width="400" height="400"
-        [datasets]="lineChartData"
-        [labels]="lineChartLabels"
-        [options]="lineChartOptions"
-        [colors]="lineChartColors"
-        [legend]="lineChartLegend"
-        [chartType]="lineChartType"
-       ></canvas>
+  <div class="mhome-body__top">
+    <div class="thumbcard">
+      <div class="number">50</div>
+      <div class="text">Points</div>
     </div>
-    <div class="monthly">
-        <canvas baseChart width="400" height="400"
-        [datasets]="lineChartData"
-        [labels]="lineChartLabels"
-        [options]="lineChartOptions"
-        [colors]="lineChartColors"
-        [legend]="lineChartLegend"
-        [chartType]="lineChartType"></canvas>
+    <div class="thumbcard">
+      <div class="number">50</div>
+      <div class="text">Total Stakes</div>
     </div>
-  </div>
-  <div class="mhome-body__info">
-    <div class="info-pane">
-      <div class="info-pane__header">
-        <div class="text">Lucky Me</div>
-      </div>
-      <div class="info-pane__tips">
-        <div class="info-tip">
-          <div class="info-tip__top">Total Stakes</div>
-          <div class="info-tip__bottom">30</div>
-        </div>
-
-        <div class="info-tip">
-          <div class="info-tip__top">Total Won</div>
-          <div class="info-tip__bottom">GHS 3000</div>
-        </div>
-
-        <div class="info-tip">
-          <div class="info-tip__top">Total Lost</div>
-          <div class="info-tip__bottom">GHS 30</div>
-        </div>
-
-        <div class="info-tip">
-          <div class="info-tip__top">Total Profit</div>
-          <div class="info-tip__bottom">GHS 2970</div>
-        </div>
-      </div>
+    <div class="thumbcard">
+      <div class="number">50</div>
+      <div class="text">Total Scholarship Stakes</div>
     </div>
-    <div class="info-pane">
-      <div class="info-pane__header">
-        <div class="text">Lucky Me</div>
-      </div>
-      <div class="info-pane__tips">
-        <div class="info-tip">
-          <div class="info-tip__top">Total Stakes</div>
-          <div class="info-tip__bottom">30</div>
-        </div>
-
-        <div class="info-tip">
-          <div class="info-tip__top">Total Won</div>
-          <div class="info-tip__bottom">GHS 3000</div>
-        </div>
-
-        <div class="info-tip">
-          <div class="info-tip__top">Total Lost</div>
-          <div class="info-tip__bottom">GHS 30</div>
-        </div>
-
-        <div class="info-tip">
-          <div class="info-tip__top">Total Profit</div>
-          <div class="info-tip__bottom">GHS 2970</div>
-        </div>
-      </div>
+    <div class="thumbcard">
+      <div class="number">50</div>
+      <div class="text">Total LuckyMe Stakes</div>
     </div>
-    <div class="info-pane">
-      <div class="info-pane__header">
-        <div class="text">Lucky Me</div>
-      </div>
-      <div class="info-pane__tips">
-        <div class="info-tip">
-          <div class="info-tip__top">Total Stakes</div>
-          <div class="info-tip__bottom">30</div>
-        </div>
-
-        <div class="info-tip">
-          <div class="info-tip__top">Total Won</div>
-          <div class="info-tip__bottom">GHS 3000</div>
-        </div>
-
-        <div class="info-tip">
-          <div class="info-tip__top">Total Lost</div>
-          <div class="info-tip__bottom">GHS 30</div>
-        </div>
-
-        <div class="info-tip">
-          <div class="info-tip__top">Total Profit</div>
-          <div class="info-tip__bottom">GHS 2970</div>
-        </div>
-      </div>
-    </div>
-    <div class="info-pane">
-      <div class="info-pane__header">
-        <div class="text">Lucky Me</div>
-      </div>
-      <div class="info-pane__tips">
-        <div class="info-tip">
-          <div class="info-tip__top">Total Stakes</div>
-          <div class="info-tip__bottom">30</div>
-        </div>
-
-        <div class="info-tip">
-          <div class="info-tip__top">Total Won</div>
-          <div class="info-tip__bottom">GHS 3000</div>
-        </div>
-
-        <div class="info-tip">
-          <div class="info-tip__top">Total Lost</div>
-          <div class="info-tip__bottom">GHS 30</div>
-        </div>
-
-        <div class="info-tip">
-          <div class="info-tip__top">Total Profit</div>
-          <div class="info-tip__bottom">GHS 2970</div>
-        </div>
-      </div>
+    <div class="thumbcard">
+      <div class="number">50</div>
+      <div class="text">Total Business Stakes</div>
     </div>
   </div>
-  <div class="records-pane">
-    <div *ngIf="luckymes.length > 0;else norecent" class="recentsbox">
-      <div class="recentsbox__header">
-        <div class="recentsbox__header--left">
-          <span class="fa fa-history"></span>
-        </div>
-        <div class="recentsbox__header--right">
-          Recent LuckyMe
-        </div>
-      </div>
-      <div class="recentsbox__body">
-        <div *ngFor="let luckyme of luckymes" class="recent-stake-item">
-          <div class="recent-stake-item--top">
-            <div class="period">{{luckyme.period}}</div>
-            <div class="amount">GHS {{luckyme.amount}}</div>
-            <div class="date">Date Staked : {{luckyme.date}}</div>
-          </div>
-          <div class="recent-stake-item--bottom">
-            <div class="status">Status : {{luckyme.status}}</div>
-            <div *ngIf="luckyme.isWinner" class="amount-won">Amount Won : GHS {{luckyme.amountToWin}}</div>
-            <div *ngIf="!luckyme.isWinner" class="potential-returns">Potential Winning : GHS 2000</div>
-          </div>
-        </div>
-      </div>
+  <div class="mhome-body__info-strips">
+    <div class="panel">
+      <div class="text">Get 3 Points on every 5 cedis bet placed and win amazing prizes during the points draw at the end of the month</div>
     </div>
-    <ng-template #norecent>
-      <div class="norecents">
-        <span class="fa fa-history"></span>
-        <div class="text">No Recent Stakes</div>
-      </div>
-    </ng-template>
   </div>
+<div class="stories">
+  <div class="heading">
+    <div class="text">Stories</div>
+  </div>
+  <div class="stories__body">
+    <div class="story">
+      <div class="left">
+          <div class="userName">Emmanuel Asiamah</div>
+          <div class="occupation">Student</div>
+      </div>
+      <span class="right">Lorem ipsum dolor sit amet consectetur adipisicing elit. In minus ullam, ipsum ab, fugit fugiat a ratione corporis voluptate nesciunt quis vel eius illo, sit pariatur cumque adipisci exercitationem quam!</span>
+    </div>
+  </div>
+</div>
 </div>
 
 <!-- [plugins]="lineChartPlugins"
 (chartHover)="chartHovered($event)"
 (chartClick)="chartClicked($event)" -->
+
+<!-- 
+<div class="anum">
+    <canvas baseChart width="400" height="400"
+    [datasets]="lineChartData"
+    [labels]="lineChartLabels"
+    [options]="lineChartOptions"
+    [colors]="lineChartColors"
+    [legend]="lineChartLegend"
+    [chartType]="lineChartType"
+   ></canvas>
+</div>
+<div class="monthly">
+    <canvas baseChart width="400" height="400"
+    [datasets]="lineChartData"
+    [labels]="lineChartLabels"
+    [options]="lineChartOptions"
+    [colors]="lineChartColors"
+    [legend]="lineChartLegend"
+    [chartType]="lineChartType"></canvas>
+</div> -->

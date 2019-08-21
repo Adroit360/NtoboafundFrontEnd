@@ -1,0 +1,87 @@
+.adluckyme-body {
+  height: calc(100vh - 6rem);
+  overflow: auto;
+  &__top {
+  }
+  &__bottom {
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    &--left {
+      flex: 1 1 60%;
+      display: flex;
+      justify-content: space-evenly;
+      height: inherit;
+      #allluckyme {
+        .recent-stake-item-holder {
+          input[name="selectedluckyme"] {
+            display: none;
+            &:checked {
+              & + .recent-stake-item {
+                background-color: orange;
+                color: white;
+              }
+            }
+          }
+        }
+      }
+
+      .recent-stake-item {
+        cursor: pointer;
+      }
+
+      .info-card {
+        margin: 0rem;
+        width: 50%;
+      }
+
+      .info-card.details{
+        .info-card__body{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            height: 100%;
+            .luckyme-details{
+                box-shadow: var(--shadow);
+                margin: 2rem;
+                padding: 1rem;
+            }
+            .luckyme-userdetails{
+                box-shadow: var(--shadow);
+                margin: 2rem;
+                padding: 1rem;
+            }
+        }
+      }
+
+      .record {
+        display: flex;
+        justify-content: center;
+        font-size: 1.7rem;
+        .label{
+            margin: .5rem;
+            font-weight: bold;
+        }
+        .text{
+            margin: .5rem;
+        }
+      }
+    }
+    &--right {
+      flex: 1 1 40%;
+      height: inherit;
+      overflow: auto;
+    }
+  }
+}
+
+#fixer-box.popup{
+  background-color: white;
+  .popup__content{
+    background-color: rgba(black,.5);
+    color:black;
+    .popup__content--body{
+    }
+  }
+
+}

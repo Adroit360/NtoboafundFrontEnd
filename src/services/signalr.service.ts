@@ -92,7 +92,7 @@ export class SignalRService {
         });
         this.stakersHubConnection.invoke('GetCurrentWeeklyLuckymeParticipants');
     }
-
+    
     initiateGetMonthlyLuckymeParticipants() {
         this.stakersHubConnection.on('getCurrentMonthlyLuckymeParticipants', (data: LuckymeParticipant[]) => {
             this.monthlyLuckymeParticipants = data;
@@ -102,7 +102,9 @@ export class SignalRService {
 
     initiateAddDailyLuckymeParticipant() {
         this.stakersHubConnection.on('adddailyluckymeparticipant', (data: LuckymeParticipant) => {
-            this.dailyLuckymeParticipants.push(data)
+            this.dailyLuckymeParticipants.push(data);
+            console.log("daily participants");
+            console.log(data);
         });
     }
 

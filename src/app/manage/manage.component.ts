@@ -5,6 +5,11 @@ import { settings } from 'src/settings';
 import { ActivatedRoute } from '@angular/router';
 import { overrideProvider } from '@angular/core/src/view';
 import { UserDashBoardService } from 'src/services/userdashbord.service';
+import { LuckyMe } from 'src/models/luckyMe';
+import { Scholarship } from 'src/models/scholarship';
+import { Business } from 'src/models/business';
+import { HttpClient } from '@angular/common/http';
+import { groupBy } from 'src/operations';
 
 @Component({
   selector: 'app-manage',
@@ -17,7 +22,10 @@ export class ManageComponent implements OnInit {
   apiPath: any;
   isAuthenticated: Boolean;
   currentPage: string = 'overview';
-  constructor(private authenticationService: AuthService,
+  luckymes: any;
+  scholarships: Array<Scholarship>;
+  businesses: Array<Business>;
+  constructor(private authenticationService: AuthService,private http:HttpClient,
      private router: ActivatedRoute,public userDashboardService:UserDashBoardService) { }
 
   ngOnInit() {
@@ -30,7 +38,10 @@ export class ManageComponent implements OnInit {
     else{
       this.currentPage = route.replace("/manage/","");
     }
-    console.log(this.currentPage);
+    
+    this.getUserLuckyMes();
+    this.getUserScholarships();
+    this.getUserBusinesses();
   }
 
   logout() {
@@ -56,6 +67,42 @@ export class ManageComponent implements OnInit {
     if (page == this.currentPage)
       return true;
     return false;
+  }
+
+  getUserLuckyMes() {
+    this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${this.authenticationService.currentUser.id}`).subscribe(
+      (data) => {
+        this.luckymes = groupBy("period")(data);
+      },
+      error => {
+        console.log("Error getting luckyme's");
+        console.log(error);
+      }
+    )
+  }
+
+  getUserScholarships() {
+    this.http.get(`${settings.currentApiUrl}/scholarships/foruser/${this.authenticationService.currentUser.id}`).subscribe(
+      (data: Array<Scholarship>) => {
+        this.scholarships = data;
+      },
+      error => {
+        console.log("Error getting Scholarships");
+        console.log(error);
+      }
+    )
+  }
+
+  getUserBusinesses() {
+    this.http.get(`${settings.currentApiUrl}/businesses/foruser/${this.authenticationService.currentUser.id}`).subscribe(
+      (data: Array<Business>) => {
+        this.businesses = data;
+      },
+      error => {
+        console.log("Error getting Businesses");
+        console.log(error);
+      }
+    )
   }
 
 }

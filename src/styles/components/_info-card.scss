@@ -16,6 +16,7 @@
       box-shadow: var(--shadow);
       text-align: center;
       white-space: nowrap;
+      min-height: 5rem;
       &--icon{
         margin-left: 2rem;
         //height: 4rem;
@@ -36,7 +37,7 @@
       overflow: auto;
       .winner-group{
         //background-color: rgba(black,.2);
-        background-color: #0096cc96;
+      //  background-color: #0096cc96;
         margin:.2rem;
         margin-bottom: .5rem;
         padding:.5rem;

@@ -29,13 +29,13 @@ app-busy {
   position: fixed;
   // background-image: url(../../assets/images/luckyme2.jpg);
   // background: url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png)
-  //   center center no-repeat #35b531;
+  //  center center no-repeat #dd3502;
   background-image: url(../../assets/images/homebg2.jpg);
   background-size: cover;
-  background-color: rgba(black, 0.3);
+ background-color: rgba(black, 0.3);
   background-position: center;
-  background-size: cover;
-  background-blend-mode: color;
+//  background-size: cover;
+ background-blend-mode: color;
   height: calc(100vh);
   width: calc(100vw);
   top: 0;

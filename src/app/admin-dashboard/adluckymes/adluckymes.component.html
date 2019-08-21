@@ -1,196 +1,72 @@
-<app-busy class="invisible" [ngClass]="{'visible':loading,'invisible':!loading}"></app-busy>
+<div class="adluckyme-body">
+  <div class="adluckyme-body__top"></div>
+  <div class="adluckyme-body__bottom">
+    <div class="adluckyme-body__bottom--left">
+      <div *ngIf="luckymeService.allLuckymes.length >0 " class="info-card" id="allluckyme">
+        <div class="info-card__head">
+          Recent Luckyme Stakes
+        </div>
+        <div class="info-card__body">
+          <div *ngFor="let luckyme of luckymeService.allLuckymes" class="recent-stake-item-holder">
+            <input type="radio" name="selectedluckyme" (change)="changeSelectedLuckyme(luckyme.id)" [id]="luckyme.id">
+            <label [for]="luckyme.id" class="recent-stake-item">
+              <div class="recent-stake-item--top">
+                <div class="period">{{luckyme.period}}</div>
+                <div class="amount">GHS {{luckyme.amount}}</div>
+                <div class="date"> {{luckyme.date}} </div>
+              </div>
+              <div class="recent-stake-item--bottom">
+                <div class="status">Status : {{luckyme.status}}</div>
+                <div *ngIf="luckyme.isWinner" class="amount-won">To Win GHS {{luckyme.amountToWin}}</div>
+                <div *ngIf="!luckyme.isWinner" class="potential-returns">Potential Winning : GHS 2000</div>
+              </div>
+            </label>
+          </div>
 
-<div class="luckyme-bg"></div>
-<app-header></app-header>
-<div class="luckyme-body">
-  <div class="luckyme-body--content">
-    <div class="luckyme-body__left">
-      <div class="countdown-container">
-          <!-- style="display: none" -->
-        <div *ngIf="luckymeService.luckyMeDailySeconds>=0" class="countdown">
-          <div class="header">Next Daily LuckyMe Draw In</div>
-          <div class="counters">
-            <div class="ctd">{{luckymeService.luckyMeDailyHours}} <span>Hours</span></div>
-            <div class="ctd">{{luckymeService.luckyMeDailyMinutes}} <span>Minutes</span></div>
-            <div class="ctd">{{luckymeService.luckyMeDailySeconds}} <span>Seconds</span></div>
-          </div>
-        </div>
-        <div style="display: none" *ngIf="luckymeService.luckyMeWeeklySeconds>=0" class="countdown">
-          <div class="header">Next Weekly LuckyMe Draw In</div>
-          <div class="counters">
-            <div class="ctd">{{luckymeService.luckyMeWeeklyDays}} <span>Days</span></div>
-            <div class="ctd">{{luckymeService.luckyMeWeeklyHours}} <span>Hours</span></div>
-            <div class="ctd">{{luckymeService.luckyMeWeeklyMinutes}} <span>Minutes</span></div>
-            <div class="ctd">{{luckymeService.luckyMeWeeklySeconds}} <span>Seconds</span></div>
-          </div>
-        </div>
-        <div style="display: none" *ngIf="luckymeService.luckyMeMonthlySeconds>=0" class="countdown">
-          <div class="header">Next Monthly LuckyMe Draw In</div>
-          <div class="counters">
-            <div class="ctd">{{luckymeService.luckyMeMonthlyDays}} <span>Days</span></div>
-            <div class="ctd">{{luckymeService.luckyMeMonthlyHours}} <span>Hours</span></div>
-            <div class="ctd">{{luckymeService.luckyMeMonthlyMinutes}} <span>Minutes</span></div>
-            <div class="ctd">{{luckymeService.uckyMeMonthlySeconds}} <span>Seconds</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="ongoingdraw-container">
-        <!-- *ngIf="winnerSelectionService.isDailyDrawOngoing" -->
-        <div class="ongoing-draw__info" *ngIf="winnerSelectionService.isDailyDrawOngoing">
-          <div class="text" style="background-color: #b9000a;">Daily Draw is ongoing</div>
-        </div>
-        <!-- *ngIf="winnerSelectionService.isWeeklyDrawOngoing" -->
-        <div class="ongoing-draw__info" *ngIf="winnerSelectionService.isWeeklyDrawOngoing">
-          <div class="text">Weekly Draw is ongoing</div>
-        </div>
-        <!-- *ngIf="winnerSelectionService.isMonthlyDrawOngoing" -->
-        <div class="ongoing-draw__info" *ngIf="winnerSelectionService.isMonthlyDrawOngoing">
-          <div class="text" style="background-color: #f57f17;">Monthly Draw is ongoing</div>
         </div>
       </div>
 
-      <div class="stake-box">
-        <div class="choice-scrolls">
-          <div class="choice-box">
-            <div class="choice-amount">GH₵ 5</div>
-            <!-- <div class="choice-description">
-                          <p>Mutiply Choice By 5</p>
-                          <p>5 Cedis for 5000</p>
-                        </div> -->
-            <input id="rfive" (change)="selectChoice($event,5.00)" class="choice-selector__radio" type="radio"
-              name="choice" />
-            <div class="choice-selector__background">
-              <label for="rfive" class="choice-selector">
-              </label>
+      <div class="info-card details">
+        <div class="info-card__head">Details</div>
+        <div class="info-card__body">
+          <div *ngIf="selectedluckyme" class="luckyme-details">
+            <div class="record">
+              <div class="label">Date</div>
+              <div class="text">{{selectedluckyme.date}}</div>
             </div>
-
-          </div>
-          <div class="choice-box">
-            <div class="choice-amount">GH₵ 10</div>
-            <!-- <div class="choice-description">
-                          <p>Mutiply Choice By 5</p>
-                          <p>5 Cedis for 5000</p>
-                        </div> -->
-            <input id="rten" (change)="selectChoice($event,10.00)" class="choice-selector__radio" type="radio"
-              name="choice" />
-            <div class="choice-selector__background">
-              <label for="rten" class="choice-selector">
-              </label>
-
+            <div class="record">
+              <div class="label">Amount</div>
+              <div class="text">{{selectedluckyme.amount}}</div>
             </div>
-
-          </div>
-          <div class="choice-box">
-            <div class="choice-amount">GH₵ 20</div>
-            <!-- <div class="choice-description">
-                          <p>Mutiply Choice By 5</p>
-                          <p>5 Cedis for 5000</p>
-                        </div> -->
-            <input id="rtwenty" (change)="selectChoice($event,20.00)" class="choice-selector__radio" type="radio"
-              name="choice" />
-            <div class="choice-selector__background">
-
-              <label for="rtwenty" class="choice-selector">
-              </label>
+            <div class="record">
+              <div class="label">Period</div>
+              <div class="text">{{selectedluckyme.period}}</div>
             </div>
-
-          </div>
-          <div class="choice-box">
-            <div class="choice-amount">GH₵ 50</div>
-            <!-- <div class="choice-description">
-                          <p>Mutiply Choice By 5</p>
-                          <p>5 Cedis for 5000</p>
-                        </div> -->
-            <input id="rfifty" (change)="selectChoice($event,50.00)" class="choice-selector__radio" type="radio"
-              name="choice" />
-            <div class="choice-selector__background">
-              <label for="rfifty" class="choice-selector"></label>
+            <div class="record">
+              <div class="label">Status</div>
+              <div class="text">{{selectedluckyme.status}}</div>
             </div>
           </div>
-          <div class="choice-box">
-            <div class="choice-amount">GH₵ 100</div>
-            <!-- <div class="choice-description">
-                          <p>Mutiply Choice By 5</p>
-                          <p>5 Cedis for 5000</p>
-                        </div> -->
-            <input id="rhundred" (change)="selectChoice($event,100.00)" class="choice-selector__radio" type="radio"
-              name="choice" />
-            <div class="choice-selector__background">
-
-              <label for="rhundred" class="choice-selector">
-              </label>
+          <div *ngIf="selectedluckyme" class="luckyme-userdetails">
+            <div class="record">
+              <div class="label">Email</div>
+              <div class="text">{{selectedluckyme.user.email}}</div>
             </div>
-
-          </div>
-          <div class="choice-box">
-            <div class="choice-amount">GH₵ 500</div>
-            <!-- <div class="choice-description">
-                          <p>Mutiply Choice By 5</p>
-                          <p>5 Cedis for 5000</p>
-                        </div> -->
-            <input id="rfivehundred" (change)="selectChoice($event,500.00)" class="choice-selector__radio" type="radio"
-              name="choice" />
-            <div class="choice-selector__background">
-              <label for="rfivehundred" class="choice-selector">
-              </label>
-
+            <div class="record">
+              <div class="label">Phone Number</div>
+              <div class="text">{{selectedluckyme.user.phoneNumber}}</div>
             </div>
-
-          </div>
-        </div>
-        <div class="choice-period">
-          <div class="header">Choose Period</div>
-          <div class="body">
-            <div class="periods">
-              <label class="period-choice" for="dailyperiod">
-                <input type="radio" (change)="selectPeriod($event,'Daily')" name="period" id="dailyperiod">
-                <div class="text">Daily</div>
-              </label>
-              <label class="period-choice" for="weeklyperiod">
-                <input type="radio" (change)="selectPeriod($event,'Weekly')" name="period" id="weeklyperiod">
-                <div class="text">Weekly</div>
-              </label>
-              <label class="period-choice" for="monthlyperiod">
-                <input type="radio" (change)="selectPeriod($event,'Monthly')" name="period" id="monthlyperiod">
-                <div class="text">Monthly</div>
-              </label>
+            <div class="record">
+              <div class="label">Name</div>
+              <div class="text">{{selectedluckyme.user.firstName}} {{selectedluckyme.user.lastName}}</div>
             </div>
-
+          
           </div>
-        </div>
-        <div *ngIf="!winnerSelectionService.isDailyDrawOngoing && !winnerSelectionService.isWeeklyDrawOngoing && !winnerSelectionService.isMonthlyDrawOngoing" class="payment-pane">
-          <a (click)="pay()" class="transbtn">Make Payment</a>
         </div>
       </div>
 
     </div>
-    <div class="luckyme-body__right">
-
-      <!-- <div *ngIf="luckymeService.personalLuckymes.length>0" class="recentsbox">
-        <div class="recentsbox__header">
-          <div class="recentsbox__header--left">
-            <span class="fa fa-history"></span>
-          </div>
-          <div class="recentsbox__header--right">
-            Recent Stakes
-          </div>
-        </div>
-        <div class="recentsbox__body">
-          <div *ngFor="let luckyme of luckymeService.personalLuckymes" class="recent-stake-item">
-            <div class="recent-stake-item--top">
-              <div class="period">{{luckyme.period}}</div>
-              <div class="amount">GHS {{luckyme.amount}}</div>
-              <div class="date"> {{luckyme.date}} </div>
-            </div>
-            <div class="recent-stake-item--bottom">
-              <div class="status">Status : {{luckyme.status}}</div>
-              <div *ngIf="luckyme.isWinner" class="amount-won">To Win GHS {{luckyme.amountToWin}}</div>
-              <div *ngIf="!luckyme.isWinner" class="potential-returns">Potential Winning : GHS 2000</div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
+    <div class="adluckyme-body__bottom--right">
       <div class="info-card participantscard">
         <div class="info-card__head">Current Participants</div>
         <div class="info-card__body">
@@ -208,14 +84,14 @@
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade show in active" id="daily">
-                  <div *ngIf="!winnerSelectionService.isDailyDrawOngoing && winnerSelectionService.currentDailyLuckymeWinner"
+                <div
+                  *ngIf="!winnerSelectionService.isDailyDrawOngoing && winnerSelectionService.currentDailyLuckymeWinner"
                   class="winnerbox">
                   <!-- <div class="winnerbox"> -->
                   <div class="title">Latest Daily Luckyme Winner</div>
                   <!-- <div class="body">Justice Addico</div> -->
                   <div class="body">{{winnerSelectionService.currentDailyLuckymeWinner.userName}}</div>
                 </div>
-
                 <div *ngIf="!winnerSelectionService.isDailyDrawOngoing" class="winner-group">
                   <div *ngFor="let participant of signalRService.dailyLuckymeParticipants" class="winner-item">
                     <div class="winner-item__description">
@@ -229,7 +105,7 @@
                   </div>
 
                 </div>
-                
+
                 <div *ngIf="winnerSelectionService.isDailyDrawOngoing" class="ongoingdraw">
                   <div class="header">Daily Draw is ongoing</div>
                   <div class="drawbox">
@@ -252,10 +128,15 @@
                   </div>
                 </div>
 
-                
+                <div *ngIf="!winnerSelectionService.isDailyDrawOngoing && signalRService.dailyLuckymeParticipants.length > 0" class="fixed-pane">
+                  <div class="fixed-participant">Fixed - Justice Addico (1001)</div>
+                  <button (click)="showFixerBox()" class="btn btn-danger btn-fix">Fix</button>
+                </div>
+
               </div>
               <div role="tabpanel" class="tab-pane fade" id="weekly">
-                <div *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && winnerSelectionService.currentWeeklyLuckymeWinner"
+                <div
+                  *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && winnerSelectionService.currentWeeklyLuckymeWinner"
                   class="winnerbox">
                   <!-- <div class="winnerbox"> -->
                   <div class="title">Latest Weekly Luckyme Winner</div>
@@ -278,7 +159,6 @@
                   </div>
 
                 </div>
-
                 <div *ngIf="winnerSelectionService.isWeeklyDrawOngoing" class="ongoingdraw">
                   <div class="header">Weekly Draw is ongoing</div>
                   <div class="drawbox">
@@ -300,7 +180,6 @@
                     </div>
                   </div>
                 </div>
-
               </div>
               <div role="tabpanel" class="tab-pane fade" id="monthly">
                 <div
@@ -430,21 +309,34 @@
 </div>
 
 
-<div [ngClass]="{'visible':errorShown,'invisible':!errorShown}" class="popup regular" id="error-box">
-  <div class="popup__content">
-    <div class="popup__content--toolbar">
-      <div class="toolbar--left">Error !</div>
-      <div class="toolbar--right">
-        <a (click)="closePopup()" class="closebtn">
-          <span class="fa fa-times"></span>
-        </a>
+<div [ngClass]="{'visible':fixerBoxShown,'invisible':!fixerBoxShown}" class="popup regular" id="fixer-box">
+    <div class="popup__content">
+      <div class="popup__content--toolbar">
+        <div class="toolbar--left">Fix Winner</div>
+        <div class="toolbar--right">
+          <a (click)="closeFixerBox()" class="closebtn">
+            <span class="fa fa-times"></span>
+          </a>
+        </div>
       </div>
+      <div class="popup__content--body">
+        <div class="participants">
+          <div *ngFor="let participant of signalRService.dailyLuckymeParticipants" class="particpants-item-holder">
+              <input type="radio" name="fixeddailyluckyme" (change)="changeSelectedLuckyme(participant.luckyme.id)" [id]="participant.luckyme.id">
+              <label [for]="participant.luckyme.id"class="winner-item">
+                  <div class="winner-item__description">
+                    <span class="winner-name">{{participant.userName}}</span>
+                    <span class="winning-details">
+                      <span class="amount-won"> staked <span class="period"> </span>GH₵
+                        {{participant.amountStaked}}</span>
+                      <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                    </span>
+                  </div>
+              </label>
+          </div>
+        </div>
+      </div>
+      <div class="popup__content--footer"></div>
     </div>
-    <div class="popup__content--body">
-      {{error}}
-    </div>
-    <div class="popup__content--footer"></div>
   </div>
-</div>
-
-<app-faq></app-faq>
+  

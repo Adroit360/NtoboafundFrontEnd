@@ -91,12 +91,12 @@
       <form class="profile-box" [formGroup]="registrationForm" (ngSubmit)="updateProfile()">
 
         <div class="profile-box__body">
-          <div class="userImage">
+          <!-- <div class="userImage">
             <app-custom-file-input [ngClass]="{disabled:!isEditMode}" [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]"
               (inputChanged)="imageSelected($event)" defaultLabelText="Choose Image" hiddenLabelText="Remove Image">
             </app-custom-file-input>
 
-          </div>
+          </div> -->
           <div [ngClass]="{disabled:!isEditMode}" class="c-input">
             <input type="text" placeholder="First Name" [formControlName]="'firstName'" />
             <i class="c-addon fa fa-user"></i>

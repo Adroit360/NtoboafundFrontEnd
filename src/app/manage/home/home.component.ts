@@ -100,9 +100,7 @@ export class MHomeComponent implements OnInit {
   getUserLuckyMes(){
     this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${this.authService.currentUser.id}`).subscribe(
       (response:Array<LuckyMe>)=>{
-        response.forEach((value)=>{
-          this.luckymes.push(value);
-        })
+          this.luckymes = response;
       },
       error=>{
         console.log("Error getting luckyme's");

@@ -1,0 +1,84 @@
+.adusers-body{
+    display: flex;
+    height: calc(100vh - 6rem);
+    justify-content: space-evenly;
+    overflow:hidden;
+    &__left{
+        
+        height:inherit;
+        overflow: auto;
+        .users-pane{
+            background-color: white;
+            height: 100%;
+            border-left: 1px solid var(--bordercolor);
+            border-right: 1px solid var(--bordercolor);
+            .heading{
+                text-align: center;
+                font-size: 2rem;
+                text-transform: uppercase;
+    
+            }
+            .searchbox{
+    
+            }
+            .allusers{
+              
+                padding: 1rem;
+                .user-item{
+                    display: flex;
+                    margin: 1rem;
+                    color: white;
+                    cursor: pointer;
+                    input[type=radio]{
+                        display: none;
+                        &:checked{
+                            &~.user-item__detail{
+                                background-color: blue;
+                            }
+                        }
+                    }
+                    &__detail{
+                        background-color: rgba(0, 0, 0, 0.7);
+                        padding: 1rem 1rem;
+                        border-radius: .5rem;
+                        font-size: 1.5rem;
+                        display: block;
+                        width: 100%;
+                        cursor: pointer;
+                    }
+                    &>div{
+                        margin: .5rem;
+                    }
+                }
+            }
+        }
+    }
+    &__right{
+        flex:1 1;
+        height: inherit;
+        overflow: auto;
+        .toprow{
+            display: flex;
+            position: fixed;
+            background-color: white;
+            width: 100%;
+            height: 5rem;
+            border-bottom: 1px solid var(--bordercolor);
+            align-items: center;
+            .toplink{
+                margin: 1rem;
+                font-size: 1.7rem;
+                
+            }
+        }
+        .bottomrow{
+            margin-top: 6rem;
+            .recentsbox{
+                margin: 2rem;
+                box-shadow: var(--shadow);
+            }
+        }
+
+    }
+  
+}

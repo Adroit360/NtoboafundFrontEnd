@@ -1,115 +1,144 @@
-body, h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins',Roboto,-apple-system,system-ui,BlinkMacSystemFont  ,Segoe UI,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Arial,sans-serif;
-    line-height: 1.5;
-  }
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", Roboto, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell,
+    Fira Sans, Droid Sans, Helvetica Neue, Arial, sans-serif;
+  line-height: 1.5;
+}
 
-  html {
-    box-sizing: border-box;
-    font-size: 62.5%;
-    margin: 0rem;
-    padding:0rem;
-    //overflow: auto;
-    //vertical-align: bottom;
-  }
-  
-  *,*:before,*:after {
-    box-sizing: inherit;
-    margin:0px;
-   // font-size: 16px;
-   //overflow:inherit;
-   //vertical-align: inherit;
-  }
-  
-  body,ul,li {
-    margin: 0;
-    padding: 0;
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  margin: 0rem;
+  padding: 0rem;
+  //overflow: auto;
+  //vertical-align: bottom;
+}
 
-    //Testing
-    font-size: 1.5rem;
-  }
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0px;
+  // font-size: 16px;
+  //overflow:inherit;
+  //vertical-align: inherit;
+}
 
-  li {
-    list-style: none;
-  }
+body,
+ul,
+li {
+  margin: 0;
+  padding: 0;
 
-  p,h1, h2, h3,h4, h5,h6 {
-    margin:0;
-  }
+  //Testing
+  font-size: 1.5rem;
+}
 
-  a {
-    text-decoration: none;
-  }
-  // some basic page styles
+li {
+  list-style: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+// some basic page styles
 body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  input {
-    border-style: none;
-    background: transparent;
-    outline: none;
-  }
-  
-  button {
-    padding: 0;
-    background: none;
-    border: none;
-    outline: none;
-  }
-  
-  a{
+input {
+  border-style: none;
+  background: transparent;
+  outline: none;
+}
+
+button {
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  &:hover {
     text-decoration: none;
-    &:hover{
-      text-decoration: none;
-    }
   }
+}
 
-  img{
-    width: 100%;
-    height: 100%;
-  }
-  .disabled{
-    pointer-events: none;
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.disabled {
+  pointer-events: none;
+  color:grey !important;
 }
 
 //overriding bootstrap nav
-.nav-tabs{
+.nav-tabs {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: nowrap;
   background-color: #459dd9;
   //height: ;
-  .nav-item{
+  .nav-item {
     width: 100%;
     text-align: center;
-    color:white;
-    letter-spacing: .1rem;
+    color: white;
+    letter-spacing: 0.1rem;
     //padding: 1rem 1rem 0rem 1rem;
-    &.active{
+    &.active {
       //color:black;
-      background-color: rbga(white,.5);
+      background-color: rbga(white, 0.5);
     }
-    .nav-link{
-      color:inherit;
+    .nav-link {
+      color: inherit;
       text-transform: uppercase;
       border: none;
-      padding-bottom:1rem;
-      transition: all .2s;
-      &:hover{
-        border:none;
+      padding-bottom: 1rem;
+      transition: all 0.2s;
+      &:hover {
+        border: none;
       }
-      &.active{
+      &.active {
         border-bottom: 2px solid #459dd9;
-        color:black;
+        color: black;
       }
     }
   }
-
 }
-.tab-content{
-  background-color:rgba(white,.5);
+.tab-content {
+  background-color: rgba(white, 0.5);
   height: 26rem;
-  padding:1rem;
+  padding: 1rem;
   overflow: auto;
+
+  .fixed-pane {
+    display: flex;
+    font-size: 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    .btn {
+      font-size: inherit;
+    }
+  }
 }

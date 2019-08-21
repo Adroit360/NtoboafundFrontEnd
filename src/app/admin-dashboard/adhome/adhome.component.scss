@@ -46,34 +46,7 @@
         }
     }
     &__body{
-        .story
-        {
-            background-color: green;
-            color:white;
-            display: flex;
-            height: 10rem;
-            margin: 2rem;
-            box-shadow: var(--shadow);
-            .left{
-                width: 40%;
-                color:black;
-                background-color:orange;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                padding-right: 4.5rem;
-                shape-outside: polygon(0% 0%,90% 0%,100% 50%,90% 100%,0% 100%);
-                clip-path: polygon(0% 0%,90% 0%,100% 50%,90% 100%,0% 100%);
-            }
-            .right{
-                width: 60%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding-left: 2rem; 
-            }
-        }
+       
     }
 }
 
