@@ -27,14 +27,14 @@ export class ScholarshipComponent implements OnInit {
   errorShown = false;
   scholarhips: Array<Scholarship> = [];
   scholarshipForm:FormGroup
-
+  scholarshipAmount:number;
 
   constructor(private countDownService:CountDownService,
               private router:Router,private authService:AuthService
               ,private http:HttpClient,public signalRservice:SignalRService
               ,public winnerSelectionService:WinnerSelectionService
               ,public paymentService:PaymentService) {
-
+                this.scholarshipAmount = 100;
   }
 
   ngOnInit() {
@@ -50,46 +50,61 @@ export class ScholarshipComponent implements OnInit {
     })
   }
 
-  pay() {
-    let institution = this.scholarshipForm.get("Institution").value;
-    let program = this.scholarshipForm.get("Program").value;
-    let studentId  = this.scholarshipForm.get("StudentId").value;
-
+  pay(){
     if (this.authService.isAuthenticated) {
-
-
+  
       if (!this.scholarshipForm.valid) {
         this.error = "Please fill all form fields";
         this.errorShown = true;
         return;
       }
 
-      this.loading = true;
-      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurlforscholarship`, {institution,program,studentId,userId: this.authService.currentUser.id })
-        .subscribe(
-          response => {
-            console.log(response);
-            this.loading = false;
-            this.scholarhips.push(response.scholarhip);
-            if(response.resultString){
-              let resultString = JSON.parse(response.resultString)
-              window.location.href = resultString.data.checkoutUrl;
-              localStorage.setItem(resultString.data.checkoutId, response.luckyMe.id);
-            }
-            this.scholarshipForm.reset();
-          },
-          error => {
-            console.log("Error");
-            console.log(error);
-            this.loading = false;
-          }
-        );
     } else {
       this.router.navigate(['login']);
+      return;
     }
+
+    this.loading = true;
+  }
+
+  scholarshipPaymentCallback(event) {
+
+    console.log(event);
+    if(event.success){
+      let institution = this.scholarshipForm.get("Institution").value;
+      let program = this.scholarshipForm.get("Program").value;
+      let studentId  = this.scholarshipForm.get("StudentId").value;
+  
+        this.loading = true;
+        this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyScholarshipPayment/${event.tx.txRef}`, {institution,program,studentId,userId: this.authService.currentUser.id })
+          .subscribe(
+            response => {
+              console.log(response);
+              this.loading = false;
+              this.scholarhips.push(response.scholarhip);
+              if(response.resultString){
+                let resultString = JSON.parse(response.resultString)
+                window.location.href = resultString.data.checkoutUrl;
+                localStorage.setItem(resultString.data.checkoutId, response.luckyMe.id);
+              }
+              this.scholarshipForm.reset();
+            },
+            error => {
+              console.log("Error");
+              console.log(error);
+              this.loading = false;
+            }
+          );
+      
+    }else{
+
+    }
+    
 
 
   }
+
+
 
   closePopup() {
     this.error = null;

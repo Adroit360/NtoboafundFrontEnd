@@ -1,26 +1,47 @@
 import { RaveOptions } from 'angular-rave';
+import { AuthService } from './authservice';
+import { User } from 'src/models/user';
+import { Injectable } from '@angular/core';
+import { settings } from 'src/settings';
 
+@Injectable()   
 export class PaymentService {
     
-    paymentOptions: RaveOptions = {
-        PBFPubKey: 'FLWPUBK-ad829577696424c994082816ba66b19d-X',
-        customer_email: 'justice.addico.ja@gmail.com',
-        customer_firstname: 'Ashinze',
-        customer_lastname: 'Ekene',
-        custom_description: 'Payment for goods',
-        amount: 2000,
-        currency: "GHS",
-        country:"GH",
-        customer_phone: '0557560016',
-        txref: 'xxx1xxx',
-        custom_title:"Pay [Scholarship]",
-        payment_method:"card,account,mobilemoneyghana,bank transfer",
-        redirect_url:"",
-        meta: [{metaname:"flightID", metavalue: "AP1234"}],
+    /**
+     *
+     */
+    constructor(private authService:AuthService) {
     }
 
+    getRaveOptions(stakeType:String,amount:number){
+        let paymentOptions:RaveOptions;
+        let user =this.authService.currentUser
+        if(user){
+              paymentOptions = {
+                PBFPubKey: settings.publicLive,
+                customer_email: user.email,
+                customer_firstname: user.firstName,
+                customer_lastname: user.lastName,
+                custom_description: `Payment for ${stakeType} stake`,
+                amount: amount,
+                currency: "GHS",
+                country:"GH",
+                customer_phone: user.phoneNumber,
+                txref: this.getUniqueCode(user),
+                custom_title:`${stakeType} Stake Payment`,
+                payment_method:"card,account,mobilemoneyghana,bank transfer",
+                custom_logo:`${window.location.origin}/assets/images/logo.png`
+            }
+        }
+         return paymentOptions;
+    }
 
-    
+    getUniqueCode(user:User){
+        var userCode = user.firstName.substr(0,2) + user.lastName.substr(0,2);
+        var timeStamp = new Date().getTime();
+        return `inv.${userCode}.${timeStamp}`;
+    }
+   
 
 
     //     [PBFPubKey] = "'FLWPUBK-XXXXXXXXXXXX'"
@@ -33,9 +54,6 @@ export class PaymentService {
     //   (close)="paymentFailure()"
     //   (init)="paymentInit()"
 
-    constructor() {
-
-    }
 
     // (callback)
     paymentSuccess(event){
