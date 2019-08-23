@@ -87,4 +87,8 @@ export class AdusersComponent implements OnInit {
     }
   }
 
+  editUser(){
+    
+  }
+
 }
