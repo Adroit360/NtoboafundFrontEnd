@@ -1,26 +1,31 @@
+<app-busy class="invisible" [ngClass]="{'visible':loading,'invisible':!loading}"></app-busy>
+
 <div class="adusers-body">
 
-  <div class="adusers-body__left">
-    <div class="users-pane">
-      <div class="heading">Users</div>
-      <div class="searchbox"></div>
-      <div class="allusers">
-        <div *ngFor="let user of users" class="user-item">
-          <input type="radio" name="user" [id]="'selector' + user.id">
-          <label [for]="'selector' + user.id" class="user-item__detail">
-              <span>User ID : {{user.id}}</span>
-              <div (click)="changeSelectedUser(user)"  class="name">Name : {{user.firstName}} {{user.lastName}}</div>
-              <span>Email : {{user.email}}</span>
-            </label>
+    <div class="adusers-body__left">
+        <div class="users-pane">
+            <div class="heading">Users <a (click)="showOrHideAddUser()" routerLink="./" class="toplink">Add New User</a>
+            </div>
+            <div class="searchbox"></div>
+            <div class="allusers">
+                <div *ngFor="let user of users" class="user-item">
+                    <input type="radio" name="user" [id]="'selector' + user.id">
+                    <label (click)="changeSelectedUser(user)" [for]="'selector' + user.id" class="user-item__detail">
+                        <span>User ID : {{user.id}}</span>
+                        <div class="name">Name : {{user.firstName}} {{user.lastName}}</div>
+                        <span>Email : {{user.email}}</span>
+                    </label>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="adusers-body__right">
-      <div class="toprow">
-          <a [ngClass]="{disabled:selectedUser.firstName == null}" href="" class="toplink">Delete</a>
-          <a [ngClass]="{disabled:selectedUser.firstName == null}" href="" class="toplink">Suspend</a>
-          <a [ngClass]="{disabled:selectedUser.firstName == null}" href="" class="toplink">View Details</a>
+    <div class="adusers-body__right">
+        <div class="toprow">
+            <a (click)="editUser()" [ngClass]="{disabled:selectedUser.firstName == null}" routerLink="./" class="toplink">Edit</a>
+            <a (click)="deleteUser()" [ngClass]="{disabled:selectedUser.firstName == null}" routerLink="./" class="toplink">Delete</a>
+            <a (click)="suspendUser()" [ngClass]="{disabled:selectedUser.firstName == null}" routerLink="./"class="toplink">Suspend</a>
+            <a (click)="showOrHideViewDetails()" [ngClass]="{disabled:selectedUser.firstName == null}" routerLink="./"
+                class="toplink">View Details</a>
         </div>
         <div class="bottomrow">
             <div class="recentsbox">
@@ -41,15 +46,17 @@
                         </div>
                         <div class="recent-stake-item--bottom">
                             <div class="status">Status : {{business.status}}</div>
-                            <div *ngIf="business.status != 'pending'" class="amount-won">To Win GHS {{business.amountToWin}}
+                            <div *ngIf="business.status != 'pending'" class="amount-won">To Win GHS
+                                {{business.amountToWin}}
                             </div>
-                            <div *ngIf="business.status == 'pending'" class="potential-returns">potential-returns : GHS 2000
+                            <div *ngIf="business.status == 'pending'" class="potential-returns">potential-returns : GHS
+                                2000
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-    
+
             <div class="recentsbox">
                 <div class="recentsbox__header">
                     <div class="recentsbox__header--left">
@@ -70,13 +77,14 @@
                             <div class="status">Status : {{scholarship.status}}</div>
                             <div *ngIf="scholarship.status == 'won'" class="amount-won">To Win GHS
                                 {{scholarship.amountToWin}}</div>
-                            <div *ngIf="scholarship.status != 'won'" class="potential-returns">Potential Winning : GHS 2000
+                            <div *ngIf="scholarship.status != 'won'" class="potential-returns">Potential Winning : GHS
+                                2000
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-    
+
             <div class="info-card winnerscard">
                 <div class="info-card__head">Past LuckyMe Stakes</div>
                 <div class="info-card__body">
@@ -93,9 +101,9 @@
                                 <a class="nav-link" href="#monthly-winner" role="tab" data-toggle="tab">Monthly</a>
                             </li>
                         </ul>
-                        <div *ngIf="selectedUser.luckymes" class="tab-content">
-                            <div  role="tabpanel" class="tab-pane fade show in active" id="daily-winner">
-                                <div *ngFor="let luckyme of selectedUser.luckymes['Daily']" class="recent-stake-item">
+                        <div *ngIf="selectedUser.luckyMes" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade show in active" id="daily-winner">
+                                <div *ngFor="let luckyme of selectedUser.luckyMes['Daily']" class="recent-stake-item">
                                     <div class="recent-stake-item--top">
                                         <div class="period">{{luckyme.period}}</div>
                                         <div class="amount">GHS {{luckyme.amount}}</div>
@@ -103,16 +111,18 @@
                                     </div>
                                     <div class="recent-stake-item--bottom">
                                         <div class="status">Status : {{luckyme.status}}</div>
-                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS {{luckyme.amountToWin}}
+                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS
+                                            {{luckyme.amountToWin}}
                                         </div>
-                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning : GHS {{luckyme.amountToWin}}
+                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning
+                                            : GHS {{luckyme.amountToWin}}
                                         </div>
                                     </div>
                                 </div>
-                
+
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="weekly-winner">
-                                <div *ngFor="let luckyme of selectedUser.luckymes['Weekly']" class="recent-stake-item">
+                                <div *ngFor="let luckyme of selectedUser.luckyMes['Weekly']" class="recent-stake-item">
                                     <div class="recent-stake-item--top">
                                         <div class="period">{{luckyme.period}}</div>
                                         <div class="amount">GHS {{luckyme.amount}}</div>
@@ -120,16 +130,18 @@
                                     </div>
                                     <div class="recent-stake-item--bottom">
                                         <div class="status">Status : {{luckyme.status}}</div>
-                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS {{luckyme.amountToWin}}
+                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS
+                                            {{luckyme.amountToWin}}
                                         </div>
-                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning : GHS {{luckyme.amountToWin}}
+                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning
+                                            : GHS {{luckyme.amountToWin}}
                                         </div>
                                     </div>
                                 </div>
-    
+
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="monthly-winner">
-                                <div *ngFor="let luckyme of selectedUser.luckymes['Monthly']" class="recent-stake-item">
+                                <div *ngFor="let luckyme of selectedUser.luckyMes['Monthly']" class="recent-stake-item">
                                     <div class="recent-stake-item--top">
                                         <div class="period">{{luckyme.period}}</div>
                                         <div class="amount">GHS {{luckyme.amount}}</div>
@@ -137,19 +149,105 @@
                                     </div>
                                     <div class="recent-stake-item--bottom">
                                         <div class="status">Status : {{luckyme.status}}</div>
-                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS {{luckyme.amountToWin}}
+                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS
+                                            {{luckyme.amountToWin}}
                                         </div>
-                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning : GHS {{luckyme.amountToWin}}
+                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning
+                                            : GHS {{luckyme.amountToWin}}
                                         </div>
                                     </div>
                                 </div>
-    
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-  </div>
-  
+    </div>
+
+</div>
+
+<div [ngClass]="{'visible':addUsersShown,'invisible':!addUsersShown}" class="popup regular" id="adduser-box">
+    <div class="popup__content">
+        <div class="popup__content--toolbar">
+            <div class="toolbar--left">Add New User</div>
+            <div class="toolbar--right">
+                <a (click)="showOrHideAddUser()" class="closebtn">
+                    <span class="fa fa-times"></span>
+                </a>
+            </div>
+        </div>
+        <div class="popup__content--body">
+            <form class="stake-form" [formGroup]="addUserForm">
+                <div class="form-group">
+                    <label for="exampleInputInstitution">first Name</label>
+                    <input type="text" class="form-control" id="exampleInputInstitution" formControlName="Institution"
+                        aria-describedby="InstitutionHelp" placeholder="Enter Institution">
+                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small> -->
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputProgram">Last Name</label>
+                    <input type="text" class="form-control" id="exampleInputProgram" aria-describedby="ProgramHelp"
+                        placeholder="Enter Program" formControlName="Program">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputStudentId">Email</label>
+                    <input type="text" class="form-control" id="exampleInputStudentId" aria-describedby="StudentIdHelp"
+                        placeholder="Enter Student Id" formControlName="StudentId">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputStudentId">User Role</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary float-right">Save</button>
+            </form>
+
+        </div>
+        <div class="popup__content--footer"></div>
+    </div>
+</div>
+
+
+<div [ngClass]="{'visible':viewUserDetailsShown,'invisible':!viewUserDetailsShown}" class="popup regular"
+    id="viewuserdetails-box">
+    <div class="popup__content">
+        <div class="popup__content--toolbar">
+            <div class="toolbar--left">View Details for {{selectedUser.firstName}}</div>
+            <div class="toolbar--right">
+                <a (click)="showOrHideViewDetails()" class="closebtn">
+                    <span class="fa fa-times"></span>
+                </a>
+            </div>
+        </div>
+        <div class="popup__content--body">
+            <div class="user-records">
+                <div class="record">
+                    <div class="label">First Name : </div>
+                    <div class="text">{{selectedUser.firstName}}</div>
+                </div>
+                <div class="record">
+                    <div class="label">Last Name : </div>
+                    <div class="text">{{selectedUser.lastName}}</div>
+                </div>
+                <div class="record">
+                    <div class="label">Email : </div>
+                    <div class="text">{{selectedUser.email}}</div>
+                </div>
+                <div class="record">
+                    <div class="label">Phone Number : </div>
+                    <div class="text">{{selectedUser.phoneNumber}}</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="popup__content--footer"></div>
+    </div>
 </div>

@@ -32,7 +32,7 @@
       </div>
 
       <div class="scholarship-body__content--headercenter">
-          <!-- && scholarshipSeconds>=0 -->
+        <!-- && scholarshipSeconds>=0 -->
         <div *ngIf="!winnerSelectionService.isQuaterlyDrawOngoing && scholarshipSeconds>=0 " class="countdown">
           <div class="header">Next scholarship Draw In</div>
           <div class="counters">
@@ -110,7 +110,10 @@
               </div>
               <div class="footer">
                 <!-- <label for="stakeboxcontroller" class="btn btn-info i-resign">Resign</label> -->
-                <label (click)="pay()" class="btn btn-primary i-play">Play for <span class="pay-amt">₵100</span>
+                <!-- (click)="pay()" -->
+                <label angular-rave [raveOptions]="paymentService.paymentOptions" class="btn btn-primary i-play"
+                  (callback)="paymentService.paymentSuccess($event)" (close)="paymentService.paymentFailure()" (init)="paymentService.paymentInit()">Play for <span
+                    class="pay-amt">₵100</span>
                 </label>
               </div>
             </div>
@@ -172,30 +175,32 @@
             </div>
             <div class="panel" style="background-color: #7383a7">
               <div class="number">4</div>
-              <div class="text">Enter your pin to confirm the mobile money prompt on your phone to complete the stake process</div>
+              <div class="text">Enter your pin to confirm the mobile money prompt on your phone to complete the stake
+                process</div>
             </div>
             <div class="panel" style="background-color: #a563c7">
-                <div class="number">5</div>
-                <div class="text">Wait for a winner to be announce and your money paid</div>
-              </div>
+              <div class="number">5</div>
+              <div class="text">Wait for a winner to be announce and your money paid</div>
+            </div>
           </div>
           <div role="tabpanel" class="tab-pane fade" id="where">
-              <div class="panel" style="background-color: rgb(138, 112, 63)">
-                  <div class="number">*</div>
-                  <div class="text">One Scholarship Winner is announced every three months after which other participants withing the same period are considered to have lost</div>
-                </div>
-                <div class="panel" style="background-color: #9aa349">
-                  <div class="number">*</div>
-                  <div class="text">The winner sould be paid via the mode of contribution eg. mobile money</div>
-                </div>
-                <div class="panel" style="background-color: #399191">
-                  <div class="number">*</div>
-                  <div class="text">Staked Amount is not refundable</div>
-                </div>
-                <div class="panel" style="background-color: #324675">
-                  <div class="number">*</div>
-                  <div class="text">Scholarship contributions only have a single stake value which is GH₵ 100</div>
-                </div>
+            <div class="panel" style="background-color: rgb(138, 112, 63)">
+              <div class="number">*</div>
+              <div class="text">One Scholarship Winner is announced every three months after which other participants
+                withing the same period are considered to have lost</div>
+            </div>
+            <div class="panel" style="background-color: #9aa349">
+              <div class="number">*</div>
+              <div class="text">The winner sould be paid via the mode of contribution eg. mobile money</div>
+            </div>
+            <div class="panel" style="background-color: #399191">
+              <div class="number">*</div>
+              <div class="text">Staked Amount is not refundable</div>
+            </div>
+            <div class="panel" style="background-color: #324675">
+              <div class="number">*</div>
+              <div class="text">Scholarship contributions only have a single stake value which is GH₵ 100</div>
+            </div>
           </div>
         </div>
       </div>

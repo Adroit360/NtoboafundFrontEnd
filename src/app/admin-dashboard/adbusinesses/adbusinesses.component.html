@@ -1,3 +1,188 @@
-<p>
-  adbusinesses works!
-</p>
+<div class="adbusiness-body">
+  <div class="adbusiness-body__top"></div>
+  <div class="adbusiness-body__bottom">
+    <div class="adbusiness-body__bottom--left">
+      <div *ngIf="businessService.allBusinesses.length >0 " class="info-card" id="allBusiness">
+        <div class="info-card__head">
+          Recent Business Stakes
+        </div>
+        <div class="info-card__body">
+          <div *ngFor="let business of businessService.allBusinesses" class="recent-stake-item-holder">
+            <input type="radio" name="selectedBusiness" (change)="changeSelectedBusiness(business.id)"
+              [id]="business.id">
+            <label [for]="business.id" class="recent-stake-item">
+              <div class="recent-stake-item--top">
+                <div class="period">{{business.period}}</div>
+                <div class="amount">GHS {{business.amount}}</div>
+                <div class="date"> {{business.date}} </div>
+              </div>
+              <div class="recent-stake-item--bottom">
+                <div class="status">Status : {{business.status}}</div>
+                <div *ngIf="business.isWinner" class="amount-won">To Win GHS {{business.amountToWin}}</div>
+                <div *ngIf="!business.isWinner" class="potential-returns">Potential Winning : GHS 2000</div>
+              </div>
+            </label>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="info-card details">
+        <div class="info-card__head">Details</div>
+        <div class="info-card__body">
+          <div *ngIf="selectedbusiness" class="business-details">
+            <div class="record">
+              <div class="label">Date</div>
+              <div class="text">{{selectedbusiness.date}}</div>
+            </div>
+            <div class="record">
+              <div class="label">Amount</div>
+              <div class="text">{{selectedbusiness.amount}}</div>
+            </div>
+            <div class="record">
+              <div class="label">Period</div>
+              <div class="text">{{selectedbusiness.period}}</div>
+            </div>
+            <div class="record">
+              <div class="label">Status</div>
+              <div class="text">{{selectedbusiness.status}}</div>
+            </div>
+          </div>
+          <div *ngIf="selectedbusiness && selectedbusiness.user" class="business-userdetails">
+            <div class="record">
+              <div class="label">Email</div>
+              <div class="text">{{selectedbusiness.user.email}}</div>
+            </div>
+            <div class="record">
+              <div class="label">Phone Number</div>
+              <div class="text">{{selectedbusiness.user.phoneNumber}}</div>
+            </div>
+            <div class="record">
+              <div class="label">Name</div>
+              <div class="text">{{selectedbusiness.user.firstName}} {{selectedbusiness.user.lastName}}</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="adbusiness-body__bottom--right">
+      <div class="info-card participants">
+        <div class="info-card__head">Current Participants</div>
+        <div class="info-card__body">
+          <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
+          <div class="winner-group">
+
+            <div *ngIf="!winnerSelectionService.isMonthlyDrawOngoing && winnerSelectionService.currentBusinessWinner"
+              class="winnerbox">
+              <!-- <div class="winnerbox"> -->
+              <div class="title">Latest Scholarship Winner</div>
+              <!-- <div class="body">Justice Addico</div> -->
+              <div class="body">{{winnerSelectionService.currentBusinessWinner.userName}}</div>
+            </div>
+            <div *ngIf="!winnerSelectionService.isMonthlyDrawOngoing" class="winner-group">
+              <div *ngFor="let participant of signalRService.businessParticipants" class="winner-item">
+                <div class="winner-item__description">
+                  <span class="winner-name">{{participant.userName}}</span>
+                  <span class="winning-details">
+                    <span class="amount-won"> staked <span class="period"> </span>GH₵
+                      {{participant.amountStaked}}</span>
+                    <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="winnerSelectionService.isMonthlyDrawOngoing" class="ongoingdraw">
+              <div class="header">Scholarship Draw is ongoing</div>
+              <div class="drawbox">
+                <div class="lds-hourglass loader"></div>
+                <div class="participants info-card">
+                  <div class="info-card__body">
+                    <div class="winner-group">
+                      <div *ngFor="let participant of signalRService.businessParticipants" class="winner-item">
+                        <div class="winner-item__description">
+                          <span class="winner-name">{{participant.userName}}</span>
+                          <span class="winning-details">
+                            <span class="amount-won"> staked <span class="period"> </span>GH₵
+                              {{participant.amountStaked}}</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              *ngIf="!winnerSelectionService.isQuaterlyDrawOngoing && signalRService.scholarshipParticipants.length > 0"
+              class="fixed-pane">
+              <div class="fixed-participant">Fixed - Justice Addico (1001)</div>
+              <button (click)="showFixerBox()" class="btn btn-danger btn-fix">Fix</button>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card winnerscard">
+        <div class="info-card__head">Past Winners</div>
+        <div class="info-card__body">
+          <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
+          <div class="winner-group">
+            <!-- <div class="winner-group__header">
+                </div> -->
+            <!-- *ngFor="let winner of winnings[key]" -->
+            <div *ngFor="let winner of winnerSelectionService.businessWinners" class="winner-item">
+              <div class="winner-item__description">
+                <span class="winner-name">{{winner.userName}}</span>
+                <span class="winning-details">
+                  <span class="amount-won"> Won <span class="period"> </span>GH₵
+                    {{winner.amountToWin}}</span>
+                  <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div [ngClass]="{'visible':fixerBoxShown,'invisible':!fixerBoxShown}" class="popup regular" id="fixer-box">
+  <div class="popup__content">
+    <div class="popup__content--toolbar">
+      <div class="toolbar--left">Fix Winner</div>
+      <div class="toolbar--right">
+        <a (click)="closeFixerBox()" class="closebtn">
+          <span class="fa fa-times"></span>
+        </a>
+      </div>
+    </div>
+    <div class="popup__content--body">
+      <div class="participants">
+        <div *ngFor="let participant of signalRService.businessParticipants" class="particpants-item-holder">
+          <input type="radio" name="fixeddailybusiness" (change)="changeSelectedBusiness(participant.business.id)"
+            [id]="participant.business.id">
+          <label [for]="participant.business.id" class="winner-item">
+            <div class="winner-item__description">
+              <span class="winner-name">{{participant.userName}}</span>
+              <span class="winning-details">
+                <span class="amount-won"> staked <span class="period"> </span>GH₵
+                  {{participant.amountStaked}}</span>
+                <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+              </span>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="popup__content--footer"></div>
+  </div>
+</div>

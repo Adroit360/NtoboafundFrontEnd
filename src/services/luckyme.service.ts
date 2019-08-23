@@ -68,7 +68,7 @@ export class LuckymeService {
     }
     else {
       if (this.authService.isAuthenticated)
-      this.getUserLuckyMes()
+         this.getUserLuckyMes()
     }
 
   }

@@ -9,6 +9,7 @@ import { Scholarship } from 'src/models/scholarship';
 import { SignalRService } from 'src/services/signalr.service';
 import { ScholarshipParticipant } from 'src/models/Dtos/scholarshipParticipant';
 import { WinnerSelectionService } from 'src/services/winnerselection.service';
+import { PaymentService } from 'src/services/payment.service';
 
 @Component({
   selector: 'app-scholarship',
@@ -31,7 +32,8 @@ export class ScholarshipComponent implements OnInit {
   constructor(private countDownService:CountDownService,
               private router:Router,private authService:AuthService
               ,private http:HttpClient,public signalRservice:SignalRService
-              ,public winnerSelectionService:WinnerSelectionService) {
+              ,public winnerSelectionService:WinnerSelectionService
+              ,public paymentService:PaymentService) {
 
   }
 

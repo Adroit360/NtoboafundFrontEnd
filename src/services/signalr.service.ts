@@ -3,7 +3,7 @@ import * as signalR from "@aspnet/signalr";
 import { ScholarshipParticipant } from 'src/models/Dtos/scholarshipParticipant';
 import { Subject } from 'rxjs';
 import { settings } from 'src/settings';
-import { BusniessParticipant } from 'src/models/Dtos/businessParticpant';
+import { BusinessParticipant } from 'src/models/Dtos/businessParticpant';
 import { LuckymeParticipant } from 'src/models/Dtos/luckymeParticipant';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class SignalRService {
     private stakersHubConnection: signalR.HubConnection;
     stakersHubUrl = `${settings.currentApiUrl}/stakers`;
     scholarshipParticipants: ScholarshipParticipant[] = [];
-    businessParticipants: BusniessParticipant[] = [];
+    businessParticipants: BusinessParticipant[] = [];
 
     dailyLuckymeParticipants: LuckymeParticipant[] = [];
     weeklyLuckymeParticipants: LuckymeParticipant[] = [];
@@ -64,13 +64,13 @@ export class SignalRService {
 
     
     initiateAddBusinessParticipant() {
-        this.stakersHubConnection.on('addbusinessparticipant', (data: ScholarshipParticipant) => {
+        this.stakersHubConnection.on('addbusinessparticipant', (data: BusinessParticipant) => {
             this.businessParticipants.push(data)
         });
     }
 
     initiateGetBusinessParticipants() {
-        this.stakersHubConnection.on('getCurrentBusinessParticipants', (data: ScholarshipParticipant[]) => {
+        this.stakersHubConnection.on('getCurrentBusinessParticipants', (data: BusinessParticipant[]) => {
             //Replace the scholarship participants with this
             this.businessParticipants = data;
         });

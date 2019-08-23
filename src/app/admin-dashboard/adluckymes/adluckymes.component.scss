@@ -54,18 +54,7 @@
         }
       }
 
-      .record {
-        display: flex;
-        justify-content: center;
-        font-size: 1.7rem;
-        .label{
-            margin: .5rem;
-            font-weight: bold;
-        }
-        .text{
-            margin: .5rem;
-        }
-      }
+
     }
     &--right {
       flex: 1 1 40%;

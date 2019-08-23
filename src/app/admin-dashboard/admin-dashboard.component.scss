@@ -55,6 +55,7 @@
             letter-spacing: 0.1rem;
             background-color: white;
             padding: 0.5rem;
+            flex:1 1;
           }
   
           &:hover {
@@ -78,6 +79,7 @@
       .head {
         height: 6rem;
         display: flex;
+        justify-content: flex-end;
         .header-text {
           flex: 1 1;
           font-size: 2.5rem;

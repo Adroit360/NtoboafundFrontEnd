@@ -1,5 +1,5 @@
 @import "../../styles/abstracts/mixins";
-app-busy{
+app-busy {
   position: absolute;
   z-index: var(--level-five);
   width: calc(100vw);
@@ -7,9 +7,10 @@ app-busy{
 }
 .luckyme-bg {
   position: fixed;
- // background-image: url(../../assets/images/luckyme2.jpg);
- background:url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png) center center no-repeat #3ab3d2; 
- background-position: bottom right;
+  // background-image: url(../../assets/images/luckyme2.jpg);
+  background: url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png)
+    center center no-repeat #3ab3d2;
+  background-position: bottom right;
   background-size: cover;
   height: calc(100vh);
   width: calc(100vw);
@@ -20,74 +21,71 @@ app-busy{
 
 .luckyme-body {
   position: relative;
- // padding: 2rem;
+  // padding: 2rem;
   //padding-top: 6rem;
-  top:6rem;
+  top: 6rem;
   height: calc(100vh - 6rem);
   width: calc(100vw);
   overflow: hidden;
   z-index: var(--level-three);
 
-  &--content{
+  &--content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     height: calc(100vh - 6rem);
     overflow: hidden;
-    .luckyme-body__left{
-      flex:1 1;
+    .luckyme-body__left {
+      flex: 1 1 45rem;
       height: calc(100vh - 6rem);
       overflow: auto;
-      .countdown-container{
-     
+      .countdown-container {
         white-space: nowrap;
         overflow: auto;
         text-align: center;
-        
-      //  background-color: rgba(white,.6);
 
-        .countdown{
-          text-align:center;
+        //  background-color: rgba(white,.6);
+
+        .countdown {
+          text-align: center;
           font-size: 1.2rem;
-          margin: .5rem;
+          margin: 0.5rem;
           background-color: white;
-          border-radius: .3rem;
-          padding: .5rem;
+          border-radius: 0.3rem;
+          padding: 0.5rem;
           display: inline-block;
-          .header{
-            font-family: 'Courier New', Courier, monospace;
+          .header {
+            font-family: "Courier New", Courier, monospace;
             text-transform: uppercase;
-            letter-spacing: .1rem;
+            letter-spacing: 0.1rem;
           }
-          .counters{
+          .counters {
             display: flex;
             justify-content: center;
-            
+
             //flex-wrap: wrap;
-            .ctd{
+            .ctd {
               background-color: #3ab3d2;
-              color:white;
+              color: white;
               display: inline-block;
-              padding: .3rem .6rem;
+              padding: 0.3rem 0.6rem;
               display: flex;
               justify-content: center;
               align-items: center;
               flex-direction: column;
-              margin: .5rem;
-              width:7rem;
+              margin: 0.5rem;
+              width: 7rem;
               font-size: 1.6rem;
-              border-radius: .3rem;
-              span{
+              border-radius: 0.3rem;
+              span {
                 font-size: 1.1rem;
-                letter-spacing: .1rem;
+                letter-spacing: 0.1rem;
               }
             }
           }
-      
         }
       }
-      .stake-box{
-
+      .stake-box {
         .choice-scrolls {
           margin-top: 2rem;
           display: flex;
@@ -119,7 +117,7 @@ app-busy{
                 }
               }
             }
-      
+
             &:hover {
               .choice-selector__background {
                 opacity: 1;
@@ -128,7 +126,7 @@ app-busy{
                 }
               }
             }
-      
+
             .choice-selector__radio {
               display: none;
               &:checked {
@@ -145,7 +143,7 @@ app-busy{
                 }
               }
             }
-      
+
             .choice-selector__background {
               @include floatAndCover();
               background-color: var(--transparentBlack);
@@ -164,7 +162,7 @@ app-busy{
                 &:hover {
                   transform: translate(-50%, -50%) scale(1.2);
                 }
-      
+
                 &::after {
                   content: "";
                   position: absolute;
@@ -180,7 +178,7 @@ app-busy{
         }
         .payment-pane {
           text-align: center;
-      
+
           margin-top: 3rem;
           a {
             font-size: 3rem;
@@ -200,14 +198,13 @@ app-busy{
             display: inline-block;
             margin-top: 2rem;
             text-transform: uppercase;
-            letter-spacing: .3rem;
+            letter-spacing: 0.3rem;
             font-weight: 500;
-            padding: .5rem;
-            background-image: linear-gradient(to right,transparent,rgba(white,.6),transparent);
+            padding: 0.5rem;
+            background-image: linear-gradient(to right, transparent, rgba(white, 0.6), transparent);
           }
           .body {
-            
-            margin-top:2rem;
+            margin-top: 2rem;
             display: flex;
             justify-content: center;
             .periods {
@@ -216,42 +213,40 @@ app-busy{
               border-radius: 0.3rem;
               justify-content: center;
               align-items: center;
-              border:1px solid grey;
+              border: 1px solid grey;
               .period-choice {
                 cursor: pointer;
                 margin-bottom: 0rem;
                 position: relative;
-                &:not(:last-child){
-                
-                  &::after{
+                &:not(:last-child) {
+                  &::after {
                     content: "";
                     position: absolute;
                     height: 90%;
                     width: 1px;
-                    top:5%;
-                    right:0;
-                    background-color:var(--deepGrey);
+                    top: 5%;
+                    right: 0;
+                    background-color: var(--deepGrey);
                   }
-      
                 }
-                input{
+                input {
                   display: none;
-                  &:checked{
-                    &+.text{
+                  &:checked {
+                    & + .text {
                       background-color: grey;
                       color: white;
                     }
                   }
                 }
-                .text{
+                .text {
                   padding: 1rem;
                   font-size: 1.5rem;
-                  transition: all .2s;
+                  transition: all 0.2s;
                 }
-                &:hover{
+                &:hover {
                   background-color: grey;
-                  color:white;
-                  .text{
+                  color: white;
+                  .text {
                     transform: scale(1.2);
                   }
                 }
@@ -260,26 +255,25 @@ app-busy{
           }
         }
       }
-      .ongoingdraw-container{
+      .ongoingdraw-container {
         text-align: center;
         margin: 1rem;
-        .ongoing-draw__info{
+        .ongoing-draw__info {
           display: inline-block;
-          .text{
-            color:white;
-            padding: .5rem .8rem;
-            margin:.5rem;
-            border-radius: .3rem;
-            letter-spacing: .2rem;
+          .text {
+            color: white;
+            padding: 0.5rem 0.8rem;
+            margin: 0.5rem;
+            border-radius: 0.3rem;
+            letter-spacing: 0.2rem;
             text-transform: uppercase;
             background-color: green;
           }
         }
       }
-
     }
-    .luckyme-body__right{
-      border-left:1px solid var(--bordercolor);
+    .luckyme-body__right {
+      border-left: 1px solid var(--bordercolor);
       height: calc(100vh - 6rem);
       overflow: auto;
       .info-card {
@@ -300,17 +294,47 @@ app-busy{
               color: #00fff5;
             }
           }
-          .tab-box{
-            .tab-content{
+          .tab-box {
+            .tab-content {
               max-height: 19rem;
             }
           }
-          margin:1rem;
+          margin: 1rem;
         }
       }
+    }
 
+    @media (max-width: 820px) {
+      overflow: auto;
+      .luckyme-body__left {
+        height: auto;
+
+        .choice-box {
+          padding: 0.5rem !important;
+          flex: 1 1 10rem !important;
+          .choice-amount {
+            font-size: 2rem !important;
+          }
+
+          .choice-selector__background {
+            .choice-selector {
+              width: 3rem !important;
+              height: 3rem !important;
+
+              &::after {
+                width: 1rem !important;
+                height: 2rem !important;
+              }
+
+            }
+          }
+        }
+      }
+      .luckyme-body__right {
+        height: auto;
+        border-left: none;
+        width: 100%;
+      }
     }
   }
- 
-
 }

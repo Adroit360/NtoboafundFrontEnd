@@ -8,6 +8,7 @@ import { BusinessService } from 'src/services/businesses.service';
 import { Scholarship } from 'src/models/scholarship';
 import { Business } from 'src/models/business';
 import { groupBy } from 'src/operations';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-adusers',
@@ -18,12 +19,18 @@ export class AdusersComponent implements OnInit {
 
   users: Array<User> = [];
   selectedUser: User;
+  addUsersShown:boolean = false;
+  viewUserDetailsShown:boolean =false;
+  loading  = false;
+  addUserForm:FormGroup;
   constructor(private usersService: UsersService,
     private luckymeService:LuckymeService,
     private scholarshipService:ScholarshipService,
     private businessService:BusinessService) {
     this.selectedUser = new User();
     console.log(this.selectedUser.firstName);
+
+    this.addUserForm = new FormGroup({});
   }
 
   ngOnInit() {
@@ -36,9 +43,11 @@ export class AdusersComponent implements OnInit {
 
   changeSelectedUser(user: User) {
     this.selectedUser = user;
-
+    this.selectedUser.luckyMes = [];
+    this.selectedUser.businesses = [];
+    this.selectedUser.scholarships = [];
     this.luckymeService.getLuckyMesForUser(user.id).subscribe(((data:Array<LuckyMe>)=>{
-      this.selectedUser.luckymes = groupBy("period")(data);
+      this.selectedUser.luckyMes = groupBy("period")(data);
     }).bind(this));
 
     this.scholarshipService.getScholarshipsForUser(user.id).subscribe(((data:Array<Scholarship>)=>{
@@ -51,6 +60,31 @@ export class AdusersComponent implements OnInit {
 
     
     console.log(user);
+  }
+
+
+  showOrHideAddUser(){
+    this.addUsersShown = !this.addUsersShown;
+  }
+
+
+  showOrHideViewDetails(){
+    this.viewUserDetailsShown = !this.viewUserDetailsShown;
+  }
+
+
+  deleteUser(){
+    if(confirm(`Are you sure you want to delete ${this.selectedUser.firstName +" "+this.selectedUser.lastName} ?`)){
+
+      return;
+    }
+  }
+
+  suspendUser(){
+    if(confirm(`Are you sure you want to Suspend ${this.selectedUser.firstName +" "+this.selectedUser.lastName} ?`)){
+
+      return;
+    }
   }
 
 }

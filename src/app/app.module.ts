@@ -33,13 +33,16 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdhomeComponent } from './admin-dashboard/adhome/adhome.component';
 import { AdusersComponent } from './admin-dashboard/adusers/adusers.component';
 import { AdluckymesComponent } from './admin-dashboard/adluckymes/adluckymes.component';
-import { AdscholarshipComponent } from './admin-dashboard/adscholarship/adscholarship.component';
 import { AdbusinessesComponent } from './admin-dashboard/adbusinesses/adbusinesses.component';
 import { AdsettingsComponent } from './admin-dashboard/adsettings/adsettings.component';
 import { ScholarshipService } from 'src/services/scholarships.service';
 import { LuckymeService } from 'src/services/luckyme.service';
 import { BusinessService } from 'src/services/businesses.service';
 import { UsersService } from 'src/services/users.service';
+import { AdScholarshipsComponent } from './admin-dashboard/adscholarship/adscholarship.component';
+import { AngularRaveModule } from 'angular-rave';
+import { PaymentService } from 'src/services/payment.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +66,7 @@ import { UsersService } from 'src/services/users.service';
     AdhomeComponent,
     AdusersComponent,
     AdluckymesComponent,
-    AdscholarshipComponent,
+    AdScholarshipsComponent,
     AdbusinessesComponent,
     AdsettingsComponent
   ],
@@ -72,7 +75,8 @@ import { UsersService } from 'src/services/users.service';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    AngularRaveModule
     
   ],
   exports:[
@@ -89,7 +93,8 @@ import { UsersService } from 'src/services/users.service';
     LuckymeService,
     BusinessService,
     ScholarshipService,
-    UsersService
+    UsersService,
+    PaymentService
     
     
 ],

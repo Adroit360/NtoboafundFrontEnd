@@ -10,7 +10,7 @@ export class User {
     firstName: string;
     lastName: string;
     token:string;
-    luckymes:any;
+    luckyMes:any;
     scholarships:Array<Scholarship>;
     businesses:Array<Business>;
 }

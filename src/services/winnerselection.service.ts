@@ -2,7 +2,7 @@ import * as signalR from "@aspnet/signalr"
 import { settings } from 'src/settings';
 import { Scholarship } from 'src/models/scholarship';
 import { ScholarshipParticipant } from 'src/models/Dtos/scholarshipParticipant';
-import { BusniessParticipant } from 'src/models/Dtos/businessParticpant';
+import { BusinessParticipant } from 'src/models/Dtos/businessParticpant';
 import { LuckymeParticipant } from 'src/models/Dtos/luckymeParticipant';
 
 export class WinnerSelectionService{
@@ -17,8 +17,8 @@ export class WinnerSelectionService{
     currentScholarshipWinner:ScholarshipParticipant;
     scholarshipWinners: ScholarshipParticipant[] = [];
 
-    currentBusinessWinner:ScholarshipParticipant;
-    businessWinners: ScholarshipParticipant[] = [];
+    currentBusinessWinner:BusinessParticipant;
+    businessWinners: BusinessParticipant[] = [];
 
     currentDailyLuckymeWinner:LuckymeParticipant;
     dailyLuckymeWinners: LuckymeParticipant[] = [];
@@ -102,7 +102,7 @@ export class WinnerSelectionService{
 
 
     initiateBusinessWinner(){
-        this.winnerSelectionHubConnection.on("businessWinner",(data:BusniessParticipant)=>{
+        this.winnerSelectionHubConnection.on("businessWinner",(data:BusinessParticipant)=>{
             //number response indicates the Id of the won scholarship
             this.isMonthlyDrawOngoing = false;
             this.currentBusinessWinner = data; 
@@ -112,7 +112,7 @@ export class WinnerSelectionService{
     }
 
     initiateGetBusinessWinners() {
-        this.winnerSelectionHubConnection.on('getCurrentBusinessWinners', (data: BusniessParticipant[]) => {
+        this.winnerSelectionHubConnection.on('getCurrentBusinessWinners', (data: BusinessParticipant[]) => {
             this.businessWinners = data;
         });
         //Invoke the GetCurrentScholarshipWinnersMethods

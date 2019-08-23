@@ -1,3 +1,20 @@
+// <div [ngClass]="{'visible':fixerBoxShown,'invisible':!fixerBoxShown}" class="popup regular" id="fixer-box">
+//     <div class="popup__content">
+//       <div class="popup__content--toolbar">
+//         <div class="toolbar--left">Fix Winner</div>
+//         <div class="toolbar--right">
+//           <a (click)="closeFixerBox()" class="closebtn">
+//             <span class="fa fa-times"></span>
+//           </a>
+//         </div>
+//       </div>
+//       <div class="popup__content--body">
+        
+//       </div>
+//       <div class="popup__content--footer"></div>
+//     </div>
+//   </div>
+
 .popup {
   position: fixed;
   width: 100%;
@@ -10,7 +27,7 @@
   left: 0;
   z-index: var(--level-four);
   visibility: hidden;
-
+  font-size: 1.5rem;
   transition: all 0.2s;
   &__content {
     //background-color: rgba(0, 0, 0, 0.6);
@@ -26,16 +43,18 @@
     box-shadow: var(--shadow);
     &--toolbar {
       height: 3rem;
-      padding: 0.5rem;
+      padding:2rem 0.5rem;
+      background-color: white;
       width: 100%;
       display: flex;
+      justify-content: space-between;
       align-items: center;
       z-index: var(--level-two);
       .toolbar--left {
         display: flex;
         flex: 1 1;
         align-items: center;
-        color: white;
+        color: black;
         > * {
           margin: 0.5rem;
         }
@@ -58,6 +77,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        color: black;
         .closebtn {
           height: 2rem;
           width: 2rem;
@@ -68,7 +88,7 @@
           cursor: pointer;
           svg {
             transition: all 0.1s;
-            fill: white;
+            fill: red;
             width: 1.5rem;
             height: 1.5rem;
             &:hover {
@@ -77,7 +97,7 @@
             }
           }
           .fa{
-            color: white;
+            color: red;
           }
         }
       }

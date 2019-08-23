@@ -1,3 +1,186 @@
-<p>
-  adscholarship works!
-</p>
+<div class="adscholarship-body">
+  <div class="adscholarship-body__top"></div>
+  <div class="adscholarship-body__bottom">
+    <div class="adscholarship-body__bottom--left">
+      <div *ngIf="scholarshipService.allScholarships.length >0 " class="info-card" id="allScholarship">
+        <div class="info-card__head">
+          Recent Scholarship Stakes
+        </div>
+        <div class="info-card__body">
+          <div *ngFor="let scholarship of scholarshipService.allScholarships" class="recent-stake-item-holder">
+            <input type="radio" name="selectedScholarship" (change)="changeSelectedScholarship(scholarship.id)"
+              [id]="scholarship.id">
+            <label [for]="scholarship.id" class="recent-stake-item">
+              <div class="recent-stake-item--top">
+                <div class="period">{{scholarship.period}}</div>
+                <div class="amount">GHS {{scholarship.amount}}</div>
+                <div class="date"> {{scholarship.date}} </div>
+              </div>
+              <div class="recent-stake-item--bottom">
+                <div class="status">Status : {{scholarship.status}}</div>
+                <div *ngIf="scholarship.isWinner" class="amount-won">To Win GHS {{scholarship.amountToWin}}</div>
+                <div *ngIf="!scholarship.isWinner" class="potential-returns">Potential Winning : GHS 2000</div>
+              </div>
+            </label>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="info-card details">
+        <div class="info-card__head">Details</div>
+        <div class="info-card__body">
+          <div *ngIf="selectedscholarship" class="scholarship-details">
+            <div class="record">
+              <div class="label">Date</div>
+              <div class="text">{{selectedscholarship.date}}</div>
+            </div>
+            <div class="record">
+              <div class="label">Amount</div>
+              <div class="text">{{selectedscholarship.amount}}</div>
+            </div>
+            <div class="record">
+              <div class="label">Period</div>
+              <div class="text">{{selectedscholarship.period}}</div>
+            </div>
+            <div class="record">
+              <div class="label">Status</div>
+              <div class="text">{{selectedscholarship.status}}</div>
+            </div>
+          </div>
+          <div *ngIf="selectedscholarship && selectedscholarship.user" class="scholarship-userdetails">
+            <div class="record">
+              <div class="label">Email</div>
+              <div class="text">{{selectedscholarship.user.email}}</div>
+            </div>
+            <div class="record">
+              <div class="label">Phone Number</div>
+              <div class="text">{{selectedscholarship.user.phoneNumber}}</div>
+            </div>
+            <div class="record">
+              <div class="label">Name</div>
+              <div class="text">{{selectedscholarship.user.firstName}} {{selectedscholarship.user.lastName}}</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="adscholarship-body__bottom--right">
+      <div class="info-card participants">
+        <div class="info-card__head">Current Participants</div>
+        <div class="info-card__body">
+          <div class="winner-group">
+            <div *ngIf="!winnerSelectionService.isQuaterlyDrawOngoing && winnerSelectionService.currentScholarshipWinner"
+              class="winnerbox">
+              <!-- <div class="winnerbox"> -->
+              <div class="title">Latest Scholarship Winner</div>
+              <!-- <div class="body">Justice Addico</div> -->
+              <div class="body">{{winnerSelectionService.currentScholarshipWinner.userName}}</div>
+            </div>
+
+            <div *ngIf="!winnerSelectionService.isQuaterlyDrawOngoing" class="winner-group">
+              <div *ngFor="let participant of signalRService.scholarshipParticipants" class="winner-item">
+                <div class="winner-item__description">
+                  <span class="winner-name">{{participant.userName}}</span>
+                  <span class="winning-details">
+                    <span class="amount-won"> staked <span class="period"> </span>GH₵
+                      {{participant.amountStaked}}</span>
+                    <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="winnerSelectionService.isQuaterlyDrawOngoing" class="ongoingdraw">
+              <div class="header">Business Draw is ongoing</div>
+              <div class="drawbox">
+                <div class="lds-hourglass loader"></div>
+                <div class="participants info-card">
+                  <div class="info-card__body">
+                    <div class="winner-group">
+                      <div *ngFor="let participant of signalRService.scholarshipParticipants" class="winner-item">
+                        <div class="winner-item__description">
+                          <span class="winner-name">{{participant.userName}}</span>
+                          <span class="winning-details">
+                            <span class="amount-won"> staked <span class="period"> </span>GH₵
+                              {{participant.amountStaked}}</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              *ngIf="!winnerSelectionService.isQuaterlyDrawOngoing && signalRService.scholarshipParticipants.length > 0"
+              class="fixed-pane">
+              <div class="fixed-participant">Fixed - Justice Addico (1001)</div>
+              <button (click)="showFixerBox()" class="btn btn-danger btn-fix">Fix</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card winnerscard">
+        <div class="info-card__head">Past Winners</div>
+        <div class="info-card__body">
+          <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
+          <div class="winner-group">
+            <!-- <div class="winner-group__header">
+                </div> -->
+            <!-- *ngFor="let winner of winnings[key]" -->
+            <div *ngFor="let winner of winnerSelectionService.scholarshipWinners" class="winner-item">
+              <div class="winner-item__description">
+                <span class="winner-name">{{winner.userName}}</span>
+                <span class="winning-details">
+                  <span class="amount-won"> Won <span class="period"> </span>GH₵
+                    {{winner.amountToWin}}</span>
+                  <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div [ngClass]="{'visible':fixerBoxShown,'invisible':!fixerBoxShown}" class="popup regular" id="fixer-box">
+  <div class="popup__content">
+    <div class="popup__content--toolbar">
+      <div class="toolbar--left">Fix Winner</div>
+      <div class="toolbar--right">
+        <a (click)="closeFixerBox()" class="closebtn">
+          <span class="fa fa-times"></span>
+        </a>
+      </div>
+    </div>
+    <div class="popup__content--body">
+      <div class="participants">
+        <div *ngFor="let participant of signalRService.scholarshipParticipants" class="particpants-item-holder">
+          <input type="radio" name="fixeddailyscholarship"
+            (change)="changeSelectedScholarship(participant.scholarship.id)" [id]="participant.scholarship.id">
+          <label [for]="participant.scholarship.id" class="winner-item">
+            <div class="winner-item__description">
+              <span class="winner-name">{{participant.userName}}</span>
+              <span class="winning-details">
+                <span class="amount-won"> staked <span class="period"> </span>GH₵
+                  {{participant.amountStaked}}</span>
+                <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+              </span>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="popup__content--footer"></div>
+  </div>
+</div>

@@ -15,9 +15,9 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdhomeComponent } from './admin-dashboard/adhome/adhome.component';
 import { AdusersComponent } from './admin-dashboard/adusers/adusers.component';
 import { AdluckymesComponent } from './admin-dashboard/adluckymes/adluckymes.component';
-import { AdscholarshipComponent } from './admin-dashboard/adscholarship/adscholarship.component';
 import { AdsettingsComponent } from './admin-dashboard/adsettings/adsettings.component';
 import { AdbusinessesComponent } from './admin-dashboard/adbusinesses/adbusinesses.component';
+import { AdScholarshipsComponent } from './admin-dashboard/adscholarship/adscholarship.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -39,7 +39,7 @@ const routes: Routes = [
     {path:"adprofile",component:ProfileComponent},
     {path:"adusers",component:AdusersComponent},
     {path:"adluckymes",component:AdluckymesComponent},
-    {path:"adscholarships",component:AdscholarshipComponent},
+    {path:"adscholarships",component:AdScholarshipsComponent},
     {path:"adbusinesses",component:AdbusinessesComponent},
     {path:"adsettings",component:AdsettingsComponent}
   ]}
@@ -47,7 +47,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

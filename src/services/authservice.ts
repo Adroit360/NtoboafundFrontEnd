@@ -63,6 +63,7 @@ export class AuthService {
 
     getCurrentUser2(): User {
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        console.log(currentUser);
         if(!currentUser){
             this.router.navigate(["login"]);
         }
