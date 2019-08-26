@@ -6,7 +6,7 @@
   <div class="luckyme-body--content">
     <div class="luckyme-body__left">
       <div class="countdown-container">
-          <!-- style="display: none" -->
+        <!-- style="display: none" -->
         <div *ngIf="luckymeService.luckyMeDailySeconds>=0" class="countdown">
           <div class="header">Next Daily LuckyMe Draw In</div>
           <div class="counters">
@@ -158,8 +158,13 @@
 
           </div>
         </div>
-        <div *ngIf="!winnerSelectionService.isDailyDrawOngoing && !winnerSelectionService.isWeeklyDrawOngoing && !winnerSelectionService.isMonthlyDrawOngoing" class="payment-pane">
-          <a (click)="pay()" class="transbtn">Make Payment</a>
+        <div
+          *ngIf="!winnerSelectionService.isDailyDrawOngoing && !winnerSelectionService.isWeeklyDrawOngoing && !winnerSelectionService.isMonthlyDrawOngoing"
+          class="payment-pane">
+          <a angular-rave [raveOptions]="paymentService.getRaveOptions('Scholarship',selectedChoice,selectedChoice && selectedPeriod)"
+            class="transbtn" (callback)="luckymePaymentCallback($event)" (close)="paymentFailed()"
+            (init)="paymentInitialized()">Play
+          </a>
         </div>
       </div>
 
@@ -208,7 +213,8 @@
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade show in active" id="daily">
-                  <div *ngIf="!winnerSelectionService.isDailyDrawOngoing && winnerSelectionService.currentDailyLuckymeWinner"
+                <div
+                  *ngIf="!winnerSelectionService.isDailyDrawOngoing && winnerSelectionService.currentDailyLuckymeWinner"
                   class="winnerbox">
                   <!-- <div class="winnerbox"> -->
                   <div class="title">Latest Daily Luckyme Winner</div>
@@ -229,7 +235,7 @@
                   </div>
 
                 </div>
-                
+
                 <div *ngIf="winnerSelectionService.isDailyDrawOngoing" class="ongoingdraw">
                   <div class="header">Daily Draw is ongoing</div>
                   <div class="drawbox">
@@ -252,10 +258,11 @@
                   </div>
                 </div>
 
-                
+
               </div>
               <div role="tabpanel" class="tab-pane fade" id="weekly">
-                <div *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && winnerSelectionService.currentWeeklyLuckymeWinner"
+                <div
+                  *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && winnerSelectionService.currentWeeklyLuckymeWinner"
                   class="winnerbox">
                   <!-- <div class="winnerbox"> -->
                   <div class="title">Latest Weekly Luckyme Winner</div>

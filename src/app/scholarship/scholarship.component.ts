@@ -47,10 +47,11 @@ export class ScholarshipComponent implements OnInit {
       'Institution' : new FormControl('',Validators.required),
       'Program' : new FormControl('',Validators.required),
       'StudentId':new FormControl('',Validators.required)
-    })
+    });
   }
 
-  pay(){
+  paymentInitialized(){
+    this.paymentService.paymentInit();
     if (this.authService.isAuthenticated) {
   
       if (!this.scholarshipForm.valid) {
@@ -67,15 +68,17 @@ export class ScholarshipComponent implements OnInit {
     this.loading = true;
   }
 
-  scholarshipPaymentCallback(event) {
+  paymentFailed(){
+    this.paymentService.paymentFailure();
+    this.loading = false;
+  }
 
-    console.log(event);
+  scholarshipPaymentCallback(event) {
+    this.paymentService.paymentCallback(event);
     if(event.success){
       let institution = this.scholarshipForm.get("Institution").value;
       let program = this.scholarshipForm.get("Program").value;
       let studentId  = this.scholarshipForm.get("StudentId").value;
-  
-        this.loading = true;
         this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyScholarshipPayment/${event.tx.txRef}`, {institution,program,studentId,userId: this.authService.currentUser.id })
           .subscribe(
             response => {
@@ -97,14 +100,12 @@ export class ScholarshipComponent implements OnInit {
           );
       
     }else{
-
+      this.loading = false;
     }
     
 
 
   }
-
-
 
   closePopup() {
     this.error = null;

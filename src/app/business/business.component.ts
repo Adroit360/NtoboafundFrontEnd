@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/services/authservice';
 import { HttpClient } from '@angular/common/http';
 import { Business } from 'src/models/business';
+import { PaymentService } from 'src/services/payment.service';
 
 @Component({
   selector: 'app-business',
@@ -14,48 +15,60 @@ import { Business } from 'src/models/business';
   styleUrls: ['./business.component.scss']
 })
 export class BusinessComponent implements OnInit {
-  businessDays:number;
-  businessHours:number;
-  businessMinutes:number;
-  businessSeconds:number;
+  businessDays: number;
+  businessHours: number;
+  businessMinutes: number;
+  businessSeconds: number;
 
-  selectedAmount:any;
-  potentialReturns:any;
+  selectedAmount: any;
+  potentialReturns: any;
   loading = false;
   error = null;
   errorShown = false;
   businesses: Array<Business> = [];
+
   closePopup() {
     this.error = null;
     this.errorShown = false;
   }
-  constructor(private countDownService:CountDownService,
-    private router:Router,private authService:AuthService
-    ,private http:HttpClient,public signalRservice:SignalRService
-    ,public winnerSelectionService:WinnerSelectionService) {
+  constructor(private countDownService: CountDownService,
+    private router: Router, private authService: AuthService
+    , private http: HttpClient, public signalRservice: SignalRService
+    , public winnerSelectionService: WinnerSelectionService, private paymentService: PaymentService) {
 
-   }
+  }
 
   ngOnInit() {
-    this.countDownService.MonthlyDaysTime.subscribe((days:number)=>{this.businessDays = days});
-    this.countDownService.MonthlyHoursTime.subscribe((hours:number)=>{this.businessHours = hours});
-    this.countDownService.MonthlyMinutesTime.subscribe((minutes:number)=>{this.businessMinutes = minutes});
-    this.countDownService.MonthlySecondsTime.subscribe((seconds:number)=>{this.businessSeconds = seconds});
+    this.countDownService.MonthlyDaysTime.subscribe((days: number) => { this.businessDays = days });
+    this.countDownService.MonthlyHoursTime.subscribe((hours: number) => { this.businessHours = hours });
+    this.countDownService.MonthlyMinutesTime.subscribe((minutes: number) => { this.businessMinutes = minutes });
+    this.countDownService.MonthlySecondsTime.subscribe((seconds: number) => { this.businessSeconds = seconds });
 
   }
 
   pay() {
     if (this.authService.isAuthenticated) {
-      var amount  = this.selectedAmount;
+      var amount = this.selectedAmount;
 
       this.loading = true;
-      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurlforbusiness`,{amount,userId: this.authService.currentUser.id })
+
+    } else {
+      this.router.navigate(['login']);
+    }
+
+
+  }
+
+  businessPaymentCallback(event) {
+    if (event.success) {
+
+      this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyBusinessPayment/${event.tx.txRef}`, { amount: event.tx.amount, userId: this.authService.currentUser.id })
         .subscribe(
           response => {
             console.log(response);
             this.loading = false;
             this.businesses.push(response.business);
-            if(response.resultString){
+            if (response.resultString) {
               let resultString = JSON.parse(response.resultString)
               window.location.href = resultString.data.checkoutUrl;
               localStorage.setItem(resultString.data.checkoutId, response.luckyMe.id);
@@ -67,14 +80,11 @@ export class BusinessComponent implements OnInit {
             this.loading = false;
           }
         );
-    } else {
-      this.router.navigate(['login']);
+
     }
-
-
   }
-  
-  selectChoice(event,amount){
+
+  selectChoice(event, amount) {
     this.selectedAmount = amount;
   }
 

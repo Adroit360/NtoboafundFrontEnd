@@ -62,11 +62,12 @@ export class AuthService {
     }
 
     getCurrentUser2(): User {
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if(!currentUser){
-            ///This side is stubborn code .. I'll come back to it
-            this.router.navigate(["login"]);
-        }
-        return currentUser;
+      //  var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        // if(!currentUser){
+        //     ///This side is stubborn code .. I'll come back to it
+        //     this.router.navigate(["login"]);
+        // }
+        // return currentUser;
+        return JSON.parse(localStorage.getItem('currentUser'));
     }
 }

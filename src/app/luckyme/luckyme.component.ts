@@ -8,6 +8,7 @@ import { CountDownService } from 'src/services/countdownservice';
 import { WinnerSelectionService } from 'src/services/winnerselection.service';
 import { SignalRService } from 'src/services/signalr.service';
 import { LuckymeService } from 'src/services/luckyme.service';
+import { PaymentService } from 'src/services/payment.service';
 
 @Component({
   selector: 'app-luckyme',
@@ -16,14 +17,14 @@ import { LuckymeService } from 'src/services/luckyme.service';
 })
 export class LuckymeComponent implements OnInit {
 
-  selectedChoice = null;
+  selectedChoice : number = null;
   selectedPeriod = null;
   loading = false;
   error = null;
   errorShown = false;
   
 
-  constructor(private http: HttpClient, private authService: AuthService,
+  constructor(private http: HttpClient, private authService: AuthService,public paymentService:PaymentService,
     private router: Router, private currentRoute: ActivatedRoute,public luckymeService:LuckymeService,
     public winnerSelectionService: WinnerSelectionService, public signalRService: SignalRService) { }
 
@@ -32,9 +33,7 @@ export class LuckymeComponent implements OnInit {
     
   }
 
-  pay() {
-    let name = "";
-    let unitPrice = "";
+  paymentInitialized() {
     if (this.authService.isAuthenticated) {
 
 
@@ -50,7 +49,20 @@ export class LuckymeComponent implements OnInit {
       }
 
       this.loading = true;
-      this.http.post<any>(`${settings.currentApiUrl}/transaction/gethubtelurlforluckyme`, { amount: this.selectedChoice, period: this.selectedPeriod, userId: this.authService.currentUser.id })
+     
+    } else {
+      this.router.navigate(['login']);
+    }
+  }
+
+  paymentFailed(){
+    this.loading = false;
+  }
+
+  luckymePaymentCallback(event){
+    this.paymentService.paymentCallback(event);
+    if(event.success){
+      this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyLuckymePayment/${event.tx.txRef}`, { amount: this.selectedChoice, period: this.selectedPeriod, userId: this.authService.currentUser.id })
         .subscribe(
           response => {
             this.loading = false;
@@ -66,11 +78,10 @@ export class LuckymeComponent implements OnInit {
             this.loading = false;
           }
         );
-    } else {
-      this.router.navigate(['login']);
+      
+    }else{
+      this.loading = false;
     }
-
-
   }
 
   selectChoice(event, selectedChoice: number) {
