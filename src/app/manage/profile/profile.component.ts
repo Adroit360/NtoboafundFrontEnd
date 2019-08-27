@@ -32,6 +32,9 @@ export class ProfileComponent implements OnInit {
     this.currentUser = this.authService.currentUser;
     this.apiPath = settings.currentApiUrl;
     console.log(this.currentUser);
+    
+    this.momoCurrency = this.currentUser.momoDetails.currency;
+
     this.registrationForm = new FormGroup({
       'firstName': new FormControl(this.currentUser.firstName, Validators.required),
       'lastName': new FormControl(this.currentUser.lastName, Validators.required),
