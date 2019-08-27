@@ -3,7 +3,7 @@ var apiUrl: "https://ntoboafund.gear.host",
     localKestrelUrl: "https://localhost:5001",
     azure: "https://ntoboafundwebapi.azurewebsites.net";
 export const settings = {
-    currentApiUrl: "https://localhost:5001",
+    currentApiUrl: "https://ntoboafundwebapi.azurewebsites.net",
 
     publicLive: "FLWPUBK-ad829577696424c994082816ba66b19d-X",
 
