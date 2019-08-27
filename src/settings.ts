@@ -9,7 +9,6 @@ export const settings = {
 
     publicTest: "FLWPUBK_TEST-503c38b00b793ed36643ef08861ebb1d-X",
     
-
      scholarshipStakeOdds : 100,
 
      businessStakeOdds : 10,
