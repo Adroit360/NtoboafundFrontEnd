@@ -9,6 +9,7 @@ import { WinnerSelectionService } from 'src/services/winnerselection.service';
 import { SignalRService } from 'src/services/signalr.service';
 import { LuckymeService } from 'src/services/luckyme.service';
 import { PaymentService } from 'src/services/payment.service';
+import { ReturnStatement } from '@angular/compiler';
 
 @Component({
   selector: 'app-luckyme',
@@ -24,7 +25,7 @@ export class LuckymeComponent implements OnInit {
   errorShown = false;
   
 
-  constructor(private http: HttpClient, private authService: AuthService,public paymentService:PaymentService,
+  constructor(private http: HttpClient, public authService: AuthService,public paymentService:PaymentService,
     private router: Router, private currentRoute: ActivatedRoute,public luckymeService:LuckymeService,
     public winnerSelectionService: WinnerSelectionService, public signalRService: SignalRService) { }
 
@@ -35,27 +36,28 @@ export class LuckymeComponent implements OnInit {
 
   paymentInitialized() {
     if (this.authService.isAuthenticated) {
+      if(this.authService.hasPaymentDetails(true)){
+       
+        if (!this.selectedChoice) {
+          this.error = "Please Select a Choice";
+          this.errorShown = true;
+          return;
+        }
+        if (!this.selectedPeriod) {
+          this.error = "Please Select a Period";
+          this.errorShown = true;
+          return;
+        }
 
-
-      if (!this.selectedChoice) {
-        this.error = "Please Select a Choice";
-        this.errorShown = true;
-        return;
+        this.loading = true;
       }
-      if (!this.selectedPeriod) {
-        this.error = "Please Select a Period";
-        this.errorShown = true;
-        return;
-      }
-
-      this.loading = true;
-     
     } else {
       this.router.navigate(['login']);
     }
   }
 
   paymentFailed(){
+    console.log("this.paymentFailed");
     this.loading = false;
   }
 
@@ -102,6 +104,8 @@ export class LuckymeComponent implements OnInit {
     this.error = null;
     this.errorShown = false;
   }
+
+ 
 
   
 

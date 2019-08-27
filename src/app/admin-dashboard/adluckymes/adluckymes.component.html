@@ -182,14 +182,14 @@
               </div>
               <div role="tabpanel" class="tab-pane fade" id="monthly">
                 <div
-                  *ngIf="!winnerSelectionService.isMonthlyDrawOngoing && winnerSelectionService.currentMonthlyLuckymeWinner"
+                  *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentMonthlyLuckymeWinner"
                   class="winnerbox">
                   <!-- <div class="winnerbox"> -->
                   <div class="title">Latest Monthly Luckyme Winner</div>
                   <!-- <div class="body">Justice Addico</div> -->
                   <div class="body">{{winnerSelectionService.currentMonthlyLuckymeWinner.userName}}</div>
                 </div>
-                <div *ngIf="!winnerSelectionService.isMonthlyDrawOngoing" class="winner-group">
+                <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="winner-group">
                   <!-- *ngFor="let winner of winnings[key]" -->
                   <!-- *ngFor="let participant of winnerSelectionService.businessWinners"  -->
                   <div *ngFor="let participant of signalRService.monthlyLuckymeParticipants" class="winner-item">
@@ -204,7 +204,7 @@
                   </div>
                 </div>
 
-                <div *ngIf="winnerSelectionService.isMonthlyDrawOngoing" class="ongoingdraw">
+                <div *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)" class="ongoingdraw">
                   <div class="header">Monthly Draw is ongoing</div>
                   <div class="drawbox">
                     <div class="lds-hourglass loader"></div>

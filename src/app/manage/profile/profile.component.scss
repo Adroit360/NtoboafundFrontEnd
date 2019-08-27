@@ -4,8 +4,8 @@
 app-busy {
   position: absolute;
   z-index: var(--level-five);
-  left:0;
-  top:0;
+  left: 0;
+  top: 0;
 }
 .profile-bg {
   position: fixed;
@@ -18,32 +18,34 @@ app-busy {
 
 .profile-content {
   position: relative;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+ // display: flex;
+ // justify-content: space-evenly;
+//  align-items: center;
   height: 100%;
-  .mode-box{
-      position: absolute;
-      top:0;
-      right:0;
-      background-color: green;
-      color:white;
-      padding: 1rem;
+  overflow: hidden;
+  .mode-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: green;
+    color: white;
+    padding: 1rem;
   }
-  .message{
-      position: absolute;
-      top:0;
-      background-color: rgba(black,.6);
-      color:white;
-      padding: 2rem;
-      margin: 5rem 0rem;
-      z-index: var(--level-two);
-      opacity: 0;
-      transform: translateY(-5rem);
-      transition: all .3s;
-      visibility: hidden;
+  .message {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(black, 0.6);
+    color: white;
+    padding: 2rem;
+    margin: 5rem;
+    z-index: var(--level-two);
+    opacity: 0;
+    transform: translateY(-5rem);
+    transition: all 0.3s;
+    visibility: hidden;
   }
-  .message.shown{
+  .message.shown {
     visibility: visible;
     opacity: 1;
     transform: translateY(0rem);
@@ -71,16 +73,16 @@ app-busy {
             align-items: center;
             height: 100%;
             cursor: pointer;
+            svg {
+              display: flex;
+              height: 50%;
+              fill: rgba(black, 0.7);
+            }
+            &:hover {
               svg {
-                display: flex;
-                height: 50%;
-                fill: rgba(black, 0.7);
+                fill: rgba(white, 0.8);
               }
-              &:hover {
-                svg {
-                  fill: rgba(white, 0.8);
-                }
-              }
+            }
           }
 
           label:hover {
@@ -96,9 +98,9 @@ app-busy {
             &:checked {
               & ~ label {
                 background-color: #4487ab;
-                  svg {
-                    fill: white;
-                  }
+                svg {
+                  fill: white;
+                }
               }
             }
           }
@@ -114,9 +116,9 @@ app-busy {
             &:checked {
               & ~ label {
                 background-color: green;
-                  svg {
-                    fill: white;
-                  }
+                svg {
+                  fill: white;
+                }
               }
             }
           }
@@ -136,7 +138,7 @@ app-busy {
             height: calc(100vh);
             background-color: rgba(black, 0.7);
             visibility: hidden;
-            display:flex;
+            display: flex;
             justify-content: center;
             align-items: center;
             .cpassword-box {
@@ -170,9 +172,9 @@ app-busy {
             &:checked {
               & ~ label {
                 background-color: #7ab501;
-                  svg {
-                    fill: white;
-                  }
+                svg {
+                  fill: white;
+                }
               }
 
               & ~ .bg {
@@ -189,11 +191,13 @@ app-busy {
   }
   &__right {
     flex: 1 1;
+    height: 100%;
+    overflow:auto;
     .profile-body {
       position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
       z-index: var(--level-one);
 
       h3,
@@ -203,10 +207,11 @@ app-busy {
       }
       .profile-box {
         margin: 2rem;
-        background-color: rgba(white, 0.8);
-        flex: 0 1 40rem;
+        display: flex;
+        justify-content: space-evenly;
         padding: 1rem;
-        box-shadow: var(--shadow);
+        flex-wrap: wrap;
+        
         &__header {
           box-shadow: var(--shadow);
           padding: 1rem;
@@ -227,6 +232,20 @@ app-busy {
             margin-top: 2rem;
           }
         }
+        .box {
+          box-shadow: var(--shadow);
+          background-color: rgba(255, 255, 255, 0.8);
+          margin: 2rem;
+          padding: 1rem 2rem 2rem 2rem;
+          flex-wrap: wrap;
+          width: 40rem;
+          .box-header{
+            font-size: 1.6rem;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+          }
+        }
         .error-pane {
           text-align: center;
           color: var(--error-color);
@@ -234,7 +253,7 @@ app-busy {
         }
         .registerbtnpane {
           display: flex;
-          justify-content: space-around;
+          justify-content: flex-end;
 
           button {
             cursor: pointer;
@@ -260,4 +279,3 @@ app-busy {
     }
   }
 }
-

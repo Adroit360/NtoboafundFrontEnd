@@ -72,7 +72,7 @@
         <div class="info-card__head">Current Participants</div>
         <div class="info-card__body">
           <div class="winner-group">
-            <div *ngIf="!winnerSelectionService.isQuaterlyDrawOngoing && winnerSelectionService.currentScholarshipWinner"
+            <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && winnerSelectionService.currentScholarshipWinner"
               class="winnerbox">
               <!-- <div class="winnerbox"> -->
               <div class="title">Latest Scholarship Winner</div>
@@ -80,7 +80,7 @@
               <div class="body">{{winnerSelectionService.currentScholarshipWinner.userName}}</div>
             </div>
 
-            <div *ngIf="!winnerSelectionService.isQuaterlyDrawOngoing" class="winner-group">
+            <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async)" class="winner-group">
               <div *ngFor="let participant of signalRService.scholarshipParticipants" class="winner-item">
                 <div class="winner-item__description">
                   <span class="winner-name">{{participant.userName}}</span>
@@ -93,7 +93,7 @@
               </div>
             </div>
 
-            <div *ngIf="winnerSelectionService.isQuaterlyDrawOngoing" class="ongoingdraw">
+            <div *ngIf="(winnerSelectionService.isQuaterlyDrawOngoing | async)" class="ongoingdraw">
               <div class="header">Business Draw is ongoing</div>
               <div class="drawbox">
                 <div class="lds-hourglass loader"></div>
@@ -116,7 +116,7 @@
             </div>
 
             <div
-              *ngIf="!winnerSelectionService.isQuaterlyDrawOngoing && signalRService.scholarshipParticipants.length > 0"
+              *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && signalRService.scholarshipParticipants.length > 0"
               class="fixed-pane">
               <div class="fixed-participant">Fixed - Justice Addico (1001)</div>
               <button (click)="showFixerBox()" class="btn btn-danger btn-fix">Fix</button>

@@ -13,4 +13,27 @@ export class User {
     luckyMes:any;
     scholarships:Array<Scholarship>;
     businesses:Array<Business>;
+    momoDetails:MomoDetails;
+    bankDetails:BankDetails;
+    preferedMoneyReceptionMethod:string
+}
+
+class MomoDetails{
+     country : string;
+
+     network : string;
+
+     voucher : string;
+
+     number : string;
+
+     currency : string;
+}
+
+class BankDetails{
+     BankName : string;
+
+     AccountNumber : string;
+
+     SwiftCode : string;
 }

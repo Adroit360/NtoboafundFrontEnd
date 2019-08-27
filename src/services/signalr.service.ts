@@ -31,15 +31,17 @@ export class SignalRService {
             console.log("stakersHubConnectionEstablished");
             this.initiateGetScholarshipParticipants();
             this.initiateAddScholarshipParticipant();
+
             this.initiateGetBusinessParticipants();
             this.initiateAddBusinessParticipant();
 
             this.initiateGetDailyLuckymeParticipants();
-            this.initiateGetWeeklyLuckymeParticipants();
-            this.initiateGetMonthlyLuckymeParticipants();
-
             this.initiateAddDailyLuckymeParticipant();
+
+            this.initiateGetWeeklyLuckymeParticipants();
             this.initiateAddWeeklyLuckymeParticipant();
+
+            this.initiateGetMonthlyLuckymeParticipants();
             this.initiateAddMonthlyLuckymeParticipant();
 
         }).bind(this)).catch(() => {

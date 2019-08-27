@@ -74,14 +74,14 @@
           <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
           <div class="winner-group">
 
-            <div *ngIf="!winnerSelectionService.isMonthlyDrawOngoing && winnerSelectionService.currentBusinessWinner"
+            <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentBusinessWinner"
               class="winnerbox">
               <!-- <div class="winnerbox"> -->
               <div class="title">Latest Scholarship Winner</div>
               <!-- <div class="body">Justice Addico</div> -->
               <div class="body">{{winnerSelectionService.currentBusinessWinner.userName}}</div>
             </div>
-            <div *ngIf="!winnerSelectionService.isMonthlyDrawOngoing" class="winner-group">
+            <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="winner-group">
               <div *ngFor="let participant of signalRService.businessParticipants" class="winner-item">
                 <div class="winner-item__description">
                   <span class="winner-name">{{participant.userName}}</span>
@@ -94,7 +94,7 @@
               </div>
             </div>
 
-            <div *ngIf="winnerSelectionService.isMonthlyDrawOngoing" class="ongoingdraw">
+            <div *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)" class="ongoingdraw">
               <div class="header">Scholarship Draw is ongoing</div>
               <div class="drawbox">
                 <div class="lds-hourglass loader"></div>
@@ -117,7 +117,7 @@
             </div>
 
             <div
-              *ngIf="!winnerSelectionService.isQuaterlyDrawOngoing && signalRService.scholarshipParticipants.length > 0"
+              *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && signalRService.scholarshipParticipants.length > 0"
               class="fixed-pane">
               <div class="fixed-participant">Fixed - Justice Addico (1001)</div>
               <button (click)="showFixerBox()" class="btn btn-danger btn-fix">Fix</button>

@@ -32,10 +32,15 @@ export class BusinessComponent implements OnInit {
     this.errorShown = false;
   }
   constructor(private countDownService: CountDownService,
-    private router: Router, private authService: AuthService
+    private router: Router, public authService: AuthService
     , private http: HttpClient, public signalRservice: SignalRService
     , public winnerSelectionService: WinnerSelectionService, private paymentService: PaymentService) {
-
+    //Get All Business participants after the Draw
+    this.winnerSelectionService.isMonthlyDrawOngoing.subscribe((isOngoing: boolean) => {
+      if (!isOngoing && signalRservice.businessParticipants.length < 1) {
+        this.signalRservice.initiateGetBusinessParticipants();
+      }
+    });
   }
 
   ngOnInit() {
@@ -48,9 +53,13 @@ export class BusinessComponent implements OnInit {
 
   pay() {
     if (this.authService.isAuthenticated) {
-      var amount = this.selectedAmount;
 
-      this.loading = true;
+      if(this.authService.hasPaymentDetails(true)){
+        var amount = this.selectedAmount;
+
+        this.loading = true;
+      }
+
 
     } else {
       this.router.navigate(['login']);
@@ -60,6 +69,8 @@ export class BusinessComponent implements OnInit {
   }
 
   businessPaymentCallback(event) {
+    this.paymentService.paymentCallback(event);
+    this.selectedAmount = null; 
     if (event.success) {
 
       this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyBusinessPayment/${event.tx.txRef}`, { amount: event.tx.amount, userId: this.authService.currentUser.id })
@@ -84,8 +95,15 @@ export class BusinessComponent implements OnInit {
     }
   }
 
+  businessPaymentFailed(){
+    this.paymentService.paymentFailure();
+    this.selectedAmount = null;
+  }
+
   selectChoice(event, amount) {
     this.selectedAmount = amount;
+    this.potentialReturns = amount * settings.businessStakeOdds;
+    console.log(this.potentialReturns);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
   }
 
 }

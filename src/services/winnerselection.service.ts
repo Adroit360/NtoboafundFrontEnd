@@ -4,6 +4,7 @@ import { Scholarship } from 'src/models/scholarship';
 import { ScholarshipParticipant } from 'src/models/Dtos/scholarshipParticipant';
 import { BusinessParticipant } from 'src/models/Dtos/businessParticpant';
 import { LuckymeParticipant } from 'src/models/Dtos/luckymeParticipant';
+import { Subject, Observable } from 'rxjs';
 
 export class WinnerSelectionService{
 
@@ -11,8 +12,10 @@ export class WinnerSelectionService{
     
     isDailyDrawOngoing = false;
     isWeeklyDrawOngoing = false;
-    isMonthlyDrawOngoing = false;
-    isQuaterlyDrawOngoing = false;
+    isMonthlyDrawOngoing : Subject<boolean> = new Subject();
+    isQuaterlyDrawOngoing : Subject<boolean> = new Subject();
+
+    scholarshipDrawEnded:Subject<boolean>;
 
     currentScholarshipWinner:ScholarshipParticipant;
     scholarshipWinners: ScholarshipParticipant[] = [];
@@ -57,14 +60,14 @@ export class WinnerSelectionService{
     initiateOngoingQuaterlyDraw(){
         this.winnerSelectionHubConnection.on("ongoingQuaterlyDraw",(data:boolean)=>{
             //boolean response indicates if scholarship draw is ongoing or not
-            this.isQuaterlyDrawOngoing= data;
+            this.isQuaterlyDrawOngoing.next(data);
         });
     }
 
     initiatescholarshipWinner(){
         this.winnerSelectionHubConnection.on("scholarshipWinner",(data:ScholarshipParticipant)=>{
             //number response indicates the Id of the won scholarship
-            this.isQuaterlyDrawOngoing = false;
+            this.isQuaterlyDrawOngoing.next(false);
             this.currentScholarshipWinner = data; 
             this.scholarshipWinners.push(data);
             console.log(this.currentScholarshipWinner);
@@ -82,7 +85,7 @@ export class WinnerSelectionService{
     initiateOngoingMonthlyDraw(){
         this.winnerSelectionHubConnection.on("ongoingMonthlyDraw",(data:boolean)=>{
             //boolean response indicates if scholarship draw is ongoing or not
-            this.isMonthlyDrawOngoing= data;
+            this.isMonthlyDrawOngoing.next(data);
         });
     }
 
@@ -104,7 +107,7 @@ export class WinnerSelectionService{
     initiateBusinessWinner(){
         this.winnerSelectionHubConnection.on("businessWinner",(data:BusinessParticipant)=>{
             //number response indicates the Id of the won scholarship
-            this.isMonthlyDrawOngoing = false;
+            this.isMonthlyDrawOngoing.next(false);
             this.currentBusinessWinner = data; 
             this.businessWinners.push(data);
             console.log(this.currentBusinessWinner);
@@ -165,7 +168,7 @@ export class WinnerSelectionService{
 
     initiateLuckymeMonthlyWinner(){
         this.winnerSelectionHubConnection.on("monthlyLuckymeWinner",(data:LuckymeParticipant)=>{
-            this.isMonthlyDrawOngoing = false;
+            this.isMonthlyDrawOngoing.next(false);
             this.currentMonthlyLuckymeWinner = data; 
             this.monthlyLuckymeWinners.push(data);
         });

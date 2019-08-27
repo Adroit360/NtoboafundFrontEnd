@@ -7,13 +7,13 @@ import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    get isAuthenticated(): Boolean{
+    get isAuthenticated(): Boolean {
         return this.checkAuthenticationStatus()
     }
     get currentUser(): User {
         return this.getCurrentUser2();
     }
-    constructor(private http: HttpClient,private router:Router) {
+    constructor(private http: HttpClient, private router: Router) {
         //this.isAuthenticated = this.checkAuthenticationStatus();
     }
     //  images:File[],firstName:string,lastName:string,email: string,phoneNumber:string, password: string,confirmPassword:string
@@ -62,12 +62,56 @@ export class AuthService {
     }
 
     getCurrentUser2(): User {
-      //  var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        //  var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         // if(!currentUser){
         //     ///This side is stubborn code .. I'll come back to it
         //     this.router.navigate(["login"]);
         // }
         // return currentUser;
         return JSON.parse(localStorage.getItem('currentUser'));
+    }
+
+    hasPaymentDetails(showConfirmBox: boolean = false): boolean {
+        var rMethod = this.currentUser.preferedMoneyReceptionMethod;
+        
+        if (rMethod) {
+            switch (rMethod) {
+                case "momo":
+                    if (this.currentUser.momoDetails.country && this.currentUser.momoDetails.currency && this.currentUser.momoDetails.number && this.currentUser.momoDetails.network) {
+                        return true;
+                    }
+                    else if (showConfirmBox) {
+                        this.ChangeDetailsConfirm("Please Setup Mobile Money Payment Details");
+                        return false;
+                    }
+
+                    return false;
+                    break;
+                case "bank":
+                    if (this.currentUser.bankDetails.AccountNumber && this.currentUser.bankDetails.SwiftCode && this.currentUser.bankDetails.BankName) {
+                        return true;
+                    }
+                    else if (showConfirmBox) {
+                        this.ChangeDetailsConfirm("Please Setup Bank Account Details");
+                        return false;
+                    }
+                    return false;
+                    break;
+                default:
+                    return false;
+                    break;
+            }
+        }
+        else {
+            if (showConfirmBox)
+                this.ChangeDetailsConfirm("Give us details of how you want us to pay you when you win.");
+            return false;
+        }
+    }
+
+    ChangeDetailsConfirm(error: string) {
+        if (confirm(error)) {
+            this.router.navigate(['manage', 'profile']);
+        }
     }
 }

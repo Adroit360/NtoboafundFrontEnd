@@ -10,25 +10,25 @@
         <li class="view-profile">
           <input type="radio" [checked]="isSelected('view')" id="viewProfile" name="profilenavchecker">
           <label for="viewProfile" (click)="changeMode(false)">
-              <svg>
-                <use href="assets/Icons/svgs.svg#icon-eye" />
-              </svg>
+            <svg>
+              <use href="assets/Icons/svgs.svg#icon-eye" />
+            </svg>
           </label>
         </li>
         <li class="edit-profile">
           <input type="radio" [checked]="isSelected('edit')" id="editProfile" name="profilenavchecker">
           <label for="editProfile" (click)="changeMode(true)">
-              <svg>
-                <use href="assets/Icons/svgs.svg#icon-pencil" />
-              </svg>
+            <svg>
+              <use href="assets/Icons/svgs.svg#icon-pencil" />
+            </svg>
           </label>
         </li>
         <li id="cpassword-toggler">
           <input type="radio" id="changePswd" name="navchecker">
           <label for="changePswd">
-              <svg>
-                <use href="assets/Icons/svgs.svg#icon-moneybag" />
-              </svg>
+            <svg>
+              <use href="assets/Icons/svgs.svg#icon-moneybag" />
+            </svg>
           </label>
           <div class="bg">
             <div class="cpassword-box">
@@ -90,7 +90,8 @@
     <div class="profile-body">
       <form class="profile-box" [formGroup]="registrationForm" (ngSubmit)="updateProfile()">
 
-        <div class="profile-box__body">
+        <div class="box profile-box__body">
+          <div class="box-header">Personal Details</div>
           <!-- <div class="userImage">
             <app-custom-file-input [ngClass]="{disabled:!isEditMode}" [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]"
               (inputChanged)="imageSelected($event)" defaultLabelText="Choose Image" hiddenLabelText="Remove Image">
@@ -134,8 +135,74 @@
 
 
         </div>
+
+        <div class="box">
+          <div class="box-header">Mobile Money Details</div>
+          <div [ngClass]="{disabled:!isEditMode}" class="form-group">
+            <label for="cboMomoNumber">Number</label>
+            <input type="number" class="form-control" id="cboMomoNumber"
+              aria-describedby="InstitutionHelp" formControlName="mobileMoneyNumber" placeholder="Enter Mobile Money Number">
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small> -->
+          </div>
+        
+          <div [ngClass]="{disabled:!isEditMode}" class="form-group">
+            <label for="cboCountries">Country</label>
+            <select (change)="countryChanged($event)" formControlName="country" class="form-control" id="cboCountries">
+              <option value="">Choose your mobile money country</option>
+              <option [attr.data-networks]="'MTN,VODAFONE,TIGO'" [attr.data-currency]="'GHS'" value="GH">Ghana</option>
+              <option [attr.data-networks]="''" [attr.data-currency]="'KES'" value="KE">Kenya</option>
+              <option [attr.data-networks]="'UGX'" [attr.data-currency]="'UGX'" value="NG">Uganda</option>
+              <option [attr.data-networks]="'MTN'" [attr.data-currency]="'ZMW'"  value="NG">Zambia</option>
+              <option [attr.data-networks]="'RWF'" [attr.data-currency]="'RWF'" value="NG">Rwanda</option>
+            </select>
+          </div>
+
+          <div [ngClass]="{disabled:!isEditMode}" *ngIf="networks.length > 0" class="form-group">
+            <label for="cboNetworks">Network</label>
+            <select formControlName="network" class="form-control" id="cboNetworks">
+                <option *ngFor="let network of networks" [value]="network">{{network}}</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="box">
+          <div class="box-header">Bank Account Details</div>
+          <div [ngClass]="{disabled:!isEditMode}" class="form-group">
+            <label for="txtBankName">Bank Name</label>
+            <input type="text"  formControlName="bankName" class="form-control" id="txtBankName"
+              aria-describedby="InstitutionHelp" placeholder="Enter Bank Name">
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small> -->
+          </div>
+          <div [ngClass]="{disabled:!isEditMode}" class="form-group">
+            <label for="txtAccountNumber">Account Number</label>
+            <input type="text"  formControlName="accountNumber" class="form-control" id="txtAccountNumber" aria-describedby="ProgramHelp"
+              placeholder="Enter Account Number">
+          </div>
+          <div [ngClass]="{disabled:!isEditMode}" class="form-group">
+            <label for="txtSwiftCode">Swift Code</label>
+            <input type="text"  formControlName="swiftCode" class="form-control" id="txtSwiftCode" aria-describedby="StudentIdHelp"
+              placeholder="Enter Swift Code">
+          </div>
+          
+        </div>
+
+        <div class="box">
+          <div class="box-header">Options</div>
+          <div [ngClass]="{disabled:!isEditMode}" class="form-group">
+              <label for="preMonReception">How do you want us to pay you</label>
+              <select  formControlName="preferredReceptionMethod" class="form-control" id="preMonReception">
+                <option value="momo">Mobile Money</option>
+                <option value="bank">Bank Account</option>
+              </select>
+            </div>
+  
+        </div>
+
         <div *ngIf="error" class="error-pane">{{error}}</div>
-        <div *ngIf="registrationForm.touched && isEditMode" class="registerbtnpane">
+        <div *ngIf="isEditMode" class="registerbtnpane">
           <button type="submit" class="btn btn-primary">Save Changes</button>
         </div>
         <div class="profile-box__footer">

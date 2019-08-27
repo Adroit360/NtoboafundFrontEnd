@@ -30,11 +30,18 @@ export class ScholarshipComponent implements OnInit {
   scholarshipAmount:number;
 
   constructor(private countDownService:CountDownService,
-              private router:Router,private authService:AuthService
+              private router:Router,public authService:AuthService
               ,private http:HttpClient,public signalRservice:SignalRService
               ,public winnerSelectionService:WinnerSelectionService
               ,public paymentService:PaymentService) {
                 this.scholarshipAmount = 100;
+
+                //Get All Scholarship participants after the Draw
+                this.winnerSelectionService.isQuaterlyDrawOngoing.subscribe((isOngoing:boolean)=>{
+                  if(!isOngoing && signalRservice.scholarshipParticipants.length < 1){
+                    this.signalRservice.initiateGetScholarshipParticipants();
+                  }
+                });
   }
 
   ngOnInit() {
@@ -48,24 +55,30 @@ export class ScholarshipComponent implements OnInit {
       'Program' : new FormControl('',Validators.required),
       'StudentId':new FormControl('',Validators.required)
     });
+
+    console.log(this.scholarshipForm);
   }
 
   paymentInitialized(){
+    this.scholarshipForm.markAsTouched();
     this.paymentService.paymentInit();
     if (this.authService.isAuthenticated) {
-  
-      if (!this.scholarshipForm.valid) {
-        this.error = "Please fill all form fields";
-        this.errorShown = true;
-        return;
+
+      if(this.authService.hasPaymentDetails(true)){
+        if (!this.scholarshipForm.valid) {
+          this.error = "Please fill all form fields";
+          this.errorShown = true;
+          return;
+        }
+        this.loading = true;
       }
+  
+      
 
     } else {
       this.router.navigate(['login']);
       return;
     }
-
-    this.loading = true;
   }
 
   paymentFailed(){

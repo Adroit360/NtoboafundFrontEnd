@@ -32,7 +32,7 @@
       </div>
 
       <div class="business-body__content--headercenter">
-        <div *ngIf="!winnerSelectionService.isMonthlyDrawOngoing && businessSeconds>=0" class="countdown">
+        <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && businessSeconds>=0" class="countdown">
           <div class="header">Next business Draw In</div>
           <div class="counters">
             <!-- <div class="ctd">{{businessDays}} <span>Days</span></div> -->
@@ -42,7 +42,7 @@
             <div class="ctd">{{businessSeconds}} <span>Seconds</span></div>
           </div>
         </div>
-        <div *ngIf="winnerSelectionService.isMonthlyDrawOngoing" class="ongoingdraw">
+        <div *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)" class="ongoingdraw">
           <div class="header">Business Draw is ongoing</div>
           <div class="drawbox">
             <div class="lds-hourglass loader"></div>
@@ -63,7 +63,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="!winnerSelectionService.isMonthlyDrawOngoing && winnerSelectionService.currentBusinessWinner"
+        <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentBusinessWinner"
           class="winnerbox">
           <!-- <div class="winnerbox"> -->
           <div class="title">Latest Business Winner</div>
@@ -71,7 +71,7 @@
           <div class="body">{{winnerSelectionService.currentBusinessWinner.userName}}</div>
         </div>
 
-        <div *ngIf="!winnerSelectionService.isMonthlyDrawOngoing" class="stake-box">
+        <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="stake-box">
           <div class="stake-box-header">
             <div class="text">Choose an option to play</div>
             <div class="arrow">
@@ -107,11 +107,11 @@
             </div>
             <div class="pot-ret inf">
               <div class="text">Potential Returns</div>
-              <span class="amount">{{potentialReturns}}</span>
+              <span class="amount">GH₵ {{potentialReturns}}</span>
             </div>
             <div class="actions">
-              <button angular-rave [raveOptions]="paymentService.getRaveOptions('Business',selectedAmount)" class="btn btn-primary i-play"
-              (callback)="businessPaymentCallback($event)" (close)="paymentService.paymentFailure()" (init)="pay()" class="btn btn-danger">Play</button>
+              <button angular-rave [raveOptions]="paymentService.getRaveOptions('Business',selectedAmount,authService.hasPaymentDetails())" class="btn btn-primary i-play"
+              (callback)="businessPaymentCallback($event)" (close)="businessPaymentFailed()" (init)="pay()" class="btn btn-danger">Play</button>
             </div>
           </div>
         </div>
