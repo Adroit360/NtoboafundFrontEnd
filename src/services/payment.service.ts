@@ -18,7 +18,7 @@ export class PaymentService {
         let user = this.authService.currentUser
         if (user) {
             paymentOptions = {
-                PBFPubKey: settings.publicLive,
+                PBFPubKey: settings.getPublicApi(),
                 customer_email: user.email,
                 customer_firstname: user.firstName,
                 customer_lastname: user.lastName,

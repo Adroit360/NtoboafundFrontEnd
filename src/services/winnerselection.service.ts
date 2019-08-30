@@ -36,6 +36,8 @@ export class WinnerSelectionService{
     constructor() {
         this.winnerSelectionHubConnection = new signalR.HubConnectionBuilder().withUrl(this.winnerSelectionUrl)
         .build();
+        this.winnerSelectionHubConnection.keepAliveIntervalInMilliseconds = 3600000;
+        this.winnerSelectionHubConnection.serverTimeoutInMilliseconds = 3600000;
         this.winnerSelectionHubConnection.start().then(()=>{
             this.initiateOngoingQuaterlyDraw();
             this.initiateGetScholarshipWinners();
@@ -86,6 +88,8 @@ export class WinnerSelectionService{
         this.winnerSelectionHubConnection.on("ongoingMonthlyDraw",(data:boolean)=>{
             //boolean response indicates if scholarship draw is ongoing or not
             this.isMonthlyDrawOngoing.next(data);
+            console.log("Is Monthly Draw Ongoing");
+            console.log(data);
         });
     }
 

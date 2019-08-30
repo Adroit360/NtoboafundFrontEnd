@@ -51,9 +51,10 @@ export class LuckymeComponent implements OnInit {
 
         this.loading = true;
       }
-    } else {
-      this.router.navigate(['login']);
     }
+    //  else {
+    //   this.router.navigate(['login']);
+    // }
   }
 
   paymentFailed(){

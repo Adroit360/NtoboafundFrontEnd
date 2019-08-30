@@ -26,9 +26,9 @@ export class SignalRService {
     //build and start the connectiont to the stakers hub
     startStakersConnection() {
         this.stakersHubConnection = new signalR.HubConnectionBuilder().withUrl(this.stakersHubUrl).build()
-         this.stakersHubConnection.start().then((() => {
-
-            console.log("stakersHubConnectionEstablished");
+        this.stakersHubConnection.keepAliveIntervalInMilliseconds = 3600000;
+        this.stakersHubConnection.serverTimeoutInMilliseconds = 3600000;
+        this.stakersHubConnection.start().then((() => {
             this.initiateGetScholarshipParticipants();
             this.initiateAddScholarshipParticipant();
 

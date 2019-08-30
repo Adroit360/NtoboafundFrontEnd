@@ -54,6 +54,9 @@ export class CountDownService {
 
     startcountDownHubConnection(){
         this.countDownHub = new signalR.HubConnectionBuilder().withUrl(this.countDownHubUrl).build();
+        this.countDownHub.keepAliveIntervalInMilliseconds = 3600000;
+        this.countDownHub.serverTimeoutInMilliseconds = 3600000;
+
         this.countDownHub.start().then(()=>{
             this.countDownHub.on("getDailyTime",(hours,minutes,seconds)=>{
                 //console.log(hours,minutes,seconds);

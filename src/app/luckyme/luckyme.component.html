@@ -15,7 +15,7 @@
             <div class="ctd">{{luckymeService.luckyMeDailySeconds}} <span>Seconds</span></div>
           </div>
         </div>
-        <div style="display: none" *ngIf="luckymeService.luckyMeWeeklySeconds>=0" class="countdown">
+        <div *ngIf="luckymeService.luckyMeWeeklySeconds>=0" class="countdown">
           <div class="header">Next Weekly LuckyMe Draw In</div>
           <div class="counters">
             <div class="ctd">{{luckymeService.luckyMeWeeklyDays}} <span>Days</span></div>
@@ -24,13 +24,13 @@
             <div class="ctd">{{luckymeService.luckyMeWeeklySeconds}} <span>Seconds</span></div>
           </div>
         </div>
-        <div style="display: none" *ngIf="luckymeService.luckyMeMonthlySeconds>=0" class="countdown">
+        <div *ngIf="luckymeService.luckyMeMonthlySeconds>=0" class="countdown">
           <div class="header">Next Monthly LuckyMe Draw In</div>
           <div class="counters">
             <div class="ctd">{{luckymeService.luckyMeMonthlyDays}} <span>Days</span></div>
             <div class="ctd">{{luckymeService.luckyMeMonthlyHours}} <span>Hours</span></div>
             <div class="ctd">{{luckymeService.luckyMeMonthlyMinutes}} <span>Minutes</span></div>
-            <div class="ctd">{{luckymeService.uckyMeMonthlySeconds}} <span>Seconds</span></div>
+            <div class="ctd">{{luckymeService.luckyMeMonthlySeconds}} <span>Seconds</span></div>
           </div>
         </div>
       </div>
