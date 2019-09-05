@@ -2,6 +2,13 @@
   height: calc(100vh - 6rem);
   overflow: auto;
   &__top {
+    background-color: white;
+    padding:.1rem;
+    #cbotypeOptions {
+      width: 40rem;
+      height: 4rem;
+      margin: 0.5rem;
+    }
   }
   &__bottom {
     height: 100%;
@@ -35,26 +42,49 @@
         width: 50%;
       }
 
-      .info-card.details{
-        .info-card__body{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            height: 100%;
-            .luckyme-details{
-                box-shadow: var(--shadow);
-                margin: 2rem;
-                padding: 1rem;
+      .info-card.details {
+        .info-card__body {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          height: 100%;
+          .luckyme-details {
+            box-shadow: var(--shadow);
+            margin: 2rem;
+            padding: 1rem;
+          }
+          .luckyme-userdetails {
+            box-shadow: var(--shadow);
+            margin: 2rem;
+            padding: 1rem;
+          }
+          .payment-details {
+            box-shadow: var(--shadow);
+            margin: 2rem;
+            padding: 1rem;
+            padding-top: 3rem;
+            position: relative;
+            .status{
+              position: absolute;
+              right: 0;
+              top:0;
+              
+              color: white;
+              text-transform: uppercase;
+              font-size: 1.4rem;
+              padding: .5rem;
+              letter-spacing: .1rem;
             }
-            .luckyme-userdetails{
-                box-shadow: var(--shadow);
-                margin: 2rem;
-                padding: 1rem;
+            .transactionpane{
+              .btn{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
             }
+          }
         }
       }
-
-
     }
     &--right {
       flex: 1 1 40%;
@@ -62,15 +92,4 @@
       overflow: auto;
     }
   }
-}
-
-#fixer-box.popup{
-  background-color: white;
-  .popup__content{
-    background-color: rgba(black,.5);
-    color:black;
-    .popup__content--body{
-    }
-  }
-
 }

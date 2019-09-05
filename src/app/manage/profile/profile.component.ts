@@ -4,6 +4,7 @@ import { AuthService } from 'src/services/authservice';
 import { settings } from 'src/settings';
 import { UserDashBoardService } from 'src/services/userdashbord.service';
 import { formatDate } from '@angular/common';
+import { Payment } from 'src/models/payment';
 
 @Component({
   selector: 'app-profile',
@@ -26,6 +27,7 @@ export class ProfileComponent implements OnInit {
   networks: String[];
   
   momoCurrency:string;
+  
   constructor(private authService: AuthService, private userDashboardService: UserDashBoardService) { }
 
   ngOnInit() {
@@ -173,4 +175,6 @@ export class ProfileComponent implements OnInit {
       this.isMessageShown = false;
     }.bind(this), 2000);
   }
+
+
 }

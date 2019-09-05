@@ -3,6 +3,8 @@ import { AuthService } from './authservice';
 import { User } from 'src/models/user';
 import { Injectable } from '@angular/core';
 import { settings } from 'src/settings';
+import { HttpClient } from '@angular/common/http';
+import { Payment } from 'src/models/payment';
 
 @Injectable()
 export class PaymentService {
@@ -10,7 +12,7 @@ export class PaymentService {
     /**
      *
      */
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService,private http:HttpClient) {
     }
 
     getRaveOptions(stakeType: String, amount: number, condition: boolean = true) {
@@ -48,18 +50,6 @@ export class PaymentService {
     }
 
 
-
-    //     [PBFPubKey] = "'FLWPUBK-XXXXXXXXXXXX'"
-    //   [customer_email] = "'user@example.com'"
-    //   [customer_phone] = "'08090909090'"
-    //   [amount]="500000"
-    //   [custom_title]="'Bill Payment'"
-    //   [txref]="'USR1295950'"
-    //   (callback)="paymentSuccess($event)"
-    //   (close)="paymentFailure()"
-    //   (init)="paymentInit()"
-
-
     // (callback)
     paymentCallback(event) {
         console.log("Payment Succes method called");
@@ -74,5 +64,13 @@ export class PaymentService {
     //(init)
     paymentInit() {
         console.log("Payment init method called");
+    }
+
+    addPayment(payment:Payment){
+        payment.payerId = this.authService.currentUser.id.toString();
+        return this.http.post(`${settings.currentApiUrl}/payments`,payment);
+    }
+    getPaymentByDetails(itemPayedFor,itemPayedForId){
+        return this.http.get(`${settings.currentApiUrl}/payments/bydetails/${itemPayedFor}/${itemPayedForId}`);
     }
 }

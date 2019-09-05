@@ -16,12 +16,23 @@ export class AdScholarshipsComponent implements OnInit {
   selectedscholarship: Scholarship;
   fixedScholarship:Scholarship;
   
-  fixerBoxShown:boolean = false;
+
+  fixerBoxShown: boolean = false;
+
+  participantsToFix: any[];
+
+  recentScholarshipStakes: Scholarship[];
+
+  filterText:string = "all";
+
   constructor(public scholarshipService: ScholarshipService, public winnerSelectionService: WinnerSelectionService
     , public signalRService: SignalRService, private usersService: UsersService) {
   }
 
   ngOnInit() {
+    this.scholarshipService.getAllScholarships().then((value)=>{
+      this.recentScholarshipStakes = [...this.scholarshipService.allScholarships];
+    });
   }
 
   changeSelectedScholarship(scholarshipId: number) {
@@ -50,12 +61,53 @@ export class AdScholarshipsComponent implements OnInit {
       
   }
 
-  closeFixerBox(){
+  closeFixerBox() {
     this.fixerBoxShown = false;
   }
 
-  showFixerBox(){
+  showFixerBox() {
     this.fixerBoxShown = true;
+
+    this.participantsToFix = this.signalRService.scholarshipParticipants;
   }
 
+  insertDummy() {
+    if (confirm("Are you sure you want a new dummy staker fixed ?"))
+      this.signalRService.addDummy("scholarship", 'quaterly');
+  }
+
+  fixWinner(winnerId: number) {
+    this.signalRService.fixWinner('scholarship', 'quaterly', winnerId);
+
+      this.winnerSelectionService.setFixedWinner(winnerId, this.participantsToFix);
+  }
+
+  unFixWinner(winnerId: number) {
+    this.signalRService.unfixWinner('scholarhip','quaterly', winnerId);
+    this.winnerSelectionService.setUnfixedWinner(winnerId, this.participantsToFix);
+
+  }
+
+  filterStaker(value) {
+    this.filterText = value;
+
+    if (this.filterText == "all")
+      this.recentScholarshipStakes = this.scholarshipService.allScholarships;
+    else
+      this.recentScholarshipStakes = this.scholarshipService.allScholarships.filter(i => i.status == this.filterText);
+  }
+
+  refresh(){
+    this.scholarshipService.getAllScholarships().then((value)=>{
+      this.recentScholarshipStakes = [...this.scholarshipService.allScholarships];
+      this.filterStaker(this.filterText);
+    });
+  }
+
+  getScholarshipsByType(value){
+    this.scholarshipService.getScholarshipsByType(value).then((value)=>{
+      this.recentScholarshipStakes = [...this.scholarshipService.allScholarships];
+      this.filterStaker(this.filterText);
+    });
+  }
 }

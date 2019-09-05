@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from './users.service';
+import { Observable } from 'rxjs';
+import { resolve } from 'dns';
 
 @Injectable()
 export class LuckymeService {
@@ -51,25 +53,25 @@ export class LuckymeService {
 
     this.getAllLuckyMes();
 
-    var checkoutId = this.currentRoute.snapshot.queryParams["checkoutId"];
-    if (checkoutId) {
-      this.http.delete(`${settings.currentApiUrl}/scholarships/${localStorage.getItem(checkoutId)}`).
-        subscribe(
-          response => {
-            console.log(response);
-            this.getUserLuckyMes()
-            localStorage.removeItem(checkoutId)
-          },
-          error => {
-            console.log(error);
-            this.getUserLuckyMes()
-          }
-        )
-    }
-    else {
-      if (this.authService.isAuthenticated)
-         this.getUserLuckyMes()
-    }
+    // var checkoutId = this.currentRoute.snapshot.queryParams["checkoutId"];
+    // if (checkoutId) {
+    //   this.http.delete(`${settings.currentApiUrl}/scholarships/${localStorage.getItem(checkoutId)}`).
+    //     subscribe(
+    //       response => {
+    //         console.log(response);
+    //         this.getUserLuckyMes()
+    //         localStorage.removeItem(checkoutId)
+    //       },
+    //       error => {
+    //         console.log(error);
+    //         this.getUserLuckyMes()
+    //       }
+    //     )
+    // }
+    // else {
+    //   if (this.authService.isAuthenticated)
+    //      this.getUserLuckyMes()
+    // }
 
   }
 
@@ -89,16 +91,39 @@ export class LuckymeService {
     return this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${userId}`);
   }
 
+  getLuckymesByType(type:string) {
+    return new Promise(
+      ((resolve,reject)=>{
+        this.http.get(`${settings.currentApiUrl}/luckymes/bytype/${type}`).subscribe(
+          (response: Array<LuckyMe>) => {
+            this.allLuckymes = response;
+            resolve(this.allLuckymes)
+          },
+          error => {
+            reject(error);
+          }
+        )
+      }).bind(this)
+    );
+    
+  }
+
+
   getAllLuckyMes() {
-    this.http.get(`${settings.currentApiUrl}/luckymes`).subscribe(
-      (response: Array<LuckyMe>) => {
-        this.allLuckymes = response;
-      },
-      error => {
-        console.log("Error getting all luckyme's");
-        console.log(error);
-      }
+    return new Promise(
+      ((resolve,reject)=>{
+        this.http.get(`${settings.currentApiUrl}/luckymes`).subscribe(
+          (response: Array<LuckyMe>) => {
+            this.allLuckymes = response;
+            resolve(this.allLuckymes)
+          },
+          error => {
+            reject(error);
+          }
+        )
+      }).bind(this)
     )
+    
   }
 
   /**

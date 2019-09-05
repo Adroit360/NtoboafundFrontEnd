@@ -1,13 +1,29 @@
 <div class="adbusiness-body">
-  <div class="adbusiness-body__top"></div>
+  <div class="adbusiness-body__top">
+    <select (change)="getBusinessesByType($event.target.value)" class="form-control" id="cbotypeOptions">
+      <option value="all">All</option>
+      <option value="0">Original</option>
+      <option value="2">Dummy</option>
+    </select>
+
+  </div>
   <div class="adbusiness-body__bottom">
+      <div [ngClass]="{shown:isMessageShown}" class="message">{{message}}</div>
+
     <div class="adbusiness-body__bottom--left">
       <div *ngIf="businessService.allBusinesses.length >0 " class="info-card" id="allBusiness">
         <div class="info-card__head">
-          Recent Business Stakes
+          <div class="btn-refresh"><a (click)="refresh()" routerLink="./">refresh</a></div>
+          <div class="info-card__head--text1">Recent Business Stakes</div>
+          <select (change)="filterStaker($event.target.value)" class="form-control" id="cboOptions">
+            <option value="all">All</option>
+            <option value="paid">Current Participants</option>
+            <option value="lost">Lost</option>
+            <option value="won">Pending Payment</option>
+          </select>
         </div>
         <div class="info-card__body">
-          <div *ngFor="let business of businessService.allBusinesses" class="recent-stake-item-holder">
+          <div *ngFor="let business of recentBusinessStakes" class="recent-stake-item-holder">
             <input type="radio" name="selectedBusiness" (change)="changeSelectedBusiness(business.id)"
               [id]="business.id">
             <label [for]="business.id" class="recent-stake-item">
@@ -63,6 +79,82 @@
             </div>
 
           </div>
+          <div *ngIf="selectedbusiness && selectedbusiness.user" class="payment-details">
+            <div [ngStyle]="{'background-color':selectedbusiness.status == 'won' ? 'green' : 'red'}" class="status">
+              {{selectedbusiness.status}}</div>
+            <div *ngIf="selectedbusiness.user.preferedMoneyReceptionMethod == 'momo'" class="momo">
+              <div class="record">
+                <div class="label">Selected Payment Method</div>
+                <div class="text">{{selectedbusiness.user.preferedMoneyReceptionMethod}}</div>
+              </div>
+              <div class="record">
+                <div class="label">Number</div>
+                <div *ngIf="selectedbusiness.user.momoDetails" class="text">{{selectedbusiness.user.momoDetails.number}}
+                </div>
+              </div>
+              <div class="record">
+                <div class="label">Network</div>
+                <div *ngIf="selectedbusiness.user.momoDetails" class="text">
+                  {{selectedbusiness.user.momoDetails.network}}
+                </div>
+              </div>
+              <div class="record">
+                <div class="label">Country</div>
+                <div *ngIf="selectedbusiness.user.momoDetails" class="text">
+                  {{selectedbusiness.user.momoDetails.country}}
+                </div>
+              </div>
+              <div class="record">
+                <div class="label">Currency</div>
+                <div *ngIf="selectedbusiness.user.momoDetails" class="text">
+                  {{selectedbusiness.user.momoDetails.currency}}
+                </div>
+              </div>
+              <div *ngIf="selectedbusiness.status == 'won'" class="record transactionpane">
+                <div class="form-group">
+                  <label>Pay User and Enter Transaction Id</label>
+                  <input type="text" [value]="transactionId" (input)="transactionId = $event.target.value" class="form-control" placeholder="Enter Transaction Id">
+                  <small *ngIf="false" class="form-text text-danger">Please enter the transaction Id</small>
+                </div>
+                <div (click)="addPayment(selectedbusiness.id,selectedbusiness.user.id)" class="btn btn-info">User Paid</div>
+              </div>
+
+
+
+            </div>
+
+            <div *ngIf="selectedbusiness.user.preferedMoneyReceptionMethod == 'bank'" class="bank">
+              <div class="record">
+                <div class="label">Selected Payment Method</div>
+                <div class="text">{{selectedbusiness.user.preferedMoneyReceptionMethod}}</div>
+              </div>
+              <div class="record">
+                <div class="label">Bank Name</div>
+                <div *ngIf="selectedbusiness.user.bankDetails" class="text">
+                  {{selectedbusiness.user.bankDetails.bankName}}
+                </div>
+              </div>
+              <div class="record">
+                <div class="label">Account Number</div>
+                <div *ngIf="selectedbusiness.user.bankDetails" class="text">
+                  {{selectedbusiness.user.bankDetails?.acountNumber}}</div>
+              </div>
+              <div class="record">
+                <div class="label">Swift Code</div>
+                <div *ngIf="selectedbusiness.user.bankDetails" class="text">
+                  {{selectedbusiness.user.bankDetails.swiftCode}}</div>
+              </div>
+              <div *ngIf="selectedbusiness.status == 'won'" class="record transactionpane">
+                  <div class="form-group">
+                    <label>Pay User and Enter Transaction Id</label>
+                    <input type="text" [value]="transactionId" (input)="transactionId = $event.target.value" class="form-control" placeholder="Enter Transaction Id">
+                    <small *ngIf="false" class="form-text text-danger">Please enter the transaction Id</small>
+                  </div>
+                  <div (click)="addPayment(selectedbusiness.id,selectedbusiness.user.id)" class="btn btn-info">User Paid</div>
+                </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -74,10 +166,11 @@
           <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
           <div class="winner-group">
 
-            <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentBusinessWinner"
+            <div
+              *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentBusinessWinner"
               class="winnerbox">
               <!-- <div class="winnerbox"> -->
-              <div class="title">Latest Scholarship Winner</div>
+              <div class="title">Latest Business Winner</div>
               <!-- <div class="body">Justice Addico</div> -->
               <div class="body">{{winnerSelectionService.currentBusinessWinner.userName}}</div>
             </div>
@@ -90,6 +183,7 @@
                       {{participant.amountStaked}}</span>
                     <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
                   </span>
+                  <span class="isfixed" *ngIf="participant.status == 'wins'">fixed</span>
                 </div>
               </div>
             </div>
@@ -108,6 +202,7 @@
                             <span class="amount-won"> staked <span class="period"> </span>GH₵
                               {{participant.amountStaked}}</span>
                           </span>
+                          <span class="isfixed" *ngIf="participant.status == 'wins'">fixed</span>
                         </div>
                       </div>
                     </div>
@@ -117,9 +212,10 @@
             </div>
 
             <div
-              *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && signalRService.scholarshipParticipants.length > 0"
+              *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && signalRService.dailyLuckymeParticipants.length > 0"
               class="fixed-pane">
-              <div class="fixed-participant">Fixed - Justice Addico (1001)</div>
+              <button (click)="insertDummy()" class="btn btn-danger">Insert Dummy</button>
+              <!-- <div class="fixed-participant">Fixed - </div> -->
               <button (click)="showFixerBox()" class="btn btn-danger btn-fix">Fix</button>
             </div>
 
@@ -154,11 +250,10 @@
   </div>
 </div>
 
-
 <div [ngClass]="{'visible':fixerBoxShown,'invisible':!fixerBoxShown}" class="popup regular" id="fixer-box">
   <div class="popup__content">
     <div class="popup__content--toolbar">
-      <div class="toolbar--left">Fix Winner</div>
+      <div class="toolbar--left">Fix Business Winner</div>
       <div class="toolbar--right">
         <a (click)="closeFixerBox()" class="closebtn">
           <span class="fa fa-times"></span>
@@ -167,10 +262,9 @@
     </div>
     <div class="popup__content--body">
       <div class="participants">
-        <div *ngFor="let participant of signalRService.businessParticipants" class="particpants-item-holder">
-          <input type="radio" name="fixeddailybusiness" (change)="changeSelectedBusiness(participant.business.id)"
-            [id]="participant.business.id">
-          <label [for]="participant.business.id" class="winner-item">
+        <div [ngClass]="{selected:participant.status == 'wins'}" *ngFor="let participant of participantsToFix"
+          class="particpants-item-holder">
+          <label [for]="participant.id" class="winner-item">
             <div class="winner-item__description">
               <span class="winner-name">{{participant.userName}}</span>
               <span class="winning-details">
@@ -180,6 +274,10 @@
               </span>
             </div>
           </label>
+          <button *ngIf="participant.status != 'wins'" (click)="fixWinner(participant.id)"
+            class="btn btn-primary">Fix</button>
+          <button *ngIf="participant.status == 'wins'" (click)="unFixWinner(participant.id)"
+            class="btn btn-danger">UnFix</button>
         </div>
       </div>
     </div>

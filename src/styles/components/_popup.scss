@@ -120,112 +120,32 @@
   }
 }
 
-.popup.item-viewer {
-  .popup__content {
-    &--toolbar{
-      position: absolute;
-    }
-    &--headerimage {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      background-size: cover;
-      height: calc(30vh);
-      background-color: var(--shadow-color);
-      background-blend-mode: overlay;
-      .popup-action {
-        position: absolute;
-        bottom: 3.5rem;
-        right: 0;
-        display: flex;
-        height: 3rem;
-        &--delete {
-          margin: 0.5rem;
-          width: 2.5rem;
-        }
-        &--edit {
-          margin: 0.5rem;
-          width: 2.5rem;
-        }
-      }
-    }
-    &--info {
-      display: relative;
-      transform: translateY(calc(-50% - 1rem));
-      box-shadow: var(--shadow);
-      margin: 1rem;
-      padding: 1rem;
-      background: white;
-    }
-    &--body {
+
+#fixer-box.popup{
+  background-color: white;
+  .popup__content{
+    //background-color: rgba(black,.5);
+    color:black;
+    .popup__content--body{
     }
   }
-}
 
-.popup.shop-viewer {
-  .popup__content {
-    &--topshade {
-      position: absolute;
-      bottom: 100%;
-      width: 100%;
-      height: 3rem;
-      display: flex;
-      justify-content: flex-end;
-      background-image: linear-gradient(to top, #404d4f, transparent);
-      .shop-logo {
-        position: absolute;
-        left: -2rem;
-        width: 6rem;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 1px solid var(--bordercolor);
-      }
-      .shop-name {
-      }
-      .inst-logo {
-        flex: 0 1 3rem;
-      }
+  .particpants-item-holder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: .5rem;
+    label{
+      padding: 1rem;
     }
-    &--toolbar {
-      position: relative;
-      margin-left: 4rem;
-      width: calc(100% - 4rem);
-    }
-    &--body {
-    }
-    &--footer {
-    }
-    &--bottomshade {
-      position: absolute;
-      top: 100%;
-      width: 100%;
-      height: 3rem;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      color: white;
-      padding-right: 5rem;
-      text-transform: uppercase;
-      font-size: 1.2rem;
-      background-image: linear-gradient(to bottom, #404d4f, transparent);
-      .owner-image {
-        position: absolute;
-        right: -2rem;
-        top: -100%;
-        width: 6rem;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 1px solid var(--bordercolor);
-      }
-      .owner-name {
-        border-bottom: 1px solid white;
-        transition: all 0.1s;
-        cursor: pointer;
-        &:hover {
-          color: rgb(158, 169, 189);
-          border-color: rgb(158, 169, 189);
-        }
-      }
-    }
+  }
+  input[type=radio]{
+    display: none;
+  }
+
+  .selected{
+    background-color: #1717b1 !important;
+    color: white !important;
+    
   }
 }

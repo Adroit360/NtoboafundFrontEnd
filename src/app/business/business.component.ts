@@ -57,7 +57,7 @@ export class BusinessComponent implements OnInit {
       if(this.authService.hasPaymentDetails(true)){
         var amount = this.selectedAmount;
 
-        this.loading = true;
+       // this.loading = true;
       }
 
 
@@ -68,7 +68,7 @@ export class BusinessComponent implements OnInit {
 
   }
 
-  businessPaymentCallback(event) {
+  businessPaymentCallback(event) {+6
     this.paymentService.paymentCallback(event);
     this.selectedAmount = null; 
     if (event.success) {
@@ -80,15 +80,13 @@ export class BusinessComponent implements OnInit {
             this.loading = false;
             this.businesses.push(response.business);
             if (response.resultString) {
-              let resultString = JSON.parse(response.resultString)
-              window.location.href = resultString.data.checkoutUrl;
-              localStorage.setItem(resultString.data.checkoutId, response.luckyMe.id);
+             
             }
           },
           error => {
             console.log("Error");
             console.log(error);
-            this.loading = false;
+           // this.loading = false;
           }
         );
 

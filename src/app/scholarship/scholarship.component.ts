@@ -70,7 +70,7 @@ export class ScholarshipComponent implements OnInit {
           this.errorShown = true;
           return;
         }
-        this.loading = true;
+        //this.loading = true;
       }
   
       
@@ -83,7 +83,7 @@ export class ScholarshipComponent implements OnInit {
 
   paymentFailed(){
     this.paymentService.paymentFailure();
-    this.loading = false;
+    //this.loading = false;
   }
 
   scholarshipPaymentCallback(event) {
@@ -99,9 +99,7 @@ export class ScholarshipComponent implements OnInit {
               this.loading = false;
               this.scholarhips.push(response.scholarhip);
               if(response.resultString){
-                let resultString = JSON.parse(response.resultString)
-                window.location.href = resultString.data.checkoutUrl;
-                localStorage.setItem(resultString.data.checkoutId, response.luckyMe.id);
+              
               }
               this.scholarshipForm.reset();
             },

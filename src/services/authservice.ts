@@ -72,6 +72,9 @@ export class AuthService {
     }
 
     hasPaymentDetails(showConfirmBox: boolean = false): boolean {
+        if(!this.currentUser)
+            return false;
+            
         var rMethod = this.currentUser.preferedMoneyReceptionMethod;
         
         if (rMethod) {

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/2047b3db-bf36-4ed4-91a0-cafa3ae8463e/resourceGroups/NtoboaFund/providers/Microsoft.Web/sites/ntoboafund",
+    "appService.deploySubpath": ""
+}

@@ -9,7 +9,7 @@
     &__head{
       display: flex;
       color:black; 
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
       font-size: 2rem;
       padding: 1rem;
@@ -30,6 +30,10 @@
         flex: 1 1;
         text-align: center;
         letter-spacing: .3rem;
+       // margin: 1rem;
+      }
+      &--text1{
+        margin: 0 1rem 0 1rem;
       }
     }
     &__body{
@@ -90,6 +94,21 @@
               .amount-staked{
                 color:#03c85a;
               }
+            }
+          }
+        }
+        .winner-item{
+          &__description{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            span{
+              margin: .2rem;
+            }
+            .isfixed{
+              font-size: 1.5rem;
+              font-weight: bold;
+              color:rgb(223, 19, 19);
             }
           }
         }

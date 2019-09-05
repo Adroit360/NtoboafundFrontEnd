@@ -15,6 +15,8 @@
     background: var(--input-background);
     height: 3.5rem;
     font-size: 1.5rem;  
+    border:1px solid rgb(82, 82, 82);
+    box-shadow: var(--shadow);
     input{
       font-size: inherit;
       &.ng-invalid.ng-touched{
@@ -45,7 +47,7 @@
         left: 0rem;
         right: 0rem;
         position: absolute;
-        background-color: #b57777;
+        background-color: #a03030;
         
         margin: 0% .2rem !important;
       }

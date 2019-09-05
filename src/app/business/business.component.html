@@ -124,15 +124,15 @@
             <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
             <div class="winner-group">
               <div class="winner-group__header">
-                Last Three Months
+                <!-- Last Three Months -->
               </div>
               <!-- *ngFor="let winner of winnings[key]" -->
               <div *ngFor="let participant of winnerSelectionService.businessWinners" class="winner-item">
                 <div class="winner-item__description">
-                  <span class="winner-name">Justice Addico</span>
+                  <span class="winner-name">{{participant.userName}}</span>
                   <span class="winning-details">
                     <span class="amount-won"> Won <span class="period"> </span>GH₵
-                      10000</span>
+                      {{participant.amountToWin}}</span>
                     <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
                   </span>
                 </div>

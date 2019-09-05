@@ -1,13 +1,29 @@
 <div class="adluckyme-body">
-  <div class="adluckyme-body__top"></div>
+  <div class="adluckyme-body__top">
+
+    <select (change)="getLuckymesByType($event.target.value)" class="form-control" id="cbotypeOptions">
+      <option value="all">All</option>
+      <option value="0">Original</option>
+      <option value="2">Dummy</option>
+    </select>
+  </div>
   <div class="adluckyme-body__bottom">
     <div class="adluckyme-body__bottom--left">
-      <div *ngIf="luckymeService.allLuckymes.length >0 " class="info-card" id="allluckyme">
+      <div class="info-card" id="allluckyme">
         <div class="info-card__head">
-          Recent Luckyme Stakes
+          <div class="btn-refresh"><a (click)="refresh()" routerLink="./">refresh</a></div>
+          <div class="info-card__head--text1">Recent Luckyme Stakes</div>
+
+          <select (change)="filterStaker($event.target.value)" class="form-control" id="cboOptions">
+            <option value="all">All</option>
+            <option value="paid">Current Participants</option>
+            <option value="lost">Lost</option>
+            <option value="won">Pending Payment</option>
+          </select>
+
         </div>
-        <div class="info-card__body">
-          <div *ngFor="let luckyme of luckymeService.allLuckymes" class="recent-stake-item-holder">
+        <div *ngIf="luckymeService.allLuckymes.length >0" class="info-card__body">
+          <div *ngFor="let luckyme of recentLuckymeStakes" class="recent-stake-item-holder">
             <input type="radio" name="selectedluckyme" (change)="changeSelectedLuckyme(luckyme.id)" [id]="luckyme.id">
             <label [for]="luckyme.id" class="recent-stake-item">
               <div class="recent-stake-item--top">
@@ -36,7 +52,7 @@
             </div>
             <div class="record">
               <div class="label">Amount</div>
-              <div class="text">{{selectedluckyme.amount}}</div>
+              <div class="text">GHS {{selectedluckyme.amount}}</div>
             </div>
             <div class="record">
               <div class="label">Period</div>
@@ -46,6 +62,11 @@
               <div class="label">Status</div>
               <div class="text">{{selectedluckyme.status}}</div>
             </div>
+            <div *ngIf="selectedluckyme.status == 'won'" class="record">
+                <div class="label">Amount Won</div>
+                <div class="text">{{selectedluckyme.amountToWin}}</div>
+              </div>
+  
           </div>
           <div *ngIf="selectedluckyme" class="luckyme-userdetails">
             <div class="record">
@@ -60,7 +81,80 @@
               <div class="label">Name</div>
               <div class="text">{{selectedluckyme.user.firstName}} {{selectedluckyme.user.lastName}}</div>
             </div>
-          
+
+          </div>
+          <div *ngIf="selectedluckyme" class="payment-details">
+            <div [ngStyle]="{'background-color':selectedluckyme.status == 'won' ? 'green' : 'red'}" class="status">{{selectedluckyme.status}}</div>
+            <div *ngIf="selectedluckyme.user.preferedMoneyReceptionMethod == 'momo'" class="momo">
+              <div class="record">
+                <div class="label">Selected Payment Method</div>
+                <div class="text">{{selectedluckyme.user.preferedMoneyReceptionMethod}}</div>
+              </div>
+              <div class="record">
+                <div class="label">Number</div>
+                <div *ngIf="selectedluckyme.user.momoDetails" class="text">{{selectedluckyme.user.momoDetails.number}}
+                </div>
+              </div>
+              <div class="record">
+                <div class="label">Network</div>
+                <div *ngIf="selectedluckyme.user.momoDetails" class="text">{{selectedluckyme.user.momoDetails.network}}
+                </div>
+              </div>
+              <div class="record">
+                <div class="label">Country</div>
+                <div *ngIf="selectedluckyme.user.momoDetails" class="text">{{selectedluckyme.user.momoDetails.country}}
+                </div>
+              </div>
+              <div class="record">
+                <div class="label">Currency</div>
+                <div *ngIf="selectedluckyme.user.momoDetails" class="text">{{selectedluckyme.user.momoDetails.currency}}
+                </div>
+              </div>
+              <div *ngIf="selectedluckyme.status == 'won'" class="record transactionpane">
+                <div class="form-group">
+                  <label>Pay User and Enter Transaction Id</label>
+                  <input type="text" class="form-control"
+                    placeholder="Enter Transaction Id">
+                  <small *ngIf="false"
+                    class="form-text text-danger">Please enter the transaction Id</small>
+                </div>
+                <div class="btn btn-info">User Paid</div>
+              </div>
+
+
+
+            </div>
+
+            <div *ngIf="selectedluckyme.user.preferedMoneyReceptionMethod == 'bank'" class="bank">
+              <div class="record">
+                <div class="label">Selected Payment Method</div>
+                <div class="text">{{selectedluckyme.user.preferedMoneyReceptionMethod}}</div>
+              </div>
+              <div class="record">
+                <div class="label">Bank Name</div>
+                <div *ngIf="selectedluckyme.user.bankDetails" class="text">{{selectedluckyme.user.bankDetails.bankName}}
+                </div>
+              </div>
+              <div class="record">
+                <div class="label">Account Number</div>
+                <div *ngIf="selectedluckyme.user.bankDetails" class="text">
+                  {{selectedluckyme.user.bankDetails?.acountNumber}}</div>
+              </div>
+              <div class="record">
+                <div class="label">Swift Code</div>
+                <div *ngIf="selectedluckyme.user.bankDetails" class="text">
+                  {{selectedluckyme.user.bankDetails.swiftCode}}</div>
+              </div>
+              <div *ngIf="selectedbusiness.status == 'won'" class="record transactionpane">
+                  <div class="form-group">
+                    <label>Pay User and Enter Transaction Id</label>
+                    <input type="text" class="form-control" placeholder="Enter Transaction Id">
+                    <small *ngIf="false" class="form-text text-danger">Please enter the transaction Id</small>
+                  </div>
+                  <div class="btn btn-info">User Paid</div>
+                </div>
+
+            </div>
           </div>
         </div>
       </div>
@@ -84,7 +178,8 @@
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade show in active" id="daily">
-                <div *ngIf="!winnerSelectionService.isDailyDrawOngoing && winnerSelectionService.currentDailyLuckymeWinner"
+                <div
+                  *ngIf="!winnerSelectionService.isDailyDrawOngoing && winnerSelectionService.currentDailyLuckymeWinner"
                   class="winnerbox">
                   <!-- <div class="winnerbox"> -->
                   <div class="title">Latest Daily Luckyme Winner</div>
@@ -100,9 +195,9 @@
                           {{participant.amountStaked}}</span>
                         <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
                       </span>
+                      <span class="isfixed" *ngIf="participant.status == 'wins'">fixed</span>
                     </div>
                   </div>
-
                 </div>
 
                 <div *ngIf="winnerSelectionService.isDailyDrawOngoing" class="ongoingdraw">
@@ -119,6 +214,7 @@
                                 <span class="amount-won"> staked <span class="period"> </span>GH₵
                                   {{participant.amountStaked}}</span>
                               </span>
+                              <span class="isfixed" *ngIf="participant.status == 'wins'">fixed</span>
                             </div>
                           </div>
                         </div>
@@ -126,13 +222,16 @@
                     </div>
                   </div>
                 </div>
-
-                <div *ngIf="!winnerSelectionService.isDailyDrawOngoing && signalRService.dailyLuckymeParticipants.length > 0" class="fixed-pane">
-                  <div class="fixed-participant">Fixed - Justice Addico (1001)</div>
-                  <button (click)="showFixerBox()" class="btn btn-danger btn-fix">Fix</button>
+                <div
+                  *ngIf="!winnerSelectionService.isDailyDrawOngoing && signalRService.dailyLuckymeParticipants.length > 0"
+                  class="fixed-pane">
+                  <button (click)="insertDummy('daily')" class="btn btn-danger">Insert Dummy</button>
+                  <!-- <div class="fixed-participant">Fixed - </div> -->
+                  <button (click)="showFixerBox('daily')" class="btn btn-danger btn-fix">Fix</button>
                 </div>
 
               </div>
+
               <div role="tabpanel" class="tab-pane fade" id="weekly">
                 <div
                   *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && winnerSelectionService.currentWeeklyLuckymeWinner"
@@ -154,6 +253,7 @@
                           {{participant.amountStaked}}</span>
                         <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
                       </span>
+                      <span class="isfixed" *ngIf="participant.status == 'wins'">fixed</span>
                     </div>
                   </div>
 
@@ -172,6 +272,7 @@
                                 <span class="amount-won"> staked <span class="period"> </span>GH₵
                                   {{participant.amountStaked}}</span>
                               </span>
+                              <span class="isfixed" *ngIf="participant.status == 'wins'">fixed</span>
                             </div>
                           </div>
                         </div>
@@ -179,7 +280,16 @@
                     </div>
                   </div>
                 </div>
+                <div
+                  *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && signalRService.weeklyLuckymeParticipants.length > 0"
+                  class="fixed-pane">
+                  <button (click)="insertDummy('weekly')" class="btn btn-danger">Insert Dummy</button>
+                  <!-- <div class="fixed-participant">Fixed - </div> -->
+                  <button (click)="showFixerBox('weekly')" class="btn btn-danger btn-fix">Fix</button>
+                </div>
+
               </div>
+
               <div role="tabpanel" class="tab-pane fade" id="monthly">
                 <div
                   *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentMonthlyLuckymeWinner"
@@ -200,6 +310,7 @@
                           {{participant.amountStaked}}</span>
                         <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
                       </span>
+                      <span class="isfixed" *ngIf="participant.status == 'wins'">fixed</span>
                     </div>
                   </div>
                 </div>
@@ -219,6 +330,7 @@
                                 <span class="amount-won"> staked <span class="period"> </span>GH₵
                                   {{participant.amountStaked}}</span>
                               </span>
+                              <span class="isfixed" *ngIf="participant.status == 'wins'">fixed</span>
                             </div>
                           </div>
                         </div>
@@ -226,6 +338,14 @@
                     </div>
                   </div>
                 </div>
+                <div
+                  *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && signalRService.monthlyLuckymeParticipants.length > 0"
+                  class="fixed-pane">
+                  <button (click)="insertDummy('monthly')" class="btn btn-danger">Insert Dummy</button>
+                  <!-- <div class="fixed-participant">Fixed - </div> -->
+                  <button (click)="showFixerBox('monthly')" class="btn btn-danger btn-fix">Fix</button>
+                </div>
+
               </div>
             </div>
           </div>
@@ -309,33 +429,37 @@
 
 
 <div [ngClass]="{'visible':fixerBoxShown,'invisible':!fixerBoxShown}" class="popup regular" id="fixer-box">
-    <div class="popup__content">
-      <div class="popup__content--toolbar">
-        <div class="toolbar--left">Fix Winner</div>
-        <div class="toolbar--right">
-          <a (click)="closeFixerBox()" class="closebtn">
-            <span class="fa fa-times"></span>
-          </a>
-        </div>
+  <div class="popup__content">
+    <div class="popup__content--toolbar">
+      <div class="toolbar--left">Fix {{selectedFixerPeriod}} Winner</div>
+      <div class="toolbar--right">
+        <a (click)="closeFixerBox()" class="closebtn">
+          <span class="fa fa-times"></span>
+        </a>
       </div>
-      <div class="popup__content--body">
-        <div class="participants">
-          <div *ngFor="let participant of signalRService.dailyLuckymeParticipants" class="particpants-item-holder">
-              <input type="radio" name="fixeddailyluckyme" (change)="changeSelectedLuckyme(participant.luckyme.id)" [id]="participant.luckyme.id">
-              <label [for]="participant.luckyme.id"class="winner-item">
-                  <div class="winner-item__description">
-                    <span class="winner-name">{{participant.userName}}</span>
-                    <span class="winning-details">
-                      <span class="amount-won"> staked <span class="period"> </span>GH₵
-                        {{participant.amountStaked}}</span>
-                      <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
-                    </span>
-                  </div>
-              </label>
-          </div>
-        </div>
-      </div>
-      <div class="popup__content--footer"></div>
     </div>
+    <div class="popup__content--body">
+      <div class="participants">
+        <div [ngClass]="{selected:participant.status == 'wins'}" *ngFor="let participant of participantsToFix"
+          class="particpants-item-holder">
+          <!-- <input type="radio" name="fixeddailyluckyme" (change)="changeSelectedLuckyme(participant.id)" [id]="participant.id"> -->
+          <label [for]="participant.id" class="winner-item">
+            <div class="winner-item__description">
+              <span class="winner-name">{{participant.userName}}</span>
+              <span class="winning-details">
+                <span class="amount-won"> staked <span class="period"> </span>GH₵
+                  {{participant.amountStaked}}</span>
+                <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+              </span>
+            </div>
+          </label>
+          <button *ngIf="participant.status != 'wins'" (click)="fixWinner(participant.id)"
+            class="btn btn-primary">Fix</button>
+          <button *ngIf="participant.status == 'wins'" (click)="unFixWinner(participant.id)"
+            class="btn btn-danger">UnFix</button>
+        </div>
+      </div>
+    </div>
+    <div class="popup__content--footer"></div>
   </div>
-  
+</div>

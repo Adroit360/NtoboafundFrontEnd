@@ -70,17 +70,37 @@ export class BusinessService {
   }
 
   getAllBusinesses() {
-    this.http.get(`${settings.currentApiUrl}/businesses`).subscribe(
-      (response: Array<Business>) => {
-        this.allBusinesses = response;
-        console.log("Businesses");
-        console.log(this.allBusinesses);
-      },
-      error => {
-        console.log("Error getting all Business's");
-        console.log(error);
-      }
+    return new Promise(
+      ((resolve,reject)=>{
+        this.http.get(`${settings.currentApiUrl}/businesses`).subscribe(
+          (response: Array<Business>) => {
+            this.allBusinesses = response;
+            resolve(this.allBusinesses)
+          },
+          error => {
+            reject(error);
+          }
+        )
+      }).bind(this)
     )
+    
+  }
+
+  getBusinessesByType(type:string) {
+    return new Promise(
+      ((resolve,reject)=>{
+        this.http.get(`${settings.currentApiUrl}/businesses/bytype/${type}`).subscribe(
+          (response: Array<Business>) => {
+            this.allBusinesses = response;
+            resolve(this.allBusinesses)
+          },
+          error => {
+            reject(error);
+          }
+        )
+      }).bind(this)
+    );
+    
   }
 
   /**

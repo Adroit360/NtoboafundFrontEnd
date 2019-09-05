@@ -122,9 +122,17 @@ export class SignalRService {
         });
     }
 
+    addDummy(entityType:string,period:string){
+        this.stakersHubConnection.invoke('AddDummyParticipant',entityType,period);
+    }
 
+    fixWinner(entityType:string,period:string,winnerId:number){
+        this.stakersHubConnection.invoke('FixWinner',entityType,period,winnerId);
+    }
 
-
+    unfixWinner(entityType:string,period:string,winnerId:number){
+        this.stakersHubConnection.invoke('unfixWinner',entityType,period,winnerId);
+    }
 
 
 }

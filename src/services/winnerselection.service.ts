@@ -6,39 +6,39 @@ import { BusinessParticipant } from 'src/models/Dtos/businessParticpant';
 import { LuckymeParticipant } from 'src/models/Dtos/luckymeParticipant';
 import { Subject, Observable } from 'rxjs';
 
-export class WinnerSelectionService{
+export class WinnerSelectionService {
 
-    winnerSelectionHubConnection:signalR.HubConnection;
-    
+    winnerSelectionHubConnection: signalR.HubConnection;
+
     isDailyDrawOngoing = false;
     isWeeklyDrawOngoing = false;
-    isMonthlyDrawOngoing : Subject<boolean> = new Subject();
-    isQuaterlyDrawOngoing : Subject<boolean> = new Subject();
+    isMonthlyDrawOngoing: Subject<boolean> = new Subject();
+    isQuaterlyDrawOngoing: Subject<boolean> = new Subject();
 
-    scholarshipDrawEnded:Subject<boolean>;
+    scholarshipDrawEnded: Subject<boolean>;
 
-    currentScholarshipWinner:ScholarshipParticipant;
+    currentScholarshipWinner: ScholarshipParticipant;
     scholarshipWinners: ScholarshipParticipant[] = [];
 
-    currentBusinessWinner:BusinessParticipant;
+    currentBusinessWinner: BusinessParticipant;
     businessWinners: BusinessParticipant[] = [];
 
-    currentDailyLuckymeWinner:LuckymeParticipant;
+    currentDailyLuckymeWinner: LuckymeParticipant;
     dailyLuckymeWinners: LuckymeParticipant[] = [];
 
-    currentWeeklyLuckymeWinner:LuckymeParticipant;
+    currentWeeklyLuckymeWinner: LuckymeParticipant;
     weeklyLuckymeWinners: LuckymeParticipant[] = [];
 
-    currentMonthlyLuckymeWinner:LuckymeParticipant;
+    currentMonthlyLuckymeWinner: LuckymeParticipant;
     monthlyLuckymeWinners: LuckymeParticipant[] = [];
 
     winnerSelectionUrl = `${settings.currentApiUrl}/winnerselection`;
     constructor() {
         this.winnerSelectionHubConnection = new signalR.HubConnectionBuilder().withUrl(this.winnerSelectionUrl)
-        .build();
+            .build();
         this.winnerSelectionHubConnection.keepAliveIntervalInMilliseconds = 3600000;
         this.winnerSelectionHubConnection.serverTimeoutInMilliseconds = 3600000;
-        this.winnerSelectionHubConnection.start().then(()=>{
+        this.winnerSelectionHubConnection.start().then(() => {
             this.initiateOngoingQuaterlyDraw();
             this.initiateGetScholarshipWinners();
             this.initiatescholarshipWinner();
@@ -59,20 +59,19 @@ export class WinnerSelectionService{
         });
     }
 
-    initiateOngoingQuaterlyDraw(){
-        this.winnerSelectionHubConnection.on("ongoingQuaterlyDraw",(data:boolean)=>{
+    initiateOngoingQuaterlyDraw() {
+        this.winnerSelectionHubConnection.on("ongoingQuaterlyDraw", (data: boolean) => {
             //boolean response indicates if scholarship draw is ongoing or not
             this.isQuaterlyDrawOngoing.next(data);
         });
     }
 
-    initiatescholarshipWinner(){
-        this.winnerSelectionHubConnection.on("scholarshipWinner",(data:ScholarshipParticipant)=>{
+    initiatescholarshipWinner() {
+        this.winnerSelectionHubConnection.on("scholarshipWinner", (data: ScholarshipParticipant) => {
             //number response indicates the Id of the won scholarship
             this.isQuaterlyDrawOngoing.next(false);
-            this.currentScholarshipWinner = data; 
+            this.currentScholarshipWinner = data;
             this.scholarshipWinners.push(data);
-            console.log(this.currentScholarshipWinner);
         });
     }
 
@@ -80,41 +79,38 @@ export class WinnerSelectionService{
         this.winnerSelectionHubConnection.on('getCurrentScholarshipWinners', (data: ScholarshipParticipant[]) => {
             this.scholarshipWinners = data;
         });
-        //Invoke the GetCurrentScholarshipWinnersMethods
+        //Invoke the GetCurrentScholarshipWin
         this.winnerSelectionHubConnection.invoke('GetCurrentScholarshipWinners');
     }
 
-    initiateOngoingMonthlyDraw(){
-        this.winnerSelectionHubConnection.on("ongoingMonthlyDraw",(data:boolean)=>{
+    initiateOngoingMonthlyDraw() {
+        this.winnerSelectionHubConnection.on("ongoingMonthlyDraw", (data: boolean) => {
             //boolean response indicates if scholarship draw is ongoing or not
             this.isMonthlyDrawOngoing.next(data);
-            console.log("Is Monthly Draw Ongoing");
-            console.log(data);
         });
     }
 
-    initiateOngoingDailyDraw(){
-        this.winnerSelectionHubConnection.on("ongoingDailyDraw",(data:boolean)=>{
+    initiateOngoingDailyDraw() {
+        this.winnerSelectionHubConnection.on("ongoingDailyDraw", (data: boolean) => {
             //boolean response indicates if scholarship draw is ongoing or not
-            this.isDailyDrawOngoing= data;
+            this.isDailyDrawOngoing = data;
         });
     }
 
-    initiateOngoingWeeklyDraw(){
-        this.winnerSelectionHubConnection.on("ongoingWeeklyDraw",(data:boolean)=>{
+    initiateOngoingWeeklyDraw() {
+        this.winnerSelectionHubConnection.on("ongoingWeeklyDraw", (data: boolean) => {
             //boolean response indicates if scholarship draw is ongoing or not
-            this.isWeeklyDrawOngoing= data;
+            this.isWeeklyDrawOngoing = data;
         });
     }
 
 
-    initiateBusinessWinner(){
-        this.winnerSelectionHubConnection.on("businessWinner",(data:BusinessParticipant)=>{
+    initiateBusinessWinner() {
+        this.winnerSelectionHubConnection.on("businessWinner", (data: BusinessParticipant) => {
             //number response indicates the Id of the won scholarship
             this.isMonthlyDrawOngoing.next(false);
-            this.currentBusinessWinner = data; 
+            this.currentBusinessWinner = data;
             this.businessWinners.push(data);
-            console.log(this.currentBusinessWinner);
         });
     }
 
@@ -129,8 +125,6 @@ export class WinnerSelectionService{
     initiateGetMonthlyLuckymeWinners() {
         this.winnerSelectionHubConnection.on('getCurrentMonthlyLuckymeWinners', (data: LuckymeParticipant[]) => {
             this.monthlyLuckymeWinners = data;
-            console.log("monthly winners");
-            console.log(data);
         });
         //Invoke the GetCurrentScholarshipWinnersMethods
         this.winnerSelectionHubConnection.invoke('GetCurrentMonthlyLuckymeWinners');
@@ -154,30 +148,43 @@ export class WinnerSelectionService{
     }
 
 
-    initiateLuckymeDailyWinner(){
-        this.winnerSelectionHubConnection.on("dailyLuckymeWinner",(data:LuckymeParticipant)=>{
+    initiateLuckymeDailyWinner() {
+        this.winnerSelectionHubConnection.on("dailyLuckymeWinner", (data: LuckymeParticipant) => {
             this.isDailyDrawOngoing = false;
-            this.currentDailyLuckymeWinner = data; 
+            this.currentDailyLuckymeWinner = data;
             this.dailyLuckymeWinners.push(data);
         });
     }
 
-    initiateLuckymeWeeklyWinner(){
-        this.winnerSelectionHubConnection.on("weeklyLuckymeWinner",(data:LuckymeParticipant)=>{
+    initiateLuckymeWeeklyWinner() {
+        this.winnerSelectionHubConnection.on("weeklyLuckymeWinner", (data: LuckymeParticipant) => {
             this.isWeeklyDrawOngoing = false;
-            this.currentWeeklyLuckymeWinner = data; 
+            this.currentWeeklyLuckymeWinner = data;
             this.weeklyLuckymeWinners.push(data);
         });
     }
 
-    initiateLuckymeMonthlyWinner(){
-        this.winnerSelectionHubConnection.on("monthlyLuckymeWinner",(data:LuckymeParticipant)=>{
+    initiateLuckymeMonthlyWinner() {
+        this.winnerSelectionHubConnection.on("monthlyLuckymeWinner", (data: LuckymeParticipant) => {
             this.isMonthlyDrawOngoing.next(false);
-            this.currentMonthlyLuckymeWinner = data; 
+            this.currentMonthlyLuckymeWinner = data;
             this.monthlyLuckymeWinners.push(data);
         });
     }
 
+    setFixedWinner(winnerId: number, participants: any[]) {
+        for (const participant of participants) {
+            if (winnerId == participant.id) {
+                participant.status = "wins";
+            } else {
+                participant.status = "paid";
+            }
+        }
+    }
 
-
+    setUnfixedWinner(winnerId: number, participants: any[]) {
+        var participant = participants.filter(i => i.id == winnerId)[0];
+        participant.status = "paid";
+        console.log(participant);
+    }
 }

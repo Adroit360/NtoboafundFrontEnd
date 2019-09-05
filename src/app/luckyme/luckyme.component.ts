@@ -31,7 +31,6 @@ export class LuckymeComponent implements OnInit {
 
   ngOnInit() {
     this.loading = false;
-    
   }
 
   paymentInitialized() {
@@ -49,7 +48,7 @@ export class LuckymeComponent implements OnInit {
           return;
         }
 
-        this.loading = true;
+       // this.loading = true;
       }
     }
     //  else {
@@ -59,7 +58,7 @@ export class LuckymeComponent implements OnInit {
 
   paymentFailed(){
     console.log("this.paymentFailed");
-    this.loading = false;
+   // this.loading = false;
   }
 
   luckymePaymentCallback(event){
@@ -72,13 +71,12 @@ export class LuckymeComponent implements OnInit {
             this.luckymeService.personalLuckymes.push(response.luckyMe);
             let resultString = JSON.parse(response.resultString)
             console.log(response);
-          //  window.location.href = resultString.data.checkoutUrl;
-           // localStorage.setItem(resultString.data.checkoutId, response.luckyMe.id);
+          
           },
           error => {
             console.log("Error");
             console.log(error);
-            this.loading = false;
+           // this.loading = false;
           }
         );
       

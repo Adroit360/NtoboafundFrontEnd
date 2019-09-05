@@ -6,11 +6,11 @@
       <h3>register</h3>
     </div>
     <div class="register-box__body">
-      <div class="userImage">
+       <!--<div class="userImage">
         <app-custom-file-input (inputChanged)="imageSelected($event)"  defaultLabelText="Choose Image" hiddenLabelText="Remove Image">
-        </app-custom-file-input>
+        </app-custom-file-input> 
 
-      </div>
+      </div>-->
       <div class="c-input">
         <input type="text" placeholder="First Name" [formControlName]="'firstName'" />
         <i class="c-addon fa fa-user"></i>
@@ -37,7 +37,7 @@
       </div>
       <div class="c-input">
         <input type="text" placeholder="Phone Number" formControlName="phoneNumber" />
-        <i class="c-addon fa fa-envelope"></i>
+        <i class="c-addon fa fa-phone"></i>
         <b class="val-msg">
           <p *ngIf="!registrationForm.get('phoneNumber').valid && registrationForm.get('phoneNumber').touched">This
             Field Is Required</p>

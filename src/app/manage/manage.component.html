@@ -97,7 +97,7 @@
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade show in active" id="daily-winner">
-                            <div *ngFor="let luckyme of luckymes['Daily']" class="recent-stake-item">
+                            <div *ngFor="let luckyme of luckymes['daily']" class="recent-stake-item">
                                 <div class="recent-stake-item--top">
                                     <div class="period">{{luckyme.period}}</div>
                                     <div class="amount">GHS {{luckyme.amount}}</div>
@@ -114,7 +114,7 @@
             
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="weekly-winner">
-                            <div *ngFor="let luckyme of luckymes['Weekly']" class="recent-stake-item">
+                            <div *ngFor="let luckyme of luckymes['weekly']" class="recent-stake-item">
                                 <div class="recent-stake-item--top">
                                     <div class="period">{{luckyme.period}}</div>
                                     <div class="amount">GHS {{luckyme.amount}}</div>
@@ -131,7 +131,7 @@
 
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="monthly-winner">
-                            <div *ngFor="let luckyme of luckymes['Monthly']" class="recent-stake-item">
+                            <div *ngFor="let luckyme of luckymes['monthly']" class="recent-stake-item">
                                 <div class="recent-stake-item--top">
                                     <div class="period">{{luckyme.period}}</div>
                                     <div class="amount">GHS {{luckyme.amount}}</div>

@@ -70,17 +70,37 @@ export class ScholarshipService {
   }
 
   getAllScholarships() {
-    this.http.get(`${settings.currentApiUrl}/scholarships`).subscribe(
-      (response: Array<Scholarship>) => {
-        this.allScholarships = response;
-        console.log("Scholarships");
-        console.log(this.allScholarships);
-      },
-      error => {
-        console.log("Error getting all Scholarship's");
-        console.log(error);
-      }
+    return new Promise(
+      ((resolve,reject)=>{
+        this.http.get(`${settings.currentApiUrl}/scholarships`).subscribe(
+          (response: Array<Scholarship>) => {
+            this.allScholarships = response;
+            resolve(this.allScholarships)
+          },
+          error => {
+            reject(error);
+          }
+        )
+      }).bind(this)
     )
+    
+  }
+
+  getScholarshipsByType(type:string) {
+    return new Promise(
+      ((resolve,reject)=>{
+        this.http.get(`${settings.currentApiUrl}/scholarships/bytype/${type}`).subscribe(
+          (response: Array<Scholarship>) => {
+            this.allScholarships = response;
+            resolve(this.allScholarships)
+          },
+          error => {
+            reject(error);
+          }
+        )
+      }).bind(this)
+    );
+    
   }
 
   /**
