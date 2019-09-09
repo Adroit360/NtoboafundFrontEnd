@@ -39,7 +39,8 @@
         </label>
         <div class="my-dropdown">
           <a class="my-dropdown__item" href="" (click)="logout()">Logout</a>
-          <a routerLink="/manage" class="my-dropdown__item" href="">Manage</a>
+          <a *ngIf="userRole == 'User'" routerLink="/manage" class="my-dropdown__item" href="">Manage</a>
+          <a *ngIf="userRole == 'Admin'" routerLink="/admin" class="my-dropdown__item" href="">Manage</a>
         </div>
       </div>
     </div>

@@ -4,7 +4,10 @@
         flex-wrap: wrap;
         justify-content: space-evenly;
     }
-
+    &__charts{
+        display: flex;
+        justify-content: space-evenly;
+    }
 }
 
 .thumbcard{

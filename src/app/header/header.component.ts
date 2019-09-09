@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   currentUser:User;
   apiPath:string;
   isTogglerChecked:boolean;
+  userRole:string;
   constructor(private authenticationService: AuthService,public faqService:FaqService) { }
 
   ngOnInit() {
@@ -34,7 +35,16 @@ export class HeaderComponent implements OnInit {
 
     
     if(this.isAuthenticated){
-      this.currentUser = this.authenticationService.currentUser
+      this.currentUser = this.authenticationService.currentUser;
+      this.authenticationService.getUserRole(this.currentUser.id).subscribe((response:any)=>{
+        this.userRole = response.role;
+       // console.log("Success");
+        //console.log(response);
+      },
+      error=>{
+        //console.log(error);
+      }
+      );
     }
   }
 

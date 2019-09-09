@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { settings } from 'src/settings';
 import { User } from 'src/models/user';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -13,9 +14,11 @@ export class AuthService {
     get currentUser(): User {
         return this.getCurrentUser2();
     }
+
     constructor(private http: HttpClient, private router: Router) {
         //this.isAuthenticated = this.checkAuthenticationStatus();
     }
+
     //  images:File[],firstName:string,lastName:string,email: string,phoneNumber:string, password: string,confirmPassword:string
     //{images,firstName,lastName,email,phoneNumber, password,confirmPassword }
     register(formData: FormData) {
@@ -34,7 +37,6 @@ export class AuthService {
     updateUser(formData: FormData) {
         return this.http.put<any>(`${settings.currentApiUrl}/users/update`, formData);
     }
-
 
     login(email: string, password: string) {
         return this.http.post<any>(`${settings.currentApiUrl}/users/authenticate`, { email, password })
@@ -72,11 +74,11 @@ export class AuthService {
     }
 
     hasPaymentDetails(showConfirmBox: boolean = false): boolean {
-        if(!this.currentUser)
+        if (!this.currentUser)
             return false;
-            
+
         var rMethod = this.currentUser.preferedMoneyReceptionMethod;
-        
+
         if (rMethod) {
             switch (rMethod) {
                 case "momo":
@@ -117,4 +119,9 @@ export class AuthService {
             this.router.navigate(['manage', 'profile']);
         }
     }
+
+    getUserRole(userId: string) {
+        return this.http.get(`${settings.currentApiUrl}/users/getrole/${userId}`);
+    }
+
 }

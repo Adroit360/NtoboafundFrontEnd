@@ -65,7 +65,7 @@ export class ScholarshipService {
     )
   }
 
-  getScholarshipsForUser(userId:number) {
+  getScholarshipsForUser(userId:string) {
     return this.http.get(`${settings.currentApiUrl}/Scholarships/foruser/${userId}`);
   }
 

@@ -42,6 +42,7 @@ import { UsersService } from 'src/services/users.service';
 import { AdScholarshipsComponent } from './admin-dashboard/adscholarship/adscholarship.component';
 import { AngularRaveModule } from 'angular-rave';
 import { PaymentService } from 'src/services/payment.service';
+import { AnalysisService } from 'src/services/analysis.service';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { PaymentService } from 'src/services/payment.service';
     BusinessService,
     ScholarshipService,
     UsersService,
-    PaymentService
+    PaymentService,
+    AnalysisService
     
     
 ],

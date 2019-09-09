@@ -19,7 +19,7 @@ export class SignalRService {
     dailyLuckymeParticipants: LuckymeParticipant[] = [];
     weeklyLuckymeParticipants: LuckymeParticipant[] = [];
     monthlyLuckymeParticipants: LuckymeParticipant[] = [];
-
+    usersOnline:number;
     constructor() {
         this.startStakersConnection();
     }
@@ -44,6 +44,7 @@ export class SignalRService {
             this.initiateGetMonthlyLuckymeParticipants();
             this.initiateAddMonthlyLuckymeParticipant();
 
+            this.initiateNewUserOnline();
         }).bind(this)).catch(() => {
             console.log("Failed to start staker hub connection");
         })
@@ -133,6 +134,12 @@ export class SignalRService {
     unfixWinner(entityType:string,period:string,winnerId:number){
         this.stakersHubConnection.invoke('unfixWinner',entityType,period,winnerId);
     }
-
+    
+    initiateNewUserOnline() {
+        this.stakersHubConnection.on('online', (data: number) => {
+            this.usersOnline = data;
+        });
+        this.stakersHubConnection.invoke('OnlineUsersCount');
+    }
 
 }

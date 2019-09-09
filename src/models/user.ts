@@ -3,7 +3,7 @@ import { Scholarship } from './scholarship';
 import { Business } from './business';
 
 export class User {
-    id: number;
+    id: string;
     username: string;
     email:string;
     phoneNumber:string;

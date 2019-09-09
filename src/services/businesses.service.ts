@@ -65,7 +65,7 @@ export class BusinessService {
     )
   }
 
-  getBusinessesForUser(userId:number) {
+  getBusinessesForUser(userId:string) {
     return this.http.get(`${settings.currentApiUrl}/Businesses/foruser/${userId}`);
   }
 

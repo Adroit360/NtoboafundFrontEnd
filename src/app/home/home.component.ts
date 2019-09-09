@@ -6,6 +6,7 @@ import { LuckyMe } from 'src/models/luckyMe';
 import { HttpClient } from '@angular/common/http';
 import { groupBy } from 'src/operations';
 import { CountDownService } from 'src/services/countdownservice';
+import { SignalRService } from 'src/services/signalr.service';
 
 @Component({
   selector: 'app-home',
@@ -22,12 +23,11 @@ export class HomeComponent implements OnInit,OnDestroy {
   luckyMeHours:number;
   luckyMeMinutes:number;
   luckyMeSeconds:number;
-  constructor(private http: HttpClient,private countDownService:CountDownService) { }
+  constructor(private http: HttpClient,private countDownService:CountDownService,private signalRService:SignalRService) { }
 
   ngOnInit() {
     this.getUserWinners();
     this.apiPath = settings.currentApiUrl;
-    console.log("Home Logged");
     this.countDownService.DailyHoursTime.subscribe((hours:number)=>{this.luckyMeHours = hours});
     this.countDownService.DailyMinutesTime.subscribe((minutes:number)=>{this.luckyMeMinutes = minutes});
     this.countDownService.DailySecondsTime.subscribe((seconds:number)=>{this.luckyMeSeconds = seconds});
@@ -40,13 +40,9 @@ export class HomeComponent implements OnInit,OnDestroy {
         });
         
        this.winnings =  groupBy("dateDeclared")(response);
-       console.log(response);
-       console.log("Winnnings");
-       console.log(this.winnings);
       },
       error=>{
         console.log("Error getting luckyme's");
-        console.log(error);
       }
     )
   }

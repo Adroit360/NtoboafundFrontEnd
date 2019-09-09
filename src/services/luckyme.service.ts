@@ -87,7 +87,7 @@ export class LuckymeService {
     )
   }
 
-  getLuckyMesForUser(userId:number) {
+  getLuckyMesForUser(userId:string) {
     return this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${userId}`);
   }
 

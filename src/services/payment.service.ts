@@ -17,7 +17,7 @@ export class PaymentService {
 
     getRaveOptions(stakeType: String, amount: number, condition: boolean = true) {
         let paymentOptions: RaveOptions;
-        let user = this.authService.currentUser
+        let user = this.authService.currentUser;
         if (user) {
             paymentOptions = {
                 PBFPubKey: settings.getPublicApi(),
@@ -44,9 +44,9 @@ export class PaymentService {
     }
 
     getUniqueCode(user: User) {
-        var userCode = user.firstName.substr(0, 2) + user.lastName.substr(0, 2);
-        var timeStamp = new Date().getTime();
-        return `inv.${userCode}.${timeStamp}`;
+            var userCode = user.firstName.substr(0, 2) + user.lastName.substr(0, 2);
+            var timeStamp = new Date().getTime();
+            return `inv.${userCode}.${timeStamp}`;
     }
 
 
