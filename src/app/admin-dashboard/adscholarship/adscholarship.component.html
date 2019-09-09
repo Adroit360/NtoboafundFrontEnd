@@ -206,7 +206,7 @@
             </div>
 
             <div
-              *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && signalRService.dailyLuckymeParticipants.length > 0"
+              *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async)"
               class="fixed-pane">
               <button (click)="insertDummy()" class="btn btn-danger">Insert Dummy</button>
               <!-- <div class="fixed-participant">Fixed - </div> -->

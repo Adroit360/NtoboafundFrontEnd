@@ -223,7 +223,7 @@
                   </div>
                 </div>
                 <div
-                  *ngIf="!winnerSelectionService.isDailyDrawOngoing && signalRService.dailyLuckymeParticipants.length > 0"
+                  *ngIf="!winnerSelectionService.isDailyDrawOngoing"
                   class="fixed-pane">
                   <button (click)="insertDummy('daily')" class="btn btn-danger">Insert Dummy</button>
                   <!-- <div class="fixed-participant">Fixed - </div> -->
@@ -281,7 +281,7 @@
                   </div>
                 </div>
                 <div
-                  *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && signalRService.weeklyLuckymeParticipants.length > 0"
+                  *ngIf="!winnerSelectionService.isWeeklyDrawOngoing"
                   class="fixed-pane">
                   <button (click)="insertDummy('weekly')" class="btn btn-danger">Insert Dummy</button>
                   <!-- <div class="fixed-participant">Fixed - </div> -->
@@ -339,7 +339,7 @@
                   </div>
                 </div>
                 <div
-                  *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && signalRService.monthlyLuckymeParticipants.length > 0"
+                  *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)"
                   class="fixed-pane">
                   <button (click)="insertDummy('monthly')" class="btn btn-danger">Insert Dummy</button>
                   <!-- <div class="fixed-participant">Fixed - </div> -->

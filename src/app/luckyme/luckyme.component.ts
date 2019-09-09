@@ -51,9 +51,9 @@ export class LuckymeComponent implements OnInit {
        // this.loading = true;
       }
     }
-    //  else {
-    //   this.router.navigate(['login']);
-    // }
+     else {
+      this.router.navigate(['login']);
+    }
   }
 
   paymentFailed(){
@@ -74,7 +74,6 @@ export class LuckymeComponent implements OnInit {
           
           },
           error => {
-            console.log("Error");
             console.log(error);
            // this.loading = false;
           }

@@ -212,7 +212,7 @@
             </div>
 
             <div
-              *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && signalRService.dailyLuckymeParticipants.length > 0"
+              *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)"
               class="fixed-pane">
               <button (click)="insertDummy()" class="btn btn-danger">Insert Dummy</button>
               <!-- <div class="fixed-participant">Fixed - </div> -->

@@ -72,9 +72,6 @@ export class ScholarshipComponent implements OnInit {
         }
         //this.loading = true;
       }
-  
-      
-
     } else {
       this.router.navigate(['login']);
       return;
