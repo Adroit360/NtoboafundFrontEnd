@@ -74,7 +74,8 @@
   }
   &__preface {
     background-color: #f7f8fd;
-    //min-width: 30rem;
+    min-width: 40rem;
+    width: 40rem;
     overflow: auto;
     .recentsbox {
       margin: 1rem .5rem;
@@ -88,7 +89,8 @@
     }
   }
   &__main {
-    width: calc(100vw - 35rem);
+   // width: calc(100vw - 35rem);
+
     background-color: white;
     z-index: 5;
     box-shadow: var(--left-spread-shadow);
