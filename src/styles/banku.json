@@ -1,0 +1,22 @@
+
+POST https://api.hubtel.com/v2/pos/onlinecheckout/items/initiate HTTP/1.1
+Content-Type: application/json
+Authorization: Basic eVByeHdaUDo5NzBmN2IxNDExYjU0M2ViODQyM2U0OTI4ZTk2MDkyNg==
+
+{
+    "items": [
+        {
+            "name": "65345",
+            "quantity": 1,
+            "unitPrice": 6.0
+        }
+    ],
+    "totalAmount": 6.0,
+    "description": "Online Sale",
+    "callbackUrl": "https://csspsvoucherportal.azurewebsites.net/transaction",
+    "returnUrl": "https://csspsvoucherportal.azurewebsites.net/transaction",
+    "merchantBusinessLogoUrl": "https://cssps.gov.gh/assets/img/coa-sm.png",
+    "merchantAccountNumber": "HM2706190002",
+    "cancellationUrl": "https://csspsvoucherportal.azurewebsites.net/transaction",
+    "clientReference": "65345-61053.7592259-19"
+}

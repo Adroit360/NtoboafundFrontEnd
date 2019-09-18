@@ -10,6 +10,7 @@ import { SignalRService } from 'src/services/signalr.service';
 import { ScholarshipParticipant } from 'src/models/Dtos/scholarshipParticipant';
 import { WinnerSelectionService } from 'src/services/winnerselection.service';
 import { PaymentService } from 'src/services/payment.service';
+import { RaveOptions } from 'angular-rave';
 
 @Component({
   selector: 'app-scholarship',
@@ -28,7 +29,7 @@ export class ScholarshipComponent implements OnInit {
   scholarhips: Array<Scholarship> = [];
   scholarshipForm:FormGroup
   scholarshipAmount:number;
-
+  raveOptions: RaveOptions;
   constructor(private countDownService:CountDownService,
               private router:Router,public authService:AuthService
               ,private http:HttpClient,public signalRservice:SignalRService
@@ -70,7 +71,22 @@ export class ScholarshipComponent implements OnInit {
           this.errorShown = true;
           return;
         }
-        //this.loading = true;
+
+        let institution = this.scholarshipForm.get("Institution").value;
+        let program = this.scholarshipForm.get("Program").value;
+        let studentId  = this.scholarshipForm.get("StudentId").value;
+  
+         this.http.post<any>(`${settings.currentApiUrl}/scholarships/addnew`, {institution,program,studentId,userId: this.authService.currentUser.id , txRef : this.raveOptions.txref})
+          .subscribe(
+            response => {
+              console.log("new scholarship stake added");
+              this.scholarshipForm.reset();
+            },
+            error => {
+              console.log("new scholarship stake not added");
+              console.log(error);
+            }
+          );
       }
     } else {
       this.router.navigate(['login']);
@@ -86,26 +102,26 @@ export class ScholarshipComponent implements OnInit {
   scholarshipPaymentCallback(event) {
     this.paymentService.paymentCallback(event);
     if(event.success){
-      let institution = this.scholarshipForm.get("Institution").value;
-      let program = this.scholarshipForm.get("Program").value;
-      let studentId  = this.scholarshipForm.get("StudentId").value;
-        this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyScholarshipPayment/${event.tx.txRef}`, {institution,program,studentId,userId: this.authService.currentUser.id })
-          .subscribe(
-            response => {
-              console.log(response);
-              this.loading = false;
-              this.scholarhips.push(response.scholarhip);
-              if(response.resultString){
+      // let institution = this.scholarshipForm.get("Institution").value;
+      // let program = this.scholarshipForm.get("Program").value;
+      // let studentId  = this.scholarshipForm.get("StudentId").value;
+        // this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyScholarshipPayment/${event.tx.txRef}`, {institution,program,studentId,userId: this.authService.currentUser.id })
+        //   .subscribe(
+        //     response => {
+        //       console.log(response);
+        //       this.loading = false;
+        //       this.scholarhips.push(response.scholarhip);
+        //       if(response.resultString){
               
-              }
-              this.scholarshipForm.reset();
-            },
-            error => {
-              console.log("Error");
-              console.log(error);
-              this.loading = false;
-            }
-          );
+        //       }
+        //       this.scholarshipForm.reset();
+        //     },
+        //     error => {
+        //       console.log("Error");
+        //       console.log(error);
+        //       this.loading = false;
+        //     }
+        //   );
       
     }else{
       this.loading = false;
@@ -137,4 +153,7 @@ export class ScholarshipComponent implements OnInit {
   
   }
 
+  setRaveOptions() {
+    this.raveOptions = this.paymentService.getRaveOptions('Luckyme',this.scholarshipAmount,(this.scholarshipForm.valid && this.authService.hasPaymentDetails()));
+ }
 }

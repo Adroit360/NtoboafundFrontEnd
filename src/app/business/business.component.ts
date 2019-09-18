@@ -8,6 +8,7 @@ import { AuthService } from 'src/services/authservice';
 import { HttpClient } from '@angular/common/http';
 import { Business } from 'src/models/business';
 import { PaymentService } from 'src/services/payment.service';
+import { RaveOptions } from 'angular-rave';
 
 @Component({
   selector: 'app-business',
@@ -26,11 +27,13 @@ export class BusinessComponent implements OnInit {
   error = null;
   errorShown = false;
   businesses: Array<Business> = [];
+  raveOptions: RaveOptions;
 
   closePopup() {
     this.error = null;
     this.errorShown = false;
   }
+
   constructor(private countDownService: CountDownService,
     private router: Router, public authService: AuthService
     , private http: HttpClient, public signalRservice: SignalRService
@@ -55,9 +58,17 @@ export class BusinessComponent implements OnInit {
     if (this.authService.isAuthenticated) {
 
       if(this.authService.hasPaymentDetails(true)){
-        var amount = this.selectedAmount;
+      //  var amount = this.selectedAmount;
 
-       // this.loading = true;
+        this.http.post<any>(`${settings.currentApiUrl}/businesses/addnew`, { amount: this.selectedAmount, userId: this.authService.currentUser.id , txRef : this.raveOptions.txref})
+          .subscribe(
+            response => {
+              console.log("business added")
+            },
+            error => {
+              console.log("business not added");
+            }
+          );
       }
 
 
@@ -73,22 +84,22 @@ export class BusinessComponent implements OnInit {
     this.selectedAmount = null; 
     if (event.success) {
 
-      this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyBusinessPayment/${event.tx.txRef}`, { amount: event.tx.amount, userId: this.authService.currentUser.id })
-        .subscribe(
-          response => {
-            console.log(response);
-            this.loading = false;
-            this.businesses.push(response.business);
-            if (response.resultString) {
+      // this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyBusinessPayment/${event.tx.txRef}`, { amount: event.tx.amount, userId: this.authService.currentUser.id })
+      //   .subscribe(
+      //     response => {
+      //       console.log(response);
+      //       this.loading = false;
+      //       this.businesses.push(response.business);
+      //       if (response.resultString) {
              
-            }
-          },
-          error => {
-            console.log("Error");
-            console.log(error);
-           // this.loading = false;
-          }
-        );
+      //       }
+      //     },
+      //     error => {
+      //       console.log("Error");
+      //       console.log(error);
+      //      // this.loading = false;
+      //     }
+      //   );
 
     }
   }
@@ -101,7 +112,11 @@ export class BusinessComponent implements OnInit {
   selectChoice(event, amount) {
     this.selectedAmount = amount;
     this.potentialReturns = amount * settings.businessStakeOdds;
+    this.setRaveOptions();
     console.log(this.potentialReturns);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
   }
 
+  setRaveOptions() {
+    this.raveOptions = this.paymentService.getRaveOptions('Business',this.selectedAmount,this.authService.hasPaymentDetails());
+   }
 }

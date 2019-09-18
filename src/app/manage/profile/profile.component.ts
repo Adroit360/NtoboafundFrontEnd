@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.currentUser = this.authService.currentUser;
     this.apiPath = settings.currentApiUrl;
-    console.log(this.currentUser);
+   // console.log(this.currentUser);
     
     this.momoCurrency = this.currentUser.momoDetails.currency;
 
@@ -60,7 +60,7 @@ export class ProfileComponent implements OnInit {
       'confirmPassword': new FormControl(null, Validators.required)
     });
     this.userDashboardService.headerText = "Profile";
-    this.changeMode(false);
+    this.changeMode(true);
 
     this.networks = []
   }
@@ -89,22 +89,22 @@ export class ProfileComponent implements OnInit {
         formData
       ).subscribe(
         user => {
-          console.log("User Updated Successfull");
+          //console.log("User Updated Successfull");
 
           if (user) {
             var userToken = this.authService.currentUser.token;
             user.token = userToken;
-            console.log(user)
+            //console.log(user)
             localStorage.setItem('currentUser', JSON.stringify(user));
             //reset the current user
             this.currentUser = this.authService.currentUser;
           }
           this.loading = false;
-          this.changeMode(false);
+         // this.changeMode(false);
           this.showMessage("User Profile Updated Successfully");
         },
         error => {
-          this.showMessage("User Profile Update Failed");
+          this.showMessage(error);
           this.error = error;
           this.loading = false;
         }
@@ -116,7 +116,7 @@ export class ProfileComponent implements OnInit {
   }
 
   imageSelected(event) {
-    console.log(event);
+   // console.log(event);
 
     this.selectedImages = event.file;
   }
@@ -131,7 +131,7 @@ export class ProfileComponent implements OnInit {
 
       this.momoCurrency = event.target.selectedOptions[0].dataset.currency;
 
-      console.log(this.momoCurrency);
+      //console.log(this.momoCurrency);
   }
 
   isSelected(page) {
@@ -163,7 +163,7 @@ export class ProfileComponent implements OnInit {
       this.mode = "Edit Mode";
     }
     else {
-      this.page = "view";
+      this.page = "edit";
       this.mode = "View Mode";
     }
   }

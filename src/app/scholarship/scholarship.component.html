@@ -112,7 +112,7 @@
               <div class="footer">
                 <!-- <label for="stakeboxcontroller" class="btn btn-info i-resign">Resign</label> -->
                 <!-- (click)="pay()" -->
-                <button angular-rave [raveOptions]="paymentService.getRaveOptions('Luckyme',scholarshipAmount,(scholarshipForm.valid && authService.hasPaymentDetails()))" class="btn btn-primary i-play"
+                <button angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-play" (mouseover)="setRaveOptions()"
                   (callback)="scholarshipPaymentCallback($event)" (close)="paymentFailed()" (init)="paymentInitialized()">Play for <span
                     class="pay-amt">₵100</span>
                 </button>

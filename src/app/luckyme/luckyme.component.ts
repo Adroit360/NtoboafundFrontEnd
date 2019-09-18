@@ -10,6 +10,7 @@ import { SignalRService } from 'src/services/signalr.service';
 import { LuckymeService } from 'src/services/luckyme.service';
 import { PaymentService } from 'src/services/payment.service';
 import { ReturnStatement } from '@angular/compiler';
+import { RaveOptions } from 'angular-rave';
 
 @Component({
   selector: 'app-luckyme',
@@ -18,25 +19,26 @@ import { ReturnStatement } from '@angular/compiler';
 })
 export class LuckymeComponent implements OnInit {
 
-  selectedChoice : number = null;
+  selectedChoice: number = null;
   selectedPeriod = null;
   loading = false;
   error = null;
   errorShown = false;
-  
+  raveOptions: RaveOptions;
 
-  constructor(private http: HttpClient, public authService: AuthService,public paymentService:PaymentService,
-    private router: Router, private currentRoute: ActivatedRoute,public luckymeService:LuckymeService,
+  constructor(private http: HttpClient, public authService: AuthService, public paymentService: PaymentService,
+    private router: Router, private currentRoute: ActivatedRoute, public luckymeService: LuckymeService,
     public winnerSelectionService: WinnerSelectionService, public signalRService: SignalRService) { }
 
   ngOnInit() {
     this.loading = false;
   }
 
+
   paymentInitialized() {
     if (this.authService.isAuthenticated) {
-      if(this.authService.hasPaymentDetails(true)){
-       
+      if (this.authService.hasPaymentDetails(true)) {
+
         if (!this.selectedChoice) {
           this.error = "Please Select a Choice";
           this.errorShown = true;
@@ -48,38 +50,47 @@ export class LuckymeComponent implements OnInit {
           return;
         }
 
-       // this.loading = true;
+        this.http.post<any>(`${settings.currentApiUrl}/luckymes/addnew`, { amount: this.selectedChoice, period: this.selectedPeriod, userId: this.authService.currentUser.id, txRef : this.raveOptions.txref })
+          .subscribe(
+            response => {
+              console.log(response);
+            },
+            error => {
+              console.log(error);
+            }
+          );
+
       }
     }
-     else {
+    else {
       this.router.navigate(['login']);
     }
   }
 
-  paymentFailed(){
+  paymentFailed() {
     console.log("this.paymentFailed");
-   // this.loading = false;
+    // this.loading = false;
   }
 
-  luckymePaymentCallback(event){
+  luckymePaymentCallback(event) {
     this.paymentService.paymentCallback(event);
-    if(event.success){
-      this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyLuckymePayment/${event.tx.txRef}`, { amount: this.selectedChoice, period: this.selectedPeriod, userId: this.authService.currentUser.id })
-        .subscribe(
-          response => {
-            this.loading = false;
-            this.luckymeService.personalLuckymes.push(response.luckyMe);
-            let resultString = JSON.parse(response.resultString)
-            console.log(response);
-          
-          },
-          error => {
-            console.log(error);
-           // this.loading = false;
-          }
-        );
-      
-    }else{
+    if (event.success) {
+      // this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyLuckymePayment/${event.tx.txRef}`, { amount: this.selectedChoice, period: this.selectedPeriod, userId: this.authService.currentUser.id })
+      //   .subscribe(
+      //     response => {
+      //       this.loading = false;
+      //       this.luckymeService.personalLuckymes.push(response.luckyMe);
+      //       let resultString = JSON.parse(response.resultString)
+      //       console.log(response);
+
+      //     },
+      //     error => {
+      //       console.log(error);
+      //       // this.loading = false;
+      //     }
+      //   );
+
+    } else {
       this.loading = false;
     }
   }
@@ -87,6 +98,7 @@ export class LuckymeComponent implements OnInit {
   selectChoice(event, selectedChoice: number) {
     if (event.target.checked) {
       this.selectedChoice = selectedChoice;
+      this.setRaveOptions();
     }
   }
 
@@ -94,6 +106,7 @@ export class LuckymeComponent implements OnInit {
 
     if (event.target.checked) {
       this.selectedPeriod = selectedPeriod;
+      this.setRaveOptions();
     }
 
   }
@@ -103,8 +116,11 @@ export class LuckymeComponent implements OnInit {
     this.errorShown = false;
   }
 
- 
+  setRaveOptions() {
+     this.raveOptions = this.paymentService.getRaveOptions('LuckyMe', this.selectedChoice, (this.selectedChoice && this.selectedPeriod && this.authService.hasPaymentDetails()));
+  }
 
-  
+
+
 
 }

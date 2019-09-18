@@ -110,7 +110,7 @@
               <span class="amount">GH₵ {{potentialReturns}}</span>
             </div>
             <div class="actions">
-              <button angular-rave [raveOptions]="paymentService.getRaveOptions('Business',selectedAmount,authService.hasPaymentDetails())" class="btn btn-primary i-play"
+              <button angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-play"
               (callback)="businessPaymentCallback($event)" (close)="businessPaymentFailed()" (init)="pay()" class="btn btn-danger">Play</button>
             </div>
           </div>

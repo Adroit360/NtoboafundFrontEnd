@@ -24,164 +24,167 @@
             </a>
         </nav>
     </aside>
-    <div class="d-body__preface">
-        <div class="recentsbox">
-            <div class="recentsbox__header">
-                <div class="recentsbox__header--left">
-                    <span class="fa fa-history"></span>
+    <div class="d-body__box">
+        <div class="d-body__box__preface">
+            <div class="recentsbox">
+                <div class="recentsbox__header">
+                    <div class="recentsbox__header--left">
+                        <span class="fa fa-history"></span>
+                    </div>
+                    <div class="recentsbox__header--right">
+                        Business Stakes
+                    </div>
                 </div>
-                <div class="recentsbox__header--right">
-                    Business Stakes
+                <div class="recentsbox__body">
+                    <div *ngFor="let business of businesses" class="recent-stake-item">
+                        <div class="recent-stake-item--top">
+                            <div class="period">{{business.period}}</div>
+                            <div class="amount">GHS {{business.amount}}</div>
+                            <div class="date"> {{business.date}} </div>
+                        </div>
+                        <div class="recent-stake-item--bottom">
+                            <div class="status">Status : {{business.status}}</div>
+                            <div *ngIf="business.status != 'pending'" class="amount-won">To Win GHS {{business.amountToWin}}
+                            </div>
+                            <div *ngIf="business.status == 'pending'" class="potential-returns">potential-returns : GHS 2000
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="recentsbox__body">
-                <div *ngFor="let business of businesses" class="recent-stake-item">
-                    <div class="recent-stake-item--top">
-                        <div class="period">{{business.period}}</div>
-                        <div class="amount">GHS {{business.amount}}</div>
-                        <div class="date"> {{business.date}} </div>
+    
+            <div class="recentsbox">
+                <div class="recentsbox__header">
+                    <div class="recentsbox__header--left">
+                        <span class="fa fa-history"></span>
                     </div>
-                    <div class="recent-stake-item--bottom">
-                        <div class="status">Status : {{business.status}}</div>
-                        <div *ngIf="business.status != 'pending'" class="amount-won">To Win GHS {{business.amountToWin}}
+                    <div class="recentsbox__header--right">
+                        Scholarship Stakes
+                    </div>
+                </div>
+                <div class="recentsbox__body">
+                    <div *ngFor="let scholarship of scholarships" class="recent-stake-item">
+                        <div class="recent-stake-item--top">
+                            <div class="period">{{scholarship.period}}</div>
+                            <div class="amount">GHS {{scholarship.amount}}</div>
+                            <div class="date"> {{scholarship.date}} </div>
                         </div>
-                        <div *ngIf="business.status == 'pending'" class="potential-returns">potential-returns : GHS 2000
+                        <div class="recent-stake-item--bottom">
+                            <div class="status">Status : {{scholarship.status}}</div>
+                            <div *ngIf="scholarship.status == 'won'" class="amount-won">To Win GHS
+                                {{scholarship.amountToWin}}</div>
+                            <div *ngIf="scholarship.status != 'won'" class="potential-returns">Potential Winning : GHS 2000
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+    
+            <div *ngIf="luckymes" class="info-card winnerscard">
+                <div class="info-card__head">Past LuckyMe Stakes</div>
+                <div class="info-card__body">
+                    <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
+                    <div class="tab-box">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item active">
+                                <a class="nav-link active" href="#daily-winner" role="tab" data-toggle="tab">Daily</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#weekly-winner" role="tab" data-toggle="tab">Weekly</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#monthly-winner" role="tab" data-toggle="tab">Monthly</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade show in active" id="daily-winner">
+                                <div *ngFor="let luckyme of luckymes['daily']" class="recent-stake-item">
+                                    <div class="recent-stake-item--top">
+                                        <div class="period">{{luckyme.period}}</div>
+                                        <div class="amount">GHS {{luckyme.amount}}</div>
+                                        <div class="date"> {{luckyme.date}} </div>
+                                    </div>
+                                    <div class="recent-stake-item--bottom">
+                                        <div class="status">Status : {{luckyme.status}}</div>
+                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS {{luckyme.amountToWin}}
+                                        </div>
+                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning : GHS {{luckyme.amountToWin}}
+                                        </div>
+                                    </div>
+                                </div>
+                
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="weekly-winner">
+                                <div *ngFor="let luckyme of luckymes['weekly']" class="recent-stake-item">
+                                    <div class="recent-stake-item--top">
+                                        <div class="period">{{luckyme.period}}</div>
+                                        <div class="amount">GHS {{luckyme.amount}}</div>
+                                        <div class="date"> {{luckyme.date}} </div>
+                                    </div>
+                                    <div class="recent-stake-item--bottom">
+                                        <div class="status">Status : {{luckyme.status}}</div>
+                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS {{luckyme.amountToWin}}
+                                        </div>
+                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning : GHS {{luckyme.amountToWin}}
+                                        </div>
+                                    </div>
+                                </div>
+    
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="monthly-winner">
+                                <div *ngFor="let luckyme of luckymes['monthly']" class="recent-stake-item">
+                                    <div class="recent-stake-item--top">
+                                        <div class="period">{{luckyme.period}}</div>
+                                        <div class="amount">GHS {{luckyme.amount}}</div>
+                                        <div class="date"> {{luckyme.date}} </div>
+                                    </div>
+                                    <div class="recent-stake-item--bottom">
+                                        <div class="status">Status : {{luckyme.status}}</div>
+                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS {{luckyme.amountToWin}}
+                                        </div>
+                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning : GHS {{luckyme.amountToWin}}
+                                        </div>
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        <div class="d-body__box__main">
+            <div class="head">
+                <div class="header-text">{{userDashboardService.headerText}}</div>
+                <div class="notification">
+                    <div class="icon">
+                        <svg>
+                            <use href="assets/Icons/svgs.svg#icon-tools" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="account-actions">
+                    <div class="dropdown">
+                        <!-- <input type="checkbox" id="dropdown-checker"> -->
+                        <label for="dropdown-checker" class="dropdown-toggle" id="dropdownMenuButton">
+                            <div id="user-det">
+                                <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt="">
+                                <p>Hello</p>
+                                <p>{{currentUser.firstName}}</p>
+                            </div>
+                        </label>
+                        <div class="my-dropdown">
+                            <a routerLink="" class="my-dropdown__item" href="">Back To Home</a>
+                            <a class="my-dropdown__item" href="" (click)="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <router-outlet></router-outlet>
             </div>
         </div>
-
-        <div class="recentsbox">
-            <div class="recentsbox__header">
-                <div class="recentsbox__header--left">
-                    <span class="fa fa-history"></span>
-                </div>
-                <div class="recentsbox__header--right">
-                    Scholarship Stakes
-                </div>
-            </div>
-            <div class="recentsbox__body">
-                <div *ngFor="let scholarship of scholarships" class="recent-stake-item">
-                    <div class="recent-stake-item--top">
-                        <div class="period">{{scholarship.period}}</div>
-                        <div class="amount">GHS {{scholarship.amount}}</div>
-                        <div class="date"> {{scholarship.date}} </div>
-                    </div>
-                    <div class="recent-stake-item--bottom">
-                        <div class="status">Status : {{scholarship.status}}</div>
-                        <div *ngIf="scholarship.status == 'won'" class="amount-won">To Win GHS
-                            {{scholarship.amountToWin}}</div>
-                        <div *ngIf="scholarship.status != 'won'" class="potential-returns">Potential Winning : GHS 2000
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="luckymes" class="info-card winnerscard">
-            <div class="info-card__head">Past LuckyMe Stakes</div>
-            <div class="info-card__body">
-                <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
-                <div class="tab-box">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item active">
-                            <a class="nav-link active" href="#daily-winner" role="tab" data-toggle="tab">Daily</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#weekly-winner" role="tab" data-toggle="tab">Weekly</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#monthly-winner" role="tab" data-toggle="tab">Monthly</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade show in active" id="daily-winner">
-                            <div *ngFor="let luckyme of luckymes['daily']" class="recent-stake-item">
-                                <div class="recent-stake-item--top">
-                                    <div class="period">{{luckyme.period}}</div>
-                                    <div class="amount">GHS {{luckyme.amount}}</div>
-                                    <div class="date"> {{luckyme.date}} </div>
-                                </div>
-                                <div class="recent-stake-item--bottom">
-                                    <div class="status">Status : {{luckyme.status}}</div>
-                                    <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS {{luckyme.amountToWin}}
-                                    </div>
-                                    <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning : GHS {{luckyme.amountToWin}}
-                                    </div>
-                                </div>
-                            </div>
-            
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="weekly-winner">
-                            <div *ngFor="let luckyme of luckymes['weekly']" class="recent-stake-item">
-                                <div class="recent-stake-item--top">
-                                    <div class="period">{{luckyme.period}}</div>
-                                    <div class="amount">GHS {{luckyme.amount}}</div>
-                                    <div class="date"> {{luckyme.date}} </div>
-                                </div>
-                                <div class="recent-stake-item--bottom">
-                                    <div class="status">Status : {{luckyme.status}}</div>
-                                    <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS {{luckyme.amountToWin}}
-                                    </div>
-                                    <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning : GHS {{luckyme.amountToWin}}
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="monthly-winner">
-                            <div *ngFor="let luckyme of luckymes['monthly']" class="recent-stake-item">
-                                <div class="recent-stake-item--top">
-                                    <div class="period">{{luckyme.period}}</div>
-                                    <div class="amount">GHS {{luckyme.amount}}</div>
-                                    <div class="date"> {{luckyme.date}} </div>
-                                </div>
-                                <div class="recent-stake-item--bottom">
-                                    <div class="status">Status : {{luckyme.status}}</div>
-                                    <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS {{luckyme.amountToWin}}
-                                    </div>
-                                    <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning : GHS {{luckyme.amountToWin}}
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
-    <div class="d-body__main">
-        <div class="head">
-            <div class="header-text">{{userDashboardService.headerText}}</div>
-            <div class="notification">
-                <div class="icon">
-                    <svg>
-                        <use href="assets/Icons/svgs.svg#icon-tools" />
-                    </svg>
-                </div>
-            </div>
-            <div class="account-actions">
-                <div class="dropdown">
-                    <!-- <input type="checkbox" id="dropdown-checker"> -->
-                    <label for="dropdown-checker" class="dropdown-toggle" id="dropdownMenuButton">
-                        <div id="user-det">
-                            <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt="">
-                            <p>Hello</p>
-                            <p>{{currentUser.firstName}}</p>
-                        </div>
-                    </label>
-                    <div class="my-dropdown">
-                        <a routerLink="" class="my-dropdown__item" href="">Back To Home</a>
-                        <a class="my-dropdown__item" href="" (click)="logout()">Logout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="body">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
+    
 </div>

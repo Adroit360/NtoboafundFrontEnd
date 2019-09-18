@@ -24,7 +24,7 @@ app-busy {
   // padding: 2rem;
   //padding-top: 6rem;
   top: 6rem;
-  height: calc(100vh - 6rem);
+  height: calc(100vh - 9.5rem);
   width: calc(100vw);
   overflow: hidden;
   z-index: var(--level-three);
@@ -33,12 +33,13 @@ app-busy {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    height: calc(100vh - 6rem);
+    height: calc(100vh - 9.5rem);
     overflow: hidden;
     .luckyme-body__left {
       flex: 1 1 45rem;
-      height: calc(100vh - 6rem);
+      height: calc(100vh - 9.5rem);
       overflow: auto;
+      margin-bottom: 1rem;
       .countdown-container {
         white-space: nowrap;
         overflow: auto;
@@ -274,7 +275,7 @@ app-busy {
     }
     .luckyme-body__right {
       border-left: 1px solid var(--bordercolor);
-      height: calc(100vh - 6rem);
+      height: calc(100vh - 9.5rem);
       overflow: auto;
       .info-card {
         background-color: rgba(white, 0.2);

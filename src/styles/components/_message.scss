@@ -1,5 +1,5 @@
 .message {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     background-color: rgba(black, 0.6);
@@ -15,5 +15,5 @@
   .message.shown {
     visibility: visible;
     opacity: 1;
-    transform: translateY(0rem);
+    transform: translateY(2rem);
   }

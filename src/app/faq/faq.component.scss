@@ -1,4 +1,15 @@
 //this component contains inf-card has styles in a global component file called info-card.scss
+
+.info-card{
+    &__head{
+        &--text{
+            flex: 2 2;
+            min-width: 0;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+}
 .closebtn{
     font-size: 2rem;
     margin-right: 1rem;

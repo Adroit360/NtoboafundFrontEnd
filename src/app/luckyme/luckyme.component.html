@@ -175,7 +175,7 @@
         <div
           *ngIf="!winnerSelectionService.isDailyDrawOngoing && !winnerSelectionService.isWeeklyDrawOngoing && !(winnerSelectionService.isMonthlyDrawOngoing | async)"
           class="payment-pane">
-          <a angular-rave [raveOptions]="paymentService.getRaveOptions('Scholarship',selectedChoice,(selectedChoice && selectedPeriod && authService.hasPaymentDetails()))"
+          <a angular-rave [raveOptions]="raveOptions"
             class="transbtn" (callback)="luckymePaymentCallback($event)" (close)="paymentFailed()"
             (init)="paymentInitialized()">Play
           </a>
