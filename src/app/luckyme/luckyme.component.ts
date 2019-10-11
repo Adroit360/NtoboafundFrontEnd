@@ -19,6 +19,8 @@ import { RaveOptions } from 'angular-rave';
 })
 export class LuckymeComponent implements OnInit {
 
+  ObjectKeys = Object.keys;
+
   selectedChoice: number = null;
   selectedPeriod = null;
   loading = false;

@@ -16,6 +16,9 @@ import { RaveOptions } from 'angular-rave';
   styleUrls: ['./business.component.scss']
 })
 export class BusinessComponent implements OnInit {
+
+  ObjectKeys = Object.keys;
+
   businessDays: number;
   businessHours: number;
   businessMinutes: number;

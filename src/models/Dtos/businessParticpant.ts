@@ -5,4 +5,5 @@ export class BusinessParticipant{
     amountStaked:string;
     amountToWin:string;
     business:any;
+    dateDeclared:string; 
 }

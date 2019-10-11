@@ -19,7 +19,14 @@ export class SignalRService {
     dailyLuckymeParticipants: LuckymeParticipant[] = [];
     weeklyLuckymeParticipants: LuckymeParticipant[] = [];
     monthlyLuckymeParticipants: LuckymeParticipant[] = [];
-    usersOnline:number;
+    usersOnline: number;
+
+    potentialDailyLuckymeWinnersCount : number = 0;
+    potentialWeeklyLuckymeWinnersCount : number =  0;
+    potentialMonthlyLuckymeWinnersCount : number = 0;
+    potentialScholarshipWinnersCount : number = 0;
+    potentialBusinessWinnersCount : number = 0;
+    
     constructor() {
         this.startStakersConnection();
     }
@@ -44,47 +51,67 @@ export class SignalRService {
             this.initiateGetMonthlyLuckymeParticipants();
             this.initiateAddMonthlyLuckymeParticipant();
 
+
+            this.initiateGetPotentialScholarshipWinnersCount();
+            this.initiateGetPotentialBusinessWinnersCount();
+            this.initiateGetPotentialDailyLuckymeWinnersCount();
+            this.initiateGetPotentialWeeklyLuckymeWinnersCount();
+            this.initiateGetPotentialMonthlyLuckymeWinnersCount();
+
             this.initiateNewUserOnline();
         }).bind(this)).catch(() => {
             console.log("Failed to start staker hub connection");
         })
     }
 
-    initiateAddScholarshipParticipant() {
-        this.stakersHubConnection.on('addscholarshipparticipant', (data: ScholarshipParticipant) => {
-            this.scholarshipParticipants.push(data)
+    initiateAddDailyLuckymeParticipant() {
+        this.stakersHubConnection.on('adddailyluckymeparticipant', (data: LuckymeParticipant) => {
+            this.dailyLuckymeParticipants.push(data);
+            //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+            this.stakersHubConnection.invoke("getPotentialDailyLuckymeWinnersCount");
         });
     }
 
-    initiateGetScholarshipParticipants() {
-        this.stakersHubConnection.on('getCurrentScholarshipParticipants', (data: ScholarshipParticipant[]) => {
-            //Replace the scholarship participants with this
-            this.scholarshipParticipants = data;
+    initiateAddWeeklyLuckymeParticipant() {
+        this.stakersHubConnection.on('addweeklyluckymeparticipant', (data: LuckymeParticipant) => {
+            this.weeklyLuckymeParticipants.push(data);
+            //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+            this.stakersHubConnection.invoke("getPotentialWeeklyLuckymeWinnersCount");
         });
-        //Invoke the GetCurrentScholarshipParticipantMethods
-        this.stakersHubConnection.invoke('GetCurrentScholarshipParticipants');
     }
 
-    
+    initiateAddMonthlyLuckymeParticipant() {
+        this.stakersHubConnection.on('addmonthlyluckymeparticipant', (data: LuckymeParticipant) => {
+            this.monthlyLuckymeParticipants.push(data);
+            //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+            this.stakersHubConnection.invoke("getPotentialMonthlyLuckymeWinnersCount");
+        });
+    }
+
     initiateAddBusinessParticipant() {
         this.stakersHubConnection.on('addbusinessparticipant', (data: BusinessParticipant) => {
-            this.businessParticipants.push(data)
+            this.businessParticipants.push(data);
+            //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+            this.stakersHubConnection.invoke("getPotentialBusinessWinnersCount");
         });
     }
 
-    initiateGetBusinessParticipants() {
-        this.stakersHubConnection.on('getCurrentBusinessParticipants', (data: BusinessParticipant[]) => {
-            //Replace the scholarship participants with this
-            this.businessParticipants = data;
+    initiateAddScholarshipParticipant() {
+        this.stakersHubConnection.on('addscholarshipparticipant', (data: ScholarshipParticipant) => {
+            this.scholarshipParticipants.push(data);
+            //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+            this.stakersHubConnection.invoke("getPotentialScholarshipWinnersCount");
         });
-        //Invoke the GetCurrentScholarshipParticipantMethods
-        this.stakersHubConnection.invoke('GetCurrentBusinessParticipants');
     }
+
+
 
 
     initiateGetDailyLuckymeParticipants() {
         this.stakersHubConnection.on('getCurrentDailyLuckymeParticipants', (data: LuckymeParticipant[]) => {
             this.dailyLuckymeParticipants = data;
+            //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+            this.stakersHubConnection.invoke("getPotentialDailyLuckymeWinnersCount");
         });
         this.stakersHubConnection.invoke('GetCurrentDailyLuckymeParticipants');
     }
@@ -92,49 +119,101 @@ export class SignalRService {
     initiateGetWeeklyLuckymeParticipants() {
         this.stakersHubConnection.on('getCurrentWeeklyLuckymeParticipants', (data: LuckymeParticipant[]) => {
             this.weeklyLuckymeParticipants = data;
+            //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+            this.stakersHubConnection.invoke("getPotentialWeeklyLuckymeWinnersCount");
         });
         this.stakersHubConnection.invoke('GetCurrentWeeklyLuckymeParticipants');
     }
-    
+
     initiateGetMonthlyLuckymeParticipants() {
         this.stakersHubConnection.on('getCurrentMonthlyLuckymeParticipants', (data: LuckymeParticipant[]) => {
             this.monthlyLuckymeParticipants = data;
+            //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+            this.stakersHubConnection.invoke("getPotentialMonthlyLuckymeWinnersCount");
+
         });
         this.stakersHubConnection.invoke('GetCurrentMonthlyLuckymeParticipants');
     }
 
-    initiateAddDailyLuckymeParticipant() {
-        this.stakersHubConnection.on('adddailyluckymeparticipant', (data: LuckymeParticipant) => {
-            this.dailyLuckymeParticipants.push(data);
-            console.log("daily participants");
-            console.log(data);
+    initiateGetBusinessParticipants() {
+        this.stakersHubConnection.on('getCurrentBusinessParticipants', (data: BusinessParticipant[]) => {
+            //Replace the scholarship participants with this
+            this.businessParticipants = data;
+            //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+            this.stakersHubConnection.invoke("getPotentialBusinessWinnersCount");
         });
+        //Invoke the GetCurrentScholarshipParticipantMethods
+        this.stakersHubConnection.invoke('GetCurrentBusinessParticipants');
     }
 
-    initiateAddWeeklyLuckymeParticipant() {
-        this.stakersHubConnection.on('addweeklyluckymeparticipant', (data: LuckymeParticipant) => {
-            this.weeklyLuckymeParticipants.push(data)
+    initiateGetScholarshipParticipants() {
+        this.stakersHubConnection.on('getCurrentScholarshipParticipants', (data: ScholarshipParticipant[]) => {
+            //Replace the scholarship participants with this
+            this.scholarshipParticipants = data;
+            //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+            this.stakersHubConnection.invoke("getPotentialScholarshipWinnersCount");
+
         });
+        //Invoke the GetCurrentScholarshipParticipantMethods
+        this.stakersHubConnection.invoke('GetCurrentScholarshipParticipants');
     }
 
-    initiateAddMonthlyLuckymeParticipant() {
-        this.stakersHubConnection.on('addmonthlyluckymeparticipant', (data: LuckymeParticipant) => {
-            this.monthlyLuckymeParticipants.push(data)
+
+
+
+
+    initiateGetPotentialScholarshipWinnersCount() {
+        this.stakersHubConnection.on("getPotentialScholarshipWinnersCount", (data: number) => {
+            this.potentialScholarshipWinnersCount = data;
         });
+        //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+        this.stakersHubConnection.invoke("getPotentialScholarshipWinnersCount");
     }
 
-    addDummy(entityType:string,period:string){
-        this.stakersHubConnection.invoke('AddDummyParticipant',entityType,period);
+    initiateGetPotentialBusinessWinnersCount() {
+        this.stakersHubConnection.on("getPotentialBusinessWinnersCount", (data: number) => {
+            this.potentialBusinessWinnersCount = data;
+        });
+        //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+        this.stakersHubConnection.invoke("getPotentialBusinessWinnersCount");
     }
 
-    fixWinner(entityType:string,period:string,winnerId:number){
-        this.stakersHubConnection.invoke('FixWinner',entityType,period,winnerId);
+    initiateGetPotentialDailyLuckymeWinnersCount() {
+        this.stakersHubConnection.on("getPotentialDailyLuckymeWinnersCount", (data: number) => {
+            this.potentialDailyLuckymeWinnersCount = data;
+        });
+        //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+        this.stakersHubConnection.invoke("getPotentialDailyLuckymeWinnersCount");
     }
 
-    unfixWinner(entityType:string,period:string,winnerId:number){
-        this.stakersHubConnection.invoke('unfixWinner',entityType,period,winnerId);
+    initiateGetPotentialWeeklyLuckymeWinnersCount() {
+        this.stakersHubConnection.on("getPotentialWeeklyLuckymeWinnersCount", (data: number) => {
+            this.potentialWeeklyLuckymeWinnersCount = data;
+        });
+        //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+        this.stakersHubConnection.invoke("getPotentialWeeklyLuckymeWinnersCount");
     }
-    
+
+    initiateGetPotentialMonthlyLuckymeWinnersCount() {
+        this.stakersHubConnection.on("getPotentialMonthlyLuckymeWinnersCount", (data: number) => {
+            this.potentialMonthlyLuckymeWinnersCount = data;
+        });
+        //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
+        this.stakersHubConnection.invoke("getPotentialMonthlyLuckymeWinnersCount");
+    }
+
+    addDummy(entityType: string, period: string) {
+        this.stakersHubConnection.invoke('AddDummyParticipant', entityType, period);
+    }
+
+    fixWinner(entityType: string, period: string, winnerId: number) {
+        this.stakersHubConnection.invoke('FixWinner', entityType, period, winnerId);
+    }
+
+    unfixWinner(entityType: string, period: string, winnerId: number) {
+        this.stakersHubConnection.invoke('unfixWinner', entityType, period, winnerId);
+    }
+
     initiateNewUserOnline() {
         this.stakersHubConnection.on('online', (data: number) => {
             this.usersOnline = data;

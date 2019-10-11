@@ -7,4 +7,5 @@ export class LuckymeParticipant{
     amountStaked:string;
     amountToWin:string;
     luckyme:any;
+    dateDeclared:string; 
 }

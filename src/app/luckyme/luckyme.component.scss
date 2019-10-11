@@ -40,6 +40,7 @@ app-busy {
       height: calc(100vh - 9.5rem);
       overflow: auto;
       margin-bottom: 1rem;
+
       .countdown-container {
         white-space: nowrap;
         overflow: auto;
@@ -272,6 +273,14 @@ app-busy {
           }
         }
       }
+      .howto {
+        .tab-box {
+          margin: 2rem;
+          .tab-content {
+            height: 100%;
+          }
+        }
+      }
     }
     .luckyme-body__right {
       border-left: 1px solid var(--bordercolor);
@@ -279,26 +288,46 @@ app-busy {
       overflow: auto;
       .info-card {
         background-color: rgba(white, 0.2);
-        max-height: 30rem;
-
+        min-height: 30rem;
+        height: 45%;
         &__head {
           font-size: 1.5rem;
           letter-spacing: 0.2rem;
           color: white;
         }
         &__body {
+          height: 100%;
+          overflow: hidden;
           .winner-group {
             background-color: transparent;
             &__header {
               background-color: transparent;
               font-size: 1.2rem;
-              color: #00fff5;
             }
           }
           .tab-box {
+            height: calc(100% - 4rem);
             .tab-content {
-              max-height: 19rem;
+              //min-height: 19rem;
+              height: 100%;
+              background-color: transparent;
+              .p-winnerscount {
+                text-align: center;
+                font-size: 1.2rem;
+                text-transform: uppercase;
+                letter-spacing: 0.2rem;
+                margin-bottom: 0.3rem;
+                color: white;
+                font-weight: bold;
+                position: absolute;
+                left:0;
+                bottom: 5px;
+                width: 100%;
+              }
             }
+          }
+          .tab-box.m-bottom{
+            height: calc(100% - 6rem);
           }
           margin: 1rem;
         }
@@ -326,7 +355,6 @@ app-busy {
                 width: 1rem !important;
                 height: 2rem !important;
               }
-
             }
           }
         }

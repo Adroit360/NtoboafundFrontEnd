@@ -28,12 +28,14 @@
               </div>
             </div>
           </div>
+          <div class="info-card__footer">{{signalRservice.potentialScholarshipWinnersCount}} potential winner<span *ngIf="signalRservice.potentialScholarshipWinnersCount != 1">s</span></div>
         </div>
       </div>
 
       <div class="scholarship-body__content--headercenter">
         <!-- && scholarshipSeconds>=0 -->
-        <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && scholarshipSeconds>=0 " class="countdown">
+        <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && scholarshipSeconds>=0 "
+          class="countdown">
           <div class="header">Next scholarship Draw In</div>
           <div class="counters">
             <!-- <div class="ctd">{{scholarshipDays}} <span>Days</span></div> -->
@@ -43,6 +45,7 @@
             <div class="ctd">{{scholarshipSeconds}} <span>Seconds</span></div>
           </div>
         </div>
+
         <div *ngIf="(winnerSelectionService.isQuaterlyDrawOngoing | async)" class="ongoingdraw">
           <div class="header">Scholarship Draw is ongoing</div>
           <div class="drawbox">
@@ -64,13 +67,16 @@
             </div>
           </div>
         </div>
-        <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && winnerSelectionService.currentScholarshipWinner"
-          class="winnerbox">
-          <!-- <div class="winnerbox"> -->
-          <div class="title">Latest Scholarship Winner</div>
-          <!-- <div class="body">Justice Addico</div> -->
-          <div class="body">{{winnerSelectionService.currentScholarshipWinner.userName}}</div>
-        </div>
+
+        <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && winnerSelectionService.currentScholarshipWinners" class="winnerbox">
+            <div class="title">Latest Scholarship Winners</div>
+            <div class="body">
+              <div *ngFor="let winner of winnerSelectionService.currentScholarshipWinners" class="winner">
+                <span>{{winner.userName}}</span>
+              </div>
+            </div>
+          </div>
+
         <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async)" class="stake-box">
           <div class="stake-box__header">
             <div class="text">Ntoboa scholarship</div>
@@ -93,28 +99,31 @@
                     <label for="exampleInputInstitution">Which institution do you belong to</label>
                     <input type="text" class="form-control" id="exampleInputInstitution" formControlName="Institution"
                       aria-describedby="InstitutionHelp" placeholder="Enter Institution">
-                    <small *ngIf="!scholarshipForm.get('Institution').valid && scholarshipForm.touched" class="form-text text-danger">The institution name is required !!</small>
+                    <small *ngIf="!scholarshipForm.get('Institution').valid && scholarshipForm.touched"
+                      class="form-text text-danger">The institution name is required !!</small>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputProgram">Which program do you offer</label>
                     <input type="text" class="form-control" id="exampleInputProgram" aria-describedby="ProgramHelp"
                       placeholder="Enter Program" formControlName="Program">
-                      <small *ngIf="!scholarshipForm.get('Program').valid && scholarshipForm.touched" class="form-text text-danger">Your offered program is required !!</small>
+                    <small *ngIf="!scholarshipForm.get('Program').valid && scholarshipForm.touched"
+                      class="form-text text-danger">Your offered program is required !!</small>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputStudentId">What is your student Id number</label>
                     <input type="text" class="form-control" id="exampleInputStudentId" aria-describedby="StudentIdHelp"
                       placeholder="Enter Student Id" formControlName="StudentId">
-                      <small *ngIf="!scholarshipForm.get('StudentId').valid && scholarshipForm.touched" class="form-text text-danger">Your student id is required !!</small>
+                    <small *ngIf="!scholarshipForm.get('StudentId').valid && scholarshipForm.touched"
+                      class="form-text text-danger">Your student id is required !!</small>
                   </div>
                 </form>
               </div>
               <div class="footer">
                 <!-- <label for="stakeboxcontroller" class="btn btn-info i-resign">Resign</label> -->
                 <!-- (click)="pay()" -->
-                <button angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-play" (mouseover)="setRaveOptions()"
-                  (callback)="scholarshipPaymentCallback($event)" (close)="paymentFailed()" (init)="paymentInitialized()">Play for <span
-                    class="pay-amt">₵100</span>
+                <button angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-play"
+                  (mouseover)="setRaveOptions()" (callback)="scholarshipPaymentCallback($event)"
+                  (close)="paymentFailed()" (init)="paymentInitialized()">Play for <span class="pay-amt">₵100</span>
                 </button>
               </div>
             </div>
@@ -122,25 +131,28 @@
 
         </div>
 
+       
       </div>
 
       <div class="scholarship-body__content--headerright">
         <div class="info-card winnerscard">
           <div class="info-card__head">Past Winners</div>
           <div class="info-card__body">
-            <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
-            <div class="winner-group">
-              <!-- <div class="winner-group__header">
-              </div> -->
-              <!-- *ngFor="let winner of winnings[key]" -->
-              <div *ngFor="let winner of winnerSelectionService.scholarshipWinners" class="winner-item">
-                <div class="winner-item__description">
-                  <span class="winner-name">{{winner.userName}}</span>
-                  <span *ngIf="winner.amountToWin" class="winning-details">
-                    <span class="amount-won"> Won <span class="period"> </span>GH₵
-                      {{winner.amountToWin}}</span>
-                    <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
-                  </span>
+            <div *ngIf="winnerSelectionService.groupedScholarshipWinners">
+              <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedScholarshipWinners)"
+                class="winner-group">
+                <div class="winner-group__header">
+                  {{key}}
+                </div>
+                <div *ngFor="let winner of winnerSelectionService.groupedScholarshipWinners[key]" class="winner-item">
+                  <div class="winner-item__description">
+                    <span class="winner-name">{{winner.userName}}</span>
+                    <span *ngIf="winner.amountToWin" class="winning-details">
+                      <span class="amount-won"> Won <span class="period"> </span>GH₵
+                        {{winner.amountToWin}}</span>
+                      <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -164,44 +176,47 @@
           <div role="tabpanel" class="tab-pane fade in show active" id="how">
             <div class="panel" style="background-color: orange;color:black">
               <div class="number">1</div>
-              <div class="text">Enter the name of your Instution eg. "University of Mines and Technology"</div>
+              <div class="text">Enter the name of your Institution, e.g. "University of Mines and Technology", program of study and your student Id </div>
             </div>
             <div class="panel" style="background-color: #f06292">
               <div class="number">2</div>
-              <div class="text">Press the "play" button to proceed to payment</div>
+              <div class="text">Press the "Play" button to proceed to payment</div>
             </div>
             <div class="panel" style="background-color: #01c851">
               <div class="number">3</div>
-              <div class="text">Enter your mobile money number and click "continue"</div>
+              <div class="text">Choose mode of payment, enter details and click "continue"</div>
             </div>
             <div class="panel" style="background-color: #7383a7">
               <div class="number">4</div>
-              <div class="text">Enter your pin to confirm the mobile money prompt on your phone to complete the stake
-                process</div>
+              <div class="text">Follow the displayed guideline to complete the stake process</div>
             </div>
             <div class="panel" style="background-color: #a563c7">
               <div class="number">5</div>
-              <div class="text">Wait for a winner to be announce and your money paid</div>
+              <div class="text">Winners would be announced at the end of the draw.</div>
             </div>
           </div>
           <div role="tabpanel" class="tab-pane fade" id="where">
             <div class="panel" style="background-color: rgb(138, 112, 63)">
               <div class="number">*</div>
-              <div class="text">One Scholarship Winner is announced every three months after which other participants
-                within the same period are considered to have lost</div>
+              <div class="text">Scholarship Winners are announced every three months.</div>
             </div>
             <div class="panel" style="background-color: #9aa349">
               <div class="number">*</div>
-              <div class="text">The winner would be paid via the mode of contribution eg. mobile money</div>
+              <div class="text">Winners would be paid via stated payment reception method. eg. mobile money or bank account</div>
             </div>
             <div class="panel" style="background-color: #399191">
               <div class="number">*</div>
-              <div class="text">Staked Amount is not refundable</div>
+              <div class="text">Staked Amount is non refundable</div>
             </div>
             <div class="panel" style="background-color: #324675">
               <div class="number">*</div>
               <div class="text">Scholarship contributions only have a single stake value which is GH₵ 100</div>
             </div>
+            <div class="panel" style="background-color: #02b111">
+              <div class="number">*</div>
+              <div class="text">NB: Participants should be students of academic institutions.</div>
+            </div>
+
           </div>
         </div>
       </div>

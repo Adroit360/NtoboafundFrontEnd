@@ -12,9 +12,6 @@
           <div class="info-card__body">
             <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
             <div class="winner-group">
-              <div class="winner-group__header">
-                Today
-              </div>
               <!-- *ngFor="let winner of winnings[key]" -->
               <div *ngFor="let participant of signalRservice.businessParticipants" class="winner-item">
                 <div class="winner-item__description">
@@ -28,6 +25,8 @@
               </div>
             </div>
           </div>
+          <div class="info-card__footer">{{signalRservice.potentialBusinessWinnersCount}} potential winner<span *ngIf="signalRservice.potentialBusinessWinnersCount != 1">s</span></div>
+
         </div>
       </div>
 
@@ -63,13 +62,16 @@
             </div>
           </div>
         </div>
-        <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentBusinessWinner"
-          class="winnerbox">
-          <!-- <div class="winnerbox"> -->
-          <div class="title">Latest Business Winner</div>
-          <!-- <div class="body">Justice Addico</div> -->
-          <div class="body">{{winnerSelectionService.currentBusinessWinner.userName}}</div>
-        </div>
+
+
+        <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentBusinessWinners" class="winnerbox">
+            <div class="title">Latest Business Winners</div>
+            <div class="body">
+              <div *ngFor="let winner of winnerSelectionService.currentBusinessWinners" class="winner">
+                <span>{{winner.userName}}</span>
+              </div>
+            </div>
+          </div>
 
         <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="stake-box">
           <div class="stake-box-header">
@@ -121,23 +123,24 @@
         <div class="info-card winnerscard">
           <div class="info-card__head">Past Winners</div>
           <div class="info-card__body">
-            <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
-            <div class="winner-group">
-              <div class="winner-group__header">
-                <!-- Last Three Months -->
-              </div>
-              <!-- *ngFor="let winner of winnings[key]" -->
-              <div *ngFor="let participant of winnerSelectionService.businessWinners" class="winner-item">
-                <div class="winner-item__description">
-                  <span class="winner-name">{{participant.userName}}</span>
-                  <span class="winning-details">
-                    <span class="amount-won"> Won <span class="period"> </span>GH₵
-                      {{participant.amountToWin}}</span>
-                    <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
-                  </span>
+              <div *ngIf="winnerSelectionService.groupedBusinessWinners">
+                  <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedBusinessWinners)"
+                    class="winner-group">
+                    <div class="winner-group__header">
+                      {{key}}
+                    </div>
+                    <div *ngFor="let winner of winnerSelectionService.groupedBusinessWinners[key]" class="winner-item">
+                      <div class="winner-item__description">
+                        <span class="winner-name">{{winner.userName}}</span>
+                        <span *ngIf="winner.amountToWin" class="winning-details">
+                          <span class="amount-won"> Won <span class="period"> </span>GH₵
+                            {{winner.amountToWin}}</span>
+                          <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -157,39 +160,37 @@
           <div role="tabpanel" class="tab-pane fade in show active" id="how">
             <div class="panel" style="background-color: orange;color:black">
               <div class="number">1</div>
-              <div class="text">Choose the amount you want to stake in the blue circle above. For the detail pane to show</div>
+              <div class="text">Choose the amount you want to stake in the blue circle above. For the detail panel to show</div>
             </div>
             <div class="panel" style="background-color: #f06292">
               <div class="number">2</div>
-              <div class="text">Press the "play" button to proceed to payment</div>
+              <div class="text">Press the "play" button in the detail panel to proceed to payment</div>
             </div>
             <div class="panel" style="background-color: #01c851">
               <div class="number">3</div>
-              <div class="text">Enter your mobile money number and click "continue"</div>
+              <div class="text">Choose mode of payment, enter details and click "continue"</div>
             </div>
             <div class="panel" style="background-color: #7383a7">
               <div class="number">4</div>
-              <div class="text">Enter your pin to confirm the mobile money prompt on your phone to complete the stake
-                process</div>
+              <div class="text">Follow the displayed guideline to complete the stake process</div>
             </div>
             <div class="panel" style="background-color: #a563c7">
               <div class="number">5</div>
-              <div class="text">Wait for a winner to be announce and your money paid</div>
+              <div class="text">Winners would be announced at the end of the draw.</div>
             </div>
           </div>
           <div role="tabpanel" class="tab-pane fade" id="where">
             <div class="panel" style="background-color: rgb(138, 112, 63)">
               <div class="number">*</div>
-              <div class="text">One Business Winner is announced every months after which other participants
-                within the same period are considered to have lost</div>
+              <div class="text">Business Winners are announced every month</div>
             </div>
             <div class="panel" style="background-color: #9aa349">
               <div class="number">*</div>
-              <div class="text">The winner would be paid via the mode of contribution eg. mobile money or bank account</div>
+              <div class="text">Winners would be paid via stated payment reception method. eg. mobile money or bank account</div>
             </div>
             <div class="panel" style="background-color: #399191">
               <div class="number">*</div>
-              <div class="text">Staked Amount is not refundable</div>
+              <div class="text">Staked Amount is non refundable</div>
             </div>
             <div class="panel" style="background-color: #324675">
               <div class="number">*</div>

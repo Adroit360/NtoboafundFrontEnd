@@ -35,6 +35,7 @@ app-header{
 
   &__content {
     color: white;
+    height: 100%;
     &--header {
      // background-image: url(../../assets/images/bsonscholarship.png);
       background-size: cover;
@@ -89,14 +90,7 @@ app-header{
             }
           }
         }
-        .winnerbox{
-          background-color: #cd7fc9;
-          .title{
-            background-color: green;
-          }
-          .body{
-          }
-        }
+       
         .stake-box {
           background-color: rgba(white, 0.9);
           padding: 1rem;
@@ -230,10 +224,8 @@ app-header{
             &__header {
               background-color: transparent;
               font-size: 1.2rem;
-              color: #00fff5;
             }
           }
-          margin:1rem;
         }
       }
 
@@ -250,9 +242,10 @@ app-header{
     }
     &--details {
       .tab-box{
-        height: 30rem;
+       // height: 30rem;
         margin: 2rem;
         .tab-content{
+          height: 100%;
           .panel{
             .number{
               background-color: orange;

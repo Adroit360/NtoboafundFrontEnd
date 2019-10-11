@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/services/authservice';
 import { first } from 'rxjs/operators';
@@ -16,6 +16,9 @@ export class RegisterComponent implements OnInit {
   loading = false;
   error = null;
   selectedImages;
+  
+  @ViewChild("legalbox") legalbox:ElementRef;
+
   constructor(private authService: AuthService,private router:Router) { }
 
 
@@ -33,8 +36,13 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    if(!this.legalbox.nativeElement.checked){
+      this.error = "Please agree to our terms and conditions";
+      return
+    }
     this.loading = true;
     this.error = null;
+
     if(this.registrationForm.valid){
       var formData = new FormData();
       formData.append('images',this.selectedImages)
@@ -73,6 +81,7 @@ export class RegisterComponent implements OnInit {
     }else{
       this.loading = false;
       this.error = "Form Contains Invalid Fields";
+      return;
     }
   }
 

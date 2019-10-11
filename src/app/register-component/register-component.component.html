@@ -1,3 +1,4 @@
+<app-header></app-header>
 <app-busy [ngClass]="{'visible':loading,'invisible':!loading}" #loader></app-busy>
 <div class="register-bg"></div>
 <div class="register-body">
@@ -63,19 +64,31 @@
 
     </div>
     <div *ngIf="error" class="error-pane">{{error}}</div>
+    <div  class="legal">
+      <label for="cblegal" class="c-checkbox">
+        <input #legalbox id="cblegal" type="checkbox">
+        <span></span>
+      </label>
+      <span>
+          By checking this box, you agree to our  <a href="./assets/TERMS AND CONDITIONS -NTOBOA FUND.pdf">terms and condition</a>
+          and <a href="./assets/PRIVACY & COOKIE POLICY.pdf">privacy and cookie policy</a>.
+      </span>
+      
+    </div>
     <div class="registerbtnpane">
+        <a class="loginlink" routerLink="/login">Login Instead</a>
       <button type="submit" class="btn btn-primary">Register</button>
     </div>
-    <h5>Or Continue With</h5>
+    <!-- <h5>Or Continue With</h5>
     <div class="socials">
       <a href="" class="slink"><img src="assets/images/fblogo.png" alt="facebook"></a>
       <a href="" class="slink"><img src="assets/images/googlelogo.png" alt="google"></a>
       <a href="" class="slink"><img src="assets/images/twitterlogo.png" alt="twitter"></a>
-    </div>
+    </div> -->
     <div class="register-box__footer">
 
     </div>
   </form>
 </div>
-
+<app-faq></app-faq>
 <!--  -->

@@ -35,6 +35,10 @@ export class PaymentService {
                 custom_logo: `${window.location.origin}/assets/images/logo.png`
             }
         }
+        console.log("User");
+        console.log(user);
+        console.log("Payment Options");
+        console.log(paymentOptions);
 
         //Use Condition to prevent dialog from showing and show user and error message
         if (condition)

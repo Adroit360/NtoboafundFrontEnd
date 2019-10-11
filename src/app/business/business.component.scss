@@ -32,18 +32,18 @@ app-busy {
   //  center center no-repeat #dd3502;
   background-image: url(../../assets/images/homebg2.jpg);
   background-size: cover;
- background-color: rgba(black, 0.3);
+  background-color: rgba(black, 0.3);
   background-position: center;
-//  background-size: cover;
- background-blend-mode: color;
+  //  background-size: cover;
+  background-blend-mode: color;
   height: calc(100vh);
   width: calc(100vw);
   top: 0;
   left: 0;
   z-index: 0;
 }
-app-header{
-  color:white;
+app-header {
+  color: white;
 }
 .business-body {
   position: relative;
@@ -56,11 +56,12 @@ app-header{
 
   &__content {
     color: white;
+    height: 100%;
     &--header {
       display: flex;
       justify-content: space-evenly;
       padding: 2rem 0rem;
-      
+
       flex-wrap: wrap;
       &left {
         // flex: 0 1 30%;
@@ -265,7 +266,6 @@ app-header{
             &__header {
               background-color: transparent;
               font-size: 1.2rem;
-              color: #00fff5;
             }
           }
         }
@@ -284,7 +284,9 @@ app-header{
     }
     &--details {
       .tab-box {
-        height: 30rem;
+        .tab-content {
+          height: 100%;
+        }
         margin: 2rem;
       }
     }

@@ -182,6 +182,7 @@ app-busy {
       // justify-content: center;
       // align-items: center;
       z-index: var(--level-one);
+      height:100%;
 
       h3,
       h4,
@@ -194,7 +195,7 @@ app-busy {
         justify-content: space-evenly;
         padding: 1rem;
         flex-wrap: wrap;
-        
+        height: 100%;
         &__header {
           box-shadow: var(--shadow);
           padding: 1rem;

@@ -19,17 +19,24 @@ import { RaveOptions } from 'angular-rave';
 })
 export class ScholarshipComponent implements OnInit {
 
+
+  ObjectKeys = Object.keys;
+
   scholarshipDays:number;
   scholarshipHours:number;
   scholarshipMinutes:number;
   scholarshipSeconds:number;
+
+
   loading = false;
   error = null;
   errorShown = false;
+
   scholarhips: Array<Scholarship> = [];
   scholarshipForm:FormGroup
   scholarshipAmount:number;
   raveOptions: RaveOptions;
+
   constructor(private countDownService:CountDownService,
               private router:Router,public authService:AuthService
               ,private http:HttpClient,public signalRservice:SignalRService

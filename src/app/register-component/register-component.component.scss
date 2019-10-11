@@ -1,6 +1,9 @@
 @import "../../styles/abstracts/mixins";
 @import "../../styles/abstracts/variables";
 
+app-header{
+  color:white;
+}
 app-busy{
   position: absolute;
   z-index: var(--level-three);
@@ -19,7 +22,7 @@ app-busy{
   justify-content: center;
   align-items: center;
   z-index: var(--level-two);
-  
+  height: calc(100vh);
   h3,
   h4,
   h5 {
@@ -56,9 +59,17 @@ app-busy{
       color: var(--error-color);
       padding: 1rem;
     }
+    .legal{
+      display: flex;
+    }
     .registerbtnpane {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
+      align-items: center;
+
+      .loginlink{
+        text-decoration: underline;
+      }
 
       button {
         cursor: pointer;

@@ -5,6 +5,7 @@ import { ScholarshipParticipant } from 'src/models/Dtos/scholarshipParticipant';
 import { BusinessParticipant } from 'src/models/Dtos/businessParticpant';
 import { LuckymeParticipant } from 'src/models/Dtos/luckymeParticipant';
 import { Subject, Observable } from 'rxjs';
+import { groupBy } from 'src/operations';
 
 export class WinnerSelectionService {
 
@@ -17,19 +18,24 @@ export class WinnerSelectionService {
 
     scholarshipDrawEnded: Subject<boolean>;
 
-    currentScholarshipWinner: ScholarshipParticipant;
+    currentScholarshipWinners: ScholarshipParticipant[];
+    groupedScholarshipWinners:any;
     scholarshipWinners: ScholarshipParticipant[] = [];
 
-    currentBusinessWinner: BusinessParticipant;
+    currentBusinessWinners: BusinessParticipant[];
+    groupedBusinessWinners:any;
     businessWinners: BusinessParticipant[] = [];
 
-    currentDailyLuckymeWinner: LuckymeParticipant;
+    currentDailyLuckymeWinners: LuckymeParticipant[];
+    groupedDailyLuckymeWinners:any;
     dailyLuckymeWinners: LuckymeParticipant[] = [];
 
-    currentWeeklyLuckymeWinner: LuckymeParticipant;
+    currentWeeklyLuckymeWinners: LuckymeParticipant[];
+    groupedWeeklyLuckymeWinners:any;
     weeklyLuckymeWinners: LuckymeParticipant[] = [];
 
-    currentMonthlyLuckymeWinner: LuckymeParticipant;
+    currentMonthlyLuckymeWinners: LuckymeParticipant[];
+    groupedMonthlyLuckymeWinners:any;
     monthlyLuckymeWinners: LuckymeParticipant[] = [];
 
     winnerSelectionUrl = `${settings.currentApiUrl}/winnerselection`;
@@ -46,6 +52,7 @@ export class WinnerSelectionService {
             this.initiateOngoingMonthlyDraw();
             this.initiateGetBusinessWinners();
             this.initiateBusinessWinner();
+
             this.initiateGetMonthlyLuckymeWinners();
             this.initiateLuckymeMonthlyWinner();
 
@@ -67,17 +74,23 @@ export class WinnerSelectionService {
     }
 
     initiatescholarshipWinner() {
-        this.winnerSelectionHubConnection.on("scholarshipWinner", (data: ScholarshipParticipant) => {
+        this.winnerSelectionHubConnection.on("scholarshipWinner", (winners: ScholarshipParticipant[]) => {
             //number response indicates the Id of the won scholarship
             this.isQuaterlyDrawOngoing.next(false);
-            this.currentScholarshipWinner = data;
-            this.scholarshipWinners.push(data);
+            this.currentScholarshipWinners = winners;
+            
+            for (const winner of winners) {
+                this.scholarshipWinners.push(winner);
+            }
+
+            this.groupedScholarshipWinners = groupBy("dateDeclared")(this.scholarshipWinners);
         });
     }
 
     initiateGetScholarshipWinners() {
         this.winnerSelectionHubConnection.on('getCurrentScholarshipWinners', (data: ScholarshipParticipant[]) => {
             this.scholarshipWinners = data;
+            this.groupedScholarshipWinners = groupBy("dateDeclared")(data);
         });
         //Invoke the GetCurrentScholarshipWin
         this.winnerSelectionHubConnection.invoke('GetCurrentScholarshipWinners');
@@ -106,17 +119,23 @@ export class WinnerSelectionService {
 
 
     initiateBusinessWinner() {
-        this.winnerSelectionHubConnection.on("businessWinner", (data: BusinessParticipant) => {
+        this.winnerSelectionHubConnection.on("businessWinner", (winners: BusinessParticipant[]) => {
             //number response indicates the Id of the won scholarship
             this.isMonthlyDrawOngoing.next(false);
-            this.currentBusinessWinner = data;
-            this.businessWinners.push(data);
+            this.currentBusinessWinners = winners;
+
+            for (const winner of winners) {
+                this.businessWinners.push(winner);
+            }
+
+            this.groupedBusinessWinners = groupBy("dateDeclared")(this.businessWinners);
         });
     }
 
     initiateGetBusinessWinners() {
         this.winnerSelectionHubConnection.on('getCurrentBusinessWinners', (data: BusinessParticipant[]) => {
             this.businessWinners = data;
+            this.groupedBusinessWinners = groupBy("dateDeclared")(data);
         });
         //Invoke the GetCurrentScholarshipWinnersMethods
         this.winnerSelectionHubConnection.invoke('GetCurrentBusinessWinners');
@@ -125,6 +144,7 @@ export class WinnerSelectionService {
     initiateGetMonthlyLuckymeWinners() {
         this.winnerSelectionHubConnection.on('getCurrentMonthlyLuckymeWinners', (data: LuckymeParticipant[]) => {
             this.monthlyLuckymeWinners = data;
+            this.groupedMonthlyLuckymeWinners = groupBy("dateDeclared")(data);
         });
         //Invoke the GetCurrentScholarshipWinnersMethods
         this.winnerSelectionHubConnection.invoke('GetCurrentMonthlyLuckymeWinners');
@@ -133,6 +153,7 @@ export class WinnerSelectionService {
     initiateGetWeeklyLuckymeWinners() {
         this.winnerSelectionHubConnection.on('getCurrentWeeklyLuckymeWinners', (data: LuckymeParticipant[]) => {
             this.weeklyLuckymeWinners = data;
+            this.groupedWeeklyLuckymeWinners = groupBy("dateDeclared")(data);
         });
         //Invoke the GetCurrentScholarshipWinnersMethods
         this.winnerSelectionHubConnection.invoke('GetCurrentWeeklyLuckymeWinners');
@@ -142,6 +163,7 @@ export class WinnerSelectionService {
     initiateGetDailyLuckymeWinners() {
         this.winnerSelectionHubConnection.on('getCurrentDailyLuckymeWinners', (data: LuckymeParticipant[]) => {
             this.dailyLuckymeWinners = data;
+            this.groupedDailyLuckymeWinners = groupBy("dateDeclared")(data);
         });
         //Invoke the GetCurrentScholarshipWinnersMethods
         this.winnerSelectionHubConnection.invoke('GetCurrentDailyLuckymeWinners');
@@ -149,26 +171,38 @@ export class WinnerSelectionService {
 
 
     initiateLuckymeDailyWinner() {
-        this.winnerSelectionHubConnection.on("dailyLuckymeWinner", (data: LuckymeParticipant) => {
+        this.winnerSelectionHubConnection.on("dailyLuckymeWinner", (winners: LuckymeParticipant[]) => {
             this.isDailyDrawOngoing = false;
-            this.currentDailyLuckymeWinner = data;
-            this.dailyLuckymeWinners.push(data);
+            this.currentDailyLuckymeWinners = winners;
+            for (const winner of winners) {
+                this.dailyLuckymeWinners.push(winner);
+            }
+
+            this.groupedDailyLuckymeWinners = groupBy("dateDeclared")(this.dailyLuckymeWinners);
         });
     }
 
     initiateLuckymeWeeklyWinner() {
-        this.winnerSelectionHubConnection.on("weeklyLuckymeWinner", (data: LuckymeParticipant) => {
+        this.winnerSelectionHubConnection.on("weeklyLuckymeWinner", (winners: LuckymeParticipant[]) => {
             this.isWeeklyDrawOngoing = false;
-            this.currentWeeklyLuckymeWinner = data;
-            this.weeklyLuckymeWinners.push(data);
+            this.currentWeeklyLuckymeWinners = winners;
+            for (const winner of winners) {
+                this.weeklyLuckymeWinners.push(winner);
+            }
+            this.groupedWeeklyLuckymeWinners = groupBy("dateDeclared")(this.weeklyLuckymeWinners);
         });
     }
 
     initiateLuckymeMonthlyWinner() {
-        this.winnerSelectionHubConnection.on("monthlyLuckymeWinner", (data: LuckymeParticipant) => {
+        this.winnerSelectionHubConnection.on("monthlyLuckymeWinner", (winners: LuckymeParticipant[]) => {
             this.isMonthlyDrawOngoing.next(false);
-            this.currentMonthlyLuckymeWinner = data;
-            this.monthlyLuckymeWinners.push(data);
+
+            this.currentMonthlyLuckymeWinners = winners;
+            for (const winner of winners) {
+                
+                this.monthlyLuckymeWinners.push(winner);
+            }
+            this.groupedMonthlyLuckymeWinners = groupBy("dateDeclared")(this.monthlyLuckymeWinners);
         });
     }
 

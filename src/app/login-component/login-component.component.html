@@ -1,3 +1,4 @@
+<app-header></app-header>
 <app-busy class="loader" [ngClass]="{'visible':loading,'invisible':!loading}" #loader></app-busy>
 <div class="login-body">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-box">
@@ -18,18 +19,20 @@
     </div>
     <div  class="loading"></div>
     <div *ngIf="error" class="error-msg">{{error}}</div>
+   
     <div class="loginbtnpane">
       <a class="redirect-link" routerLink="../register">Register Instead</a>
       <button type="submit" class="btn btn-primary">Login</button>
     </div>
-    <h4>Or Login With</h4>
+    <!-- <h4>Or Login With</h4>
     <div class="socials">
         <a href="" class="slink"><img src="assets/images/fblogo.png" alt="facebook"></a>
         <a href="" class="slink"><img src="assets/images/googlelogo.png" alt="google"></a>
         <a href="" class="slink"><img src="assets/images/twitterlogo.png" alt="twitter"></a>
-    </div>
+    </div> -->
     <div class="login-box__footer">
 
     </div>
   </form>
 </div>
+<app-faq></app-faq>

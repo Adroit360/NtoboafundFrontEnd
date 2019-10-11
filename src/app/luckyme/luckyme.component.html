@@ -51,20 +51,20 @@
 
       <div class="stake-box">
         <div class="choice-scrolls">
-            <div class="choice-box">
-                <div class="choice-amount">GH₵ 1</div>
-                <!-- <div class="choice-description">
+          <div class="choice-box">
+            <div class="choice-amount">GH₵ 1</div>
+            <!-- <div class="choice-description">
                               <p>Mutiply Choice By 5</p>
                               <p>5 Cedis for 5000</p>
                             </div> -->
-                <input id="rone" (change)="selectChoice($event,1.00)" class="choice-selector__radio" type="radio"
-                  name="choice" />
-                <div class="choice-selector__background">
-                  <label for="rone" class="choice-selector">
-                  </label>
-                </div>
-    
-              </div>
+            <input id="rone" (change)="selectChoice($event,1.00)" class="choice-selector__radio" type="radio"
+              name="choice" />
+            <div class="choice-selector__background">
+              <label for="rone" class="choice-selector">
+              </label>
+            </div>
+
+          </div>
           <div class="choice-box">
             <div class="choice-amount">GH₵ 5</div>
             <!-- <div class="choice-description">
@@ -175,11 +175,65 @@
         <div
           *ngIf="!winnerSelectionService.isDailyDrawOngoing && !winnerSelectionService.isWeeklyDrawOngoing && !(winnerSelectionService.isMonthlyDrawOngoing | async)"
           class="payment-pane">
-          <a angular-rave [raveOptions]="raveOptions"
-            class="transbtn" (callback)="luckymePaymentCallback($event)" (close)="paymentFailed()"
-            (init)="paymentInitialized()">Play
+          <a angular-rave [raveOptions]="raveOptions" class="transbtn" (callback)="luckymePaymentCallback($event)"
+            (close)="paymentFailed()" (init)="paymentInitialized()">Play
           </a>
         </div>
+      </div>
+
+      <div class="howto">
+          <div class="tab-box">
+              <ul class="nav nav-tabs">
+                <li class="nav-item active">
+                  <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How To Play</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#where" role="tab" data-toggle="tab">The Must Knows</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in show active" id="how">
+                  <div class="panel" style="background-color: rgb(255, 166, 0);color:black">
+                    <div class="number">1</div>
+                    <div class="text">Select the amount you wish to stake and choose a peroid</div>
+                  </div>
+                  <div class="panel" style="background-color: #f06292">
+                    <div class="number">2</div>
+                    <div class="text">Press the "play" button to proceed to payment</div>
+                  </div>
+                  <div class="panel" style="background-color: #01c851">
+                    <div class="number">3</div>
+                    <div class="text">Choose mode of payment, enter details and click "continue"</div>
+                  </div>
+                  <div class="panel" style="background-color: #7383a7">
+                    <div class="number">4</div>
+                    <div class="text">Follow the displayed guideline to complete the stake process</div>
+                  </div>
+                  <div class="panel" style="background-color: #a563c7">
+                    <div class="number">5</div>
+                    <div class="text">Winners would be announced at the end of the draw.</div>
+                  </div>
+                      </div>
+                <div role="tabpanel" class="tab-pane fade" id="where">
+                  <div class="panel" style="background-color: rgb(138, 112, 63)">
+                    <div class="number">*</div>
+                    <div class="text">Lucky winners are announced daily, weekly and monthly</div>
+                  </div>
+                  <div class="panel" style="background-color: #9aa349">
+                    <div class="number">*</div>
+                    <div class="text">Winners would be paid via stated payment reception method. eg. mobile money or bank account</div>
+                  </div>
+                  <div class="panel" style="background-color: #399191">
+                    <div class="number">*</div>
+                    <div class="text">Staked Amount is non refundable</div>
+                  </div>
+                  <div class="panel" style="background-color: #324675">
+                    <div class="number">*</div>
+                    <div class="text">Luckyme contributions has seven stake amounts i.e GH₵ 1, GH₵ 5, GH₵ 10, GH₵ 20, GH₵ 50, GH₵ 100, GH₵ 500</div>
+                  </div>
+                      </div>
+              </div>
+            </div>
       </div>
 
     </div>
@@ -213,7 +267,8 @@
       <div class="info-card participantscard">
         <div class="info-card__head">Current Participants</div>
         <div class="info-card__body">
-          <div class="tab-box">
+          <!-- m-bottom class is to give some space below this tabbox to show potentialWinnersCount -->
+          <div class="tab-box m-bottom">
             <ul class="nav nav-tabs">
               <li class="nav-item active">
                 <a class="nav-link active" href="#daily" role="tab" data-toggle="tab">Daily</a>
@@ -227,15 +282,16 @@
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade show in active" id="daily">
-                <div
-                  *ngIf="!winnerSelectionService.isDailyDrawOngoing && winnerSelectionService.currentDailyLuckymeWinner"
-                  class="winnerbox">
-                  <!-- <div class="winnerbox"> -->
-                  <div class="title">Latest Daily Luckyme Winner</div>
-                  <!-- <div class="body">Justice Addico</div> -->
-                  <div class="body">{{winnerSelectionService.currentDailyLuckymeWinner.userName}}</div>
-                </div>
 
+                  <div *ngIf="!(winnerSelectionService.isDailyDrawOngoing | async) && winnerSelectionService.currentDailyLuckymeWinners" class="winnerbox">
+                      <div class="title">Latest Daily Luckyme Winners</div>
+                      <div class="body">
+                        <div *ngFor="let winner of winnerSelectionService.currentDailyLuckymeWinners" class="winner">
+                          <span>{{winner.userName}}</span>
+                        </div>
+                      </div>
+                    </div>
+          
                 <div *ngIf="!winnerSelectionService.isDailyDrawOngoing" class="winner-group">
                   <div *ngFor="let participant of signalRService.dailyLuckymeParticipants" class="winner-item">
                     <div class="winner-item__description">
@@ -272,17 +328,20 @@
                   </div>
                 </div>
 
+                <div class="p-winnerscount">{{signalRService.potentialDailyLuckymeWinnersCount}} potential winner<span *ngIf="signalRService.potentialDailyLuckymeWinnersCount != 1">s</span></div>
 
               </div>
               <div role="tabpanel" class="tab-pane fade" id="weekly">
-                <div
-                  *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && winnerSelectionService.currentWeeklyLuckymeWinner"
-                  class="winnerbox">
-                  <!-- <div class="winnerbox"> -->
-                  <div class="title">Latest Weekly Luckyme Winner</div>
-                  <!-- <div class="body">Justice Addico</div> -->
-                  <div class="body">{{winnerSelectionService.currentWeeklyLuckymeWinner.userName}}</div>
-                </div>
+           
+                <div *ngIf="!(winnerSelectionService.isWeeklyDrawOngoing | async) && winnerSelectionService.currentWeeklyLuckymeWinners" class="winnerbox">
+                    <div class="title">Latest Weekly Luckyme Winners</div>
+                    <div class="body">
+                      <div *ngFor="let winner of winnerSelectionService.currentWeeklyLuckymeWinners" class="winner">
+                        <span>{{winner.userName}}</span>
+                      </div>
+                    </div>
+                  </div>
+
 
                 <div *ngIf="!winnerSelectionService.isWeeklyDrawOngoing" class="winner-group">
                   <!-- *ngFor="let winner of winnings[key]" -->
@@ -322,16 +381,20 @@
                   </div>
                 </div>
 
+                <div class="p-winnerscount">{{signalRService.potentialWeeklyLuckymeWinnersCount}} potential winner<span *ngIf="signalRService.potentialWeeklyLuckymeWinnersCount != 1">s</span></div>
+
               </div>
               <div role="tabpanel" class="tab-pane fade" id="monthly">
-                <div
-                  *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentMonthlyLuckymeWinner"
-                  class="winnerbox">
-                  <!-- <div class="winnerbox"> -->
-                  <div class="title">Latest Monthly Luckyme Winner</div>
-                  <!-- <div class="body">Justice Addico</div> -->
-                  <div class="body">{{winnerSelectionService.currentMonthlyLuckymeWinner.userName}}</div>
-                </div>
+               
+                <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentMonthlyLuckymeWinners" class="winnerbox">
+                    <div class="title">Latest Weekly Luckyme Winners</div>
+                    <div class="body">
+                      <div *ngFor="let winner of winnerSelectionService.currentMonthlyLuckymeWinners" class="winner">
+                        <span>{{winner.userName}}</span>
+                      </div>
+                    </div>
+                  </div>
+
                 <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="winner-group">
                   <!-- *ngFor="let winner of winnings[key]" -->
                   <!-- *ngFor="let participant of winnerSelectionService.businessWinners"  -->
@@ -369,10 +432,12 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="p-winnerscount">{{signalRService.potentialMonthlyLuckymeWinnersCount}} potential winner<span *ngIf="signalRService.potentialMonthlyLuckymeWinnersCount != 1">s</span></div>
+
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -394,52 +459,67 @@
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade show in active" id="daily-winner">
-                <div class="winner-group">
-                  <!-- *ngFor="let winner of winnings[key]" -->
-                  <!-- *ngFor="let participant of winnerSelectionService.businessWinners"  -->
-                  <div *ngFor="let winner of winnerSelectionService.dailyLuckymeWinners" class="winner-item">
-                    <div class="winner-item__description">
-                      <span class="winner-name">{{winner.userName}}</span>
-                      <span class="winning-details">
-                        <span class="amount-won"> Won <span class="period"> </span>GH₵
-                          {{winner.amountToWin}}</span>
-                        <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
-                      </span>
+                <div *ngIf="winnerSelectionService.groupedDailyLuckymeWinners">
+                  <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedDailyLuckymeWinners)"
+                    class="winner-group">
+                    <div class="winner-group__header">
+                      {{key}}
+                    </div>
+                    <div *ngFor="let winner of winnerSelectionService.groupedDailyLuckymeWinners[key]"
+                      class="winner-item">
+                      <div class="winner-item__description">
+                        <span class="winner-name">{{winner.userName}}</span>
+                        <span *ngIf="winner.amountToWin" class="winning-details">
+                          <span class="amount-won"> Won <span class="period"> </span>GH₵
+                            {{winner.amountToWin}}</span>
+                          <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div role="tabpanel" class="tab-pane fade" id="weekly-winner">
-                <div class="winner-group">
-                  <!-- *ngFor="let winner of winnings[key]" -->
-                  <!-- *ngFor="let participant of winnerSelectionService.businessWinners"  -->
-                  <div *ngFor="let winner of winnerSelectionService.weeklyLuckymeWinners" class="winner-item">
-                    <div class="winner-item__description">
-                      <span class="winner-name">{{winner.userName}}</span>
-                      <span class="winning-details">
-                        <span class="amount-won"> Won <span class="period"> </span>GH₵
-                          {{winner.amountToWin}}</span>
-                        <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
-                      </span>
+                <div *ngIf="winnerSelectionService.groupedWeeklyLuckymeWinners">
+                  <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedWeeklyLuckymeWinners)"
+                    class="winner-group">
+                    <div class="winner-group__header">
+                      {{key}}
+                    </div>
+                    <div *ngFor="let winner of winnerSelectionService.groupedWeeklyLuckymeWinners[key]"
+                      class="winner-item">
+                      <div class="winner-item__description">
+                        <span class="winner-name">{{winner.userName}}</span>
+                        <span *ngIf="winner.amountToWin" class="winning-details">
+                          <span class="amount-won"> Won <span class="period"> </span>GH₵
+                            {{winner.amountToWin}}</span>
+                          <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div role="tabpanel" class="tab-pane fade" id="monthly-winner">
-                <div class="winner-group">
-                  <!-- *ngFor="let winner of winnings[key]" -->
-                  <!-- *ngFor="let participant of winnerSelectionService.businessWinners"  -->
-                  <div *ngFor="let winner of winnerSelectionService.monthlyLuckymeWinners" class="winner-item">
-                    <div class="winner-item__description">
-                      <span class="winner-name">{{winner.userName}}</span>
-                      <span class="winning-details">
-                        <span class="amount-won"> Won <span class="period"> </span>GH₵
-                          {{winner.amountToWin}}</span>
-                        <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
-                      </span>
+                  <div *ngIf="winnerSelectionService.groupedMonthlyLuckymeWinners">
+                      <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedMonthlyLuckymeWinners)"
+                        class="winner-group">
+                        <div class="winner-group__header">
+                          {{key}}
+                        </div>
+                        <div *ngFor="let winner of winnerSelectionService.groupedMonthlyLuckymeWinners[key]" class="winner-item">
+                          <div class="winner-item__description">
+                            <span class="winner-name">{{winner.userName}}</span>
+                            <span *ngIf="winner.amountToWin" class="winning-details">
+                              <span class="amount-won"> Won <span class="period"> </span>GH₵
+                                {{winner.amountToWin}}</span>
+                              <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+        
               </div>
             </div>
           </div>

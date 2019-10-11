@@ -24,3 +24,8 @@ export const settings = {
 
     luckymeStakeOdds: 10
 } 
+
+
+//switching between production and test
+//Change the currentApiUrl
+//Change the data.payment type
