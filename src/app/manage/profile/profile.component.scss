@@ -17,21 +17,10 @@ app-busy {
 }
 
 .profile-content {
+  width:100%;
+  display: flex;
+  height:100%;
   position: relative;
- // display: flex;
- // justify-content: space-evenly;
-//  align-items: center;
-  height: 100%;
-  overflow: hidden;
-  // .mode-box {
-  //   position: absolute;
-  //   top: 0;
-  //   right: 0;
-  //   background-color: green;
-  //   color: white;
-  //   padding: 1rem;
-  // }
-
   &__left {
     position: absolute;
     top: 0;
@@ -130,7 +119,7 @@ app-busy {
               background-color: white;
               flex: 1 1 50rem;
               max-width: 40rem;
-              margin-right:5rem;
+              margin-left:2.5rem;
               &__header {
                 background-color: #4487ab;
                 padding: 1rem;
@@ -145,6 +134,10 @@ app-busy {
                 padding: 1rem;
                 .c-input {
                   margin-bottom: 1rem;
+                }
+                .error-pane{
+                  text-align: center;
+                  color: rgb(153, 28, 28);
                 }
               }
             }
@@ -174,16 +167,14 @@ app-busy {
   }
   &__right {
     flex: 1 1;
-    height: 100%;
     overflow:auto;
     .profile-body {
       position: relative;
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       z-index: var(--level-one);
       height:100%;
-
       h3,
       h4,
       h5 {
@@ -222,7 +213,8 @@ app-busy {
           margin: 2rem;
           padding: 1rem 2rem 2rem 2rem;
           flex-wrap: wrap;
-          width: 40rem;
+         // max-width: 40rem;
+          flex-grow: 1;
           .box-header{
             font-size: 1.6rem;
             text-align: center;
@@ -261,6 +253,19 @@ app-busy {
         }
         &__footer {
         }
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    &__left{
+      position: fixed;
+      top:6rem;
+      left:5rem;
+    }
+    &__right{
+      .profile-body {
+        height:auto;
       }
     }
   }

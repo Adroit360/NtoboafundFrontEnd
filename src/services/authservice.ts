@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     get isAuthenticated(): Boolean {
-        return this.checkAuthenticationStatus()
+        return this.checkAuthenticationStatus();
     }
     get currentUser(): User {
         return this.getCurrentUser2();
@@ -38,7 +38,7 @@ export class AuthService {
         return this.http.put<any>(`${settings.currentApiUrl}/users/update`, formData);
     }
 
-    login(email: string, password: string) {
+    login(email: any, password: any) {
         return this.http.post<any>(`${settings.currentApiUrl}/users/authenticate`, { email, password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
@@ -116,11 +116,20 @@ export class AuthService {
 
     ChangeDetailsConfirm(error: string) {
         if (confirm(error)) {
-            this.router.navigate(['manage', 'profile']);
+            this.router.navigate(['manage', 'profile'],{queryParams:{returnUrl:this.router.url}});
         }
     }
 
-    getUserRole(userId: string) {
+     getUserRole(userId: string) {
+        this.http.get(`${settings.currentApiUrl}/users/exists/${userId}`)
+        .subscribe((response:Boolean)=>{
+            if(!response)
+            {
+                localStorage.removeItem("currentUser")
+                alert("Sorry we've encountered a problem with your user account. Please login again to fix the issue");
+                this.router.navigate(["login"]);
+            }
+        })
         return this.http.get(`${settings.currentApiUrl}/users/getrole/${userId}`);
     }
 

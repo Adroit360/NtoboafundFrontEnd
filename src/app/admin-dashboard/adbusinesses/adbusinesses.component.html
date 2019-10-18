@@ -166,15 +166,15 @@
           <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
           <div class="winner-group">
 
-            <div
-              *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentBusinessWinner"
-              class="winnerbox">
-              <!-- <div class="winnerbox"> -->
-              <div class="title">Latest Business Winner</div>
-              <!-- <div class="body">Justice Addico</div> -->
-              <div class="body">{{winnerSelectionService.currentBusinessWinner.userName}}</div>
+            <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentBusinessWinners" class="winnerbox">
+              <div class="title">Latest Business Winners</div>
+              <div class="body">
+                <div *ngFor="let winner of winnerSelectionService.currentBusinessWinners" class="winner">
+                  <span>{{winner.userName}}</span>
+                </div>
+              </div>
             </div>
-            <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="winner-group">
+              <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="winner-group">
               <div *ngFor="let participant of signalRService.businessParticipants" class="winner-item">
                 <div class="winner-item__description">
                   <span class="winner-name">{{participant.userName}}</span>

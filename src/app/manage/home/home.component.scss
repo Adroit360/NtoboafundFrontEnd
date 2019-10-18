@@ -52,7 +52,6 @@
             background-color: green;
             color:white;
             display: flex;
-            height: 10rem;
             margin: 2rem;
             box-shadow: var(--shadow);
             .left{
@@ -63,7 +62,7 @@
                 align-items: center;
                 justify-content: center;
                 flex-direction: column;
-                padding-right: 4.5rem;
+                padding: 2rem;
                 shape-outside: polygon(0% 0%,90% 0%,100% 50%,90% 100%,0% 100%);
                 clip-path: polygon(0% 0%,90% 0%,100% 50%,90% 100%,0% 100%);
             }
@@ -72,7 +71,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding-left: 2rem; 
+                padding: 2rem; 
             }
         }
     }

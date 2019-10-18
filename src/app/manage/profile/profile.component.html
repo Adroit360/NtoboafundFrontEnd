@@ -24,7 +24,7 @@
           </label>
         </li> -->
         <li id="cpassword-toggler">
-          <input type="radio" id="changePswd" name="navchecker">
+          <input #rdopasswordtoggler type="radio" id="changePswd" name="navchecker">
           <label class="c-tooltip" for="changePswd">
             <svg>
               <use href="assets/Icons/svgs.svg#icon-lock" />
@@ -38,39 +38,39 @@
                 <label for="null" class="fa fa-times"></label>
               </div>
               <div class="cpassword-box__body">
-                <form [formGroup]="cPasswordForm">
+                <form [formGroup]="cPasswordForm" (ngSubmit)="changePassword()">
 
                   <div class="cpassword-box__body">
                     <div class="c-input">
-                      <input type="text" placeholder="Enter Old Password" />
+                      <input formControlName="currentPassword" type="password" placeholder="Enter Current Password" />
                       <i class="c-addon fa fa-lock"></i>
                       <b class="val-msg">
-                        <!-- <p *ngIf="!registrationForm.get('firstName').valid && registrationForm.get('firstName').touched">This Field Is
-                                          Required</p> -->
+                         <p *ngIf="!cPasswordForm.get('currentPassword').valid && cPasswordForm.get('currentPassword').touched">This Field Is
+                                          Required</p> 
                       </b>
                     </div>
                     <div class="c-input">
-                      <input type="text" placeholder="Enter New Password" />
+                      <input formControlName="newPassword" type="password" placeholder="Enter New Password" />
                       <i class="c-addon fa fa-lock"></i>
                       <b class="val-msg">
-                        <!-- <p *ngIf="!registrationForm.get('lastName').valid && registrationForm.get('lastName').touched">This Field Is
-                                          Required</p> -->
+                        <p *ngIf="!cPasswordForm.get('newPassword').valid && cPasswordForm.get('newPassword').touched">This Field Is
+                                          Required</p>
                       </b>
                     </div>
                     <div class="c-input">
-                      <input type="text" placeholder="Confirm New Password" />
+                      <input formControlName="confirmNewPassword" type="password" placeholder="Confirm New Password" />
                       <i class="c-addon fa fa-lock"></i>
                       <b class="val-msg">
-                        <!-- <p *ngIf="!registrationForm.get('lastName').valid && registrationForm.get('lastName').touched">This Field Is
-                                            Required</p> -->
+                        <p *ngIf="!cPasswordForm.get('confirmNewPassword').valid && cPasswordForm.get('confirmNewPassword').touched">This Field Is
+                                            Required</p>
                       </b>
                     </div>
 
                   </div>
-                  <!-- <div *ngIf="error" class="error-pane"></div> -->
+                  <div *ngIf="changePasswordError" class="error-pane">{{changePasswordError}}</div>
                   <!-- *ngIf="cPasswordForm.touched"  -->
                   <div class="cPasswordbtnpane">
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button *ngIf="cpdbtnSubmitShown" type="submit" class="btn btn-primary">Save Changes</button>
                   </div>
                   <div class="profile-box__footer">
 
@@ -80,7 +80,6 @@
                 </form>
               </div>
             </div>
-
           </div>
         </li>
       </ul>
@@ -141,7 +140,7 @@
           <div class="box-header">Mobile Money Details</div>
           <div [ngClass]="{disabled:!isEditMode}" class="form-group">
             <label for="cboMomoNumber">Number</label>
-            <input type="number" class="form-control" id="cboMomoNumber"
+            <input type="text" class="form-control" id="cboMomoNumber"
               aria-describedby="InstitutionHelp" formControlName="mobileMoneyNumber" placeholder="Enter Mobile Money Number">
             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                             else.</small> -->

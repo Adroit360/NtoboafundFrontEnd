@@ -45,6 +45,7 @@ export class PaymentService {
             return paymentOptions;
         else
             return null;
+            
     }
 
     getUniqueCode(user: User) {

@@ -43,6 +43,8 @@ import { AdScholarshipsComponent } from './admin-dashboard/adscholarship/adschol
 import { AngularRaveModule } from 'angular-rave';
 import { PaymentService } from 'src/services/payment.service';
 import { AnalysisService } from 'src/services/analysis.service';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ResetpasswordformComponent } from './resetpasswordform/resetpasswordform.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { AnalysisService } from 'src/services/analysis.service';
     AdluckymesComponent,
     AdScholarshipsComponent,
     AdbusinessesComponent,
-    AdsettingsComponent
+    AdsettingsComponent,
+    ResetpasswordComponent,
+    ResetpasswordformComponent
   ],
   imports: [
     BrowserModule,

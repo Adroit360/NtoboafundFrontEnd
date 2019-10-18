@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/services/authservice';
 import { settings } from 'src/settings';
 import { UserDashBoardService } from 'src/services/userdashbord.service';
 import { formatDate } from '@angular/common';
 import { Payment } from 'src/models/payment';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +16,7 @@ import { Payment } from 'src/models/payment';
 export class ProfileComponent implements OnInit {
   loading = false;
   error = null;
+  changePasswordError = null;
   selectedImages: any;
   registrationForm: FormGroup;
   cPasswordForm: FormGroup;
@@ -27,13 +30,21 @@ export class ProfileComponent implements OnInit {
   networks: String[];
   
   momoCurrency:string;
+  returnUrl:string;
+  cpdbtnSubmitShown: boolean = true;
   
-  constructor(private authService: AuthService, private userDashboardService: UserDashBoardService) { }
+  @ViewChild("rdopasswordtoggler") passwordToggler:ElementRef;
+
+  constructor(private authService: AuthService, 
+    private userDashboardService: UserDashBoardService,
+    private router:Router,private httpClient:HttpClient,
+    private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
     this.currentUser = this.authService.currentUser;
     this.apiPath = settings.currentApiUrl;
-   // console.log(this.currentUser);
+  
+    this.returnUrl = this.activatedRoute.snapshot.queryParams["returnUrl"];
     
     this.momoCurrency = this.currentUser.momoDetails.currency;
 
@@ -56,8 +67,9 @@ export class ProfileComponent implements OnInit {
 
     })
     this.cPasswordForm = new FormGroup({
-      'password': new FormControl(null, Validators.required),
-      'confirmPassword': new FormControl(null, Validators.required)
+      'currentPassword':new FormControl(null,Validators.required),
+      'newPassword': new FormControl(null, Validators.required),
+      'confirmNewPassword': new FormControl(null, Validators.required)
     });
     this.userDashboardService.headerText = "Profile";
     this.changeMode(true);
@@ -68,6 +80,7 @@ export class ProfileComponent implements OnInit {
   updateProfile() {
     this.loading = true;
     this.error = null;
+    
     //console.log(this.registrationForm);
     if (this.registrationForm.valid) {
       var formData = new FormData();
@@ -102,6 +115,9 @@ export class ProfileComponent implements OnInit {
           this.loading = false;
          // this.changeMode(false);
           this.showMessage("User Profile Updated Successfully");
+          setTimeout((() => {
+            this.router.navigate([this.returnUrl]);
+          }).bind(this), 1000);
         },
         error => {
           this.showMessage(error);
@@ -176,5 +192,40 @@ export class ProfileComponent implements OnInit {
     }.bind(this), 2000);
   }
 
+  changePassword(){
+    
+    this.cpdbtnSubmitShown = false;
+    
+    var currentPassword = this.cPasswordForm.get("currentPassword").value;
+    var newPassword = this.cPasswordForm.get("newPassword").value;
+    var confirmNewPassword = this.cPasswordForm.get("confirmNewPassword").value;
 
+    if(!this.cPasswordForm.valid){
+      this.changePasswordError = "Please fill out all fields in the form";
+      this.cpdbtnSubmitShown = true;
+      return;
+    }
+
+    if(newPassword != confirmNewPassword){
+      this.changePasswordError = "The new passwords do not match";
+      this.cpdbtnSubmitShown = true;
+      return;
+    }
+
+    var formData = new FormData();
+    formData.append('userId', this.authService.currentUser.id.toString());
+    formData.append('currentPassword', currentPassword);
+    formData.append('newPassword', confirmNewPassword);
+
+    this.httpClient.put(`${settings.currentApiUrl}/users/changepassword`,formData)
+      .subscribe((response:any)=>{
+        this.cpdbtnSubmitShown = true;
+        this.passwordToggler.nativeElement.checked = false;
+        this.cPasswordForm.reset();
+        this.showMessage(response.message)
+      },xhr=>{
+          this.changePasswordError = xhr.error.message.description;
+          this.cpdbtnSubmitShown = true;
+      });
+  }
 }

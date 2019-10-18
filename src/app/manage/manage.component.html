@@ -1,7 +1,11 @@
 <div class="d-body">
     <aside class="d-body__aside">
         <div class="brand-image">
-
+            <a routerLink="" class="back_button">
+                <svg>
+                    <use href="assets/Icons/svgs.svg#icon-arrow-left" />
+                </svg>
+            </a>
         </div>
         <nav class="navlinks">
             <a (click)="navigate('overview')" routerLink="overview" class="navlink">
@@ -186,5 +190,4 @@
             </div>
         </div>
     </div>
-    
 </div>

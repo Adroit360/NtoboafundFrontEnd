@@ -15,7 +15,7 @@ export const settings = {
     currentApiUrl: data.urls.azure,
 
     getPublicApi: function (): string {
-        return data.payment.publicLive;
+        return data.payment.publicTest;
     },
 
     scholarshipStakeOdds: 100,

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/models/user';
 import { AuthService } from 'src/services/authservice';
 import { settings } from 'src/settings';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { overrideProvider } from '@angular/core/src/view';
 import { UserDashBoardService } from 'src/services/userdashbord.service';
 import { LuckyMe } from 'src/models/luckyMe';
@@ -26,12 +26,13 @@ export class ManageComponent implements OnInit {
   scholarships: Array<Scholarship>;
   businesses: Array<Business>;
   constructor(private authenticationService: AuthService,private http:HttpClient,
-     private router: ActivatedRoute,public userDashboardService:UserDashBoardService) { }
+      private router:Router,
+     private activatedRoute: ActivatedRoute,public userDashboardService:UserDashBoardService) { }
 
   ngOnInit() {
     this.authenticationStatusChanged()
     this.apiPath = settings.currentApiUrl;
-    var route = ((this.router.snapshot as any)._routerState.url as string);
+    var route = ((this.activatedRoute.snapshot as any)._routerState.url as string);
     if(route == "/manage"){
       this.currentPage = 'overview'
     }
@@ -51,11 +52,12 @@ export class ManageComponent implements OnInit {
 
   authenticationStatusChanged() {
     this.isAuthenticated = this.authenticationService.isAuthenticated;
-    console.log(this.isAuthenticated);
-
 
     if (this.isAuthenticated) {
       this.currentUser = this.authenticationService.currentUser
+    }
+    else{
+      this.router.navigate(["/login"]);
     }
   }
 

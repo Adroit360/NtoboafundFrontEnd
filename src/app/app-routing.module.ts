@@ -18,6 +18,8 @@ import { AdluckymesComponent } from './admin-dashboard/adluckymes/adluckymes.com
 import { AdsettingsComponent } from './admin-dashboard/adsettings/adsettings.component';
 import { AdbusinessesComponent } from './admin-dashboard/adbusinesses/adbusinesses.component';
 import { AdScholarshipsComponent } from './admin-dashboard/adscholarship/adscholarship.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ResetpasswordformComponent } from './resetpasswordform/resetpasswordform.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -42,7 +44,9 @@ const routes: Routes = [
     {path:"adscholarships",component:AdScholarshipsComponent},
     {path:"adbusinesses",component:AdbusinessesComponent},
     {path:"adsettings",component:AdsettingsComponent}
-  ]}
+  ]},
+  {path:"resetpassword",component:ResetpasswordComponent},
+  {path:"resetpasswordform",component:ResetpasswordformComponent}
 
 ];
 

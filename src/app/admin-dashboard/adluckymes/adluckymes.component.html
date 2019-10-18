@@ -63,10 +63,10 @@
               <div class="text">{{selectedluckyme.status}}</div>
             </div>
             <div *ngIf="selectedluckyme.status == 'won'" class="record">
-                <div class="label">Amount Won</div>
-                <div class="text">{{selectedluckyme.amountToWin}}</div>
-              </div>
-  
+              <div class="label">Amount Won</div>
+              <div class="text">{{selectedluckyme.amountToWin}}</div>
+            </div>
+
           </div>
           <div *ngIf="selectedluckyme" class="luckyme-userdetails">
             <div class="record">
@@ -84,7 +84,8 @@
 
           </div>
           <div *ngIf="selectedluckyme" class="payment-details">
-            <div [ngStyle]="{'background-color':selectedluckyme.status == 'won' ? 'green' : 'red'}" class="status">{{selectedluckyme.status}}</div>
+            <div [ngStyle]="{'background-color':selectedluckyme.status == 'won' ? 'green' : 'red'}" class="status">
+              {{selectedluckyme.status}}</div>
             <div *ngIf="selectedluckyme.user.preferedMoneyReceptionMethod == 'momo'" class="momo">
               <div class="record">
                 <div class="label">Selected Payment Method</div>
@@ -113,10 +114,8 @@
               <div *ngIf="selectedluckyme.status == 'won'" class="record transactionpane">
                 <div class="form-group">
                   <label>Pay User and Enter Transaction Id</label>
-                  <input type="text" class="form-control"
-                    placeholder="Enter Transaction Id">
-                  <small *ngIf="false"
-                    class="form-text text-danger">Please enter the transaction Id</small>
+                  <input type="text" class="form-control" placeholder="Enter Transaction Id">
+                  <small *ngIf="false" class="form-text text-danger">Please enter the transaction Id</small>
                 </div>
                 <div class="btn btn-info">User Paid</div>
               </div>
@@ -146,13 +145,13 @@
                   {{selectedluckyme.user.bankDetails.swiftCode}}</div>
               </div>
               <div *ngIf="selectedbusiness.status == 'won'" class="record transactionpane">
-                  <div class="form-group">
-                    <label>Pay User and Enter Transaction Id</label>
-                    <input type="text" class="form-control" placeholder="Enter Transaction Id">
-                    <small *ngIf="false" class="form-text text-danger">Please enter the transaction Id</small>
-                  </div>
-                  <div class="btn btn-info">User Paid</div>
+                <div class="form-group">
+                  <label>Pay User and Enter Transaction Id</label>
+                  <input type="text" class="form-control" placeholder="Enter Transaction Id">
+                  <small *ngIf="false" class="form-text text-danger">Please enter the transaction Id</small>
                 </div>
+                <div class="btn btn-info">User Paid</div>
+              </div>
 
             </div>
           </div>
@@ -179,12 +178,14 @@
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade show in active" id="daily">
                 <div
-                  *ngIf="!winnerSelectionService.isDailyDrawOngoing && winnerSelectionService.currentDailyLuckymeWinner"
+                  *ngIf="!winnerSelectionService.isDailyDrawOngoing && winnerSelectionService.currentDailyLuckymeWinners"
                   class="winnerbox">
-                  <!-- <div class="winnerbox"> -->
-                  <div class="title">Latest Daily Luckyme Winner</div>
-                  <!-- <div class="body">Justice Addico</div> -->
-                  <div class="body">{{winnerSelectionService.currentDailyLuckymeWinner.userName}}</div>
+                  <div class="title">Latest Daily Luckyme Winners</div>
+                  <div class="body">
+                    <div *ngFor="let winner of winnerSelectionService.currentDailyLuckymeWinners" class="winner">
+                      <span>{{winner.userName}}</span>
+                    </div>
+                  </div>
                 </div>
                 <div *ngIf="!winnerSelectionService.isDailyDrawOngoing" class="winner-group">
                   <div *ngFor="let participant of signalRService.dailyLuckymeParticipants" class="winner-item">
@@ -222,9 +223,7 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  *ngIf="!winnerSelectionService.isDailyDrawOngoing"
-                  class="fixed-pane">
+                <div *ngIf="!winnerSelectionService.isDailyDrawOngoing" class="fixed-pane">
                   <button (click)="insertDummy('daily')" class="btn btn-danger">Insert Dummy</button>
                   <!-- <div class="fixed-participant">Fixed - </div> -->
                   <button (click)="showFixerBox('daily')" class="btn btn-danger btn-fix">Fix</button>
@@ -234,12 +233,14 @@
 
               <div role="tabpanel" class="tab-pane fade" id="weekly">
                 <div
-                  *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && winnerSelectionService.currentWeeklyLuckymeWinner"
+                  *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && winnerSelectionService.currentWeeklyLuckymeWinners"
                   class="winnerbox">
-                  <!-- <div class="winnerbox"> -->
-                  <div class="title">Latest Weekly Luckyme Winner</div>
-                  <!-- <div class="body">Justice Addico</div> -->
-                  <div class="body">{{winnerSelectionService.currentWeeklyLuckymeWinner.userName}}</div>
+                  <div class="title">Latest Weekly Luckyme Winners</div>
+                  <div class="body">
+                    <div *ngFor="let winner of winnerSelectionService.currentWeeklyLuckymeWinners" class="winner">
+                      <span>{{winner.userName}}</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div *ngIf="!winnerSelectionService.isWeeklyDrawOngoing" class="winner-group">
@@ -280,9 +281,7 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  *ngIf="!winnerSelectionService.isWeeklyDrawOngoing"
-                  class="fixed-pane">
+                <div *ngIf="!winnerSelectionService.isWeeklyDrawOngoing" class="fixed-pane">
                   <button (click)="insertDummy('weekly')" class="btn btn-danger">Insert Dummy</button>
                   <!-- <div class="fixed-participant">Fixed - </div> -->
                   <button (click)="showFixerBox('weekly')" class="btn btn-danger btn-fix">Fix</button>
@@ -292,12 +291,14 @@
 
               <div role="tabpanel" class="tab-pane fade" id="monthly">
                 <div
-                  *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentMonthlyLuckymeWinner"
+                  *ngIf="!winnerSelectionService.isMonthlyDrawOngoing && winnerSelectionService.currentMonthlyLuckymeWinners"
                   class="winnerbox">
-                  <!-- <div class="winnerbox"> -->
-                  <div class="title">Latest Monthly Luckyme Winner</div>
-                  <!-- <div class="body">Justice Addico</div> -->
-                  <div class="body">{{winnerSelectionService.currentMonthlyLuckymeWinner.userName}}</div>
+                  <div class="title">Latest Monthly Luckyme Winners</div>
+                  <div class="body">
+                    <div *ngFor="let winner of winnerSelectionService.currentMonthlyLuckymeWinners" class="winner">
+                      <span>{{winner.userName}}</span>
+                    </div>
+                  </div>
                 </div>
                 <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="winner-group">
                   <!-- *ngFor="let winner of winnings[key]" -->
@@ -338,9 +339,7 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)"
-                  class="fixed-pane">
+                <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="fixed-pane">
                   <button (click)="insertDummy('monthly')" class="btn btn-danger">Insert Dummy</button>
                   <!-- <div class="fixed-participant">Fixed - </div> -->
                   <button (click)="showFixerBox('monthly')" class="btn btn-danger btn-fix">Fix</button>

@@ -159,15 +159,15 @@
         <div class="info-card__head">Current Participants</div>
         <div class="info-card__body">
           <div class="winner-group">
-            <div
-              *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && winnerSelectionService.currentScholarshipWinner"
-              class="winnerbox">
-              <!-- <div class="winnerbox"> -->
-              <div class="title">Latest Scholarship Winner</div>
-              <!-- <div class="body">Justice Addico</div> -->
-              <div class="body">{{winnerSelectionService.currentScholarshipWinner.userName}}</div>
+            <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && winnerSelectionService.currentScholarshipWinners" class="winnerbox">
+              <div class="title">Latest Scholarship Winners</div>
+              <div class="body">
+                <div *ngFor="let winner of winnerSelectionService.currentScholarshipWinners" class="winner">
+                  <span>{{winner.userName}}</span>
+                </div>
+              </div>
             </div>
-
+  
             <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async)" class="winner-group">
               <div *ngFor="let participant of signalRService.scholarshipParticipants" class="winner-item">
                 <div class="winner-item__description">

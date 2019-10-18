@@ -18,11 +18,13 @@ app-busy{
 }
 .register-body {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: var(--level-two);
-  height: calc(100vh);
+    display: flex;
+    z-index: var(--level-two);
+    height: calc(100vh - 8.5rem);
+    top: 5rem;
+    overflow: auto;
+    bottom: 3.5rem;
+    padding: 1rem;
   h3,
   h4,
   h5 {
@@ -34,6 +36,8 @@ app-busy{
     box-shadow: var(--shadow);
     flex: 0 1 40rem;
     padding: 1rem;
+    margin:auto;
+    //@include absCenter();
     &__header {
       box-shadow: var(--shadow);
       padding: 1rem;

@@ -15,7 +15,8 @@ export class User {
     businesses:Array<Business>;
     momoDetails:MomoDetails;
     bankDetails:BankDetails;
-    preferedMoneyReceptionMethod:string
+    preferedMoneyReceptionMethod:string;
+    points:number;
 }
 
 class MomoDetails{

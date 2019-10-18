@@ -229,7 +229,7 @@
                   </div>
                   <div class="panel" style="background-color: #324675">
                     <div class="number">*</div>
-                    <div class="text">Luckyme contributions has seven stake amounts i.e GH₵ 1, GH₵ 5, GH₵ 10, GH₵ 20, GH₵ 50, GH₵ 100, GH₵ 500</div>
+                    <div class="text">Luckyme contributions has seven stake amounts i.e GH₵ 1, GH₵ 5, GH₵ 10, GH₵ 20, GH₵ 50, GH₵ 100, GH₵ 5i00</div>
                   </div>
                       </div>
               </div>
@@ -283,7 +283,7 @@
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade show in active" id="daily">
 
-                  <div *ngIf="!(winnerSelectionService.isDailyDrawOngoing | async) && winnerSelectionService.currentDailyLuckymeWinners" class="winnerbox">
+                  <div *ngIf="!winnerSelectionService.isDailyDrawOngoing  && winnerSelectionService.currentDailyLuckymeWinners" class="winnerbox">
                       <div class="title">Latest Daily Luckyme Winners</div>
                       <div class="body">
                         <div *ngFor="let winner of winnerSelectionService.currentDailyLuckymeWinners" class="winner">
@@ -333,7 +333,7 @@
               </div>
               <div role="tabpanel" class="tab-pane fade" id="weekly">
            
-                <div *ngIf="!(winnerSelectionService.isWeeklyDrawOngoing | async) && winnerSelectionService.currentWeeklyLuckymeWinners" class="winnerbox">
+                <div *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && winnerSelectionService.currentWeeklyLuckymeWinners" class="winnerbox">
                     <div class="title">Latest Weekly Luckyme Winners</div>
                     <div class="body">
                       <div *ngFor="let winner of winnerSelectionService.currentWeeklyLuckymeWinners" class="winner">

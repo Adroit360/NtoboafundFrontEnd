@@ -16,12 +16,12 @@ export class ErrorInterceptor implements HttpInterceptor {
                 //this.authenticationService.logout();
                 //location.reload(true);
             }
-            console.log(err.error);
-            let error = err.error;
-            if(isObject(error))
-                error= JSON.stringify(error);
+             console.log(err);
+            //let error = err.error;
+            // if(isObject(err))
+                 //err= JSON.stringify(err);
 
-            return throwError(error);
+            return throwError(err);
         }))
     }
 }
