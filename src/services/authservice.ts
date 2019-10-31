@@ -64,12 +64,6 @@ export class AuthService {
     }
 
     getCurrentUser2(): User {
-        //  var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        // if(!currentUser){
-        //     ///This side is stubborn code .. I'll come back to it
-        //     this.router.navigate(["login"]);
-        // }
-        // return currentUser;
         return JSON.parse(localStorage.getItem('currentUser'));
     }
 
@@ -82,27 +76,54 @@ export class AuthService {
         if (rMethod) {
             switch (rMethod) {
                 case "momo":
+                    //Build the error message to show base on what info the user is missing
+
+                    let momoError: string = "";
+                    if (!this.currentUser.momoDetails.country)
+                        momoError += "Please add your mobile money country\n";
+                    if (!this.currentUser.momoDetails.number)
+                        momoError += "Please add your mobile money number\n";
+                    if (!this.currentUser.momoDetails.network)
+                        momoError += "Please add your mobile money network\n";
+
+                    //Return true if all bank details are present
+
                     if (this.currentUser.momoDetails.country && this.currentUser.momoDetails.currency && this.currentUser.momoDetails.number && this.currentUser.momoDetails.network) {
                         return true;
-                    }
+                    }//else show the show the error message
                     else if (showConfirmBox) {
-                        this.ChangeDetailsConfirm("Please Setup Mobile Money Payment Details");
+                        this.ChangeDetailsConfirm(momoError);
                         return false;
                     }
 
                     return false;
                     break;
                 case "bank":
-                    if (this.currentUser.bankDetails.AccountNumber && this.currentUser.bankDetails.SwiftCode && this.currentUser.bankDetails.BankName) {
+
+                    //Build the error message to show base on what info the user is missing
+                    let bankError: string = "";
+                    if (!this.currentUser.bankDetails.bankName)
+                        bankError += "Please add your bank's name\n";
+                    if (!this.currentUser.bankDetails.accountNumber)
+                        bankError += "Please add your bank account number\n";
+                    if (!this.currentUser.bankDetails.swiftCode)
+                        bankError += "Please add your bank's swift code\n";
+
+                    //Return true if all bank details are present
+                    if (this.currentUser.bankDetails.accountNumber && this.currentUser.bankDetails.swiftCode && this.currentUser.bankDetails.bankName) {
                         return true;
-                    }
+                    }//else show the show the error message
                     else if (showConfirmBox) {
-                        this.ChangeDetailsConfirm("Please Setup Bank Account Details");
+                        this.ChangeDetailsConfirm(bankError);
                         return false;
                     }
                     return false;
                     break;
                 default:
+                    if (showConfirmBox) {
+                        this.ChangeDetailsConfirm("Please choose the correct prefered money reception method");
+                        return false;
+                    }
                     return false;
                     break;
             }
@@ -116,20 +137,19 @@ export class AuthService {
 
     ChangeDetailsConfirm(error: string) {
         if (confirm(error)) {
-            this.router.navigate(['manage', 'profile'],{queryParams:{returnUrl:this.router.url}});
+            this.router.navigate(['manage', 'profile'], { queryParams: { returnUrl: this.router.url } });
         }
     }
 
-     getUserRole(userId: string) {
+    getUserRole(userId: string) {
         this.http.get(`${settings.currentApiUrl}/users/exists/${userId}`)
-        .subscribe((response:Boolean)=>{
-            if(!response)
-            {
-                localStorage.removeItem("currentUser")
-                alert("Sorry we've encountered a problem with your user account. Please login again to fix the issue");
-                this.router.navigate(["login"]);
-            }
-        })
+            .subscribe((response: Boolean) => {
+                if (!response) {
+                    localStorage.removeItem("currentUser")
+                    alert("Sorry we've encountered a problem with your user account. Please login again to fix the issue");
+                    this.router.navigate(["login"]);
+                }
+            })
         return this.http.get(`${settings.currentApiUrl}/users/getrole/${userId}`);
     }
 

@@ -32,9 +32,9 @@ class MomoDetails{
 }
 
 class BankDetails{
-     BankName : string;
+     bankName : string;
 
-     AccountNumber : string;
+     accountNumber : string;
 
-     SwiftCode : string;
+     swiftCode : string;
 }

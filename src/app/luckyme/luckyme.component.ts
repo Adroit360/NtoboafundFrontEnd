@@ -28,9 +28,41 @@ export class LuckymeComponent implements OnInit {
   errorShown = false;
   raveOptions: RaveOptions;
 
+
+  luckyMeDailyHours: number;
+  luckyMeDailyMinutes: number;
+  luckyMeDailySeconds: number;
+
+  luckyMeWeeklyDays: number;
+  luckyMeWeeklyHours: number;
+  luckyMeWeeklyMinutes: number;
+  luckyMeWeeklySeconds: number;
+
+
+  luckyMeMonthlyDays: number;
+  luckyMeMonthlyHours: number;
+  luckyMeMonthlyMinutes: number;
+  luckyMeMonthlySeconds: number;
+
   constructor(private http: HttpClient, public authService: AuthService, public paymentService: PaymentService,
-    private router: Router, private currentRoute: ActivatedRoute, public luckymeService: LuckymeService,
-    public winnerSelectionService: WinnerSelectionService, public signalRService: SignalRService) { }
+    private router: Router, private currentRoute: ActivatedRoute,private countDownService:CountDownService,
+    public winnerSelectionService: WinnerSelectionService, public signalRService: SignalRService) { 
+      
+    this.countDownService.DailyHoursTime.subscribe((hours: number) => { this.luckyMeDailyHours = hours });
+    this.countDownService.DailyMinutesTime.subscribe((minutes: number) => { this.luckyMeDailyMinutes = minutes });
+    this.countDownService.DailySecondsTime.subscribe((seconds: number) => { this.luckyMeDailySeconds = seconds });
+
+    this.countDownService.WeeklyDaysTime.subscribe((days: number) => { this.luckyMeWeeklyDays = days });
+    this.countDownService.WeeklyHoursTime.subscribe((hours: number) => { this.luckyMeWeeklyHours = hours });
+    this.countDownService.WeeklyMinutesTime.subscribe((minutes: number) => { this.luckyMeWeeklyMinutes = minutes });
+    this.countDownService.WeeklySecondsTime.subscribe((seconds: number) => { this.luckyMeWeeklySeconds = seconds });
+
+    this.countDownService.MonthlyDaysTime.subscribe((days: number) => { this.luckyMeMonthlyDays = days;});
+    this.countDownService.MonthlyHoursTime.subscribe((hours: number) => { this.luckyMeMonthlyHours = hours });
+    this.countDownService.MonthlyMinutesTime.subscribe((minutes: number) => { this.luckyMeMonthlyMinutes = minutes;});
+    this.countDownService.MonthlySecondsTime.subscribe((seconds: number) => { this.luckyMeMonthlySeconds = seconds;});
+
+    }
 
   ngOnInit() {
     this.loading = false;

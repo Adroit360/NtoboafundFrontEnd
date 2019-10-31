@@ -11,20 +11,7 @@ import { resolve } from 'dns';
 
 @Injectable()
 export class LuckymeService {
-  luckyMeDailyHours: number;
-  luckyMeDailyMinutes: number;
-  luckyMeDailySeconds: number;
-
-  luckyMeWeeklyDays: number;
-  luckyMeWeeklyHours: number;
-  luckyMeWeeklyMinutes: number;
-  luckyMeWeeklySeconds: number;
-
-
-  luckyMeMonthlyDays: number;
-  luckyMeMonthlyHours: number;
-  luckyMeMonthlyMinutes: number;
-  luckyMeMonthlySeconds: number;
+  
 
   personalLuckymes: Array<LuckyMe>;
   allLuckymes: Array<LuckyMe>;
@@ -37,19 +24,19 @@ export class LuckymeService {
     this.personalLuckymes = new Array<LuckyMe>();
     this.allLuckymes = new Array<LuckyMe>();
 
-    this.countDownService.DailyHoursTime.subscribe((hours: number) => { this.luckyMeDailyHours = hours });
-    this.countDownService.DailyMinutesTime.subscribe((minutes: number) => { this.luckyMeDailyMinutes = minutes });
-    this.countDownService.DailySecondsTime.subscribe((seconds: number) => { this.luckyMeDailySeconds = seconds });
+    // this.countDownService.DailyHoursTime.subscribe((hours: number) => { this.luckyMeDailyHours = hours });
+    // this.countDownService.DailyMinutesTime.subscribe((minutes: number) => { this.luckyMeDailyMinutes = minutes });
+    // this.countDownService.DailySecondsTime.subscribe((seconds: number) => { this.luckyMeDailySeconds = seconds });
 
-    this.countDownService.WeeklyDaysTime.subscribe((days: number) => { this.luckyMeWeeklyDays = days });
-    this.countDownService.WeeklyHoursTime.subscribe((hours: number) => { this.luckyMeWeeklyHours = hours });
-    this.countDownService.WeeklyMinutesTime.subscribe((minutes: number) => { this.luckyMeWeeklyMinutes = minutes });
-    this.countDownService.WeeklySecondsTime.subscribe((seconds: number) => { this.luckyMeWeeklySeconds = seconds });
+    // this.countDownService.WeeklyDaysTime.subscribe((days: number) => { this.luckyMeWeeklyDays = days });
+    // this.countDownService.WeeklyHoursTime.subscribe((hours: number) => { this.luckyMeWeeklyHours = hours });
+    // this.countDownService.WeeklyMinutesTime.subscribe((minutes: number) => { this.luckyMeWeeklyMinutes = minutes });
+    // this.countDownService.WeeklySecondsTime.subscribe((seconds: number) => { this.luckyMeWeeklySeconds = seconds });
 
-    this.countDownService.MonthlyDaysTime.subscribe((days: number) => { this.luckyMeMonthlyDays = days;});
-    this.countDownService.MonthlyHoursTime.subscribe((hours: number) => { this.luckyMeMonthlyHours = hours });
-    this.countDownService.MonthlyMinutesTime.subscribe((minutes: number) => { this.luckyMeMonthlyMinutes = minutes;});
-    this.countDownService.MonthlySecondsTime.subscribe((seconds: number) => { this.luckyMeMonthlySeconds = seconds;});
+    // this.countDownService.MonthlyDaysTime.subscribe((days: number) => { this.luckyMeMonthlyDays = days;});
+    // this.countDownService.MonthlyHoursTime.subscribe((hours: number) => { this.luckyMeMonthlyHours = hours });
+    // this.countDownService.MonthlyMinutesTime.subscribe((minutes: number) => { this.luckyMeMonthlyMinutes = minutes;});
+    // this.countDownService.MonthlySecondsTime.subscribe((seconds: number) => { this.luckyMeMonthlySeconds = seconds;});
 
     this.getAllLuckyMes();
 

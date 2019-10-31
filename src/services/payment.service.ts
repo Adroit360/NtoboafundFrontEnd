@@ -18,6 +18,7 @@ export class PaymentService {
     getRaveOptions(stakeType: String, amount: number, condition: boolean = true) {
         let paymentOptions: RaveOptions;
         let user = this.authService.currentUser;
+        
         if (user) {
             paymentOptions = {
                 PBFPubKey: settings.getPublicApi(),
@@ -35,10 +36,10 @@ export class PaymentService {
                 custom_logo: `${window.location.origin}/assets/images/logo.png`
             }
         }
-        console.log("User");
-        console.log(user);
-        console.log("Payment Options");
-        console.log(paymentOptions);
+        // console.log("User");
+        // console.log(user);
+        // console.log("Payment Options");
+        // console.log(paymentOptions);
 
         //Use Condition to prevent dialog from showing and show user and error message
         if (condition)
@@ -75,6 +76,7 @@ export class PaymentService {
         payment.payerId = this.authService.currentUser.id.toString();
         return this.http.post(`${settings.currentApiUrl}/payments`,payment);
     }
+
     getPaymentByDetails(itemPayedFor,itemPayedForId){
         return this.http.get(`${settings.currentApiUrl}/payments/bydetails/${itemPayedFor}/${itemPayedForId}`);
     }

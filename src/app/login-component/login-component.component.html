@@ -7,23 +7,28 @@
     </div>
     <div class="login-box__body">
       <div class="c-input">
-        <input  type="email" formControlName="email" placeholder="Email" />
+        <input type="email" formControlName="email" placeholder="Email" />
         <i class="c-addon fa fa-envelope"></i>
         <b class="val-msg"></b>
       </div>
       <div class="c-input">
-        <input  type="password" formControlName="password" placeholder="Password" />
+        <input type="password" formControlName="password" placeholder="Password" />
         <i class="c-addon fa fa-lock"></i>
         <b class="val-msg"></b>
       </div>
     </div>
-    <div  class="loading"></div>
+    <div class="loading"></div>
     <div *ngIf="error" class="error-msg">{{error}}</div>
-   
+
     <div class="loginbtnpane">
       <a class="redirect-link" routerLink="../resetpassword">Forgot Password ?</a>
       <button type="submit" class="btn btn-primary">Login</button>
     </div>
+
+    <div class="loginbtnpane">
+      <a class="redirect-link" routerLink="../register">Don't have an account? Signup</a>
+    </div>
+
     <!-- <h4>Or Login With</h4>
     <div class="socials">
         <a href="" class="slink"><img src="assets/images/fblogo.png" alt="facebook"></a>

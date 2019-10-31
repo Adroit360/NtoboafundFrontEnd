@@ -12,12 +12,16 @@ import { SignalRService } from 'src/services/signalr.service';
 export class AdhomeComponent implements OnInit {
 
   constructor(public analysisService:AnalysisService,public signalRService:SignalRService) { }
+
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59,90], label: 'Profits' },
-    { data: [28, 48, 40], label: 'Losses' },
-    { data: [180, 480, 770], label: 'Series C', yAxisID: 'y-axis-1' }
+    { data: [65, 59,90], label: 'FundsPaid' },
+    { data: [28, 48, 40], label: 'FundsCollected' },
+    { data: [180, 480, 770], label: 'TotalFunds', yAxisID: 'y-axis-1' },
+    { data: [234, 900, 23], label: 'ProfitsMade', yAxisID: 'y-axis-1' }
   ];
+
   public lineChartLabels: Label[] = ['2017','2018','2019'];
+
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -58,6 +62,7 @@ export class AdhomeComponent implements OnInit {
       ],
     },
   };
+
   public lineChartColors: Color[] = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
@@ -84,8 +89,11 @@ export class AdhomeComponent implements OnInit {
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
   ];
+
   public lineChartLegend = true;
+
   public lineChartType = 'line';
+
   ngOnInit() {
   }
 

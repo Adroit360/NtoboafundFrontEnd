@@ -7,30 +7,30 @@
     <div class="luckyme-body__left">
       <div class="countdown-container">
         <!-- style="display: none" -->
-        <div *ngIf="luckymeService.luckyMeDailySeconds>=0" class="countdown">
+        <div *ngIf="luckyMeDailySeconds>=0" class="countdown">
           <div class="header">Next Daily LuckyMe Draw In</div>
           <div class="counters">
-            <div class="ctd">{{luckymeService.luckyMeDailyHours}} <span>Hours</span></div>
-            <div class="ctd">{{luckymeService.luckyMeDailyMinutes}} <span>Minutes</span></div>
-            <div class="ctd">{{luckymeService.luckyMeDailySeconds}} <span>Seconds</span></div>
+            <div class="ctd">{{luckyMeDailyHours}} <span>Hours</span></div>
+            <div class="ctd">{{luckyMeDailyMinutes}} <span>Minutes</span></div>
+            <div class="ctd">{{luckyMeDailySeconds}} <span>Seconds</span></div>
           </div>
         </div>
-        <div *ngIf="luckymeService.luckyMeWeeklySeconds>=0" class="countdown">
+        <div *ngIf="luckyMeWeeklySeconds>=0" class="countdown">
           <div class="header">Next Weekly LuckyMe Draw In</div>
           <div class="counters">
-            <div class="ctd">{{luckymeService.luckyMeWeeklyDays}} <span>Days</span></div>
-            <div class="ctd">{{luckymeService.luckyMeWeeklyHours}} <span>Hours</span></div>
-            <div class="ctd">{{luckymeService.luckyMeWeeklyMinutes}} <span>Minutes</span></div>
-            <div class="ctd">{{luckymeService.luckyMeWeeklySeconds}} <span>Seconds</span></div>
+            <div class="ctd">{{luckyMeWeeklyDays}} <span>Days</span></div>
+            <div class="ctd">{{luckyMeWeeklyHours}} <span>Hours</span></div>
+            <div class="ctd">{{luckyMeWeeklyMinutes}} <span>Minutes</span></div>
+            <div class="ctd">{{luckyMeWeeklySeconds}} <span>Seconds</span></div>
           </div>
         </div>
-        <div *ngIf="luckymeService.luckyMeMonthlySeconds>=0" class="countdown">
+        <div *ngIf="luckyMeMonthlySeconds>=0" class="countdown">
           <div class="header">Next Monthly LuckyMe Draw In</div>
           <div class="counters">
-            <div class="ctd">{{luckymeService.luckyMeMonthlyDays}} <span>Days</span></div>
-            <div class="ctd">{{luckymeService.luckyMeMonthlyHours}} <span>Hours</span></div>
-            <div class="ctd">{{luckymeService.luckyMeMonthlyMinutes}} <span>Minutes</span></div>
-            <div class="ctd">{{luckymeService.luckyMeMonthlySeconds}} <span>Seconds</span></div>
+            <div class="ctd">{{luckyMeMonthlyDays}} <span>Days</span></div>
+            <div class="ctd">{{luckyMeMonthlyHours}} <span>Hours</span></div>
+            <div class="ctd">{{luckyMeMonthlyMinutes}} <span>Minutes</span></div>
+            <div class="ctd">{{luckyMeMonthlySeconds}} <span>Seconds</span></div>
           </div>
         </div>
       </div>
@@ -59,10 +59,10 @@
                             </div> -->
             <input id="rone" (change)="selectChoice($event,1.00)" class="choice-selector__radio" type="radio"
               name="choice" />
-            <div class="choice-selector__background">
+            <label for="rone" class="choice-selector__background">
               <label for="rone" class="choice-selector">
               </label>
-            </div>
+            </label>
 
           </div>
           <div class="choice-box">
@@ -73,10 +73,10 @@
                         </div> -->
             <input id="rfive" (change)="selectChoice($event,5.00)" class="choice-selector__radio" type="radio"
               name="choice" />
-            <div class="choice-selector__background">
+            <label for="rfive" class="choice-selector__background">
               <label for="rfive" class="choice-selector">
               </label>
-            </div>
+            </label>
 
           </div>
           <div class="choice-box">
@@ -87,11 +87,11 @@
                         </div> -->
             <input id="rten" (change)="selectChoice($event,10.00)" class="choice-selector__radio" type="radio"
               name="choice" />
-            <div class="choice-selector__background">
+            <label for="rten" class="choice-selector__background">
               <label for="rten" class="choice-selector">
               </label>
 
-            </div>
+            </label>
 
           </div>
           <div class="choice-box">
@@ -102,11 +102,11 @@
                         </div> -->
             <input id="rtwenty" (change)="selectChoice($event,20.00)" class="choice-selector__radio" type="radio"
               name="choice" />
-            <div class="choice-selector__background">
+            <label for="rtwenty" class="choice-selector__background">
 
               <label for="rtwenty" class="choice-selector">
               </label>
-            </div>
+            </label>
 
           </div>
           <div class="choice-box">
@@ -117,9 +117,9 @@
                         </div> -->
             <input id="rfifty" (change)="selectChoice($event,50.00)" class="choice-selector__radio" type="radio"
               name="choice" />
-            <div class="choice-selector__background">
+            <label for="rfifty" class="choice-selector__background">
               <label for="rfifty" class="choice-selector"></label>
-            </div>
+            </label>
           </div>
           <div class="choice-box">
             <div class="choice-amount">GH₵ 100</div>
@@ -129,11 +129,11 @@
                         </div> -->
             <input id="rhundred" (change)="selectChoice($event,100.00)" class="choice-selector__radio" type="radio"
               name="choice" />
-            <div class="choice-selector__background">
+            <label for="rhundred" class="choice-selector__background">
 
               <label for="rhundred" class="choice-selector">
               </label>
-            </div>
+            </label>
 
           </div>
           <div class="choice-box">
@@ -144,11 +144,11 @@
                         </div> -->
             <input id="rfivehundred" (change)="selectChoice($event,500.00)" class="choice-selector__radio" type="radio"
               name="choice" />
-            <div class="choice-selector__background">
+            <label for="rfivehundred" class="choice-selector__background">
               <label for="rfivehundred" class="choice-selector">
               </label>
 
-            </div>
+            </label>
 
           </div>
         </div>
@@ -239,7 +239,7 @@
     </div>
     <div class="luckyme-body__right">
 
-      <!-- <div *ngIf="luckymeService.personalLuckymes.length>0" class="recentsbox">
+      <!-- <div *ngIf="personalLuckymes.length>0" class="recentsbox">
         <div class="recentsbox__header">
           <div class="recentsbox__header--left">
             <span class="fa fa-history"></span>
@@ -249,7 +249,7 @@
           </div>
         </div>
         <div class="recentsbox__body">
-          <div *ngFor="let luckyme of luckymeService.personalLuckymes" class="recent-stake-item">
+          <div *ngFor="let luckyme of personalLuckymes" class="recent-stake-item">
             <div class="recent-stake-item--top">
               <div class="period">{{luckyme.period}}</div>
               <div class="amount">GHS {{luckyme.amount}}</div>

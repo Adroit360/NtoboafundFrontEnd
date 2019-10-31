@@ -1,12 +1,30 @@
 .mhome-body{
+    width:calc(100vw - 15rem);
     &__top{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
     }
     &__charts{
-        display: flex;
-        justify-content: space-evenly;  
+        padding: 3rem;
+        .chart-container{
+            border:1px solid var(--bordercolor);
+            margin: 1rem;
+            border-radius: .3rem;
+            overflow: hidden;
+            &__head{
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: .1rem;
+                background-color: #3f51b5;
+                color:white;
+                font-size: 1.5rem;
+                padding: 1rem;
+            }
+            &__body{
+                padding: 1rem;
+            }
+        }
     }
 }
 
@@ -21,7 +39,7 @@
     .number{
         padding:1rem;
         font-size: 3rem;
-        background-color: #74cb99;
+        background-color: #3f51b5;
         color: white;
     }
     .text{

@@ -65,10 +65,10 @@ export class ResetpasswordformComponent implements OnInit {
         }).bind(this), 5000);
        
       },
-      error=>{
+      xhr=>{
         this.isSuccessful = false;
         this.isbuttonHidden = false;
-        this.errorMessage = error.message;
+        this.errorMessage = xhr.error.message;
       });
   }
 

@@ -12,7 +12,7 @@ const data = {
 }
 export const settings = {
 
-    currentApiUrl: data.urls.azure,
+    currentApiUrl: data.urls.localKestrelUrl,
 
     getPublicApi: function (): string {
         return data.payment.publicTest;

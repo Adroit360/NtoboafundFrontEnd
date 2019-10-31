@@ -45,6 +45,7 @@ import { PaymentService } from 'src/services/payment.service';
 import { AnalysisService } from 'src/services/analysis.service';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ResetpasswordformComponent } from './resetpasswordform/resetpasswordform.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -81,8 +82,8 @@ import { ResetpasswordformComponent } from './resetpasswordform/resetpasswordfor
     HttpClientModule,
     ReactiveFormsModule,
     ChartsModule,
-    AngularRaveModule
-    
+    AngularRaveModule,
+    CommonModule
   ],
   exports:[
     ChartsModule

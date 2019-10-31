@@ -32,20 +32,26 @@
   </div>
   <div class="mhome-body__info-strips">
     <div class="panel">
-      <div class="text">Stakers Get a Point on every  bet placed and win amazing prizes during the points draw at the
+      <div class="text">Stakers Get a Point on every bet placed and win amazing prizes during the points draw at the
         end of the month</div>
     </div>
   </div>
   <div class="mhome-body__charts">
-    <div class="anum">
-      <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
-        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-        [chartType]="lineChartType"></canvas>
+    <div class="anum chart-container">
+      <div class="chart-container__head">Yearly Analysis</div>
+      <div class="chart-container__body">
+        <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels"
+          [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+          [chartType]="lineChartType"></canvas>
+      </div>
     </div>
-    <div class="monthly">
-      <canvas baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
-        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-        [chartType]="lineChartType"></canvas>
+    <div class="monthly chart-container">
+      <div class="chart-container__head">Monthly Analysis</div>
+      <div class="chart-container__body">
+        <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels"
+          [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+          [chartType]="lineChartType"></canvas>
+      </div>
     </div>
   </div>
 
@@ -54,5 +60,3 @@
 <!-- [plugins]="lineChartPlugins"
   (chartHover)="chartHovered($event)"
   (chartClick)="chartClicked($event)" -->
-
-

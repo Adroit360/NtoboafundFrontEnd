@@ -148,17 +148,17 @@
         
           <div [ngClass]="{disabled:!isEditMode}" class="form-group">
             <label for="cboCountries">Country</label>
-            <select (change)="countryChanged($event)" formControlName="country" class="form-control" id="cboCountries">
+            <select #ctrySelect (change)="countryChanged($event)" formControlName="country" class="form-control" id="cboCountries">
               <option value="">Choose your mobile money country</option>
-              <option [attr.data-networks]="'MTN,VODAFONE,TIGO'" [attr.data-currency]="'GHS'" value="GH">Ghana</option>
-              <option [attr.data-networks]="''" [attr.data-currency]="'KES'" value="KE">Kenya</option>
-              <option [attr.data-networks]="'UGX'" [attr.data-currency]="'UGX'" value="NG">Uganda</option>
-              <option [attr.data-networks]="'MTN'" [attr.data-currency]="'ZMW'"  value="NG">Zambia</option>
-              <option [attr.data-networks]="'RWF'" [attr.data-currency]="'RWF'" value="NG">Rwanda</option>
+              <option *ngFor="let prop of objectKeys(allNetworks)" [attr.data-networks]="allNetworks[prop]" [attr.data-currency]="allCurrencies[prop]" [value]="prop">{{prop}}</option>
+              <!-- <option [attr.data-networks]="''" [attr.data-currency]="'KES'" value="Kenya">Kenya</option>
+              <option [attr.data-networks]="'UGX'" [attr.data-currency]="'UGX'" value="Uganda">Uganda</option>
+              <option [attr.data-networks]="'MTN'" [attr.data-currency]="'ZMW'"  value="Zambia">Zambia</option>
+              <option [attr.data-networks]="'RWF'" [attr.data-currency]="'RWF'" value="Rwanda">Rwanda</option> -->
             </select>
           </div>
 
-          <div [ngClass]="{disabled:!isEditMode}" *ngIf="networks.length > 0" class="form-group">
+          <div [ngClass]="{disabled:!isEditMode}" *ngIf="networks && networks.length > 0" class="form-group">
             <label for="cboNetworks">Network</label>
             <select formControlName="network" class="form-control" id="cboNetworks">
                 <option *ngFor="let network of networks" [value]="network">{{network}}</option>

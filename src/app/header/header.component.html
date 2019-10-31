@@ -1,7 +1,7 @@
 <div class="header-body">
   <input id="toggler-check" [checked]="isTogglerChecked" type="checkbox" />
   <label (click)="toggleNavigation()" class="nav-toggler">
-    <div  class="icon">
+    <div class="icon">
     </div>
   </label>
   <a routerLink="" class="brand-logo">
@@ -10,14 +10,16 @@
   <div class="nav-links">
     <ul>
       <li>
-        <app-rot-border><a (click)="navClicked()" routerLink="/scholarship">Scholarship</a></app-rot-border>
+        <app-rot-border><a (click)="navClicked()" routerLink="/luckyme">Lucky Me</a></app-rot-border>
       </li>
       <li>
         <app-rot-border><a (click)="navClicked()" routerLink="/business">Business</a></app-rot-border>
       </li>
       <li>
-        <app-rot-border><a (click)="navClicked()" routerLink="/luckyme">Lucky Me</a></app-rot-border>
+        <app-rot-border><a (click)="navClicked()" routerLink="/scholarship">Scholarship</a></app-rot-border>
       </li>
+
+
       <!-- <li>
         <app-rot-border><a (click)="navClicked()" routerLink="/insurance">Insurance</a></app-rot-border>
       </li> -->

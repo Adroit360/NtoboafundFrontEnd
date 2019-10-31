@@ -64,7 +64,6 @@ export class ScholarshipComponent implements OnInit {
       'StudentId':new FormControl('',Validators.required)
     });
 
-    console.log(this.scholarshipForm);
   }
 
   paymentInitialized(){
