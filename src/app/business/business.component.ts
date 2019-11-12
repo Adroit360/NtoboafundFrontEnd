@@ -86,23 +86,23 @@ export class BusinessComponent implements OnInit {
     this.paymentService.paymentCallback(event);
     this.selectedAmount = null; 
     if (event.success) {
-
-      // this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyBusinessPayment/${event.tx.txRef}`, { amount: event.tx.amount, userId: this.authService.currentUser.id })
-      //   .subscribe(
-      //     response => {
-      //       console.log(response);
-      //       this.loading = false;
-      //       this.businesses.push(response.business);
-      //       if (response.resultString) {
+      // { amount: event.tx.amount, userId: this.authService.currentUser.id }
+      this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyBusinessPayment/${event.tx.txRef}`, {})
+        .subscribe(
+          response => {
+            //console.log(response);
+            this.loading = false;
+            //this.businesses.push(response.business);
+            // if (response.resultString) {
              
-      //       }
-      //     },
-      //     error => {
-      //       console.log("Error");
-      //       console.log(error);
-      //      // this.loading = false;
-      //     }
-      //   );
+            // }
+          },
+          error => {
+            // console.log("Error");
+            // console.log(error);
+            this.loading = false;
+          }
+        );
 
     }
   }

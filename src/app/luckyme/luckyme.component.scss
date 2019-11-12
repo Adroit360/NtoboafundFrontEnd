@@ -136,10 +136,10 @@ app-busy {
                   opacity: 1;
                   .choice-selector {
                     opacity: 1;
-                    background-color: #7c7cd0;
+                    background-color: rgba(#3ab3d2,.8);
                     &::after {
-                      border-bottom: 0.2rem solid white;
-                      border-right: 0.2rem solid white;
+                      // border-bottom: 0.2rem solid white;
+                      // border-right: 0.2rem solid white;
                     }
                   }
                 }
@@ -153,14 +153,28 @@ app-busy {
               transition: all 0.3s;
               .choice-selector {
                 @include absCenter();
-                width: 5rem;
+                //width: 5rem;
                 height: 5rem;
-                border-radius: 50%;
-                background-color: #7c7cd0;
+                border-radius: .5rem;
+                background-color: rgba(#3ab3d2,.6);
                 opacity: 0;
                 transition: all 0.2s;
                 z-index: var(--level-two);
                 cursor: pointer;
+                .returns{
+                  display: flex;
+                  height:100%;
+                  width: 100%;
+                  justify-content: center;
+                  align-items: center;
+                  padding: .5rem;
+                  font-size: 1.5rem;
+                  font-weight: bolder;
+                  //color:white;
+                  text-align:center;
+                  white-space: nowrap;
+                  text-shadow: var(--shadow);
+                }
                 &:hover {
                   transform: translate(-50%, -50%) scale(1.2);
                 }
@@ -209,14 +223,14 @@ app-busy {
             margin-top: 2rem;
             display: flex;
             justify-content: center;
-            .periods {
+            .flatradios {
               background-color: white;
               display: flex;
               border-radius: 0.3rem;
               justify-content: center;
               align-items: center;
-              border: 1px solid grey;
-              .period-choice {
+              border: 1px solid #3ab3d2;
+              .flatradio-choice {
                 cursor: pointer;
                 margin-bottom: 0rem;
                 position: relative;
@@ -235,8 +249,9 @@ app-busy {
                   display: none;
                   &:checked {
                     & + .text {
-                      background-color: grey;
-                      color: white;
+                      background-color: rgba(#3ab3d2,.8);
+                      //color: white;
+                      font-weight: bolder;
                     }
                   }
                 }
@@ -246,8 +261,8 @@ app-busy {
                   transition: all 0.2s;
                 }
                 &:hover {
-                  background-color: grey;
-                  color: white;
+                  background-color: rgba(#3ab3d2,.6);
+                  //color: white;
                   .text {
                     transform: scale(1.2);
                   }
@@ -348,11 +363,11 @@ app-busy {
 
           .choice-selector__background {
             .choice-selector {
-              width: 3rem !important;
+             // width: 3rem !important;
               height: 3rem !important;
 
               &::after {
-                width: 1rem !important;
+               // width: 1rem !important;
                 height: 2rem !important;
               }
             }

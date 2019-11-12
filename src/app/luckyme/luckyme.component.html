@@ -61,6 +61,7 @@
               name="choice" />
             <label for="rone" class="choice-selector__background">
               <label for="rone" class="choice-selector">
+                <div class="returns">{{getReturnsText(1)}}</div>
               </label>
             </label>
 
@@ -75,6 +76,7 @@
               name="choice" />
             <label for="rfive" class="choice-selector__background">
               <label for="rfive" class="choice-selector">
+                  <div class="returns">{{getReturnsText(5)}}</div>
               </label>
             </label>
 
@@ -89,6 +91,7 @@
               name="choice" />
             <label for="rten" class="choice-selector__background">
               <label for="rten" class="choice-selector">
+                  <div class="returns">{{getReturnsText(10)}}</div>
               </label>
 
             </label>
@@ -105,6 +108,7 @@
             <label for="rtwenty" class="choice-selector__background">
 
               <label for="rtwenty" class="choice-selector">
+                  <div class="returns">{{getReturnsText(20)}}</div>
               </label>
             </label>
 
@@ -118,7 +122,7 @@
             <input id="rfifty" (change)="selectChoice($event,50.00)" class="choice-selector__radio" type="radio"
               name="choice" />
             <label for="rfifty" class="choice-selector__background">
-              <label for="rfifty" class="choice-selector"></label>
+              <label for="rfifty" class="choice-selector"><div class="returns">{{getReturnsText(50)}}</div></label>
             </label>
           </div>
           <div class="choice-box">
@@ -132,6 +136,7 @@
             <label for="rhundred" class="choice-selector__background">
 
               <label for="rhundred" class="choice-selector">
+                  <div class="returns">{{getReturnsText(100)}}</div>
               </label>
             </label>
 
@@ -146,6 +151,7 @@
               name="choice" />
             <label for="rfivehundred" class="choice-selector__background">
               <label for="rfivehundred" class="choice-selector">
+                  <div class="returns">{{getReturnsText(500)}}</div>
               </label>
 
             </label>
@@ -155,16 +161,16 @@
         <div class="choice-period">
           <div class="header">Choose Period</div>
           <div class="body">
-            <div class="periods">
-              <label class="period-choice" for="dailyperiod">
+            <div class="flatradios">
+              <label class="flatradio-choice" for="dailyperiod">
                 <input type="radio" (change)="selectPeriod($event,'daily')" name="period" id="dailyperiod">
                 <div class="text">Daily</div>
               </label>
-              <label class="period-choice" for="weeklyperiod">
+              <label class="flatradio-choice" for="weeklyperiod">
                 <input type="radio" (change)="selectPeriod($event,'weekly')" name="period" id="weeklyperiod">
                 <div class="text">Weekly</div>
               </label>
-              <label class="period-choice" for="monthlyperiod">
+              <label class="flatradio-choice" for="monthlyperiod">
                 <input type="radio" (change)="selectPeriod($event,'monthly')" name="period" id="monthlyperiod">
                 <div class="text">Monthly</div>
               </label>
@@ -547,5 +553,27 @@
     <div class="popup__content--footer"></div>
   </div>
 </div>
+
+<!-- [ngClass]="{'visible':congratShown,'invisible':!congratShown}" -->
+<div [ngClass]="{'visible':congratShown,'invisible':!congratShown}" class="popup regular visible" id="congrats-box">
+  <div class="popup__content">
+    <!-- <div class="popup__content--toolbar">
+      <div class="toolbar--left">Error !</div>
+      <div class="toolbar--right">
+        <a (click)="closeCongratPopup()" class="closebtn">
+          <span class="fa fa-times"></span>
+        </a>
+      </div>
+    </div> -->
+    <div class="popup__content--body">
+      <div class="top">Congratulations</div>
+      <div class="body">{{congratMsg}}</div>
+    </div>
+    <div class="popup__content--footer">
+      <button (click)="closeCongratPopup()">Ok</button>
+    </div>
+  </div>
+</div>
+
 
 <app-faq></app-faq>

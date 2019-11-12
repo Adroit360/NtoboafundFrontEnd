@@ -36,6 +36,7 @@ export class ScholarshipComponent implements OnInit {
   scholarshipForm:FormGroup
   scholarshipAmount:number;
   raveOptions: RaveOptions;
+  selectedPlayerType: string;
 
   constructor(private countDownService:CountDownService,
               private router:Router,public authService:AuthService
@@ -72,17 +73,23 @@ export class ScholarshipComponent implements OnInit {
     if (this.authService.isAuthenticated) {
 
       if(this.authService.hasPaymentDetails(true)){
+       this.errorShown = false;
         if (!this.scholarshipForm.valid) {
           this.error = "Please fill all form fields";
           this.errorShown = true;
           return;
         }
+        if(!this.selectedPlayerType){
+          this.errorShown = true;
+          return;
+        }
+       
 
         let institution = this.scholarshipForm.get("Institution").value;
         let program = this.scholarshipForm.get("Program").value;
         let studentId  = this.scholarshipForm.get("StudentId").value;
   
-         this.http.post<any>(`${settings.currentApiUrl}/scholarships/addnew`, {institution,program,studentId,userId: this.authService.currentUser.id , txRef : this.raveOptions.txref})
+         this.http.post<any>(`${settings.currentApiUrl}/scholarships/addnew`, {institution,program,studentId,playerType:this.selectedPlayerType,userId: this.authService.currentUser.id , txRef : this.raveOptions.txref})
           .subscribe(
             response => {
               console.log("new scholarship stake added");
@@ -111,23 +118,24 @@ export class ScholarshipComponent implements OnInit {
       // let institution = this.scholarshipForm.get("Institution").value;
       // let program = this.scholarshipForm.get("Program").value;
       // let studentId  = this.scholarshipForm.get("StudentId").value;
-        // this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyScholarshipPayment/${event.tx.txRef}`, {institution,program,studentId,userId: this.authService.currentUser.id })
-        //   .subscribe(
-        //     response => {
-        //       console.log(response);
-        //       this.loading = false;
-        //       this.scholarhips.push(response.scholarhip);
-        //       if(response.resultString){
+      // {institution,program,studentId,userId: this.authService.currentUser.id }
+        this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyScholarshipPayment/${event.tx.txRef}`,{})
+          .subscribe(
+            response => {
+              //console.log(response);
+              this.loading = false;
+              //this.scholarhips.push(response.scholarhip);
+              if(response.resultString){
               
-        //       }
-        //       this.scholarshipForm.reset();
-        //     },
-        //     error => {
-        //       console.log("Error");
-        //       console.log(error);
-        //       this.loading = false;
-        //     }
-        //   );
+              }
+              this.scholarshipForm.reset();
+            },
+            error => {
+              // console.log("Error");
+              // console.log(error);
+              this.loading = false;
+            }
+          );
       
     }else{
       this.loading = false;
@@ -159,7 +167,17 @@ export class ScholarshipComponent implements OnInit {
   
   }
 
+  selectPlayerType(event, selectedPlayerType: string) {
+
+    if (event.target.checked) {
+      this.selectedPlayerType = selectedPlayerType;
+    }
+
+  }
+
   setRaveOptions() {
-    this.raveOptions = this.paymentService.getRaveOptions('Luckyme',this.scholarshipAmount,(this.scholarshipForm.valid && this.authService.hasPaymentDetails()));
+    var isValid = (this.scholarshipForm.valid && this.selectedPlayerType!=undefined && this.authService.hasPaymentDetails());
+
+    this.raveOptions = this.paymentService.getRaveOptions('Luckyme',this.scholarshipAmount,isValid);
  }
 }

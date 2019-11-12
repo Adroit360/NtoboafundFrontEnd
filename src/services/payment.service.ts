@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { settings } from 'src/settings';
 import { HttpClient } from '@angular/common/http';
 import { Payment } from 'src/models/payment';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class PaymentService {
@@ -79,5 +80,14 @@ export class PaymentService {
 
     getPaymentByDetails(itemPayedFor,itemPayedForId){
         return this.http.get(`${settings.currentApiUrl}/payments/bydetails/${itemPayedFor}/${itemPayedForId}`);
+    }
+
+    /**
+     * Returns a message congratulating the user on the current stake   
+     * @param type The type of stake i.e lkm,bus,or sch
+     * @param txref the transaction reference of the stake
+     */
+    getCongratulatoryMessage(type:string,txref:any):Observable<any>{
+        return this.http.get(`${settings.currentApiUrl}/payments/congratmsg/${type}/${txref}`);
     }
 }

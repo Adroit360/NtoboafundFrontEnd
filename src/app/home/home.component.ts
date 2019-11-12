@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { groupBy } from 'src/operations';
 import { CountDownService } from 'src/services/countdownservice';
 import { SignalRService } from 'src/services/signalr.service';
+import { Participant } from 'src/models/Dtos/participant';
 
 @Component({
   selector: 'app-home',
@@ -34,11 +35,9 @@ export class HomeComponent implements OnInit,OnDestroy {
   }
 
   getUserWinners(){
-    this.http.get(`${settings.currentApiUrl}/luckymes/winners`).subscribe(
-      (response:Array<LuckyMe>)=>{
-        response.forEach((value)=>{
-        });
-        
+    this.http.get(`${settings.currentApiUrl}/home/allwinners`).subscribe(
+      (response:Array<Participant>)=>{
+        console.log(response);
        this.winnings =  groupBy("dateDeclared")(response);
       },
       error=>{

@@ -152,7 +152,7 @@
           <div class="info-card__head--icon">
             <img src="assets/images/trophy.png" alt="">
           </div>
-          <div class="info-card__head--text">All Winners</div>
+          <div class="info-card__head--text">Latest Winners</div>
         </div>
         <div class="info-card__body">
           <div *ngIf="winnings">
@@ -162,11 +162,12 @@
               </div>
               <div *ngFor="let winner of winnings[key]" class="winner-item">
                 <div class="winner-item__description">
-                  <span class="winner-name">{{winner.user.firstName }} {{winner.user.lastName}}</span>
+                  <span class="winner-name">{{winner.userName}}</span>
                   <span class="winning-details">
-                    <span class="amount-won"> Won <span class="period"> {{winner.period}} </span>GH₵
+                      <!-- <span class="period"> {{winner.period}} </span> -->
+                    <span class="amount-won"> Won GH₵
                       {{winner.amountToWin}}</span>
-                    <span class="amount-staked"> with GH₵ {{winner.amount}}</span>
+                    <span class="amount-staked"> with GH₵ {{winner.amountStaked}}</span>
                   </span>
                 </div>
               </div>

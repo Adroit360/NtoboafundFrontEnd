@@ -26,6 +26,8 @@ export class LuckymeComponent implements OnInit {
   loading = false;
   error = null;
   errorShown = false;
+  congratMsg: string = "";
+  congratShown = false;
   raveOptions: RaveOptions;
 
 
@@ -44,10 +46,12 @@ export class LuckymeComponent implements OnInit {
   luckyMeMonthlyMinutes: number;
   luckyMeMonthlySeconds: number;
 
+
   constructor(private http: HttpClient, public authService: AuthService, public paymentService: PaymentService,
-    private router: Router, private currentRoute: ActivatedRoute,private countDownService:CountDownService,
-    public winnerSelectionService: WinnerSelectionService, public signalRService: SignalRService) { 
-      
+    private router: Router, private currentRoute: ActivatedRoute, private countDownService: CountDownService,
+    public winnerSelectionService: WinnerSelectionService, public signalRService: SignalRService) {
+
+
     this.countDownService.DailyHoursTime.subscribe((hours: number) => { this.luckyMeDailyHours = hours });
     this.countDownService.DailyMinutesTime.subscribe((minutes: number) => { this.luckyMeDailyMinutes = minutes });
     this.countDownService.DailySecondsTime.subscribe((seconds: number) => { this.luckyMeDailySeconds = seconds });
@@ -57,16 +61,18 @@ export class LuckymeComponent implements OnInit {
     this.countDownService.WeeklyMinutesTime.subscribe((minutes: number) => { this.luckyMeWeeklyMinutes = minutes });
     this.countDownService.WeeklySecondsTime.subscribe((seconds: number) => { this.luckyMeWeeklySeconds = seconds });
 
-    this.countDownService.MonthlyDaysTime.subscribe((days: number) => { this.luckyMeMonthlyDays = days;});
+    this.countDownService.MonthlyDaysTime.subscribe((days: number) => { this.luckyMeMonthlyDays = days; });
     this.countDownService.MonthlyHoursTime.subscribe((hours: number) => { this.luckyMeMonthlyHours = hours });
-    this.countDownService.MonthlyMinutesTime.subscribe((minutes: number) => { this.luckyMeMonthlyMinutes = minutes;});
-    this.countDownService.MonthlySecondsTime.subscribe((seconds: number) => { this.luckyMeMonthlySeconds = seconds;});
+    this.countDownService.MonthlyMinutesTime.subscribe((minutes: number) => { this.luckyMeMonthlyMinutes = minutes; });
+    this.countDownService.MonthlySecondsTime.subscribe((seconds: number) => { this.luckyMeMonthlySeconds = seconds; });
 
-    }
+  }
 
   ngOnInit() {
     this.loading = false;
   }
+
+
 
 
   paymentInitialized() {
@@ -84,7 +90,7 @@ export class LuckymeComponent implements OnInit {
           return;
         }
 
-        this.http.post<any>(`${settings.currentApiUrl}/luckymes/addnew`, { amount: this.selectedChoice, period: this.selectedPeriod, userId: this.authService.currentUser.id, txRef : this.raveOptions.txref })
+        this.http.post<any>(`${settings.currentApiUrl}/luckymes/addnew`, { amount: this.selectedChoice, period: this.selectedPeriod, userId: this.authService.currentUser.id, txRef: this.raveOptions.txref })
           .subscribe(
             response => {
               console.log(response);
@@ -109,20 +115,28 @@ export class LuckymeComponent implements OnInit {
   luckymePaymentCallback(event) {
     this.paymentService.paymentCallback(event);
     if (event.success) {
-      // this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyLuckymePayment/${event.tx.txRef}`, { amount: this.selectedChoice, period: this.selectedPeriod, userId: this.authService.currentUser.id })
-      //   .subscribe(
-      //     response => {
-      //       this.loading = false;
-      //       this.luckymeService.personalLuckymes.push(response.luckyMe);
-      //       let resultString = JSON.parse(response.resultString)
-      //       console.log(response);
+      // { amount: this.selectedChoice, period: this.selectedPeriod, userId: this.authService.currentUser.id }
+      this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyLuckymePayment/${event.tx.txRef}`, {})
+        .subscribe(
+          (response => {
+            this.loading = false;
 
-      //     },
-      //     error => {
-      //       console.log(error);
-      //       // this.loading = false;
-      //     }
-      //   );
+            //Get Congratulatory Message After the transaction is successfully completed
+            this.paymentService.getCongratulatoryMessage("lkm", event.tx.txRef).subscribe((data => {
+              this.congratMsg = data.message;
+              console.log(data);
+              this.congratShown = true;
+              console.log(this.congratShown);
+            }).bind(this));
+            //this.luckymeService.personalLuckymes.push(response.luckyMe);
+            // let resultString = JSON.parse(response.resultString);
+            //console.log(response);
+          }).bind(this),
+          error => {
+            console.log(error);
+            this.loading = false;
+          }
+        );
 
     } else {
       this.loading = false;
@@ -150,8 +164,23 @@ export class LuckymeComponent implements OnInit {
     this.errorShown = false;
   }
 
+
+  closeCongratPopup() {
+    this.congratMsg = null;
+    this.congratShown = false;
+  }
+
+
   setRaveOptions() {
-     this.raveOptions = this.paymentService.getRaveOptions('LuckyMe', this.selectedChoice, (this.selectedChoice && this.selectedPeriod && this.authService.hasPaymentDetails()));
+    this.raveOptions = this.paymentService.getRaveOptions('LuckyMe', this.selectedChoice, (this.selectedChoice && this.selectedPeriod && this.authService.hasPaymentDetails()));
+  }
+
+  /**
+   * This Method Returns  the string telling the user how much he gets from his stake
+   * @param stakeAmount The Amount the use Chooses to stake
+   */
+  getReturnsText(stakeAmount: number = 0) {
+    return `Get GH₵ ${stakeAmount * settings.luckymeStakeOdds}`;
   }
 
 

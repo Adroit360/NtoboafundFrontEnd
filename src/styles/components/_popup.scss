@@ -111,6 +111,8 @@
     }
   }
 
+  
+
   &.visible {
     visibility: visible;
     .popup__content {
@@ -120,6 +122,31 @@
   }
 }
 
+#congrats-box.popup{
+  .popup__content{
+    .popup__content--body{
+      text-align: center;
+      .top{
+        font-size: 3rem;
+        text-transform: uppercase;
+        letter-spacing: .3rem;
+      }
+      .body{
+
+      }
+    }
+    .popup__content--footer{
+      display: block;
+      text-align: center;
+      button{
+        padding: 1rem;
+        border:1px solid white;
+        border-radius: .4rem;
+        color:white;
+      }
+    }
+  }
+}
 
 #fixer-box.popup{
   background-color: white;
