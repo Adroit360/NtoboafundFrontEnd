@@ -37,6 +37,8 @@ export class ScholarshipComponent implements OnInit {
   scholarshipAmount:number;
   raveOptions: RaveOptions;
   selectedPlayerType: string;
+  congratMsg: string = "";
+  congratShown = false;
 
   constructor(private countDownService:CountDownService,
               private router:Router,public authService:AuthService
@@ -92,11 +94,9 @@ export class ScholarshipComponent implements OnInit {
          this.http.post<any>(`${settings.currentApiUrl}/scholarships/addnew`, {institution,program,studentId,playerType:this.selectedPlayerType,userId: this.authService.currentUser.id , txRef : this.raveOptions.txref})
           .subscribe(
             response => {
-              console.log("new scholarship stake added");
               this.scholarshipForm.reset();
             },
             error => {
-              console.log("new scholarship stake not added");
               console.log(error);
             }
           );
@@ -124,6 +124,13 @@ export class ScholarshipComponent implements OnInit {
             response => {
               //console.log(response);
               this.loading = false;
+              this.paymentService.getCongratulatoryMessage("sch", event.tx.txRef).subscribe((data => {
+                this.congratMsg = data.message;
+                console.log(this.congratMsg);
+                this.congratShown = true;
+                console.log(this.congratShown);
+              }).bind(this));
+  
               //this.scholarhips.push(response.scholarhip);
               if(response.resultString){
               
@@ -148,6 +155,11 @@ export class ScholarshipComponent implements OnInit {
   closePopup() {
     this.error = null;
     this.errorShown = false;
+  }
+
+  closeCongratPopup() {
+    this.congratMsg = null;
+    this.congratShown = false;
   }
 
   getUserScholarships() {

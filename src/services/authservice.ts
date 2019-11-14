@@ -146,7 +146,7 @@ export class AuthService {
             .subscribe((response: Boolean) => {
                 if (!response) {
                     localStorage.removeItem("currentUser")
-                    alert("Sorry we've encountered a problem with your user account. Please login again to fix the issue");
+                    //alert("Sorry we've encountered a problem with your user account. Please login again to fix the issue");
                     this.router.navigate(["login"]);
                 }
             })

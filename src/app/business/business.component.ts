@@ -31,6 +31,8 @@ export class BusinessComponent implements OnInit {
   errorShown = false;
   businesses: Array<Business> = [];
   raveOptions: RaveOptions;
+  congratMsg: string = "";
+  congratShown = false;
 
   closePopup() {
     this.error = null;
@@ -60,10 +62,10 @@ export class BusinessComponent implements OnInit {
   pay() {
     if (this.authService.isAuthenticated) {
 
-      if(this.authService.hasPaymentDetails(true)){
-      //  var amount = this.selectedAmount;
+      if (this.authService.hasPaymentDetails(true)) {
+        //  var amount = this.selectedAmount;
 
-        this.http.post<any>(`${settings.currentApiUrl}/businesses/addnew`, { amount: this.selectedAmount, userId: this.authService.currentUser.id , txRef : this.raveOptions.txref})
+        this.http.post<any>(`${settings.currentApiUrl}/businesses/addnew`, { amount: this.selectedAmount, userId: this.authService.currentUser.id, txRef: this.raveOptions.txref })
           .subscribe(
             response => {
               console.log("business added")
@@ -82,21 +84,30 @@ export class BusinessComponent implements OnInit {
 
   }
 
-  businessPaymentCallback(event) {+6
+  businessPaymentCallback(event) {
+    +6
     this.paymentService.paymentCallback(event);
-    this.selectedAmount = null; 
+    this.selectedAmount = null;
     if (event.success) {
       // { amount: event.tx.amount, userId: this.authService.currentUser.id }
       this.http.post<any>(`${settings.currentApiUrl}/transaction/verifyBusinessPayment/${event.tx.txRef}`, {})
         .subscribe(
-          response => {
+          (response => {
             //console.log(response);
             this.loading = false;
+            //Get Congratulatory Message After the transaction is successfully completed
+            this.paymentService.getCongratulatoryMessage("bus", event.tx.txRef).subscribe((data => {
+              this.congratMsg = data.message;
+              console.log(this.congratMsg);
+              this.congratShown = true;
+              console.log(this.congratShown);
+            }).bind(this));
+
             //this.businesses.push(response.business);
             // if (response.resultString) {
-             
+
             // }
-          },
+          }).bind(this),
           error => {
             // console.log("Error");
             // console.log(error);
@@ -107,7 +118,12 @@ export class BusinessComponent implements OnInit {
     }
   }
 
-  businessPaymentFailed(){
+  closeCongratPopup() {
+    this.congratMsg = null;
+    this.congratShown = false;
+  }
+
+  businessPaymentFailed() {
     this.paymentService.paymentFailure();
     this.selectedAmount = null;
   }
@@ -116,10 +132,10 @@ export class BusinessComponent implements OnInit {
     this.selectedAmount = amount;
     this.potentialReturns = amount * settings.businessStakeOdds;
     this.setRaveOptions();
-    console.log(this.potentialReturns);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+    console.log(this.potentialReturns);
   }
 
   setRaveOptions() {
-    this.raveOptions = this.paymentService.getRaveOptions('Business',this.selectedAmount,this.authService.hasPaymentDetails());
-   }
+    this.raveOptions = this.paymentService.getRaveOptions('Business', this.selectedAmount, this.authService.hasPaymentDetails());
+  }
 }

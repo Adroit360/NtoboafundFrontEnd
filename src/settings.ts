@@ -12,10 +12,10 @@ const data = {
 }
 export const settings = {
 
-    currentApiUrl: data.urls.localKestrelUrl,
+    currentApiUrl: data.urls.azure,
 
     getPublicApi: function (): string {
-        return data.payment.publicTest;
+        return data.payment.publicLive;
     },
 
     scholarshipStakeOdds: 100,

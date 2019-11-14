@@ -32,7 +32,7 @@ export class PaymentService {
                 country: "GH",
                 customer_phone: user.phoneNumber,
                 txref: this.getUniqueCode(user),
-                custom_title: `${stakeType} Stake Payment`,
+                custom_title: `${stakeType} Ntoboa Payment`,
                 payment_method: "card,account,mobilemoneyghana,bank transfer",
                 custom_logo: `${window.location.origin}/assets/images/logo.png`
             }
@@ -83,8 +83,8 @@ export class PaymentService {
     }
 
     /**
-     * Returns a message congratulating the user on the current stake   
-     * @param type The type of stake i.e lkm,bus,or sch
+     * Returns a message congratulating the user on the current Investment   
+     * @param type The type of Investment i.e lkm,bus,or sch
      * @param txref the transaction reference of the stake
      */
     getCongratulatoryMessage(type:string,txref:any):Observable<any>{

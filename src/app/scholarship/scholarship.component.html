@@ -88,12 +88,12 @@
           <div class="stake-box__body">
             <div class="stake-box__body__info">
               <div class="content">
-                The first scholarship lottery of its kind. Its very easy to win this amazing jackpot.
+                The first scholarship crowdfund of its kind. Its very easy to win this amazing jackpot.
                 Every quater of a year, a lucky student is selected to win this once in a lifetime jackpot.
-                Parents can play for their wards as well as students for themselves.
+                Parents can Invest for their wards as well as students for themselves.
               </div>
               <div class="footer">
-                <label for="stakeboxcontroller" class="btn btn-info i-want">I Want to play the Jackpot</label>
+                <label for="stakeboxcontroller" class="btn btn-info i-want">I Want to Invest</label>
               </div>
             </div>
             <div class="stake-box__body__staker">
@@ -153,9 +153,9 @@
               <div class="footer">
                 <label for="stakeboxcontroller" class="btn btn-info i-resign">Back</label>
                 <!-- (click)="pay()" -->
-                <button angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-play"
+                <button angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
                   (mouseover)="setRaveOptions()" (callback)="scholarshipPaymentCallback($event)"
-                  (close)="paymentFailed()" (init)="paymentInitialized()">Play for <span class="pay-amt">₵100</span>
+                  (close)="paymentFailed()" (init)="paymentInitialized()">Invest for <span class="pay-amt">₵100</span>
                 </button>
               </div>
             </div>
@@ -198,7 +198,7 @@
       <div class="tab-box">
         <ul class="nav nav-tabs">
           <li class="nav-item active">
-            <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How To Play</a>
+            <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How To Invest</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#where" role="tab" data-toggle="tab">The Must Knows</a>
@@ -213,7 +213,7 @@
             </div>
             <div class="panel" style="background-color: #f06292">
               <div class="number">2</div>
-              <div class="text">Press the "Play" button to proceed to payment</div>
+              <div class="text">Press the "Invest" button to proceed to payment</div>
             </div>
             <div class="panel" style="background-color: #01c851">
               <div class="number">3</div>
@@ -221,7 +221,7 @@
             </div>
             <div class="panel" style="background-color: #7383a7">
               <div class="number">4</div>
-              <div class="text">Follow the displayed guideline to complete the stake process</div>
+              <div class="text">Follow the displayed guideline to complete the investment process</div>
             </div>
             <div class="panel" style="background-color: #a563c7">
               <div class="number">5</div>
@@ -244,7 +244,7 @@
             </div>
             <div class="panel" style="background-color: #324675">
               <div class="number">*</div>
-              <div class="text">Scholarship contributions only have a single stake value which is GH₵ 100</div>
+              <div class="text">Scholarship contributions only have a single investment value which is GH₵ 100</div>
             </div>
             <div class="panel" style="background-color: #02b111">
               <div class="number">*</div>
@@ -275,5 +275,28 @@
     <div class="popup__content--footer"></div>
   </div>
 </div>
+
+
+  <!-- [ngClass]="{'visible':congratShown,'invisible':!congratShown}" -->
+  <div [ngClass]="{'visible':congratShown,'invisible':!congratShown}" class="popup regular visible" id="congrats-box">
+    <div class="popup__content">
+      <!-- <div class="popup__content--toolbar">
+        <div class="toolbar--left">Error !</div>
+        <div class="toolbar--right">
+          <a (click)="closeCongratPopup()" class="closebtn">
+            <span class="fa fa-times"></span>
+          </a>
+        </div>
+      </div> -->
+      <div class="popup__content--body">
+        <div class="top">Congratulations</div>
+        <div class="body">{{congratMsg}}</div>
+      </div>
+      <div class="popup__content--footer">
+        <button (click)="closeCongratPopup()">Ok</button>
+      </div>
+    </div>
+  </div>
+  
 
 <app-faq></app-faq>

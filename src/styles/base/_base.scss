@@ -5,9 +5,9 @@ h3,
 h4,
 h5,
 h6 {
-  //font-family: "Poppins", Roboto, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell,
-   // Fira Sans, Droid Sans, Helvetica Neue, Arial, sans-serif;
-   font-family: 'Merienda', cursive;
+   font-family: "Poppins", Roboto, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell,
+    Fira Sans, Droid Sans, Helvetica Neue, Arial, sans-serif;
+  
   line-height: 1.5;
 }
 
@@ -30,7 +30,14 @@ html {
   //overflow:inherit;
   //vertical-align: inherit;
   user-select: none;
+
+
 }
+
+ *{
+     font-family: "Poppins", Roboto, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell,
+  Fira Sans, Droid Sans, Helvetica Neue, Arial, sans-serif;
+ }
 
 body,
 ul,
