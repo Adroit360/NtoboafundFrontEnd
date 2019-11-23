@@ -42,8 +42,8 @@ export class WinnerSelectionService {
     constructor() {
         this.winnerSelectionHubConnection = new signalR.HubConnectionBuilder().withUrl(this.winnerSelectionUrl)
             .build();
-        this.winnerSelectionHubConnection.keepAliveIntervalInMilliseconds = 3600000;
-        this.winnerSelectionHubConnection.serverTimeoutInMilliseconds = 3600000;
+        this.winnerSelectionHubConnection.keepAliveIntervalInMilliseconds = 300000;
+        this.winnerSelectionHubConnection.serverTimeoutInMilliseconds = 8.64e+7;
         this.winnerSelectionHubConnection.start().then(() => {
             this.initiateOngoingQuaterlyDraw();
             this.initiateGetScholarshipWinners();

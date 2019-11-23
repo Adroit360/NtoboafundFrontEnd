@@ -154,8 +154,16 @@
                 <label for="stakeboxcontroller" class="btn btn-info i-resign">Back</label>
                 <!-- (click)="pay()" -->
                 <button angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
-                  (mouseover)="setRaveOptions()" (callback)="scholarshipPaymentCallback($event)"
-                  (close)="paymentFailed()" (init)="paymentInitialized()">Invest for <span class="pay-amt">₵100</span>
+                  (mouseover)="setRaveOptions(20)" (callback)="scholarshipPaymentCallback($event)"
+                  (close)="paymentFailed()" (init)="paymentInitialized(20)">Invest for <span class="pay-amt">₵20</span>
+                </button>
+                <button angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
+                  (mouseover)="setRaveOptions(50)" (callback)="scholarshipPaymentCallback($event)"
+                  (close)="paymentFailed()" (init)="paymentInitialized(50)">Invest for <span class="pay-amt">₵50</span>
+                </button>
+                <button angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
+                  (mouseover)="setRaveOptions(100)" (callback)="scholarshipPaymentCallback($event)"
+                  (close)="paymentFailed()" (init)="paymentInitialized(100)">Invest for <span class="pay-amt">₵100</span>
                 </button>
               </div>
             </div>
@@ -244,7 +252,7 @@
             </div>
             <div class="panel" style="background-color: #324675">
               <div class="number">*</div>
-              <div class="text">Scholarship contributions only have a single investment value which is GH₵ 100</div>
+              <div class="text">Scholarship contributions  have three investment values which are GH₵ 20,GH₵ 50,GH₵ 100</div>
             </div>
             <div class="panel" style="background-color: #02b111">
               <div class="number">*</div>

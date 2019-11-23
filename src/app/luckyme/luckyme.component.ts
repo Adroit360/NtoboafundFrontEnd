@@ -124,10 +124,9 @@ export class LuckymeComponent implements OnInit {
             //Get Congratulatory Message After the transaction is successfully completed
             this.paymentService.getCongratulatoryMessage("lkm", event.tx.txRef).subscribe((data => {
               this.congratMsg = data.message;
-              console.log(data);
               this.congratShown = true;
-              console.log(this.congratShown);
             }).bind(this));
+            
             //this.luckymeService.personalLuckymes.push(response.luckyMe);
             // let resultString = JSON.parse(response.resultString);
             //console.log(response);
@@ -157,6 +156,10 @@ export class LuckymeComponent implements OnInit {
       this.setRaveOptions();
     }
 
+  }
+
+  getCongratulatoryMessage(){
+    
   }
 
   closePopup() {

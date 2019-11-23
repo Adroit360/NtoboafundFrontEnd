@@ -198,6 +198,10 @@ app-header{
               }
               .i-Invest {
                 float: right;
+                box-shadow: var(--shadow);
+                &>*{
+                  margin:.5rem
+                }
                 .pay-amt{
                   font-size: 1.6rem;
                   display: inline-block;

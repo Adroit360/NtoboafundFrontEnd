@@ -17,6 +17,7 @@ export class User {
     bankDetails:BankDetails;
     preferedMoneyReceptionMethod:string;
     points:number;
+    userType:number;
 }
 
 class MomoDetails{

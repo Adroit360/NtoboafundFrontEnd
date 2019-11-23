@@ -34,7 +34,6 @@ export class ScholarshipComponent implements OnInit {
 
   scholarhips: Array<Scholarship> = [];
   scholarshipForm:FormGroup
-  scholarshipAmount:number;
   raveOptions: RaveOptions;
   selectedPlayerType: string;
   congratMsg: string = "";
@@ -45,7 +44,6 @@ export class ScholarshipComponent implements OnInit {
               ,private http:HttpClient,public signalRservice:SignalRService
               ,public winnerSelectionService:WinnerSelectionService
               ,public paymentService:PaymentService) {
-                this.scholarshipAmount = 100;
 
                 //Get All Scholarship participants after the Draw
                 this.winnerSelectionService.isQuaterlyDrawOngoing.subscribe((isOngoing:boolean)=>{
@@ -69,7 +67,7 @@ export class ScholarshipComponent implements OnInit {
 
   }
 
-  paymentInitialized(){
+  paymentInitialized(amount){
     this.scholarshipForm.markAsTouched();
     this.paymentService.paymentInit();
     if (this.authService.isAuthenticated) {
@@ -91,7 +89,7 @@ export class ScholarshipComponent implements OnInit {
         let program = this.scholarshipForm.get("Program").value;
         let studentId  = this.scholarshipForm.get("StudentId").value;
   
-         this.http.post<any>(`${settings.currentApiUrl}/scholarships/addnew`, {institution,program,studentId,playerType:this.selectedPlayerType,userId: this.authService.currentUser.id , txRef : this.raveOptions.txref})
+         this.http.post<any>(`${settings.currentApiUrl}/scholarships/addnew`, {amount,institution,program,studentId,playerType:this.selectedPlayerType,userId: this.authService.currentUser.id , txRef : this.raveOptions.txref})
           .subscribe(
             response => {
               this.scholarshipForm.reset();
@@ -126,9 +124,7 @@ export class ScholarshipComponent implements OnInit {
               this.loading = false;
               this.paymentService.getCongratulatoryMessage("sch", event.tx.txRef).subscribe((data => {
                 this.congratMsg = data.message;
-                console.log(this.congratMsg);
                 this.congratShown = true;
-                console.log(this.congratShown);
               }).bind(this));
   
               //this.scholarhips.push(response.scholarhip);
@@ -187,9 +183,9 @@ export class ScholarshipComponent implements OnInit {
 
   }
 
-  setRaveOptions() {
+  setRaveOptions(amount) {
     var isValid = (this.scholarshipForm.valid && this.selectedPlayerType!=undefined && this.authService.hasPaymentDetails());
 
-    this.raveOptions = this.paymentService.getRaveOptions('Luckyme',this.scholarshipAmount,isValid);
+    this.raveOptions = this.paymentService.getRaveOptions('scholarship',amount,isValid);
  }
 }

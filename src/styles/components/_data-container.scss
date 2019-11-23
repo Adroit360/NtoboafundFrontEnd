@@ -1,0 +1,35 @@
+.data-container{
+    margin: .5rem;
+    flex-grow: 1;
+    box-shadow: var(--shadow);
+    &__header{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        padding: 1rem;
+        color:white;
+        background-color: var(--primaryColor);
+        .htext{
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: .3rem;
+        }
+    }
+    &__body{
+        display: flex;
+        justify-content: space-evenly;
+        padding: 0rem 1rem 1rem 1rem;
+        p{
+            height: 2rem;
+            font-size: 1.3rem;
+        }
+        &--left{
+            margin: .5rem;
+            text-align: right;
+            font-weight: bold;
+        }
+        &--right{
+            padding: .5rem;
+        }
+    }
+}

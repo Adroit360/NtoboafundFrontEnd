@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 //Css Resets
 
+@import "~@ag-grid-enterprise/all-modules/dist/styles/ag-grid.css";
+@import "~@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham.css";
+
 //abstract
 @import "abstracts/variables";
 @import "abstracts/functions";
@@ -28,6 +31,8 @@
 @import "components/record";
 @import "components/message";
 @import "components/flatradiobtns";
+@import "components/badge";
+@import "components/data-container";
 
 
 footer{

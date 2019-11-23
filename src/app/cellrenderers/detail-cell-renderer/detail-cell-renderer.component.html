@@ -1,0 +1,59 @@
+<div  *ngIf="data.user" class="data-well">
+    <div class="data-container">
+      <div class="data-container__header">
+        <p class="htext">USER</p>
+      </div>
+      <div class="data-container__body">
+        <div class="data-container__body--left">
+          <p>First Name</p>
+          <p>Last Name</p>
+          <p>Phone Number</p>
+          <p>Pay Me With</p>
+        </div>
+        <div class="data-container__body--right">
+            <p>{{data.user.firstName}}</p>
+            <p>{{data.user.lastName}}</p>
+            <p>{{data.user.phoneNumber}}</p>
+            <p>{{data.user.preferedMoneyReceptionMethod}}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="data.user.preferedMoneyReceptionMethod == 'momo'" class="data-container">
+      <div class="data-container__header">
+        <p class="htext">Momo Details</p>
+      </div>
+      <div class="data-container__body">
+        <div class="data-container__body--left">
+          <p>Country</p>
+          <p>Network</p>
+          <p>Number</p>
+          <p>Currency</p>
+        </div>
+        <div *ngIf="data.user" class="data-container__body--right">
+            <p>{{data.user.momoDetails.country}}</p>
+            <p>{{data.user.momoDetails.network}}</p>
+            <p>{{data.user.momoDetails.number}}</p>
+            <p>{{data.user.momoDetails.currency}}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="data.user.preferedMoneyReceptionMethod == 'bank'" class="data-container">
+      <div class="data-container__header">
+        <p class="htext">USER</p>
+      </div>
+      <div class="data-container__body">
+        <div class="data-container__body--left">
+          <p>FirstName</p>
+          <p>LastName</p>
+          <p>PhoneNumber</p>
+          <p>PreferedMoneyReceptionMethod</p>
+        </div>
+        <div *ngIf="data.user" class="data-container__body--right">
+            <p>{{data.user.firstName}}</p>
+            <p>{{data.user.lastName}}</p>
+            <p>{{data.user.phoneNumber}}</p>
+            <p>{{data.user.preferedMoneyReceptionMethod}}</p>
+        </div>
+      </div>
+    </div>
+</div>

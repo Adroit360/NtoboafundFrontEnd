@@ -55,6 +55,7 @@
         flex: 1 1;
         align-items: center;
         color: black;
+        padding: 1rem;
         > * {
           margin: 0.5rem;
         }
@@ -149,8 +150,8 @@
 }
 
 #fixer-box.popup{
-  background-color: white;
   .popup__content{
+    background-color: white;
     //background-color: rgba(black,.5);
     color:black;
     .popup__content--body{
@@ -176,3 +177,22 @@
     
   }
 }
+
+#payment-box.popup{
+  .popup__content{
+    background-color: white;
+    color:black;
+    &--body{
+      .paymentform{
+        .c-input{
+          margin: 1.5rem;
+        }
+        .actionpane{
+         display:flex;
+         justify-content: flex-end;
+        }
+      }
+    }
+  }
+}
+

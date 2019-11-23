@@ -1,0 +1,38 @@
+.badged {
+  position: relative;
+  cursor: pointer;
+  height: 3rem;
+  width: 3rem;
+  .badge {
+    color: white;
+    display: inline-block;
+    padding: 0.3rem;
+    background-color: var(--primaryColor);
+    z-index: 1;
+    position: absolute;
+    left:70%;
+    top:-.5rem;
+  }
+  svg {
+      fill: var(--primaryColor)
+  }
+  &:hover{
+      svg{
+          fill:var(--primaryColorDark);
+      }
+  }
+}
+
+.badged.disabled{
+    .badge{
+       // display: none;
+    }
+    svg{
+        fill:var(--iconColor);
+    }
+    &:hover{
+        svg{
+            fill:var(--iconColor);
+        }
+    }
+}

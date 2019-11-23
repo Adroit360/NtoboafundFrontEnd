@@ -1,162 +1,66 @@
 <div class="adluckyme-body">
   <div class="adluckyme-body__top">
-
-    <select (change)="getLuckymesByType($event.target.value)" class="form-control" id="cbotypeOptions">
-      <option value="all">All</option>
-      <option value="0">Original</option>
-      <option value="2">Dummy</option>
-    </select>
+    <div class="adluckyme-body__top--left">
+      <select (change)="getLuckymesByType($event.target.value)" class="form-control" id="cbotypeOptions">
+        <option value="all">All</option>
+        <option value="0">Original</option>
+        <option value="2">Dummy</option>
+      </select>
+    </div>
+    <div class="adluckyme-body__top--right">
+      <div [ngClass]="{disabled:unpdaidWinnersCount==0}" (click)="filterStaker('won')" class="unpaid badged">
+        <span class="badge">{{unpdaidWinnersCount}}</span>
+        <svg class="linkicon icon icon-mid">
+          <use href="assets/Icons/svgs.svg#icon-wallet" />
+        </svg>
+      </div>
+    </div>
   </div>
   <div class="adluckyme-body__bottom">
     <div class="adluckyme-body__bottom--left">
       <div class="info-card" id="allluckyme">
         <div class="info-card__head">
-          <div class="btn-refresh"><a (click)="refresh()" routerLink="./">refresh</a></div>
-          <div class="info-card__head--text1">Recent Luckyme Stakes</div>
+          <div class="info-card__head--left">
+            <div class="btn-refresh">
+              <a (click)="refresh()" routerLink="./">
+                <svg class="linkicon icon icon-min">
+                  <use href="assets/Icons/svgs.svg#icon-refresh" />
+                </svg>
+              </a>
+            </div>
+            <div class="info-card__head--text1">{{mainHeaderText}}</div>
 
-          <select (change)="filterStaker($event.target.value)" class="form-control" id="cboOptions">
-            <option value="all">All</option>
-            <option value="paid">Current Participants</option>
-            <option value="lost">Lost</option>
-            <option value="won">Pending Payment</option>
-          </select>
-
+            <select #cboPartType (change)="filterStaker($event.target.value)" class="form-control" id="cboPartType">
+              <option value="all">All</option>
+              <option value="paid">Current Participants</option>
+              <option value="lost">Lost</option>
+              <option value="won">Unpaid Winners</option>
+              <option value="complete">Paid Winners</option>
+            </select>
+          </div>
+          <div class="info-card__head--right">
+            <div class="btn-paywinner">
+              <a [ngClass]="{disabled:!canUserBePaid}" class="badged" (click)="payWinner()" routerLink="./">
+                <svg class="linkicon icon icon-mid">
+                  <use href="assets/Icons/svgs.svg#icon-dollar" />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
         <div *ngIf="luckymeService.allLuckymes.length >0" class="info-card__body">
-          <div *ngFor="let luckyme of recentLuckymeStakes" class="recent-stake-item-holder">
-            <input type="radio" name="selectedluckyme" (change)="changeSelectedLuckyme(luckyme.id)" [id]="luckyme.id">
-            <label [for]="luckyme.id" class="recent-stake-item">
-              <div class="recent-stake-item--top">
-                <div class="period">{{luckyme.period}}</div>
-                <div class="amount">GHS {{luckyme.amount}}</div>
-                <div class="date"> {{luckyme.date}} </div>
-              </div>
-              <div class="recent-stake-item--bottom">
-                <div class="status">Status : {{luckyme.status}}</div>
-                <div *ngIf="luckyme.isWinner" class="amount-won">To Win GHS {{luckyme.amountToWin}}</div>
-                <div *ngIf="!luckyme.isWinner" class="potential-returns">Potential Winning : GHS 2000</div>
-              </div>
-            </label>
-          </div>
 
+          <ag-grid-angular #agGrid style="height: 100%;" [rowSelection]="'single'" [rowMultiSelectWithClick]="true"
+            (selectionChanged)="luckmeSelectionChanged(agGrid)" (gridReady)="onLuckymeGridReady($event)"
+            class="ag-theme-balham" [embedFullWidthRows]="true" [rowData]="recentLuckymeStakes"
+            [detailCellRenderer]="detailCellRenderer" [masterDetail]="true" [columnDefs]="luckymeColumnDefs"
+            [modules]="luckymeModule" [detailRowHeight]="detailRowHeight" [frameworkComponents]="frameworkComponents"
+            (firstDataRendered)="onFirstDataRendered($event)">
+          </ag-grid-angular>
         </div>
       </div>
 
-      <div class="info-card details">
-        <div class="info-card__head">Details</div>
-        <div class="info-card__body">
-          <div *ngIf="selectedluckyme" class="luckyme-details">
-            <div class="record">
-              <div class="label">Date</div>
-              <div class="text">{{selectedluckyme.date}}</div>
-            </div>
-            <div class="record">
-              <div class="label">Amount</div>
-              <div class="text">GHS {{selectedluckyme.amount}}</div>
-            </div>
-            <div class="record">
-              <div class="label">Period</div>
-              <div class="text">{{selectedluckyme.period}}</div>
-            </div>
-            <div class="record">
-              <div class="label">Status</div>
-              <div class="text">{{selectedluckyme.status}}</div>
-            </div>
-            <div *ngIf="selectedluckyme.status == 'won'" class="record">
-              <div class="label">Amount Won</div>
-              <div class="text">{{selectedluckyme.amountToWin}}</div>
-            </div>
 
-          </div>
-          <div *ngIf="selectedluckyme" class="luckyme-userdetails">
-            <div class="record">
-              <div class="label">Email</div>
-              <div class="text">{{selectedluckyme.user.email}}</div>
-            </div>
-            <div class="record">
-              <div class="label">Phone Number</div>
-              <div class="text">{{selectedluckyme.user.phoneNumber}}</div>
-            </div>
-            <div class="record">
-              <div class="label">Name</div>
-              <div class="text">{{selectedluckyme.user.firstName}} {{selectedluckyme.user.lastName}}</div>
-            </div>
-
-          </div>
-          <div *ngIf="selectedluckyme" class="payment-details">
-            <div [ngStyle]="{'background-color':selectedluckyme.status == 'won' ? 'green' : 'red'}" class="status">
-              {{selectedluckyme.status}}</div>
-            <div *ngIf="selectedluckyme.user.preferedMoneyReceptionMethod == 'momo'" class="momo">
-              <div class="record">
-                <div class="label">Selected Payment Method</div>
-                <div class="text">{{selectedluckyme.user.preferedMoneyReceptionMethod}}</div>
-              </div>
-              <div class="record">
-                <div class="label">Number</div>
-                <div *ngIf="selectedluckyme.user.momoDetails" class="text">{{selectedluckyme.user.momoDetails.number}}
-                </div>
-              </div>
-              <div class="record">
-                <div class="label">Network</div>
-                <div *ngIf="selectedluckyme.user.momoDetails" class="text">{{selectedluckyme.user.momoDetails.network}}
-                </div>
-              </div>
-              <div class="record">
-                <div class="label">Country</div>
-                <div *ngIf="selectedluckyme.user.momoDetails" class="text">{{selectedluckyme.user.momoDetails.country}}
-                </div>
-              </div>
-              <div class="record">
-                <div class="label">Currency</div>
-                <div *ngIf="selectedluckyme.user.momoDetails" class="text">{{selectedluckyme.user.momoDetails.currency}}
-                </div>
-              </div>
-              <div *ngIf="selectedluckyme.status == 'won'" class="record transactionpane">
-                <div class="form-group">
-                  <label>Pay User and Enter Transaction Id</label>
-                  <input type="text" class="form-control" placeholder="Enter Transaction Id">
-                  <small *ngIf="false" class="form-text text-danger">Please enter the transaction Id</small>
-                </div>
-                <div class="btn btn-info">User Paid</div>
-              </div>
-
-
-
-            </div>
-
-            <div *ngIf="selectedluckyme.user.preferedMoneyReceptionMethod == 'bank'" class="bank">
-              <div class="record">
-                <div class="label">Selected Payment Method</div>
-                <div class="text">{{selectedluckyme.user.preferedMoneyReceptionMethod}}</div>
-              </div>
-              <div class="record">
-                <div class="label">Bank Name</div>
-                <div *ngIf="selectedluckyme.user.bankDetails" class="text">{{selectedluckyme.user.bankDetails.bankName}}
-                </div>
-              </div>
-              <div class="record">
-                <div class="label">Account Number</div>
-                <div *ngIf="selectedluckyme.user.bankDetails" class="text">
-                  {{selectedluckyme.user.bankDetails?.acountNumber}}</div>
-              </div>
-              <div class="record">
-                <div class="label">Swift Code</div>
-                <div *ngIf="selectedluckyme.user.bankDetails" class="text">
-                  {{selectedluckyme.user.bankDetails.swiftCode}}</div>
-              </div>
-              <div *ngIf="selectedbusiness.status == 'won'" class="record transactionpane">
-                <div class="form-group">
-                  <label>Pay User and Enter Transaction Id</label>
-                  <input type="text" class="form-control" placeholder="Enter Transaction Id">
-                  <small *ngIf="false" class="form-text text-danger">Please enter the transaction Id</small>
-                </div>
-                <div class="btn btn-info">User Paid</div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
 
     </div>
     <div class="adluckyme-body__bottom--right">
@@ -458,6 +362,87 @@
             class="btn btn-danger">UnFix</button>
         </div>
       </div>
+    </div>
+    <div class="popup__content--footer"></div>
+  </div>
+</div>
+
+<div [ngClass]="{'visible':paymentBoxShown,'invisible':!paymentBoxShown}" class="popup regular" id="payment-box">
+  <div *ngIf="selectedluckyme" class="popup__content">
+    <div class="popup__content--toolbar">
+      <div *ngIf="selectedluckyme.user" class="toolbar--left">Pay {{selectedluckyme.user.firstName}}
+        {{selectedluckyme.user.lastName}}</div>
+      <div class="toolbar--right">
+        <a (click)="closePaymentBox()" class="closebtn">
+          <span class="fa fa-times"></span>
+        </a>
+      </div>
+    </div>
+    <div class="popup__content--body">
+      <div *ngIf="!selectedluckyme.user" class="spinner">Spinning</div>
+      <div *ngIf="selectedluckyme.user" class="payment-details">
+        <div *ngIf="selectedluckyme.user.preferedMoneyReceptionMethod == 'momo'" class="data-container">
+          <div class="data-container__header">
+            <p class="htext">Momo Details</p>
+          </div>
+          <div class="data-container__body">
+            <div class="data-container__body--left">
+              <p>Country</p>
+              <p>Network</p>
+              <p>Number</p>
+              <p>Currency</p>
+            </div>
+            <div *ngIf="selectedluckyme.user" class="data-container__body--right">
+              <p>{{selectedluckyme.user.momoDetails.country}}</p>
+              <p>{{selectedluckyme.user.momoDetails.network}}</p>
+              <p>{{selectedluckyme.user.momoDetails.number}}</p>
+              <p>{{selectedluckyme.user.momoDetails.currency}}</p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="selectedluckyme.user.preferedMoneyReceptionMethod == 'bank'" class="data-container">
+          <div class="data-container__header">
+            <p class="htext">USER</p>
+          </div>
+          <div class="data-container__body">
+            <div class="data-container__body--left">
+              <p>FirstName</p>
+              <p>LastName</p>
+              <p>PhoneNumber</p>
+              <p>PreferedMoneyReceptionMethod</p>
+            </div>
+            <div *ngIf="selectedluckyme.user" class="data-container__body--right">
+              <p>{{selectedluckyme.user.firstName}}</p>
+              <p>{{selectedluckyme.user.lastName}}</p>
+              <p>{{selectedluckyme.user.phoneNumber}}</p>
+              <p>{{selectedluckyme.user.preferedMoneyReceptionMethod}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="selectedluckyme.user" class="paymentform">
+        <form *ngIf="selectedluckyme.user.userType==0" [formGroup]="paymentForm" (ngSubmit)="makePayment()">
+          <div class="c-input">
+            <input type="text" placeholder="Amount Paid" [formControlName]="'amount'" />
+            <i class="c-addon fa fa-user"></i>
+            <b *ngIf="!paymentForm.get('amount').valid && paymentForm.get('amount').touched" class="val-msg">
+              <p>Amount Paid Is Required</p>
+            </b>
+          </div>
+          <div class="c-input">
+            <input type="text" placeholder="Transaction Reference" [formControlName]="'reference'" />
+            <i class="c-addon fa fa-user"></i>
+            <b *ngIf="!paymentForm.get('reference').valid && paymentForm.get('reference').touched" class="val-msg">
+              <p>Transaction Reference Is Required</p>
+            </b>
+          </div>
+          <div class="actionpane">
+            <button type="submit" class="btn btn-secondary">Submit</button>
+          </div>
+        </form>
+        <h4 *ngIf="selectedluckyme.user.userType==2">Cannot Pay A Dummy Winner</h4>
+      </div>
+
     </div>
     <div class="popup__content--footer"></div>
   </div>

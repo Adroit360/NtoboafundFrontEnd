@@ -46,7 +46,8 @@ import { AnalysisService } from 'src/services/analysis.service';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ResetpasswordformComponent } from './resetpasswordform/resetpasswordform.component';
 import { CommonModule } from '@angular/common';
-
+import { AgGridModule } from '@ag-grid-community/angular';
+import { DetailCellRendererComponent } from './cellrenderers/detail-cell-renderer/detail-cell-renderer.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import { CommonModule } from '@angular/common';
     AdbusinessesComponent,
     AdsettingsComponent,
     ResetpasswordComponent,
-    ResetpasswordformComponent
+    ResetpasswordformComponent,
+    DetailCellRendererComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,9 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     ChartsModule,
     AngularRaveModule,
-    CommonModule
+    CommonModule,
+    AgGridModule.withComponents([DetailCellRendererComponent])
+
   ],
   exports:[
     ChartsModule

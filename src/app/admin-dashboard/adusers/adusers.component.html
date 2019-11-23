@@ -1,44 +1,102 @@
-<app-busy class="invisible" [ngClass]="{'visible':loading,'invisible':!loading}"></app-busy>
+<app-busy
+  class="invisible"
+  [ngClass]="{ visible: loading, invisible: !loading }"
+></app-busy>
 
 <div class="adusers-body">
-
-    <div class="adusers-body__left">
-        <div class="users-pane">
-            <div class="heading">Users <a (click)="showOrHideAddUser()" routerLink="./" class="toplink">Add New User</a>
-            </div>
-            <div class="searchbox"></div>
-            <div class="allusers">
-                <div *ngFor="let user of users" class="user-item">
+  <div class="adusers-body__left">
+    <div class="users-pane">
+      <div class="heading">
+        <div class="heading__left">Users</div>
+        <div class="heading__right">
+          <a (click)="showOrHideAddUser()" routerLink="./" class="toplink">
+            <svg class="linkicon icon icon-min">
+              <use href="assets/Icons/svgs.svg#icon-circle-with-plus" />
+            </svg>
+            <div class=" c-tooltip"> <span class="OnRight">Add New User</span></div>
+          </a>
+          <a
+            (click)="editUser()"
+            [ngClass]="{ disabled: selectedUser.firstName == null }"
+            routerLink="./"
+            class="toplink"
+          >
+            <svg class="linkicon icon icon-min">
+              <use href="assets/Icons/svgs.svg#icon-pencil" />
+            </svg>
+          </a>
+          <a
+            (click)="deleteUser()"
+            [ngClass]="{ disabled: selectedUser.firstName == null }"
+            routerLink="./"
+            class="toplink"
+          >
+            <svg class="linkicon icon icon-min">
+              <use href="assets/Icons/svgs.svg#icon-trash" />
+            </svg>
+          </a>
+          <a
+            (click)="suspendUser()"
+            [ngClass]="{ disabled: selectedUser.firstName == null }"
+            routerLink="./"
+            class="toplink"
+          >
+            <svg class="linkicon icon icon-min">
+              <use href="assets/Icons/svgs.svg#icon-airplanemode_active" />
+            </svg>
+          </a>
+          <a
+            (click)="showOrHideViewDetails()"
+            [ngClass]="{ disabled: selectedUser.firstName == null }"
+            routerLink="./"
+            class="toplink"
+          >
+            <svg class="linkicon icon icon-min">
+              <use href="assets/Icons/svgs.svg#icon-eye" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="searchbox"></div>
+      <div class="allusers">
+        <ag-grid-angular
+          #agGrid
+          style="height: 100%;"
+          [rowSelection]="'single'"
+          [rowMultiSelectWithClick]="true"
+          (selectionChanged)="usersSelectionChanged(agGrid)"
+          (gridReady)="onUsersGridReady($event)"
+          class="ag-theme-balham"
+          [rowData]="users"
+          [columnDefs]="usersColumnDefs"
+          [modules]="usersModule"
+        >
+        </ag-grid-angular>
+        <!-- <div *ngFor="let user of users" class="user-item">
                     <input type="radio" name="user" [id]="'selector' + user.id">
                     <label (click)="changeSelectedUser(user)" [for]="'selector' + user.id" class="user-item__detail">
                         <span>User ID : {{user.id}}</span>
                         <div class="name">Name : {{user.firstName}} {{user.lastName}}</div>
                         <span>Email : {{user.email}}</span>
                     </label>
-                </div>
-            </div>
-        </div>
+                </div> -->
+      </div>
     </div>
-    <div class="adusers-body__right">
-        <div class="toprow">
-            <a (click)="editUser()" [ngClass]="{disabled:selectedUser.firstName == null}" routerLink="./" class="toplink">Edit</a>
-            <a (click)="deleteUser()" [ngClass]="{disabled:selectedUser.firstName == null}" routerLink="./" class="toplink">Delete</a>
-            <a (click)="suspendUser()" [ngClass]="{disabled:selectedUser.firstName == null}" routerLink="./"class="toplink">Suspend</a>
-            <a (click)="showOrHideViewDetails()" [ngClass]="{disabled:selectedUser.firstName == null}" routerLink="./"
-                class="toplink">View Details</a>
+  </div>
+  <div class="adusers-body__right">
+    <div class="toprow"></div>
+    <div class="bottomrow">
+      <div class="recentsbox">
+        <div class="recentsbox__header">
+          <div class="recentsbox__header--left">
+            <span class="fa fa-history"></span>
+          </div>
+          <div class="recentsbox__header--right">
+            Business Stakes
+          </div>
         </div>
-        <div class="bottomrow">
-            <div class="recentsbox">
-                <div class="recentsbox__header">
-                    <div class="recentsbox__header--left">
-                        <span class="fa fa-history"></span>
-                    </div>
-                    <div class="recentsbox__header--right">
-                        Business Stakes
-                    </div>
-                </div>
-                <div class="recentsbox__body">
-                    <div *ngFor="let business of selectedUser.businesses" class="recent-stake-item">
+        <div class="recentsbox__body">
+          <!-- <div *ngFor="let business of selectedUser.businesses" class="recent-stake-item">
                         <div class="recent-stake-item--top">
                             <div class="period">{{business.period}}</div>
                             <div class="amount">GHS {{business.amount}}</div>
@@ -53,21 +111,34 @@
                                 2000
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </div> -->
+          <ag-grid-angular
+            *ngIf="selectedUser.businesses"
+            style="height: 100%;"
+            (gridReady)="onGridReady($event)"
+            class="ag-theme-balham"
+            [rowData]="selectedUser.businesses"
+            [columnDefs]="userBusinessStakesColumnDefs"
+            [modules]="usersModule"
+          >
+          </ag-grid-angular>
+          <div *ngIf="!selectedUser.businesses" class="no-content">
+            No Business Stakes
+          </div>
+        </div>
+      </div>
 
-            <div class="recentsbox">
-                <div class="recentsbox__header">
-                    <div class="recentsbox__header--left">
-                        <span class="fa fa-history"></span>
-                    </div>
-                    <div class="recentsbox__header--right">
-                        Scholarship Stakes
-                    </div>
-                </div>
-                <div class="recentsbox__body">
-                    <div *ngFor="let scholarship of selectedUser.scholarships" class="recent-stake-item">
+      <div class="recentsbox">
+        <div class="recentsbox__header">
+          <div class="recentsbox__header--left">
+            <span class="fa fa-history"></span>
+          </div>
+          <div class="recentsbox__header--right">
+            Scholarship Stakes
+          </div>
+        </div>
+        <div class="recentsbox__body">
+          <!-- <div *ngFor="let scholarship of selectedUser.scholarships" class="recent-stake-item">
                         <div class="recent-stake-item--top">
                             <div class="period">{{scholarship.period}}</div>
                             <div class="amount">GHS {{scholarship.amount}}</div>
@@ -81,172 +152,234 @@
                                 2000
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-card winnerscard">
-                <div class="info-card__head">Past LuckyMe Stakes</div>
-                <div class="info-card__body">
-                    <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
-                    <div class="tab-box">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item active">
-                                <a class="nav-link active" href="#daily-winner" role="tab" data-toggle="tab">Daily</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#weekly-winner" role="tab" data-toggle="tab">Weekly</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#monthly-winner" role="tab" data-toggle="tab">Monthly</a>
-                            </li>
-                        </ul>
-                        <div *ngIf="selectedUser.luckyMes" class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade show in active" id="daily-winner">
-                                <div *ngFor="let luckyme of selectedUser.luckyMes['daily']" class="recent-stake-item">
-                                    <div class="recent-stake-item--top">
-                                        <div class="period">{{luckyme.period}}</div>
-                                        <div class="amount">GHS {{luckyme.amount}}</div>
-                                        <div class="date"> {{luckyme.date}} </div>
-                                    </div>
-                                    <div class="recent-stake-item--bottom">
-                                        <div class="status">Status : {{luckyme.status}}</div>
-                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS
-                                            {{luckyme.amountToWin}}
-                                        </div>
-                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning
-                                            : GHS {{luckyme.amountToWin}}
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="weekly-winner">
-                                <div *ngFor="let luckyme of selectedUser.luckyMes['weekly']" class="recent-stake-item">
-                                    <div class="recent-stake-item--top">
-                                        <div class="period">{{luckyme.period}}</div>
-                                        <div class="amount">GHS {{luckyme.amount}}</div>
-                                        <div class="date"> {{luckyme.date}} </div>
-                                    </div>
-                                    <div class="recent-stake-item--bottom">
-                                        <div class="status">Status : {{luckyme.status}}</div>
-                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS
-                                            {{luckyme.amountToWin}}
-                                        </div>
-                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning
-                                            : GHS {{luckyme.amountToWin}}
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade" id="monthly-winner">
-                                <div *ngFor="let luckyme of selectedUser.luckyMes['monthly']" class="recent-stake-item">
-                                    <div class="recent-stake-item--top">
-                                        <div class="period">{{luckyme.period}}</div>
-                                        <div class="amount">GHS {{luckyme.amount}}</div>
-                                        <div class="date"> {{luckyme.date}} </div>
-                                    </div>
-                                    <div class="recent-stake-item--bottom">
-                                        <div class="status">Status : {{luckyme.status}}</div>
-                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS
-                                            {{luckyme.amountToWin}}
-                                        </div>
-                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning
-                                            : GHS {{luckyme.amountToWin}}
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </div> -->
+          <ag-grid-angular
+            *ngIf="selectedUser.scholarships"
+            style="height: 100%;"
+            (gridReady)="onGridReady($event)"
+            class="ag-theme-balham"
+            [rowData]="selectedUser.scholarships"
+            [columnDefs]="userScholarshipStakesColumnDefs"
+            [modules]="usersModule"
+          >
+          </ag-grid-angular>
+          <div *ngIf="!selectedUser.scholarships" class="no-content">
+            No Scholarship Stakes
+          </div>
         </div>
-    </div>
+      </div>
 
+      <div class="recentsbox winnerscard">
+        <div class="recentsbox__header">
+          <div class="recentsbox__header--left">
+            <span class="fa fa-history"></span>
+          </div>
+          <div class="recentsbox__header--right">
+            LuckyMe Stakes
+          </div>
+        </div>
+        <div class="recentsbox__body">
+          <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
+          <div class="tab-box">
+            <ul class="nav nav-tabs">
+              <li class="nav-item active">
+                <a
+                  class="nav-link active"
+                  href="#daily-winner"
+                  role="tab"
+                  data-toggle="tab"
+                  >Daily</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="#weekly-winner"
+                  role="tab"
+                  data-toggle="tab"
+                  >Weekly</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="#monthly-winner"
+                  role="tab"
+                  data-toggle="tab"
+                  >Monthly</a
+                >
+              </li>
+            </ul>
+            <div *ngIf="selectedUser.luckyMes" class="tab-content">
+              <div
+                role="tabpanel"
+                class="tab-pane fade show in active"
+                id="daily-winner"
+              >
+                <!-- <div *ngFor="let luckyme of selectedUser.luckyMes['daily']" class="recent-stake-item">
+                                    <div class="recent-stake-item--top">
+                                        <div class="period">{{luckyme.period}}</div>
+                                        <div class="amount">GHS {{luckyme.amount}}</div>
+                                        <div class="date"> {{luckyme.date}} </div>
+                                    </div>
+                                    <div class="recent-stake-item--bottom">
+                                        <div class="status">Status : {{luckyme.status}}</div>
+                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS
+                                            {{luckyme.amountToWin}}
+                                        </div>
+                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning
+                                            : GHS {{luckyme.amountToWin}}
+                                        </div>
+                                    </div>
+                                </div> -->
+                <ag-grid-angular
+                  *ngIf="selectedUser.luckyMes['daily']"
+                  style="height:100%;"
+                  class="ag-theme-balham"
+                  [rowData]="selectedUser.luckyMes['daily']"
+                  (gridReady)="onGridReady($event)"
+                  [columnDefs]="userLuckymeStakesColumnDefs"
+                  [modules]="usersModule"
+                >
+                </ag-grid-angular>
+                <div *ngIf="!selectedUser.luckyMes['daily']" class="no-content">
+                  No Daily LuckyMe Stakes
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="weekly-winner">
+                <!-- <div *ngFor="let luckyme of selectedUser.luckyMes['weekly']" class="recent-stake-item">
+                                    <div class="recent-stake-item--top">
+                                        <div class="period">{{luckyme.period}}</div>
+                                        <div class="amount">GHS {{luckyme.amount}}</div>
+                                        <div class="date"> {{luckyme.date}} </div>
+                                    </div>
+                                    <div class="recent-stake-item--bottom">
+                                        <div class="status">Status : {{luckyme.status}}</div>
+                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS
+                                            {{luckyme.amountToWin}}
+                                        </div>
+                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning
+                                            : GHS {{luckyme.amountToWin}}
+                                        </div>
+                                    </div>
+                                </div> -->
+                <ag-grid-angular
+                  *ngIf="selectedUser.luckyMes['weekly']"
+                  style="height:100%;"
+                  class="ag-theme-balham"
+                  [rowData]="selectedUser.luckyMes['weekly']"
+                  (gridReady)="onGridReady($event)"
+                  [columnDefs]="userLuckymeStakesColumnDefs"
+                  [modules]="usersModule"
+                >
+                </ag-grid-angular>
+                <div
+                  *ngIf="!selectedUser.luckyMes['weekly']"
+                  class="no-content"
+                >
+                  No Weekly LuckyMe Stakes
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="monthly-winner">
+                <!-- <div *ngFor="let luckyme of selectedUser.luckyMes['monthly']" class="recent-stake-item">
+                                    <div class="recent-stake-item--top">
+                                        <div class="period">{{luckyme.period}}</div>
+                                        <div class="amount">GHS {{luckyme.amount}}</div>
+                                        <div class="date"> {{luckyme.date}} </div>
+                                    </div>
+                                    <div class="recent-stake-item--bottom">
+                                        <div class="status">Status : {{luckyme.status}}</div>
+                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS
+                                            {{luckyme.amountToWin}}
+                                        </div>
+                                        <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning
+                                            : GHS {{luckyme.amountToWin}}
+                                        </div>
+                                    </div>
+                                </div> -->
+                <ag-grid-angular
+                  *ngIf="selectedUser.luckyMes['monthly']"
+                  style="height:100%;"
+                  class="ag-theme-balham"
+                  [rowData]="selectedUser.luckyMes['monthly']"
+                  (gridReady)="onGridReady($event)"
+                  [columnDefs]="userLuckymeStakesColumnDefs"
+                  [modules]="usersModule"
+                >
+                </ag-grid-angular>
+                <div
+                  *ngIf="!selectedUser.luckyMes['monthly']"
+                  class="no-content"
+                >
+                  No Monthly LuckyMe Stakes
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div [ngClass]="{'visible':addUsersShown,'invisible':!addUsersShown}" class="popup regular" id="adduser-box">
-    <div class="popup__content">
-        <div class="popup__content--toolbar">
-            <div class="toolbar--left">Add New User</div>
-            <div class="toolbar--right">
-                <a (click)="showOrHideAddUser()" class="closebtn">
-                    <span class="fa fa-times"></span>
-                </a>
-            </div>
-        </div>
-        <div class="popup__content--body">
-            <form class="stake-form" [formGroup]="addUserForm">
-                <div class="form-group">
-                    <label for="exampleInputInstitution">first Name</label>
-                    <input type="text" class="form-control" id="exampleInputInstitution" formControlName="Institution"
-                        aria-describedby="InstitutionHelp" placeholder="Enter Institution">
-                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.</small> -->
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputProgram">Last Name</label>
-                    <input type="text" class="form-control" id="exampleInputProgram" aria-describedby="ProgramHelp"
-                        placeholder="Enter Program" formControlName="Program">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputStudentId">Email</label>
-                    <input type="text" class="form-control" id="exampleInputStudentId" aria-describedby="StudentIdHelp"
-                        placeholder="Enter Student Id" formControlName="StudentId">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputStudentId">User Role</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary float-right">Save</button>
-            </form>
-        </div>
-        <div class="popup__content--footer"></div>
+<div
+  [ngClass]="{ visible: addUsersShown, invisible: !addUsersShown }"
+  class="popup regular"
+  id="adduser-box"
+>
+  <div class="popup__content">
+    <div class="popup__content--toolbar">
+      <div class="toolbar--left">Add New User</div>
+      <div class="toolbar--right">
+        <a (click)="showOrHideAddUser()" class="closebtn">
+          <span class="fa fa-times"></span>
+        </a>
+      </div>
     </div>
+    <div class="popup__content--body"></div>
+    <div class="popup__content--footer"></div>
+  </div>
 </div>
 
-
-<div [ngClass]="{'visible':viewUserDetailsShown,'invisible':!viewUserDetailsShown}" class="popup regular"
-    id="viewuserdetails-box">
-    <div class="popup__content">
-        <div class="popup__content--toolbar">
-            <div class="toolbar--left">View Details for {{selectedUser.firstName}}</div>
-            <div class="toolbar--right">
-                <a (click)="showOrHideViewDetails()" class="closebtn">
-                    <span class="fa fa-times"></span>
-                </a>
-            </div>
-        </div>
-        <div class="popup__content--body">
-            <div class="user-records">
-                <div class="record">
-                    <div class="label">First Name : </div>
-                    <div class="text">{{selectedUser.firstName}}</div>
-                </div>
-                <div class="record">
-                    <div class="label">Last Name : </div>
-                    <div class="text">{{selectedUser.lastName}}</div>
-                </div>
-                <div class="record">
-                    <div class="label">Email : </div>
-                    <div class="text">{{selectedUser.email}}</div>
-                </div>
-                <div class="record">
-                    <div class="label">Phone Number : </div>
-                    <div class="text">{{selectedUser.phoneNumber}}</div>
-                </div>
-
-            </div>
-        </div>
-        <div class="popup__content--footer"></div>
+<div
+  [ngClass]="{
+    visible: viewUserDetailsShown,
+    invisible: !viewUserDetailsShown
+  }"
+  class="popup regular"
+  id="viewuserdetails-box"
+>
+  <div class="popup__content">
+    <div class="popup__content--toolbar">
+      <div class="toolbar--left">
+        View Details for {{ selectedUser.firstName }}
+      </div>
+      <div class="toolbar--right">
+        <a (click)="showOrHideViewDetails()" class="closebtn">
+          <span class="fa fa-times"></span>
+        </a>
+      </div>
     </div>
+    <div class="popup__content--body">
+      <div class="user-records">
+        <div class="record">
+          <div class="label">First Name :</div>
+          <div class="text">{{ selectedUser.firstName }}</div>
+        </div>
+        <div class="record">
+          <div class="label">Last Name :</div>
+          <div class="text">{{ selectedUser.lastName }}</div>
+        </div>
+        <div class="record">
+          <div class="label">Email :</div>
+          <div class="text">{{ selectedUser.email }}</div>
+        </div>
+        <div class="record">
+          <div class="label">Phone Number :</div>
+          <div class="text">{{ selectedUser.phoneNumber }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="popup__content--footer"></div>
+  </div>
 </div>
