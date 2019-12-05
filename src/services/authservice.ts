@@ -67,7 +67,7 @@ export class AuthService {
         return JSON.parse(localStorage.getItem('currentUser'));
     }
 
-    hasPaymentDetails(showConfirmBox: boolean = false): boolean {
+    hasPaymentDetails(data:string,showConfirmBox: boolean = false): boolean {
         if (!this.currentUser)
             return false;
 
@@ -92,7 +92,7 @@ export class AuthService {
                         return true;
                     }//else show the show the error message
                     else if (showConfirmBox) {
-                        this.ChangeDetailsConfirm(momoError);
+                        this.ChangeDetailsConfirm(momoError,data);
                         return false;
                     }
 
@@ -114,14 +114,14 @@ export class AuthService {
                         return true;
                     }//else show the show the error message
                     else if (showConfirmBox) {
-                        this.ChangeDetailsConfirm(bankError);
+                        this.ChangeDetailsConfirm(bankError,data);
                         return false;
                     }
                     return false;
                     break;
                 default:
                     if (showConfirmBox) {
-                        this.ChangeDetailsConfirm("Please choose the correct prefered money reception method");
+                        this.ChangeDetailsConfirm("Please choose the correct prefered money reception method",data);
                         return false;
                     }
                     return false;
@@ -130,14 +130,14 @@ export class AuthService {
         }
         else {
             if (showConfirmBox)
-                this.ChangeDetailsConfirm("Give us details of how you want us to pay you when you win.");
+                this.ChangeDetailsConfirm("Give us details of how you want us to pay you when you win.",data);
             return false;
         }
     }
 
-    ChangeDetailsConfirm(error: string) {
+    ChangeDetailsConfirm(error: string,data:string) {
         if (confirm(error)) {
-            this.router.navigate(['manage', 'profile'], { queryParams: { returnUrl: this.router.url } });
+            this.router.navigate(['manage', 'profile'], { queryParams: { returnUrl: this.router.url,urldata:data} });
         }
     }
 

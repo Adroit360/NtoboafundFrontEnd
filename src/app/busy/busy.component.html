@@ -1,4 +1,4 @@
-<div class="busy-body">
+<div [ngClass]="{'not-whole':!IsWholePage}" class="busy-body">
   <div class="lds-ripple"><div></div><div></div></div>
-
+  <div *ngIf="Text" class="text">{{Text}}</div>
 </div>

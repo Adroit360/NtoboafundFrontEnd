@@ -1,2 +1,10 @@
 <!-- <app-home></app-home> -->
 <router-outlet></router-outlet>
+<footer>
+    <div class="legal-stuff">
+      <a  [routerLink]="'/terms'">Terms and Conditions</a>
+      <a  [routerLink]="'/cookiepolicy'">Privacy and Cookie Policy</a>
+    </div>
+  </footer>
+
+<script *ngIf="settings.paymentGateway=='flutterwave'" src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>

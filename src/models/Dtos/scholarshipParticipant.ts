@@ -5,5 +5,6 @@ export class ScholarshipParticipant{
     amountStaked:string;
     amountToWin:string;
     scholarship:any;
-    dateDeclared:string;    
+    dateDeclared:string;   
+    txRef:string;
 }

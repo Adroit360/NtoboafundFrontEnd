@@ -84,7 +84,7 @@
           <div class="stake-box__header">
             <div class="text">Ntoboa scholarship</div>
           </div>
-          <input type="checkbox" id="stakeboxcontroller">
+          <input #stakeboxcontroller type="checkbox" id="stakeboxcontroller">
           <div class="stake-box__body">
             <div class="stake-box__body__info">
               <div class="content">
@@ -126,45 +126,54 @@
                         class="form-text text-danger">Your student id is required !!</small>
                     </span>
                   </div>
-
                   <div class="form-group">
                     <label for="exampleInputStudentId">Select your player type</label>
                     <div class="flatradios">
                       <label class="flatradio-choice" for="student">
-                        <input type="radio" (change)="selectPlayerType($event,'student')" name="period" id="student">
+                        <input type="radio" value="student" formControlName="PlayerType" name="PlayerType" id="student">
                         <div class="text">Student</div>
                       </label>
                       <label class="flatradio-choice" for="parent">
-                        <input type="radio" (change)="selectPlayerType($event,'parent')" name="period" id="parent">
+                        <input type="radio" value="parent" formControlName="PlayerType" name="PlayerType" id="parent">
                         <div class="text">Parent/Guardian</div>
                       </label>
                     </div>
                     <span>
-                      <small class="form-text text-danger" *ngIf="!selectedPlayerType && errorShown">Please select a
+                      <small class="form-text text-danger" *ngIf="!scholarshipForm.get('PlayerType').valid && scholarshipForm.touched">Please select a
                         player type</small>
                     </span>
                   </div>
-
                 </form>
-
-
-
               </div>
               <div class="footer">
                 <label for="stakeboxcontroller" class="btn btn-info i-resign">Back</label>
                 <!-- (click)="pay()" -->
-                <button angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
+                <button *ngIf="settings.paymentGateway=='flutterwave'" angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
                   (mouseover)="setRaveOptions(20)" (callback)="scholarshipPaymentCallback($event)"
                   (close)="paymentFailed()" (init)="paymentInitialized(20)">Invest for <span class="pay-amt">₵20</span>
                 </button>
-                <button angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
+                <button *ngIf="settings.paymentGateway=='flutterwave'" angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
                   (mouseover)="setRaveOptions(50)" (callback)="scholarshipPaymentCallback($event)"
                   (close)="paymentFailed()" (init)="paymentInitialized(50)">Invest for <span class="pay-amt">₵50</span>
                 </button>
-                <button angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
+                <button *ngIf="settings.paymentGateway=='flutterwave'" angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
                   (mouseover)="setRaveOptions(100)" (callback)="scholarshipPaymentCallback($event)"
                   (close)="paymentFailed()" (init)="paymentInitialized(100)">Invest for <span class="pay-amt">₵100</span>
                 </button>
+
+
+                <button *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'" class="btn btn-primary i-Invest"
+                (click)="paymentInitialized(20)">Invest for <span class="pay-amt">₵20</span>
+             </button>
+                <button *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'" class="btn btn-primary i-Invest"
+                (click)="paymentInitialized(50)">Invest for <span class="pay-amt">₵50</span>
+             </button>
+                <button *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'" class="btn btn-primary i-Invest"
+                (click)="paymentInitialized(1000)">Invest for <span class="pay-amt">₵100</span>
+             </button>
+
+
+        
               </div>
             </div>
           </div>
@@ -308,3 +317,5 @@
   
 
 <app-faq></app-faq>
+
+<app-payment-dialog [amount]="selectedAmount" [stakeType]="'Scholarship'" [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" [txRef]="this.raveOptions.txref" *ngIf="customPaymentDialogShown && this.raveOptions" (close)="closePaymentDialog()" (oncongratmessage)="showCongratulatoryMessage($event)"></app-payment-dialog>

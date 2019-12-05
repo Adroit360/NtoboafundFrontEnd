@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CountDownService } from 'src/services/countdownservice';
 import { SignalRService } from 'src/services/signalr.service';
 import { WinnerSelectionService } from 'src/services/winnerselection.service';
 import { settings } from 'src/settings';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/services/authservice';
 import { HttpClient } from '@angular/common/http';
 import { Business } from 'src/models/business';
@@ -15,7 +15,7 @@ import { RaveOptions } from 'angular-rave';
   templateUrl: './business.component.html',
   styleUrls: ['./business.component.scss']
 })
-export class BusinessComponent implements OnInit {
+export class BusinessComponent implements OnInit,AfterViewInit {
 
   ObjectKeys = Object.keys;
 
@@ -34,13 +34,16 @@ export class BusinessComponent implements OnInit {
   congratMsg: string = "";
   congratShown = false;
 
+
+  customPaymentDialogShown:boolean;
+  settings:any = settings;
   closePopup() {
     this.error = null;
     this.errorShown = false;
   }
 
   constructor(private countDownService: CountDownService,
-    private router: Router, public authService: AuthService
+    private router: Router, public authService: AuthService,public activatedRoute:ActivatedRoute
     , private http: HttpClient, public signalRservice: SignalRService
     , public winnerSelectionService: WinnerSelectionService, private paymentService: PaymentService) {
     //Get All Business participants after the Draw
@@ -59,19 +62,39 @@ export class BusinessComponent implements OnInit {
 
   }
 
+
+  ngAfterViewInit(){
+    var urlData = <string>this.activatedRoute.snapshot.queryParams["urldata"];
+
+    if(urlData){
+      //if data is gotten from the query string
+      try{
+        var splittedUrlData = urlData.split('/*/');
+        this.selectedAmount = splittedUrlData[0];
+        this.setRaveOptions();
+      }catch{
+
+      }
+    }
+  }
+  
   pay() {
     if (this.authService.isAuthenticated) {
 
-      if (this.authService.hasPaymentDetails(true)) {
+      if (this.authService.hasPaymentDetails(`${this.selectedAmount}`,true)) {
         //  var amount = this.selectedAmount;
-
+        this.setRaveOptions();
         this.http.post<any>(`${settings.currentApiUrl}/businesses/addnew`, { amount: this.selectedAmount, userId: this.authService.currentUser.id, txRef: this.raveOptions.txref })
           .subscribe(
             response => {
-              console.log("business added")
+              this.loading = false;
+               console.log(response);
+              if(settings.paymentGateway == "slydepay" || settings.paymentGateway == "redde")
+                this.customPaymentDialogShown = true;
             },
             error => {
-              console.log("business not added");
+              this.loading = false;
+              console.log(error);
             }
           );
       }
@@ -85,7 +108,6 @@ export class BusinessComponent implements OnInit {
   }
 
   businessPaymentCallback(event) {
-    +6
     this.paymentService.paymentCallback(event);
     this.selectedAmount = null;
     if (event.success) {
@@ -97,8 +119,7 @@ export class BusinessComponent implements OnInit {
             this.loading = false;
             //Get Congratulatory Message After the transaction is successfully completed
             this.paymentService.getCongratulatoryMessage("bus", event.tx.txRef).subscribe((data => {
-              this.congratMsg = data.message;
-              this.congratShown = true;
+              this.showCongratulatoryMessage(data.message);
             }).bind(this));
 
             //this.businesses.push(response.business);
@@ -116,9 +137,18 @@ export class BusinessComponent implements OnInit {
     }
   }
 
+  showCongratulatoryMessage(message:string){
+    this.congratMsg = message;
+    this.congratShown = true;
+  }
+
   closeCongratPopup() {
     this.congratMsg = null;
     this.congratShown = false;
+  }
+
+  closePaymentDialog(){
+    this.customPaymentDialogShown = false;
   }
 
   businessPaymentFailed() {
@@ -134,6 +164,6 @@ export class BusinessComponent implements OnInit {
   }
 
   setRaveOptions() {
-    this.raveOptions = this.paymentService.getRaveOptions('Business', this.selectedAmount, this.authService.hasPaymentDetails());
+    this.raveOptions = this.paymentService.getRaveOptions('Business', this.selectedAmount, this.authService.hasPaymentDetails(`${this.selectedAmount}`));
   }
 }

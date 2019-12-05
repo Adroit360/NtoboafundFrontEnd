@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit,OnDestroy {
   getUserWinners(){
     this.http.get(`${settings.currentApiUrl}/home/allwinners`).subscribe(
       (response:Array<Participant>)=>{
-        console.log(response);
        this.winnings =  groupBy("dateDeclared")(response);
       },
       error=>{

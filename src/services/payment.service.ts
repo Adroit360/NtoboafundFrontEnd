@@ -53,7 +53,7 @@ export class PaymentService {
     getUniqueCode(user: User) {
             var userCode = user.firstName.substr(0, 2) + user.lastName.substr(0, 2);
             var timeStamp = new Date().getTime();
-            return `inv.${userCode}.${timeStamp}`;
+            return `inv.${userCode}.${this.createUUID()}`;
     }
 
 
@@ -90,4 +90,11 @@ export class PaymentService {
     getCongratulatoryMessage(type:string,txref:any):Observable<any>{
         return this.http.get(`${settings.currentApiUrl}/payments/congratmsg/${type}/${txref}`);
     }
+
+    createUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+           var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+           return v.toString(16);
+        });
+     }
 }

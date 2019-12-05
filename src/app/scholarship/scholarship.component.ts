@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CountDownService } from 'src/services/countdownservice';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/services/authservice';
 import { settings } from 'src/settings';
 import { HttpClient } from '@angular/common/http';
@@ -17,7 +17,7 @@ import { RaveOptions } from 'angular-rave';
   templateUrl: './scholarship.component.html',
   styleUrls: ['./scholarship.component.scss']
 })
-export class ScholarshipComponent implements OnInit {
+export class ScholarshipComponent implements OnInit,AfterViewInit {
 
 
   ObjectKeys = Object.keys;
@@ -35,14 +35,18 @@ export class ScholarshipComponent implements OnInit {
   scholarhips: Array<Scholarship> = [];
   scholarshipForm:FormGroup
   raveOptions: RaveOptions;
-  selectedPlayerType: string;
+  //selectedPlayerType: string;
   congratMsg: string = "";
   congratShown = false;
+  selectedAmount:number;
+  customPaymentDialogShown:boolean;
+  settings:any = settings;
+  @ViewChild("stakeboxcontroller") stakeBoxController:ElementRef;
 
   constructor(private countDownService:CountDownService,
               private router:Router,public authService:AuthService
               ,private http:HttpClient,public signalRservice:SignalRService
-              ,public winnerSelectionService:WinnerSelectionService
+              ,public winnerSelectionService:WinnerSelectionService,private activatedRoute:ActivatedRoute
               ,public paymentService:PaymentService) {
 
                 //Get All Scholarship participants after the Draw
@@ -51,6 +55,8 @@ export class ScholarshipComponent implements OnInit {
                     this.signalRservice.initiateGetScholarshipParticipants();
                   }
                 });
+
+                console.log(this.stakeBoxController);
   }
 
   ngOnInit() {
@@ -62,39 +68,73 @@ export class ScholarshipComponent implements OnInit {
     this.scholarshipForm = new FormGroup({
       'Institution' : new FormControl('',Validators.required),
       'Program' : new FormControl('',Validators.required),
-      'StudentId':new FormControl('',Validators.required)
+      'StudentId':new FormControl('',Validators.required),
+      'PlayerType':new FormControl('',Validators.required)
     });
 
   }
 
+  ngAfterViewInit(){
+    //Get already entered data from url if present
+    var urlData = <string>this.activatedRoute.snapshot.queryParams["urldata"];
+
+    if(urlData){
+      //if data is gotten from the query string
+      try{
+        this.stakeBoxController.nativeElement.checked = true;
+        var splittedUrlData = urlData.split('/*/');
+        this.scholarshipForm.get("Institution").setValue(splittedUrlData[0]);
+        this.scholarshipForm.get("Program").setValue(splittedUrlData[1]);
+        this.scholarshipForm.get("StudentId").setValue(splittedUrlData[2]);
+        this.scholarshipForm.get("PlayerType").setValue(splittedUrlData[3]);
+       //this.ravePayBtn.nativeElement.click();
+      // this.paymentInitialized();
+      }catch{
+
+      }
+     
+    }
+}
+
+  /**
+   * Start the Payment Process
+   * @param amount The Scholarship Amount to be paid
+   */
   paymentInitialized(amount){
+
     this.scholarshipForm.markAsTouched();
     this.paymentService.paymentInit();
+    //Check if scholarship form is valid
+    if (!this.scholarshipForm.valid) {
+      this.error = "Please fill all form fields";
+      this.errorShown = true;
+      return;
+    }
+    // if(!this.selectedPlayerType){
+    //   this.errorShown = true;
+    //   return;
+    // }
+    
+    //Check if the current user has logged In
     if (this.authService.isAuthenticated) {
-
-      if(this.authService.hasPaymentDetails(true)){
+      this.selectedAmount = amount;
+      this.setRaveOptions(amount);
+      let institution = this.scholarshipForm.get("Institution").value;
+      let program = this.scholarshipForm.get("Program").value;
+      let studentId  = this.scholarshipForm.get("StudentId").value;
+      let playerType  = this.scholarshipForm.get("PlayerType").value;
+      if(this.authService.hasPaymentDetails(`${institution}/*/${program}/*/${studentId}/*/${this.scholarshipForm.get("PlayerType").value}`,true)){
        this.errorShown = false;
-        if (!this.scholarshipForm.valid) {
-          this.error = "Please fill all form fields";
-          this.errorShown = true;
-          return;
-        }
-        if(!this.selectedPlayerType){
-          this.errorShown = true;
-          return;
-        }
-       
-
-        let institution = this.scholarshipForm.get("Institution").value;
-        let program = this.scholarshipForm.get("Program").value;
-        let studentId  = this.scholarshipForm.get("StudentId").value;
-  
-         this.http.post<any>(`${settings.currentApiUrl}/scholarships/addnew`, {amount,institution,program,studentId,playerType:this.selectedPlayerType,userId: this.authService.currentUser.id , txRef : this.raveOptions.txref})
+         this.http.post<any>(`${settings.currentApiUrl}/scholarships/addnew`, {amount,institution,program,studentId,playerType:playerType,userId: this.authService.currentUser.id , txRef : this.raveOptions.txref})
           .subscribe(
             response => {
-              this.scholarshipForm.reset();
+              this.loading = false;
+              console.log(response);
+              if(settings.paymentGateway == "slydepay"|| settings.paymentGateway == "redde")
+                this.customPaymentDialogShown = true;
             },
             error => {
+              this.loading = false;
               console.log(error);
             }
           );
@@ -123,8 +163,7 @@ export class ScholarshipComponent implements OnInit {
               //console.log(response);
               this.loading = false;
               this.paymentService.getCongratulatoryMessage("sch", event.tx.txRef).subscribe((data => {
-                this.congratMsg = data.message;
-                this.congratShown = true;
+                this.showCongratulatoryMessage(data.message);
               }).bind(this));
   
               //this.scholarhips.push(response.scholarhip);
@@ -148,6 +187,13 @@ export class ScholarshipComponent implements OnInit {
 
   }
 
+
+  showCongratulatoryMessage(message:string){
+    this.congratMsg = message;
+    this.congratShown = true;
+  }
+
+
   closePopup() {
     this.error = null;
     this.errorShown = false;
@@ -157,6 +203,11 @@ export class ScholarshipComponent implements OnInit {
     this.congratMsg = null;
     this.congratShown = false;
   }
+
+  closePaymentDialog(){
+    this.customPaymentDialogShown = false;
+  }
+
 
   getUserScholarships() {
     this.http.get(`${settings.currentApiUrl}/scholarships/foruser/${this.authService.currentUser.id}`).subscribe(
@@ -175,16 +226,8 @@ export class ScholarshipComponent implements OnInit {
   
   }
 
-  selectPlayerType(event, selectedPlayerType: string) {
-
-    if (event.target.checked) {
-      this.selectedPlayerType = selectedPlayerType;
-    }
-
-  }
-
   setRaveOptions(amount) {
-    var isValid = (this.scholarshipForm.valid && this.selectedPlayerType!=undefined && this.authService.hasPaymentDetails());
+    var isValid = (this.scholarshipForm.valid && this.authService.hasPaymentDetails(`${this.scholarshipForm.get("Institution").value}/*/${this.scholarshipForm.get("Program").value}/*/${this.scholarshipForm.get("StudentId").value}/*/${this.scholarshipForm.get("PlayerType").value}`));
 
     this.raveOptions = this.paymentService.getRaveOptions('scholarship',amount,isValid);
  }

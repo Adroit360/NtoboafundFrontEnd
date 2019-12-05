@@ -6,4 +6,5 @@ export class BusinessParticipant{
     amountToWin:string;
     business:any;
     dateDeclared:string; 
+    txRef:string;
 }

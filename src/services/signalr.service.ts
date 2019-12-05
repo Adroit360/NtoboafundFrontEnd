@@ -27,6 +27,8 @@ export class SignalRService {
     potentialScholarshipWinnersCount : number = 0;
     potentialBusinessWinnersCount : number = 0;
     
+    onNewParticipantAdded:Subject<string> = new Subject();
+
     constructor() {
         this.startStakersConnection();
     }
@@ -67,6 +69,7 @@ export class SignalRService {
     initiateAddDailyLuckymeParticipant() {
         this.stakersHubConnection.on('adddailyluckymeparticipant', (data: LuckymeParticipant) => {
             this.dailyLuckymeParticipants.push(data);
+            this.onNewParticipantAdded.next(data.txRef);
             //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
             this.stakersHubConnection.invoke("getPotentialDailyLuckymeWinnersCount");
         });
@@ -75,6 +78,7 @@ export class SignalRService {
     initiateAddWeeklyLuckymeParticipant() {
         this.stakersHubConnection.on('addweeklyluckymeparticipant', (data: LuckymeParticipant) => {
             this.weeklyLuckymeParticipants.push(data);
+            this.onNewParticipantAdded.next(data.txRef);
             //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
             this.stakersHubConnection.invoke("getPotentialWeeklyLuckymeWinnersCount");
         });
@@ -83,6 +87,7 @@ export class SignalRService {
     initiateAddMonthlyLuckymeParticipant() {
         this.stakersHubConnection.on('addmonthlyluckymeparticipant', (data: LuckymeParticipant) => {
             this.monthlyLuckymeParticipants.push(data);
+            this.onNewParticipantAdded.next(data.txRef);
             //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
             this.stakersHubConnection.invoke("getPotentialMonthlyLuckymeWinnersCount");
         });
@@ -91,6 +96,7 @@ export class SignalRService {
     initiateAddBusinessParticipant() {
         this.stakersHubConnection.on('addbusinessparticipant', (data: BusinessParticipant) => {
             this.businessParticipants.push(data);
+            this.onNewParticipantAdded.next(data.txRef);
             //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
             this.stakersHubConnection.invoke("getPotentialBusinessWinnersCount");
         });
@@ -99,6 +105,7 @@ export class SignalRService {
     initiateAddScholarshipParticipant() {
         this.stakersHubConnection.on('addscholarshipparticipant', (data: ScholarshipParticipant) => {
             this.scholarshipParticipants.push(data);
+            this.onNewParticipantAdded.next(data.txRef);
             //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
             this.stakersHubConnection.invoke("getPotentialScholarshipWinnersCount");
         });

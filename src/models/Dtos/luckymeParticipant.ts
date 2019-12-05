@@ -8,4 +8,5 @@ export class LuckymeParticipant{
     amountToWin:string;
     luckyme:any;
     dateDeclared:string; 
+    txRef:string;
 }

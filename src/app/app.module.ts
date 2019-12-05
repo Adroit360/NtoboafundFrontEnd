@@ -8,7 +8,7 @@ import { LoginComponent } from './login-component/login-component.component';
 import { RegisterComponent } from './register-component/register-component.component';
 import { HeaderComponent } from './header/header.component';
 import { LuckymeComponent } from './luckyme/luckyme.component';
-import { ReactiveFormsModule }    from '@angular/forms';
+import { ReactiveFormsModule, FormsModule }    from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptor } from 'src/interceptors/error.interceptor';
 import { JwtInterceptor } from 'src/interceptors/jwt.interceptor';
@@ -48,6 +48,9 @@ import { ResetpasswordformComponent } from './resetpasswordform/resetpasswordfor
 import { CommonModule } from '@angular/common';
 import { AgGridModule } from '@ag-grid-community/angular';
 import { DetailCellRendererComponent } from './cellrenderers/detail-cell-renderer/detail-cell-renderer.component'
+import {PdfViewerModule} from 'ng2-pdf-viewer';
+import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
+import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,18 +79,21 @@ import { DetailCellRendererComponent } from './cellrenderers/detail-cell-rendere
     AdsettingsComponent,
     ResetpasswordComponent,
     ResetpasswordformComponent,
-    DetailCellRendererComponent
+    DetailCellRendererComponent,
+    PdfViewerComponent,
+    PaymentDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     ChartsModule,
     AngularRaveModule,
     CommonModule,
-    AgGridModule.withComponents([DetailCellRendererComponent])
-
+    AgGridModule.withComponents([DetailCellRendererComponent]),
+    PdfViewerModule
   ],
   exports:[
     ChartsModule

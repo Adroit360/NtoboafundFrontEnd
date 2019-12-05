@@ -84,23 +84,23 @@
             </div>
           </div>
           <div class="selector">
-            <input id="select100" (change)="selectChoice($event,100.00)" class="selector-item__radio" type="radio"
-              name="selectedamount" />
+            <input id="select100" value="100" [(ngModel)]="selectedAmount" (change)="selectChoice($event,100.00)"
+              class="selector-item__radio" type="radio" name="selectedamount" />
             <label for="select100" class="selector-item">
               <div class="selector-item__amount">GH₵ 100</div>
             </label>
-            <input id="select400" (change)="selectChoice($event,2000)" class="selector-item__radio" type="radio"
-              name="selectedamount" />
+            <input id="select400" value="2000" [(ngModel)]="selectedAmount" (change)="selectChoice($event,2000)"
+              class="selector-item__radio" type="radio" name="selectedamount" />
             <label for="select400" class="selector-item">
               <div class="selector-item__amount">GH₵ 2000</div>
             </label>
-            <input id="select300" (change)="selectChoice($event,1000.00)" class="selector-item__radio" type="radio"
-              name="selectedamount" />
+            <input id="select300" value="1000" [(ngModel)]="selectedAmount" (change)="selectChoice($event,1000.00)"
+              class="selector-item__radio" type="radio" name="selectedamount" />
             <label for="select300" class="selector-item">
               <div class="selector-item__amount">GH₵ 1000</div>
             </label>
-            <input id="select200" (change)="selectChoice($event,500.00)" class="selector-item__radio" type="radio"
-              name="selectedamount" />
+            <input id="select200" value="500" [(ngModel)]="selectedAmount" (change)="selectChoice($event,500.00)"
+              class="selector-item__radio" type="radio" name="selectedamount" />
             <label for="select200" class="selector-item">
               <div class="selector-item__amount">GH₵ 500</div>
             </label>
@@ -116,9 +116,11 @@
               <span class="amount">GH₵ {{potentialReturns}}</span>
             </div>
             <div class="actions">
-              <button angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
-                (callback)="businessPaymentCallback($event)" (close)="businessPaymentFailed()" (init)="pay()"
-                class="btn btn-danger">Invest</button>
+              <button *ngIf="settings.paymentGateway=='flutterwave'" angular-rave [raveOptions]="raveOptions"
+                class="btn btn-danger i-Invest" (callback)="businessPaymentCallback($event)"
+                (close)="businessPaymentFailed()" (init)="pay()">Invest</button>
+              <button *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'" class="btn btn-danger i-Invest" (click)="pay()">Invest
+              </button>
             </div>
           </div>
         </div>
@@ -249,3 +251,8 @@
   </div>
 
   <app-faq></app-faq>
+
+  <app-payment-dialog [amount]="selectedAmount" [stakeType]="'Business'"
+    [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName"
+    [txRef]="this.raveOptions.txref" *ngIf="customPaymentDialogShown && this.raveOptions" (close)="closePaymentDialog()" (oncongratmessage)="showCongratulatoryMessage($event)">
+  </app-payment-dialog>

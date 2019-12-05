@@ -60,6 +60,7 @@ export class ProfileComponent implements OnInit {
     Zambia: "NG",
     Rwanda: "NG"
   }
+  urlData: any;
 
   constructor(private authService: AuthService,
     private userDashboardService: UserDashBoardService,
@@ -76,6 +77,7 @@ export class ProfileComponent implements OnInit {
     this.apiPath = settings.currentApiUrl;
 
     this.returnUrl = this.activatedRoute.snapshot.queryParams["returnUrl"];
+    this.urlData = this.activatedRoute.snapshot.queryParams["urldata"];
 
     this.momoCurrency = this.currentUser.momoDetails.currency;
 
@@ -113,6 +115,50 @@ export class ProfileComponent implements OnInit {
   updateProfile() {
     this.loading = true;
     this.error = null;
+  
+    if(!this.registrationForm.value['preferredReceptionMethod']){
+      this.showMessage("Please choose how you want us to pay you");
+      this.loading =false;
+      return;
+    }
+
+    if(this.registrationForm.value['preferredReceptionMethod'] == "momo"){
+      if(!this.registrationForm.value['mobileMoneyNumber']){
+        this.showMessage("Please enter your mobile money number");
+        this.loading =false;
+        return;
+      }
+      else if(!this.registrationForm.value['country']){
+        this.showMessage("Please choose your mobile money country");
+        this.loading =false;
+        return;
+      }
+      else if(!this.registrationForm.value['network']){
+        this.showMessage("Please choose your mobile money network");
+        this.loading =false;
+        return;
+      }
+     
+    }
+    else if(this.registrationForm.value['preferredReceptionMethod'] == "bank"){
+      if(!this.registrationForm.value['bankName']){
+        this.showMessage("Please enter the name of your bank");
+        this.loading =false;
+        return;
+      }
+      else if(!this.registrationForm.value['accountNumber']){
+        this.showMessage("Please enter your account number");
+        this.loading =false;
+        return;
+      }
+      else if(!this.registrationForm.value['swiftCode']){
+        this.showMessage("Please choose your bank's swift code");
+        this.loading =false;
+        return;
+      }
+    }
+
+
 
     //console.log(this.registrationForm);
     if (this.registrationForm.valid) {
@@ -152,9 +198,8 @@ export class ProfileComponent implements OnInit {
 
           setTimeout((() => {
             if (this.returnUrl)
-              this.router.navigate([this.returnUrl]);
+              this.router.navigate([this.returnUrl],{queryParams:{urldata:this.urlData}});
           }).bind(this), 1000);
-
         },
         error => {
           this.showMessage(error);

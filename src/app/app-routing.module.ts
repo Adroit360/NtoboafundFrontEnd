@@ -20,6 +20,8 @@ import { AdbusinessesComponent } from './admin-dashboard/adbusinesses/adbusiness
 import { AdScholarshipsComponent } from './admin-dashboard/adscholarship/adscholarship.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ResetpasswordformComponent } from './resetpasswordform/resetpasswordform.component';
+import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
+import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -46,8 +48,10 @@ const routes: Routes = [
     {path:"adsettings",component:AdsettingsComponent}
   ]},
   {path:"resetpassword",component:ResetpasswordComponent},
-  {path:"resetpasswordform",component:ResetpasswordformComponent}
-
+  {path:"resetpasswordform",component:ResetpasswordformComponent},
+  {path:"terms",component:PdfViewerComponent},
+  {path:"cookiepolicy",component:PdfViewerComponent},
+  {path:"payment",component:PaymentDialogComponent}
 ];
 
 @NgModule({

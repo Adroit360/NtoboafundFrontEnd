@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { settings } from 'src/settings';
 import { AuthService } from 'src/services/authservice';
@@ -11,13 +11,14 @@ import { LuckymeService } from 'src/services/luckyme.service';
 import { PaymentService } from 'src/services/payment.service';
 import { ReturnStatement } from '@angular/compiler';
 import { RaveOptions } from 'angular-rave';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-luckyme',
   templateUrl: './luckyme.component.html',
   styleUrls: ['./luckyme.component.scss']
 })
-export class LuckymeComponent implements OnInit {
+export class LuckymeComponent implements OnInit,AfterViewInit {
 
   ObjectKeys = Object.keys;
 
@@ -28,7 +29,10 @@ export class LuckymeComponent implements OnInit {
   errorShown = false;
   congratMsg: string = "";
   congratShown = false;
+  customPaymentDialogShown = false;
   raveOptions: RaveOptions;
+
+  slydepayRedirectUrl:SafeResourceUrl;;
 
 
   luckyMeDailyHours: number;
@@ -46,10 +50,13 @@ export class LuckymeComponent implements OnInit {
   luckyMeMonthlyMinutes: number;
   luckyMeMonthlySeconds: number;
 
+  @ViewChild("ravepaybtn") ravePayBtn:ElementRef;
+
+  settings:any = settings;
 
   constructor(private http: HttpClient, public authService: AuthService, public paymentService: PaymentService,
-    private router: Router, private currentRoute: ActivatedRoute, private countDownService: CountDownService,
-    public winnerSelectionService: WinnerSelectionService, public signalRService: SignalRService) {
+    private router: Router, private activatedRoute: ActivatedRoute, private countDownService: CountDownService,
+    public winnerSelectionService: WinnerSelectionService, public signalRService: SignalRService,public sanitizer:DomSanitizer) {
 
 
     this.countDownService.DailyHoursTime.subscribe((hours: number) => { this.luckyMeDailyHours = hours });
@@ -72,30 +79,60 @@ export class LuckymeComponent implements OnInit {
     this.loading = false;
   }
 
+  ngAfterViewInit(){
+        //Get already entered data from url if present
+        var urlData = <string>this.activatedRoute.snapshot.queryParams["urldata"];
 
-
+        if(urlData){
+          //if data is gotten from the query string
+          try{
+            var splittedUrlData = urlData.split('/*/');
+            this.selectedChoice = <number>(<any>splittedUrlData[0]);
+            this.selectedPeriod = splittedUrlData[1];
+            this.setRaveOptions();
+           //this.ravePayBtn.nativeElement.click();
+          // this.paymentInitialized();
+          }catch{
+    
+          }
+         
+        }
+  }
 
   paymentInitialized() {
     if (this.authService.isAuthenticated) {
-      if (this.authService.hasPaymentDetails(true)) {
 
-        if (!this.selectedChoice) {
-          this.error = "Please Select a Choice";
-          this.errorShown = true;
-          return;
-        }
-        if (!this.selectedPeriod) {
-          this.error = "Please Select a Period";
-          this.errorShown = true;
-          return;
-        }
+      if (!this.selectedChoice) {
+        this.error = "Please Select a Choice";
+        this.errorShown = true;
+        return;
+      }
+      if (!this.selectedPeriod) {
+        this.error = "Please Select a Period";
+        this.errorShown = true;
+        return;
+      }
 
+      if (this.authService.hasPaymentDetails(`${this.selectedChoice}/*/${this.selectedPeriod}`,true)) {
+        this.loading = true;
+        this.setRaveOptions() ;
         this.http.post<any>(`${settings.currentApiUrl}/luckymes/addnew`, { amount: this.selectedChoice, period: this.selectedPeriod, userId: this.authService.currentUser.id, txRef: this.raveOptions.txref })
           .subscribe(
             response => {
-              console.log(response);
+              this.loading = false;
+               console.log(response);
+               
+               if(settings.paymentGateway == "slydepay" || settings.paymentGateway == "redde"){
+                this.customPaymentDialogShown = true;
+              //   if(response.paymentToken){
+              //     window.location.href = settings.slydePayCallbackUrlPrefix + response.paymentToken;
+              //     //this.slydepayRedirectUrl = this.sanitizer.bypassSecurityTrustResourceUrl(settings.slydePayCallbackUrlPrefix + response.paymentToken);
+              //    // this.slydPaymentDialogShown = true;
+              //   }
+              }
             },
             error => {
+              this.loading = false;
               console.log(error);
             }
           );
@@ -123,8 +160,7 @@ export class LuckymeComponent implements OnInit {
 
             //Get Congratulatory Message After the transaction is successfully completed
             this.paymentService.getCongratulatoryMessage("lkm", event.tx.txRef).subscribe((data => {
-              this.congratMsg = data.message;
-              this.congratShown = true;
+              this.showCongratulatoryMessage(data.message);
             }).bind(this));
             
             //this.luckymeService.personalLuckymes.push(response.luckyMe);
@@ -142,24 +178,31 @@ export class LuckymeComponent implements OnInit {
     }
   }
 
-  selectChoice(event, selectedChoice: number) {
-    if (event.target.checked) {
-      this.selectedChoice = selectedChoice;
+  resetTxRef(){
+    if(settings.paymentGateway == "flutterwave"){
       this.setRaveOptions();
     }
   }
 
-  selectPeriod(event, selectedPeriod: string) {
+  // selectChoice(event, selectedChoice: number) {
+  //   if (event.target.checked) {
+  //     this.selectedChoice = selectedChoice;
+  //     this.setRaveOptions();
+  //   }
+  // }
 
-    if (event.target.checked) {
-      this.selectedPeriod = selectedPeriod;
-      this.setRaveOptions();
-    }
+  // selectPeriod(event, selectedPeriod: string) {
 
-  }
+  //   if (event.target.checked) {
+  //     this.selectedPeriod = selectedPeriod;
+  //     this.setRaveOptions();
+  //   }
 
-  getCongratulatoryMessage(){
-    
+  // }
+
+  showCongratulatoryMessage(message:string){
+    this.congratMsg = message;
+    this.congratShown = true;
   }
 
   closePopup() {
@@ -173,9 +216,12 @@ export class LuckymeComponent implements OnInit {
     this.congratShown = false;
   }
 
+  closePaymentDialog(){
+    this.customPaymentDialogShown = false;
+  }
 
   setRaveOptions() {
-    this.raveOptions = this.paymentService.getRaveOptions('LuckyMe', this.selectedChoice, (this.selectedChoice && this.selectedPeriod && this.authService.hasPaymentDetails()));
+    this.raveOptions = this.paymentService.getRaveOptions('LuckyMe', this.selectedChoice, (this.selectedChoice && this.selectedPeriod && this.authService.hasPaymentDetails(`${this.selectedChoice}/*/${this.selectedPeriod}`)));
   }
 
   /**
@@ -185,8 +231,5 @@ export class LuckymeComponent implements OnInit {
   getReturnsText(stakeAmount: number = 0) {
     return `Get GH₵ ${stakeAmount * settings.luckymeStakeOdds}`;
   }
-
-
-
 
 }

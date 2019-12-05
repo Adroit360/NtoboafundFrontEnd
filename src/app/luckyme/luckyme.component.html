@@ -57,7 +57,7 @@
                               <p>Mutiply Choice By 5</p>
                               <p>5 Cedis for 5000</p>
                             </div> -->
-            <input id="rone" (change)="selectChoice($event,1.00)" class="choice-selector__radio" type="radio"
+            <input id="rone" value="1" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
               name="choice" />
             <label for="rone" class="choice-selector__background">
               <label for="rone" class="choice-selector">
@@ -72,7 +72,7 @@
                           <p>Mutiply Choice By 5</p>
                           <p>5 Cedis for 5000</p>
                         </div> -->
-            <input id="rfive" (change)="selectChoice($event,5.00)" class="choice-selector__radio" type="radio"
+            <input id="rfive" value="5" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
               name="choice" />
             <label for="rfive" class="choice-selector__background">
               <label for="rfive" class="choice-selector">
@@ -87,7 +87,7 @@
                           <p>Mutiply Choice By 5</p>
                           <p>5 Cedis for 5000</p>
                         </div> -->
-            <input id="rten" (change)="selectChoice($event,10.00)" class="choice-selector__radio" type="radio"
+            <input id="rten" value="10" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
               name="choice" />
             <label for="rten" class="choice-selector__background">
               <label for="rten" class="choice-selector">
@@ -103,7 +103,7 @@
                           <p>Mutiply Choice By 5</p>
                           <p>5 Cedis for 5000</p>
                         </div> -->
-            <input id="rtwenty" (change)="selectChoice($event,20.00)" class="choice-selector__radio" type="radio"
+            <input id="rtwenty" value="20" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
               name="choice" />
             <label for="rtwenty" class="choice-selector__background">
 
@@ -119,7 +119,7 @@
                           <p>Mutiply Choice By 5</p>
                           <p>5 Cedis for 5000</p>
                         </div> -->
-            <input id="rfifty" (change)="selectChoice($event,50.00)" class="choice-selector__radio" type="radio"
+            <input id="rfifty"value="50" [(ngModel)]="selectedChoice"  (change)="resetTxRef()" class="choice-selector__radio" type="radio"
               name="choice" />
             <label for="rfifty" class="choice-selector__background">
               <label for="rfifty" class="choice-selector"><div class="returns">{{getReturnsText(50)}}</div></label>
@@ -131,7 +131,7 @@
                           <p>Mutiply Choice By 5</p>
                           <p>5 Cedis for 5000</p>
                         </div> -->
-            <input id="rhundred" (change)="selectChoice($event,100.00)" class="choice-selector__radio" type="radio"
+            <input id="rhundred" value="100" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
               name="choice" />
             <label for="rhundred" class="choice-selector__background">
 
@@ -147,7 +147,7 @@
                           <p>Mutiply Choice By 5</p>
                           <p>5 Cedis for 5000</p>
                         </div> -->
-            <input id="rfivehundred" (change)="selectChoice($event,500.00)" class="choice-selector__radio" type="radio"
+            <input id="rfivehundred" value="500" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
               name="choice" />
             <label for="rfivehundred" class="choice-selector__background">
               <label for="rfivehundred" class="choice-selector">
@@ -163,15 +163,15 @@
           <div class="body">
             <div class="flatradios">
               <label class="flatradio-choice" for="dailyperiod">
-                <input type="radio" (change)="selectPeriod($event,'daily')" name="period" id="dailyperiod">
+                <input type="radio" value="daily" [(ngModel)]="selectedPeriod" (change)="resetTxRef()" name="period" id="dailyperiod">
                 <div class="text">Daily</div>
               </label>
               <label class="flatradio-choice" for="weeklyperiod">
-                <input type="radio" (change)="selectPeriod($event,'weekly')" name="period" id="weeklyperiod">
+                <input type="radio" value="weekly" [(ngModel)]="selectedPeriod" (change)="resetTxRef()" name="period" id="weeklyperiod">
                 <div class="text">Weekly</div>
               </label>
               <label class="flatradio-choice" for="monthlyperiod">
-                <input type="radio" (change)="selectPeriod($event,'monthly')" name="period" id="monthlyperiod">
+                <input type="radio" value="monthly" [(ngModel)]="selectedPeriod" ((change)="resetTxRef()" name="period" id="monthlyperiod">
                 <div class="text">Monthly</div>
               </label>
             </div>
@@ -181,8 +181,12 @@
         <div
           *ngIf="!winnerSelectionService.isDailyDrawOngoing && !winnerSelectionService.isWeeklyDrawOngoing && !(winnerSelectionService.isMonthlyDrawOngoing | async)"
           class="payment-pane">
-          <a angular-rave [raveOptions]="raveOptions" class="transbtn" (callback)="luckymePaymentCallback($event)"
+
+          <a *ngIf="settings.paymentGateway=='flutterwave'" angular-rave #ravepaybtn [raveOptions]="raveOptions" class="transbtn" (callback)="luckymePaymentCallback($event)"
             (close)="paymentFailed()" (init)="paymentInitialized()">Invest
+          </a>
+
+          <a *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'"  class="transbtn" (click)="paymentInitialized()">Invest
           </a>
         </div>
       </div>
@@ -576,4 +580,7 @@
 </div>
 
 
+
 <app-faq></app-faq>
+<!--  -->
+<app-payment-dialog [amount]="selectedChoice" [stakeType]="'Luckyme'" [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName"   (close)="closePaymentDialog()" (oncongratmessage)="showCongratulatoryMessage($event)" [txRef]="this.raveOptions.txref" *ngIf="customPaymentDialogShown && this.raveOptions"></app-payment-dialog>

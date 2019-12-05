@@ -1,0 +1,109 @@
+<div class="payment-bg">
+  <div class="paymentbox">
+    <div (click)="close(true)" class="closebtn">x</div>
+    <div class="paymentbox__header">
+      <div class="paymentbox__header--left">
+        <a routerLink="" class="brand-logo">
+          <img src="assets/images/ntlog.png" alt="">
+        </a>
+      </div>
+      <div class="paymentbox__header--right">{{stakeType}} Investment</div>
+    </div>
+    <div class="paymentbox__body">
+      <app-busy [isWholePage]="false" [text]="''" [ngClass]="{'visible':paying,'invisible':!paying}"></app-busy>
+      <div *ngIf="errorMessage" class="errorbox">{{errorMessage}}</div>
+      <div *ngIf="successMessage" class="successbox">{{successMessage}}</div>
+      <div class="paymentbox__body--top">
+        <div class="amount">{{amount}} Cedi<span *ngIf="amount != 1">s</span></div>
+        <div class="username">{{username}}</div>
+      </div>
+      <div class="paymentbox__body--middle">
+        <div *ngIf="selectedPaymentMethod == paymentMethods[0]" class="paytypebox">
+          <!-- <div class="rave-input">
+            <div class="head">Network</div>
+            <select [(ngModel)]="momoNetwork" name="momonetwork">
+              <option value="MTN">MTN</option>
+              <option value="AIRTEL/TIGO">AIRTEL/TIGO</option>
+              <option value="VODAFONE">VODAFONE</option>
+            </select>
+          </div> -->
+          <div class="rave-input">
+            <div class="head">(MTN momo/Airtel-Tigo/Vodafone Cash) Number</div>
+            <input [(ngModel)]="momoPhoneNumber" type="text">
+          </div>
+          <div style="font-weight: normal;margin: 0rem;" class="errorbox"><b>NOTE : </b>Mobile money users wont get prompt if they have insufficent balance.</div>
+          <button *ngIf="txRef" (click)="Pay()" class="rave-btn">
+            <span>Pay {{amount}} Cedi<span *ngIf="amount != 1">s</span></span>
+            <span>&gt;</span>
+          </button>
+        </div>
+        <div *ngIf="selectedPaymentMethod == paymentMethods[1]" class="paytypebox">
+          <div *ngIf="settings.paymentGateway == 'slydepay'" class="ccgroup">
+            <div class="rave-input">
+              <div class="head">Email Address</div>
+              <input [(ngModel)]="cardInvoiceEmail" type="text">
+            </div>
+            <button (click)="Pay()" *ngIf="txRef" class="rave-btn">
+              <span>Send invoice to email</span>
+            </button>
+          </div>
+          <strong *ngIf="settings.paymentGateway == 'slydepay'">OR</strong>
+          <div *ngIf="settings.paymentGateway == 'slydepay'" class="ccgroup">
+            <button (click)="Pay(false,false)" *ngIf="txRef" class="rave-btn">
+              <span>Send invoice to my email</span>
+            </button>
+          </div>
+          <strong *ngIf="settings.paymentGateway == 'slydepay'">OR</strong>
+          <div class="ccgroup">
+            <button (click)="Pay(true,false)" *ngIf="txRef" class="rave-btn">
+              <span>Redirect me to pay</span>
+            </button>
+          </div>
+        </div>
+        <div *ngIf="selectedPaymentMethod == paymentMethods[2]" class="paytypebox">
+          <div class="rave-input">
+            <div class="head">Email Address</div>
+            <input [(ngModel)]="slydePayEmail" type="email">
+          </div>
+          <div class="rave-input">
+            <div class="head">PhoneNumber</div>
+            <input [(ngModel)]="slydePayPhoneNumber" type="password">
+          </div>
+          <button (click)="Pay()" *ngIf="txRef" class="rave-btn">
+            <span>Pay {{amount}} Cedi<span *ngIf="amount != 1">s</span></span>
+            <span>&gt;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="paymentbox__footer">
+      <div [ngClass]="{inverse:selectedPaymentMethod == paymentMethods[0]}" (click)="selectPaymentMethod(0)"
+        class="ptypebutton">
+        <div class="ptypebutton__icon">
+          <svg class="linkicon icon icon-mid">
+            <use href="assets/Icons/svgs.svg#icon-dollar" />
+          </svg>
+        </div>
+        <div class="ptypebutton__text">Mobile Money</div>
+      </div>
+      <div [ngClass]="{inverse:selectedPaymentMethod == paymentMethods[1]}" (click)="selectPaymentMethod(1)"
+        class="ptypebutton">
+        <div class="ptypebutton__icon">
+          <svg class="linkicon icon icon-mid">
+            <use href="assets/Icons/svgs.svg#icon-credit-card" />
+          </svg>
+        </div>
+        <div class="ptypebutton__text">Credit/Debit Card</div>
+      </div>
+      <!-- <div [ngClass]="{inverse:selectedPaymentMethod == paymentMethods[2]}" (click)="selectPaymentMethod(2)"
+        class="ptypebutton">
+        <div class="ptypebutton__icon">
+          <svg class="linkicon icon icon-mid">
+            <use href="assets/Icons/svgs.svg#icon-handshake-o" />
+          </svg>
+        </div>
+        <div class="ptypebutton__text">Pay With Slide Pay</div>
+      </div> -->
+    </div>
+  </div>
+</div>

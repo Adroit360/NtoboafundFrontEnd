@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-busy',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusyComponent implements OnInit {
 
+  @Input("isWholePage") IsWholePage = true;
+  @Input("text") Text:string;
   constructor() { }
 
   ngOnInit() {
