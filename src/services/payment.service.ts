@@ -73,12 +73,12 @@ export class PaymentService {
         console.log("Payment init method called");
     }
 
-    addPayment(payment:Payment){
-        payment.payerId = this.authService.currentUser.id.toString();
-        return this.http.post(`${settings.currentApiUrl}/payments`,payment);
+    addPaymentRecord(stakeTypeShortName:string,amount,transactionId,transferId){
+        let payerId = this.authService.currentUser.id;
+        return this.http.post(`${settings.currentApiUrl}/transaction/addpaymentrecord`,{amount,transactionId,transferId,stakeTypeShortName,payerId});
     }
 
-    getPaymentByDetails(itemPayedFor,itemPayedForId){
+    getPaymentByDetails(itemPayedFor,itemPayedForId):Observable<any>{
         return this.http.get(`${settings.currentApiUrl}/payments/bydetails/${itemPayedFor}/${itemPayedForId}`);
     }
 

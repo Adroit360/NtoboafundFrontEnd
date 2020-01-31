@@ -51,6 +51,8 @@ import { DetailCellRendererComponent } from './cellrenderers/detail-cell-rendere
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
+import { WebmailComponent } from './webmail/webmail.component';
+import { BlogComponent } from './blog/blog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +83,9 @@ import { PaymentDialogComponent } from './payment-dialog/payment-dialog.componen
     ResetpasswordformComponent,
     DetailCellRendererComponent,
     PdfViewerComponent,
-    PaymentDialogComponent
+    PaymentDialogComponent,
+    WebmailComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,

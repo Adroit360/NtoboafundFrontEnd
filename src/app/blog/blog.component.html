@@ -1,0 +1,5 @@
+
+<iframe class="visible" [ngClass]="{'visible':!isAdmin,'invisible':isAdmin}" [src]="iframeSrc" frameborder="0">
+</iframe>
+
+<button class="invisible" [ngClass]="{'visible':isAdmin,'invisible':!isAdmin}" (click)="proceedToAdminPage()" id="btnProceed">Proceed to admin backend</button>

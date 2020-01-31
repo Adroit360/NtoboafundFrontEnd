@@ -582,5 +582,18 @@
 
 
 <app-faq></app-faq>
-<!--  -->
+<!-- Actual -->
 <app-payment-dialog [amount]="selectedChoice" [stakeType]="'Luckyme'" [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName"   (close)="closePaymentDialog()" (oncongratmessage)="showCongratulatoryMessage($event)" [txRef]="this.raveOptions.txref" *ngIf="customPaymentDialogShown && this.raveOptions"></app-payment-dialog>
+
+<!-- Test -->
+<!-- <app-payment-dialog [amount]="selectedChoice" [stakeType]="'Luckyme'" [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName"   (close)="closePaymentDialog()" (oncongratmessage)="showCongratulatoryMessage($event)"></app-payment-dialog> -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157438990-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-157438990-1');
+</script>

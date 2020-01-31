@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tnxluckyme',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TnxluckymeComponent implements OnInit {
 
-  constructor() { }
+  mode:string;
+  constructor(private router:ActivatedRoute) { }
 
   ngOnInit() {
-  }
+    this.mode = <string>this.router.snapshot.queryParams['mode'];
 
+    setTimeout(()=>{
+      window.close();
+    },5000);
+  }
+  
 }

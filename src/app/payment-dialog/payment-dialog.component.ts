@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { settings } from 'src/settings';
 import { PaymentService } from 'src/services/payment.service';
 import { SignalRService } from 'src/services/signalr.service';
+import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-payment-dialog',
@@ -25,20 +26,35 @@ export class PaymentDialogComponent implements OnInit {
   // @Output("slydepayclick") SlydePayClick : EventEmitter<SlydePaymentData>= new EventEmitter();
   @Output("close") CloseDialog: EventEmitter<boolean> = new EventEmitter();
   @Output("oncongratmessage") onCongratMessage: EventEmitter<string> = new EventEmitter();
+
+  isVodafone: boolean = false;
   paying: boolean = false;
 
   errorMessage: any;
   successMessage: any;
   momoNetwork: string;
-  momoPhoneNumber: string;
+  _momoPhoneNumber: string;
+  //opendedCheckoutWindow:any;
+  get momoPhoneNumber(): string {
+    return this._momoPhoneNumber;
+  }
+  set momoPhoneNumber(number: string) {
+    this._momoPhoneNumber = number;
+    if (number.startsWith("020") || number.startsWith("050") || number.startsWith("+23350") || number.startsWith("23350") || number.startsWith("+23320") || number.startsWith("23320"))
+      this.isVodafone = true;
+    else this.isVodafone = false;
+  }
+  //voucher for vodafone users
+  voucher: string;
   cardInvoiceEmail: string;
 
 
-  momoOrEmail: string;
+  momoStarVoucherOrEmail: string;
 
   slydePayEmail: string;
   slydePayPhoneNumber: string;
-  constructor(private http: HttpClient, private paymentService: PaymentService,private signalRService:SignalRService) { }
+  checkoutUrl:SafeUrl;
+  constructor(private http: HttpClient, private paymentService: PaymentService, private signalRService: SignalRService,private sanitizer:DomSanitizer) { }
 
   ngOnInit() {
   }
@@ -63,9 +79,13 @@ export class PaymentDialogComponent implements OnInit {
       if (!this.verifyMomoNumber(this.momoPhoneNumber) && doValidations) {
         this.setErrorMessage("Invalid Phone Number");
         return;
+      }else if(this.isVodafone && !this.voucher){
+        this.setErrorMessage("Please generate and enter your voucher");
+        return;
       }
+
       this.setErrorMessage("");
-      this.momoOrEmail = this.momoPhoneNumber;
+      this.momoStarVoucherOrEmail = this.momoPhoneNumber + "*" + this.voucher;
     }
     else if (this.selectedPaymentMethod == this.paymentMethods[1]) {
       if (!this.verifyEmailAddress(this.cardInvoiceEmail) && doValidations) {
@@ -73,25 +93,25 @@ export class PaymentDialogComponent implements OnInit {
         return;
       }
       this.setErrorMessage("");
-      this.momoOrEmail = this.cardInvoiceEmail ? this.cardInvoiceEmail : "default";
+      this.momoStarVoucherOrEmail = this.cardInvoiceEmail ? this.cardInvoiceEmail : "default";
     }
 
 
     if (this.stakeType == "Luckyme") {
-      paymentUrl = `${settings.currentApiUrl}/transaction/payforluckyme/${this.txRef}/${this.selectedPaymentMethod}/${this.momoOrEmail}`;
-      verificationUrl = `${settings.currentApiUrl}/transaction/verifyLuckymePayment/${this.txRef}`;
+      paymentUrl = `${settings.currentApiUrl}/transaction/payforluckyme/${this.txRef}/${this.selectedPaymentMethod}/${this.momoStarVoucherOrEmail}`;
+      verificationUrl = `${settings.currentApiUrl}/transaction/verifyLuckymePayment/${this.txRef}?paymentType=${this.selectedPaymentMethod}`;
       cancelationUrl = `${settings.currentApiUrl}/transaction/cancelluckymetransaction/${this.txRef}`;
       stakeType = "lkm";
     }
     else if (this.stakeType == "Business") {
-      paymentUrl = `${settings.currentApiUrl}/transaction/payforbusiness/${this.txRef}/${this.selectedPaymentMethod}/${this.momoOrEmail}`;
-      verificationUrl = `${settings.currentApiUrl}/transaction/verifybusinessPayment/${this.txRef}`;
+      paymentUrl = `${settings.currentApiUrl}/transaction/payforbusiness/${this.txRef}/${this.selectedPaymentMethod}/${this.momoStarVoucherOrEmail}`;
+      verificationUrl = `${settings.currentApiUrl}/transaction/verifybusinessPayment/${this.txRef}?paymentType=${this.selectedPaymentMethod}`;
       cancelationUrl = `${settings.currentApiUrl}/transaction/cancelbusinesstransaction/${this.txRef}`;
       stakeType = "bus";
     }
     else if (this.stakeType == "Scholarship") {
-      paymentUrl = `${settings.currentApiUrl}/transaction/payforscholarship/${this.txRef}/${this.selectedPaymentMethod}/${this.momoOrEmail}`;
-      verificationUrl = `${settings.currentApiUrl}/transaction/verifyscholarshipPayment/${this.txRef}`;
+      paymentUrl = `${settings.currentApiUrl}/transaction/payforscholarship/${this.txRef}/${this.selectedPaymentMethod}/${this.momoStarVoucherOrEmail}`;
+      verificationUrl = `${settings.currentApiUrl}/transaction/verifyscholarshipPayment/${this.txRef}?paymentType=${this.selectedPaymentMethod}`;
       cancelationUrl = `${settings.currentApiUrl}/transaction/cancelscholarshiptransaction/${this.txRef}`;
       stakeType = "sch";
     }
@@ -118,19 +138,21 @@ export class PaymentDialogComponent implements OnInit {
                   redirectUrl = settings.slydePayCallbackUrlPrefix + response.paymentToken;
                 else if (settings.paymentGateway == 'redde')
                   redirectUrl = settings.reddeCallbackUrlPrefix + response.paymentToken;
-                window.open(redirectUrl, "_blank", 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                this.checkoutUrl = this.sanitizer.bypassSecurityTrustResourceUrl(redirectUrl);
+                this.paying = false;
+                //this.opendedCheckoutWindow = window.open(redirectUrl, "_blank", 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
                 this.setSuccessMessage("Redirected. Waiting for confirmation..");
               }
 
             }
           }
 
-          var timeout :any;
-          var interval :any;
+          var timeout: any;
+          var interval: any;
 
           //Listen for a new participant with the same reference to be added by signalR
-          let paymentSubscription = this.signalRService.onNewParticipantAdded.subscribe((txRef:string)=>{
-            if(txRef == this.txRef){
+          let paymentSubscription = this.signalRService.onNewParticipantAdded.subscribe((txRef: string) => {
+            if (txRef == this.txRef) {
               console.log("Equal txrefs");
               clearTimeout(timeout);
               clearInterval(interval);
@@ -142,36 +164,38 @@ export class PaymentDialogComponent implements OnInit {
           });
 
           //Continuosly check for successfull payment for 15 seconds
-          timeout =  setTimeout((()=>{
-            console.log("Interval Hooked");
-            interval = setInterval(() => {
-              console.log("Check Started");
-              this.http.post<any>(verificationUrl, {}).subscribe((vresponse) => {
-                console.log(vresponse.status);
-                if (vresponse.status == "paid") {
+          timeout = setTimeout((() => {
+       //     if(this.selectedPaymentMethod == this.paymentMethods[0]){
+              console.log("Interval Hooked");
+              interval = setInterval(() => {
+                console.log("Check Started");
+                this.http.post<any>(verificationUrl, {}).subscribe((vresponse) => {
+                  console.log(vresponse.status);
+                  if (vresponse.status == "paid") {
+                    this.paying = false;
+                    this.setSuccessMessage("Payment Recieved");
+                    this.showCongratMessage(stakeType, this.txRef);
+                    this.closeSlowly();
+                    paymentSubscription.unsubscribe();
+                    clearInterval(interval);
+                  } else if (vresponse.status == "failed") {
+                    this.paying = false;
+                    this.setErrorMessage("Payment Failed");
+                    this.txRef = null;
+                    this.closeSlowly();
+                    paymentSubscription.unsubscribe();
+                    clearInterval(interval);
+                  }
+                }, error => {
+                  console.log(error);
                   this.paying = false;
-                  this.setSuccessMessage("Payment Recieved");
-                  this.showCongratMessage(stakeType, this.txRef);
-                  this.closeSlowly();
-                  paymentSubscription.unsubscribe();
                   clearInterval(interval);
-                } else if (vresponse.status == "failed") {
-                  this.paying = false;
-                  this.setErrorMessage("Payment Failed");
-                  this.txRef = null;
-                  this.closeSlowly();
-                  paymentSubscription.unsubscribe();
-                  clearInterval(interval);
-                }
-              }, error => {
-                console.log(error);
-                this.paying = false;
-                clearInterval(interval);
-              });
-            }, 1000);
-          }).bind(this),10000)
+                });
+              }, 1000);
+           // }
+          }).bind(this), 10000)
 
-         
+
 
         },
         xhr => {
@@ -202,7 +226,13 @@ export class PaymentDialogComponent implements OnInit {
       this.CloseDialog.emit(showAlert);
   }
 
+  // closeCheckoutWindow(){
+  //   if(this.opendedCheckoutWindow)
+  //     this.opendedCheckoutWindow.close();
+  // }
+
   closeSlowly() {
+    //this.closeCheckoutWindow();
     setTimeout(() => {
       this.close(false);
     }, 3000)
@@ -220,6 +250,8 @@ export class PaymentDialogComponent implements OnInit {
     else return false;
   }
 
+
+
   verifyEmailAddress(email: string): boolean {
     return /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test(email);
   }
@@ -236,16 +268,30 @@ export class PaymentDialogComponent implements OnInit {
     }).bind(this));
   }
 
-  setSuccessMessage(message:string){
+  setSuccessMessage(message: string) {
     this.successMessage = message;
     this.errorMessage = null;
   }
 
-  setErrorMessage(message:string){
+  setErrorMessage(message: string) {
     this.errorMessage = message;
     this.successMessage = null;
   }
 
+  checkoutFrameLoaded(data){
+    var src  = data.path[0].contentWindow.location.href;
+    console.log(src);
+    if(src.includes("ntoboasuccess")){
+      this.checkoutUrl = null;
+    }
+    else if(src.includes("ntoboafailure")){
+      this.checkoutUrl = null;
+    }
+    else if(src.includes("luckyme") || src.includes("business") ||src.includes("scholarship")){
+      this.checkoutUrl = null;
+    }
+    console.log("checkouturl",this.checkoutUrl);
+  }
 
 }
 

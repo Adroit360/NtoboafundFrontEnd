@@ -26,7 +26,7 @@
                 <span class="bar" [ngClass]="{isactive:isOnPage('users')}"></span>
                 <div class="navlink__icon">
                     <svg>
-                        <use href="assets/Icons/svgs.svg#icon-user" />
+                        <use href="assets/Icons/svgs.svg#icon-users" />
                     </svg>
                 </div>
                 <div class="navlink__text">Users</div>
@@ -35,30 +35,29 @@
                 <span class="bar" [ngClass]="{isactive:isOnPage('luckymes')}"></span>
                 <div class="navlink__icon">
                     <svg>
-                        <use href="assets/Icons/svgs.svg#icon-user" />
-                    </svg>
-                </div>
-                <div class="navlink__text">LuckyMe</div>
-            </a>
-            <a (click)="navigate('scholarships')" routerLink="adscholarships" class="navlink">
-                <span class="bar" [ngClass]="{isactive:isOnPage('scholarships')}"></span>
-                <div class="navlink__icon">
-                    <svg>
                         <use href="assets/Icons/svgs.svg#icon-moneybag" />
                     </svg>
                 </div>
-                <div class="navlink__text">Scholarship</div>
+                <div class="navlink__text">LuckyMe</div>
             </a>
             <a (click)="navigate('businesses')" routerLink="adbusinesses" class="navlink">
                 <span class="bar" [ngClass]="{isactive:isOnPage('businesses')}"></span>
                 <div class="navlink__icon">
                     <svg>
-                        <use href="assets/Icons/svgs.svg#icon-study" />
+                        <use href="assets/Icons/svgs.svg#icon-handshake-o" />
                     </svg>
                 </div>
                 <div class="navlink__text">Business</div>
             </a>
-
+            <a (click)="navigate('scholarships')" routerLink="adscholarships" class="navlink">
+                <span class="bar" [ngClass]="{isactive:isOnPage('scholarships')}"></span>
+                <div class="navlink__icon">
+                    <svg>
+                        <use href="assets/Icons/svgs.svg#icon-study" />
+                    </svg>
+                </div>
+                <div class="navlink__text">Scholarship</div>
+            </a>
         </nav>
     </aside>
     <div class="d-body__main">

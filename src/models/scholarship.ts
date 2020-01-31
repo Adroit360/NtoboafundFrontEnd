@@ -9,6 +9,7 @@ export class Scholarship{
     amountToWin:number;
     userId:string;
     dateDeclared:boolean;
+    transferId:number;
     user:User;
     institution:string;
     program:string;

@@ -1,5 +1,5 @@
 <div class="payment-bg">
-  <div class="paymentbox">
+  <div [ngClass]="{megabox:checkoutUrl}" class="paymentbox">
     <div (click)="close(true)" class="closebtn">x</div>
     <div class="paymentbox__header">
       <div class="paymentbox__header--left">
@@ -31,6 +31,11 @@
             <div class="head">(MTN momo/Airtel-Tigo/Vodafone Cash) Number</div>
             <input [(ngModel)]="momoPhoneNumber" type="text">
           </div>
+          <div *ngIf="isVodafone" class="rave-input">
+              <div class="head">Voucher</div>
+              <input [(ngModel)]="voucher" type="text">
+          </div>
+  
           <div style="font-weight: normal;margin: 0rem;" class="errorbox"><b>NOTE : </b>Mobile money users wont get prompt if they have insufficent balance.</div>
           <button *ngIf="txRef" (click)="Pay()" class="rave-btn">
             <span>Pay {{amount}} Cedi<span *ngIf="amount != 1">s</span></span>
@@ -54,6 +59,7 @@
             </button>
           </div>
           <strong *ngIf="settings.paymentGateway == 'slydepay'">OR</strong>
+          <iframe id="checkout-frame"(load)="checkoutFrameLoaded($event)" *ngIf="settings.paymentGateway == 'redde' && checkoutUrl" [src]="checkoutUrl"></iframe>
           <div class="ccgroup">
             <button (click)="Pay(true,false)" *ngIf="txRef" class="rave-btn">
               <span>Redirect me to pay</span>
@@ -65,7 +71,7 @@
             <div class="head">Email Address</div>
             <input [(ngModel)]="slydePayEmail" type="email">
           </div>
-          <div class="rave-input">
+          <div class="rave-input" >
             <div class="head">PhoneNumber</div>
             <input [(ngModel)]="slydePayPhoneNumber" type="password">
           </div>

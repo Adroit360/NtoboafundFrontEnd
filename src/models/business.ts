@@ -9,5 +9,6 @@ export class Business{
     amountToWin:number;
     userId:string;
     dateDeclared:boolean;
+    transferId:number;
     user:User;
 }

@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
 
   openFaq(){
     this.faqService.isShown = true;
-    this.navClicked();
+    this.isTogglerChecked = false;
   }
 
   toggleNavigation(){
@@ -59,5 +59,8 @@ export class HeaderComponent implements OnInit {
 
   navClicked(){
     this.isTogglerChecked = false;
+    
+    if(this.faqService.isShown)
+      this.faqService.isShown = false;
   }
 }

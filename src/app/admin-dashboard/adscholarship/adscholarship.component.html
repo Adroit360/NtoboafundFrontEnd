@@ -1,157 +1,68 @@
 <div class="adscholarship-body">
   <div class="adscholarship-body__top">
-    <select (change)="getScholarshipsByType($event.target.value)" class="form-control" id="cbotypeOptions">
-      <option value="all">All</option>
-      <option value="0">Original</option>
-      <option value="2">Dummy</option>
-    </select>
+    <div class="adscholarship-body__top--left">
+      <select [(ngModel)]="usersTypeFilterText" (change)="getScholarshipsByType($event.target.value)" class="form-control"
+        id="cbotypeOptions">
+        <option value="all">All</option>
+        <option value="0">Original</option>
+        <option value="2">Dummy</option>
+      </select>
+    </div>
+    <div class="adscholarship-body__top--right">
+      <div [ngClass]="{disabled:unpdaidWinnersCount==0}" (click)="showUnpaidWinners()" class="unpaid badged">
+        <span class="badge">{{unpdaidWinnersCount}}</span>
+        <svg class="linkicon icon icon-mid">
+          <use href="assets/Icons/svgs.svg#icon-wallet" />
+        </svg>
+      </div>
+    </div>
   </div>
   <div class="adscholarship-body__bottom">
     <div class="adscholarship-body__bottom--left">
-      <div  class="info-card" id="allScholarship">
-
+      <div class="info-card" id="allscholarship">
         <div class="info-card__head">
-          <div class="btn-refresh"><a (click)="refresh()" routerLink="./">refresh</a></div>
-          <div class="info-card__head--text1">Recent Scholarship Stakes</div>
-          <select (change)="filterStaker($event.target.value)" class="form-control" id="cboOptions">
-            <option value="all">All</option>
-            <option value="paid">Current Participants</option>
-            <option value="lost">Lost</option>
-            <option value="won">Pending Payment</option>
-          </select>
+          <div class="info-card__head--left">
+            <div class="btn-refresh">
+              <a (click)="refresh()" routerLink="./">
+                <svg class="linkicon icon icon-min">
+                  <use href="assets/Icons/svgs.svg#icon-refresh" />
+                </svg>
+              </a>
+            </div>
+            <div class="info-card__head--text1">{{mainHeaderText}}</div>
+
+            <select #cboPartType [(ngModel)]="filterText" (change)="changeParticipantTypeByStatus($event.target.value)"
+              class="form-control" id="cboPartType">
+              <option value="all">All</option>
+              <option value="paid">Current Participants</option>
+              <option value="lost">Lost</option>
+              <option value="won">Unpaid Winners</option>
+              <option value="completed">Paid Winners</option>
+            </select>
+          </div>
+          <div class="info-card__head--right">
+            <div class="btn-paywinner">
+              <a [ngClass]="{disabled:!canUserBePaid}" class="badged" (click)="payWinner()" routerLink="./">
+                <svg class="linkicon icon icon-mid">
+                  <use href="assets/Icons/svgs.svg#icon-dollar" />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
         <div *ngIf="scholarshipService.allScholarships.length >0" class="info-card__body">
-          <div *ngFor="let scholarship of recentScholarshipStakes" class="recent-stake-item-holder">
-            <input type="radio" name="selectedScholarship" (change)="changeSelectedScholarship(scholarship.id)"
-              [id]="scholarship.id">
-            <label [for]="scholarship.id" class="recent-stake-item">
-              <div class="recent-stake-item--top">
-                <div class="period">{{scholarship.period}}</div>
-                <div class="amount">GHS {{scholarship.amount}}</div>
-                <div class="date"> {{scholarship.date}} </div>
-              </div>
-              <div class="recent-stake-item--bottom">
-                <div class="status">Status : {{scholarship.status}}</div>
-                <div *ngIf="scholarship.isWinner" class="amount-won">To Win GHS {{scholarship.amountToWin}}</div>
-                <div *ngIf="!scholarship.isWinner" class="potential-returns">Potential Winning : GHS 2000</div>
-              </div>
-            </label>
-          </div>
 
+          <ag-grid-angular #agGrid style="height: 100%;" [rowSelection]="'single'" [rowMultiSelectWithClick]="true"
+            (selectionChanged)="scholarshipSelectionChanged(agGrid)" (gridReady)="onScholarshipGridReady($event)"
+            class="ag-theme-balham" [embedFullWidthRows]="true" [rowData]="recentScholarshipStakes"
+            [detailCellRenderer]="detailCellRenderer" [masterDetail]="true" [columnDefs]="scholarshipColumnDefs"
+            [modules]="scholarshipModule" [detailRowHeight]="detailRowHeight" [frameworkComponents]="frameworkComponents"
+            (firstDataRendered)="onFirstDataRendered($event)">
+          </ag-grid-angular>
         </div>
       </div>
 
-      <div class="info-card details">
-        <div class="info-card__head">Details</div>
-        <div class="info-card__body">
-          <div *ngIf="selectedscholarship" class="scholarship-details">
-            <div class="record">
-              <div class="label">Date</div>
-              <div class="text">{{selectedscholarship.date}}</div>
-            </div>
-            <div class="record">
-              <div class="label">Amount</div>
-              <div class="text">{{selectedscholarship.amount}}</div>
-            </div>
-            <div class="record">
-              <div class="label">Period</div>
-              <div class="text">{{selectedscholarship.period}}</div>
-            </div>
-            <div class="record">
-              <div class="label">Status</div>
-              <div class="text">{{selectedscholarship.status}}</div>
-            </div>
-          </div>
-          <div *ngIf="selectedscholarship && selectedscholarship.user" class="scholarship-userdetails">
-            <div class="record">
-              <div class="label">Email</div>
-              <div class="text">{{selectedscholarship.user.email}}</div>
-            </div>
-            <div class="record">
-              <div class="label">Phone Number</div>
-              <div class="text">{{selectedscholarship.user.phoneNumber}}</div>
-            </div>
-            <div class="record">
-              <div class="label">Name</div>
-              <div class="text">{{selectedscholarship.user.firstName}} {{selectedscholarship.user.lastName}}</div>
-            </div>
 
-          </div>
-          <div *ngIf="selectedscholarship" class="payment-details">
-              <div [ngStyle]="{'background-color':selectedscholarship.status == 'won' ? 'green' : 'red'}" class="status">{{selectedscholarship.status}}</div>
-              <div *ngIf="selectedscholarship.user.preferedMoneyReceptionMethod == 'momo'" class="momo">
-                <div class="record">
-                  <div class="label">Selected Payment Method</div>
-                  <div class="text">{{selectedscholarship.user.preferedMoneyReceptionMethod}}</div>
-                </div>
-                <div class="record">
-                  <div class="label">Number</div>
-                  <div *ngIf="selectedscholarship.user.momoDetails" class="text">{{selectedscholarship.user.momoDetails.number}}
-                  </div>
-                </div>
-                <div class="record">
-                  <div class="label">Network</div>
-                  <div *ngIf="selectedscholarship.user.momoDetails" class="text">{{selectedscholarship.user.momoDetails.network}}
-                  </div>
-                </div>
-                <div class="record">
-                  <div class="label">Country</div>
-                  <div *ngIf="selectedscholarship.user.momoDetails" class="text">{{selectedscholarship.user.momoDetails.country}}
-                  </div>
-                </div>
-                <div class="record">
-                  <div class="label">Currency</div>
-                  <div *ngIf="selectedscholarship.user.momoDetails" class="text">{{selectedscholarship.user.momoDetails.currency}}
-                  </div>
-                </div>
-                <div *ngIf="selectedscholarship.status == 'won'" class="record transactionpane">
-                  <div class="form-group">
-                    <label>Pay User and Enter Transaction Id</label>
-                    <input type="text" class="form-control"
-                      placeholder="Enter Transaction Id">
-                    <small *ngIf="false"
-                      class="form-text text-danger">Please enter the transaction Id</small>
-                  </div>
-                  <div class="btn btn-info">User Paid</div>
-                </div>
-  
-  
-  
-              </div>
-  
-              <div *ngIf="selectedscholarship.user.preferedMoneyReceptionMethod == 'bank'" class="bank">
-                <div class="record">
-                  <div class="label">Selected Payment Method</div>
-                  <div class="text">{{selectedscholarship.user.preferedMoneyReceptionMethod}}</div>
-                </div>
-                <div class="record">
-                  <div class="label">Bank Name</div>
-                  <div *ngIf="selectedscholarship.user.bankDetails" class="text">{{selectedscholarship.user.bankDetails.bankName}}
-                  </div>
-                </div>
-                <div class="record">
-                  <div class="label">Account Number</div>
-                  <div *ngIf="selectedscholarship.user.bankDetails" class="text">
-                    {{selectedscholarship.user.bankDetails?.acountNumber}}</div>
-                </div>
-                <div class="record">
-                  <div class="label">Swift Code</div>
-                  <div *ngIf="selectedscholarship.user.bankDetails" class="text">
-                    {{selectedscholarship.user.bankDetails.swiftCode}}</div>
-                </div>
-                <div *ngIf="selectedbusiness.status == 'won'" class="record transactionpane">
-                    <div class="form-group">
-                      <label>Pay User and Enter Transaction Id</label>
-                      <input type="text" class="form-control" placeholder="Enter Transaction Id">
-                      <small *ngIf="false" class="form-text text-danger">Please enter the transaction Id</small>
-                    </div>
-                    <div class="btn btn-info">User Paid</div>
-                  </div>
-  
-              </div>
-            </div>
-        </div>
-      </div>
 
     </div>
     <div class="adscholarship-body__bottom--right">
@@ -159,7 +70,9 @@
         <div class="info-card__head">Current Participants</div>
         <div class="info-card__body">
           <div class="winner-group">
-            <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && winnerSelectionService.currentScholarshipWinners" class="winnerbox">
+            <div
+              *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && winnerSelectionService.currentScholarshipWinners"
+              class="winnerbox">
               <div class="title">Latest Scholarship Winners</div>
               <div class="body">
                 <div *ngFor="let winner of winnerSelectionService.currentScholarshipWinners" class="winner">
@@ -167,7 +80,7 @@
                 </div>
               </div>
             </div>
-  
+
             <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async)" class="winner-group">
               <div *ngFor="let participant of signalRService.scholarshipParticipants" class="winner-item">
                 <div class="winner-item__description">
@@ -183,7 +96,7 @@
             </div>
 
             <div *ngIf="(winnerSelectionService.isQuaterlyDrawOngoing | async)" class="ongoingdraw">
-              <div class="header">Business Draw is ongoing</div>
+              <div class="header">Scholarship Draw is ongoing</div>
               <div class="drawbox">
                 <div class="lds-hourglass loader"></div>
                 <div class="participants info-card">
@@ -205,9 +118,7 @@
               </div>
             </div>
 
-            <div
-              *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async)"
-              class="fixed-pane">
+            <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async)" class="fixed-pane">
               <button (click)="insertDummy()" class="btn btn-danger">Insert Dummy</button>
               <!-- <div class="fixed-participant">Fixed - </div> -->
               <button (click)="showFixerBox()" class="btn btn-danger btn-fix">Fix</button>
@@ -246,7 +157,7 @@
 <div [ngClass]="{'visible':fixerBoxShown,'invisible':!fixerBoxShown}" class="popup regular" id="fixer-box">
   <div class="popup__content">
     <div class="popup__content--toolbar">
-      <div class="toolbar--left">Fix Scholarship Winner</div>
+      <div class="toolbar--left">Fix {{selectedFixerPeriod}} Winner</div>
       <div class="toolbar--right">
         <a (click)="closeFixerBox()" class="closebtn">
           <span class="fa fa-times"></span>
@@ -257,7 +168,7 @@
       <div class="participants">
         <div [ngClass]="{selected:participant.status == 'wins'}" *ngFor="let participant of participantsToFix"
           class="particpants-item-holder">
-          <!-- <input type="radio" name="fixeddailyluckyme" (change)="changeSelectedLuckyme(participant.id)" [id]="participant.id"> -->
+          <!-- <input type="radio" name="fixeddailyscholarship" (change)="changeSelectedScholarship(participant.id)" [id]="participant.id"> -->
           <label [for]="participant.id" class="winner-item">
             <div class="winner-item__description">
               <span class="winner-name">{{participant.userName}}</span>
@@ -274,6 +185,95 @@
             class="btn btn-danger">UnFix</button>
         </div>
       </div>
+    </div>
+    <div class="popup__content--footer"></div>
+  </div>
+</div>
+
+<div [ngClass]="{'visible':paymentBoxShown,'invisible':!paymentBoxShown}" class="popup regular" id="payment-box">
+  <div *ngIf="selectedscholarship" class="popup__content">
+    <div class="popup__content--toolbar">
+      <div *ngIf="selectedscholarship.user" class="toolbar--left">Pay {{selectedscholarship.user.firstName}}
+        {{selectedscholarship.user.lastName}}</div>
+      <div class="toolbar--right">
+        <a (click)="closePaymentBox()" class="closebtn">
+          <span class="fa fa-times"></span>
+        </a>
+      </div>
+    </div>
+    <div class="popup__content--body">
+      <div *ngIf="!selectedscholarship.user" class="spinner">Spinning</div>
+      <div *ngIf="selectedscholarship.user" class="payment-details">
+        <div *ngIf="selectedscholarship.user.preferedMoneyReceptionMethod == 'momo'" class="data-container">
+          <div class="data-container__header">
+            <p class="htext">Momo Details</p>
+          </div>
+          <div class="data-container__body">
+            <div class="data-container__body--left">
+              <p>Country</p>
+              <p>Network</p>
+              <p>Number</p>
+              <p>Currency</p>
+              <p>Transfer Id</p>
+            </div>
+            <div *ngIf="selectedscholarship.user" class="data-container__body--right">
+              <p>{{selectedscholarship.user.momoDetails.country}}</p>
+              <p>{{selectedscholarship.user.momoDetails.network}}</p>
+              <p>{{selectedscholarship.user.momoDetails.number}}</p>
+              <p>{{selectedscholarship.user.momoDetails.currency}}</p>
+              <p>{{selectedscholarship.transferId}}</p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="selectedscholarship.user.preferedMoneyReceptionMethod == 'bank'" class="data-container">
+          <div class="data-container__header">
+            <p class="htext">USER</p>
+          </div>
+          <div class="data-container__body">
+            <div class="data-container__body--left">
+              <p>Bank Name</p>
+              <p>Account Number</p>
+              <p>Swift Code</p>
+              <p>Transfer Id</p>
+            </div>
+            <div *ngIf="selectedscholarship.user" class="data-container__body--right">
+              <p>{{selectedscholarship.user.bankDetails.bankName}}</p>
+              <p>{{selectedscholarship.user.bankDetails.accountNumber}}</p>
+              <p>{{selectedscholarship.user.bankDetails.swiftCode}}</p>
+              <p>{{selectedscholarship.transferId}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="selectedscholarship.user" class="paymentform">
+        <form *ngIf="selectedscholarship.user.userType==0" [formGroup]="paymentForm" (ngSubmit)="addPaymentRecord()">
+          <div [ngClass]="{disabled:isPaymentInputsDisabled}" class="c-input">
+            <input type="text" placeholder="Amount Paid" [formControlName]="'amount'" />
+            <i class="c-addon fa fa-money"></i>
+            <b *ngIf="!paymentForm.get('amount').valid && paymentForm.get('amount').touched" class="val-msg">
+              <p>Amount Paid Is Required</p>
+            </b>
+          </div>
+          <div [ngClass]="{disabled:isPaymentInputsDisabled}" class="c-input">
+            <input type="text" placeholder="Transaction Id" [formControlName]="'transactionId'" />
+            <i class="c-addon fa fa-lock"></i>
+            <b *ngIf="!paymentForm.get('transactionId').valid && paymentForm.get('transactionId').touched"
+              class="val-msg">
+              <p>Transaction Id Is Required</p>
+            </b>
+          </div>
+          <div class="actionpane">
+            <button *ngIf="isPaymentInputsDisabled" (click)="isPaymentInputsDisabled = false" type="submit"
+              class="btn btn-info">Edit</button>
+            <p class="midpane">{{paymentRecordMessage}}</p>
+            <button *ngIf="!isPaymentInputsDisabled && !isAddingPaymentRecord" type="submit"
+              class="btn btn-secondary">Submit</button>
+            <button *ngIf="!isPaymentInputsDisabled && isAddingPaymentRecord" class="btn btn-secondary">loading</button>
+          </div>
+        </form>
+        <h4 *ngIf="selectedscholarship.user.userType==2">Cannot Pay A Dummy Winner</h4>
+      </div>
+
     </div>
     <div class="popup__content--footer"></div>
   </div>

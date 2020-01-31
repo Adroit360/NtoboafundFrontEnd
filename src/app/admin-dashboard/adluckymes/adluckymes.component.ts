@@ -8,6 +8,10 @@ import { User } from 'src/models/user';
 import { AllModules } from "@ag-grid-enterprise/all-modules";
 import { DetailCellRendererComponent } from 'src/app/cellrenderers/detail-cell-renderer/detail-cell-renderer.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { settings } from 'src/settings';
+import { Payment } from 'src/models/payment';
+import { PaymentService } from 'src/services/payment.service';
 
 @Component({
   selector: 'app-adluckymes',
@@ -53,31 +57,42 @@ export class AdluckymesComponent implements OnInit {
   frameworkComponents: { myDetailCellRenderer: typeof DetailCellRendererComponent; };
 
   mainHeaderText = "Luckyme Investments";
-  paymentForm :FormGroup;
+  paymentForm: FormGroup;
   canUserBePaid: boolean = false;
 
-  constructor(public luckymeService: LuckymeService, public winnerSelectionService: WinnerSelectionService
-    , public signalRService: SignalRService, private usersService: UsersService) {
+
+  isPaymentInputsDisabled = true;
+  paymentRecordMessage: string;
+  selectedLuckyMePaymentDetails: Payment = new Payment();
+  isAddingPaymentRecord: boolean = false;
+
+  constructor(public luckymeService: LuckymeService, public winnerSelectionService: WinnerSelectionService, private paymentService: PaymentService,
+    public signalRService: SignalRService, private usersService: UsersService, private httpClient: HttpClient) {
     this.detailCellRenderer = 'myDetailCellRenderer';
     this.detailRowHeight = 170;
     this.frameworkComponents = { myDetailCellRenderer: DetailCellRendererComponent }
     this.paymentForm = new FormGroup({
-      'amount':new FormControl(null,[Validators.required]),
-      'reference':new FormControl(null,[Validators.required])
+      'amount': new FormControl(this.selectedLuckyMePaymentDetails.amount, [Validators.required]),
+      'transactionId': new FormControl(this.selectedLuckyMePaymentDetails.transactionId, [Validators.required])
     })
   }
 
   ngOnInit() {
     this.luckymeService.getAllLuckyMes().then((value) => {
       this.recentLuckymeStakes = [...this.luckymeService.allLuckymes];
-      this.unpdaidWinnersCount = this.recentLuckymeStakes.filter(i => i.status.toLowerCase() == "won").length;
-      
+      this.getUnpaidWinnersCount();
     });
+  }
+
+  getUnpaidWinnersCount() {
+    this.luckymeService.getUnpaidWinnersCount().subscribe(
+      response => this.unpdaidWinnersCount = response
+    );
   }
 
   changeSelectedLuckyme(luckymeId: number) {
     this.selectedluckyme = this.luckymeService.getLuckyMeWithId(luckymeId);
-    if(this.selectedluckyme.status == "won")
+    if (this.selectedluckyme.status == "won" || this.selectedluckyme.status == "completed")
       this.canUserBePaid = true;
     else
       this.canUserBePaid = false;
@@ -108,6 +123,38 @@ export class AdluckymesComponent implements OnInit {
     if (selectedData.length < 1)
       return;
     this.changeSelectedLuckyme(selectedData[0].id);
+  }
+
+  /**
+   * Add a new payment record
+   */
+  addPaymentRecord() {
+    this.paymentRecordMessage = null;
+    this.paymentForm.get('amount').markAsTouched();
+    this.paymentForm.get('transactionId').markAsTouched();
+    let amount = this.paymentForm.get('amount').value;
+    let transactionId = this.paymentForm.get('transactionId').value;
+
+    if (!amount || !transactionId) {
+      this.paymentRecordMessage = "Form contains invalid inputs";
+      return;
+    }
+    this.isAddingPaymentRecord = true;
+
+    this.paymentService.addPaymentRecord('lkm', amount, transactionId, this.selectedluckyme.transferId).subscribe(
+      (response: any) => {
+        this.paymentRecordMessage = response.message;
+        this.isAddingPaymentRecord = false;
+        this.isPaymentInputsDisabled = true;
+        this.getUnpaidWinnersCount();
+        this.showUnpaidWinners(false);
+        console.log(response);
+      },
+      xhr => {
+        this.paymentRecordMessage = xhr.error;
+        this.isAddingPaymentRecord = false;
+      }
+    )
   }
 
 
@@ -167,18 +214,23 @@ export class AdluckymesComponent implements OnInit {
 
   }
 
-  filterStaker(value) {
+  /**
+   * Filter luckymes based on status
+   * @param value the Kind of luckymes to show base on their status
+   * @param shouldResetSelectedLkm Indicates whether the selected lucky should be reset or not
+   */
+  filterStaker(value, shouldResetSelectedLkm = true) {
     this.filterText = value;
     if (value == "all") {
       this.recentLuckymeStakes = this.luckymeService.allLuckymes;
     }
     else {
       this.recentLuckymeStakes = this.luckymeService.allLuckymes.filter(i => i.status == this.filterText);
-      if (value = "won")
-        this.cboPartType.nativeElement.selectedIndex = 3;
     }
 
-    console.log(this.cboPartType);
+    if (shouldResetSelectedLkm)
+      this.selectedluckyme = null;
+
     this.changeMainHeaderText(this.usersTypeFilterText, this.filterText);
   }
 
@@ -187,6 +239,14 @@ export class AdluckymesComponent implements OnInit {
       this.recentLuckymeStakes = [...this.luckymeService.allLuckymes];
       this.filterStaker(this.filterText);
     });
+  }
+
+  /**
+ * Initiate Filter luckymes based on status
+ * @param value the Kind of luckymes to show base on their status
+ */
+  changeParticipantTypeByStatus(value) {
+    this.filterStaker(value);
   }
 
   getLuckymesByType(value) {
@@ -232,18 +292,49 @@ export class AdluckymesComponent implements OnInit {
 
   }
 
-  payWinner(){
-    if(!this.selectedluckyme){
+  /**
+   * Change the use fetch parameters, gets users based on that parameters and filters out and shows won but unpaid users
+   * @param shouldResetSelectedLkm Should the currently selected luckyme be discarded?
+   */
+  showUnpaidWinners(shouldResetSelectedLkm = true) {
+    this.usersTypeFilterText = '0';
+    this.filterText = "won";
+    this.luckymeService.getLuckymesByType(this.usersTypeFilterText).then((value) => {
+      this.recentLuckymeStakes = [...this.luckymeService.allLuckymes];
+      this.filterStaker(this.filterText,shouldResetSelectedLkm);
+    });
+
+  }
+
+  getPaymentRecord() {
+    if (this.selectedluckyme.status == "completed") {
+      this.paymentService.getPaymentByDetails("lkm", this.selectedluckyme.id).subscribe(
+        response => {
+          console.log(response);
+          if (response) {
+            this.selectedLuckyMePaymentDetails = response;
+          }
+          this.selectedLuckyMePaymentDetails.amount = this.selectedluckyme.amountToWin;
+
+          this.paymentForm.get('amount').setValue(this.selectedLuckyMePaymentDetails.amount);
+          this.paymentForm.get('transactionId').setValue(this.selectedLuckyMePaymentDetails.transactionId);
+        }
+      )
+    } else {
+      this.selectedLuckyMePaymentDetails = new Payment();
+      this.paymentForm.get('amount').setValue(this.selectedLuckyMePaymentDetails.amount);
+      this.paymentForm.get('transactionId').setValue(this.selectedLuckyMePaymentDetails.transactionId);
+    }
+
+  }
+
+  payWinner() {
+    if (!this.selectedluckyme) {
       alert("No LuckyMe Investment Is Selected");
       return;
     }
-
-
+    this.getPaymentRecord();
     this.showPaymentBox();
-  }
-
-  makePayment(){
-    
   }
 
 }

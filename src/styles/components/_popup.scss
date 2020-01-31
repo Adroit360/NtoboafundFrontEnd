@@ -189,7 +189,12 @@
         }
         .actionpane{
          display:flex;
-         justify-content: flex-end;
+         justify-content: stretch;
+         align-items: center;
+          .midpane{
+            flex-grow: 1;
+            text-align: center;
+          }
         }
       }
     }

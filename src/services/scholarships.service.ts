@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from './users.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ScholarshipService {
@@ -65,6 +66,10 @@ export class ScholarshipService {
     )
   }
 
+  getUnpaidWinnersCount():Observable<any>{
+    return this.http.get(`${settings.currentApiUrl}/scholarships/unpaidwinnerscount`);
+  }
+  
   getScholarshipsForUser(userId:string) {
     return this.http.get(`${settings.currentApiUrl}/Scholarships/foruser/${userId}`);
   }

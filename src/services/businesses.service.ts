@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from './users.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class BusinessService {
@@ -120,6 +121,10 @@ export class BusinessService {
 
   getBusinessWithId(BusinessId:number):Business{
    return this.allBusinesses.filter(v=>v.id == BusinessId)[0];
+  }
+
+  getUnpaidWinnersCount():Observable<any>{
+    return this.http.get(`${settings.currentApiUrl}/businesses/unpaidwinnerscount`);
   }
 
 }

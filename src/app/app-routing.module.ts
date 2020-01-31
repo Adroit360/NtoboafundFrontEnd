@@ -22,6 +22,8 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { ResetpasswordformComponent } from './resetpasswordform/resetpasswordform.component';
 import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
+import {BlogComponent} from "./blog/blog.component";
+import { WebmailComponent } from './webmail/webmail.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -31,7 +33,7 @@ const routes: Routes = [
   {path:"scholarship",component:ScholarshipComponent},
   {path:"business",component:BusinessComponent},
   {path:"insurance",component:InsuranceComponent},
-  {path:"tnxluckyme",component:TnxluckymeComponent},
+  {path:"tnx",component:TnxluckymeComponent},
   {path:"manage",component:ManageComponent,children:[
     {path:"",component:MHomeComponent,pathMatch:"full"},
     {path:"overview",component:MHomeComponent},
@@ -51,11 +53,14 @@ const routes: Routes = [
   {path:"resetpasswordform",component:ResetpasswordformComponent},
   {path:"terms",component:PdfViewerComponent},
   {path:"cookiepolicy",component:PdfViewerComponent},
-  {path:"payment",component:PaymentDialogComponent}
+  {path:"payment",component:PaymentDialogComponent},
+  {path:"webmail",component:WebmailComponent},
+  {path:"blog",component:BlogComponent},
+  {path:"**",component:HomeComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash:true})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UsersService } from './users.service';
 import { Observable } from 'rxjs';
 import { resolve } from 'dns';
+import { ThemeService } from 'ng2-charts';
 
 @Injectable()
 export class LuckymeService {
@@ -78,7 +79,7 @@ export class LuckymeService {
     return this.http.get(`${settings.currentApiUrl}/luckymes/foruser/${userId}`);
   }
 
-  getLuckymesByType(type:string) {
+  getLuckymesByType(type:string):Promise<any> {
     return new Promise(
       ((resolve,reject)=>{
         this.http.get(`${settings.currentApiUrl}/luckymes/bytype/${type}`).subscribe(
@@ -94,6 +95,7 @@ export class LuckymeService {
     );
     
   }
+
 
 
   getAllLuckyMes() {
@@ -130,6 +132,10 @@ export class LuckymeService {
 
   getLuckyMeWithId(luckymeId:number):LuckyMe{
    return this.allLuckymes.filter(v=>v.id == luckymeId)[0];
+  }
+
+  getUnpaidWinnersCount():Observable<any>{
+    return this.http.get(`${settings.currentApiUrl}/luckymes/unpaidwinnerscount`);
   }
 
 }
