@@ -30,7 +30,7 @@ export const settings = {
     businessStakeOdds: 10,
 
     luckymeStakeOdds: 10
-
+    
     
 } 
 

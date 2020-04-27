@@ -29,7 +29,7 @@
         //font-family: cursive;
         transition: all 0.1s;
         backface-visibility: hidden;
-        box-shadow: var(--shadow);
+        //box-shadow: var(--shadow);
         white-space: nowrap;
         a {
           font-size: 1.3rem;
@@ -41,9 +41,12 @@
           &,
           &:active,
           &:link {
-            color: inherit;
+            color: black;
             padding: 1rem;
             display: inline-block;
+            &:hover{
+              color:#0098FF;
+            }
           }
         }
         &:first-child {
@@ -145,8 +148,8 @@
     }
     a {
       margin-right: 1rem;
-      border-color: white;
-      color: white;
+      //border-color: white;
+      //color: white;
     }
   }
 

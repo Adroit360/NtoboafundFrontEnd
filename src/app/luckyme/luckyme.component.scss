@@ -8,85 +8,115 @@ app-busy {
 .luckyme-bg {
   position: fixed;
   // background-image: url(../../assets/images/luckyme2.jpg);
-  background: url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png)
-    center center no-repeat #3ab3d2;
-  background-position: bottom right;
+  /*background: url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png)
+    center center no-repeat #b441af;*/
+  //background-image: url(../../assets/images/bsonscholarship.png);
   background-size: cover;
-  height: calc(100vh);
-  width: calc(100vw);
-  top: 0;
-  left: 0;
+  background-repeat: no-repeat;
+  //background-image: linear-gradient(to bottom, rgb(4, 134, 0), white);
+ // background-image: linear-gradient(to right,rgba(black,.5),rgba(black,.5)),url(../../assets/images/luckyme.jpg);
+  //background-blend-mode: color;
+  background-position: 0% 10%;
+  height: 100%;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 0;
 }
+app-header {
+  color: white;
+}
 
-.luckyme-body {
+.luckyme{
   position: relative;
-  // padding: 2rem;
   //padding-top: 6rem;
   top: 6rem;
-  height: calc(100vh - 9.5rem);
+  height: calc(100vh - 6rem);
   width: calc(100vw);
-  overflow: hidden;
+  overflow: auto;
+  z-index: var(--level-three);
+  .business-counter{
+    color:white;
+  }
+}
+.luckyme-body {
+  //background-color: rgba(#00796b,.9);
+  position: relative;
+  //padding-top: 6rem;
+  top: 6rem;
+  height: calc(100vh - 6rem);
+  width: calc(100vw);
+  overflow: auto;
   z-index: var(--level-three);
 
-  &--content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    height: calc(100vh - 9.5rem);
-    overflow: hidden;
-    .luckyme-body__left {
-      flex: 1 1 45rem;
-      height: calc(100vh - 9.5rem);
-      overflow: auto;
-      margin-bottom: 1rem;
-
-      .countdown-container {
-        white-space: nowrap;
-        overflow: auto;
-        text-align: center;
-
-        //  background-color: rgba(white,.6);
-
-        .countdown {
+  &__content {
+    color: var(--dark);
+    height: 100%;
+    &__header {
+      @include headerbox();
+      &__left {
+        .main-header {
+          background-color: transparent;
+          box-shadow: none;
+          color:var(--light);
+        }
+        .countdown-container {
+          white-space: nowrap;
+          overflow: auto;
           text-align: center;
-          font-size: 1.2rem;
-          margin: 0.5rem;
-          background-color: white;
-          border-radius: 0.3rem;
-          padding: 0.5rem;
-          display: inline-block;
-          .header {
-            font-family: "Courier New", Courier, monospace;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-          }
-          .counters {
-            display: flex;
-            justify-content: center;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          //  background-color: rgba(white,.6);
 
-            //flex-wrap: wrap;
-            .ctd {
-              background-color: #3ab3d2;
-              color: white;
-              display: inline-block;
-              padding: 0.3rem 0.6rem;
+          .countdown {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 0.5rem;
+            background-color: rgba(white,.7);
+            border-radius: 0.3rem;
+            padding: 0.5rem;
+            display: inline-block;
+            color:var(--dark);
+            .header {
+              //text-transform: uppercase;
+              letter-spacing: 0.1rem;
+              
+            }
+            .counters {
               display: flex;
               justify-content: center;
-              align-items: center;
-              flex-direction: column;
-              margin: 0.5rem;
-              width: 7rem;
-              font-size: 1.6rem;
-              border-radius: 0.3rem;
-              span {
-                font-size: 1.1rem;
-                letter-spacing: 0.1rem;
+
+              //flex-wrap: wrap;
+              .ctd {
+                //background-color: white;
+                //color: white;
+                display: inline-block;
+                padding: 0.3rem 0.6rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin: 0.5rem;
+                width: 7rem;
+                font-size: 1.6rem;
+                border-radius: 0.3rem;
+                span {
+                  font-size: 1.1rem;
+                  letter-spacing: 0.1rem;
+                }
               }
             }
           }
         }
       }
+      &__right {
+      }
+    }
+    &__middle {
+      padding: 3rem;
+      background-color: var(--light);
       .stake-box {
         .choice-scrolls {
           margin-top: 2rem;
@@ -136,7 +166,7 @@ app-busy {
                   opacity: 1;
                   .choice-selector {
                     opacity: 1;
-                    background-color: rgba(#3ab3d2,.8);
+                    background-color: rgba(#3ab3d2, 0.8);
                     &::after {
                       // border-bottom: 0.2rem solid white;
                       // border-right: 0.2rem solid white;
@@ -155,24 +185,24 @@ app-busy {
                 @include absCenter();
                 //width: 5rem;
                 height: 5rem;
-                border-radius: .5rem;
-                background-color: rgba(#3ab3d2,.6);
+                border-radius: 0.5rem;
+                background-color: rgba(#3ab3d2, 0.6);
                 opacity: 0;
                 transition: all 0.2s;
                 z-index: var(--level-two);
                 cursor: pointer;
-                .returns{
+                .returns {
                   display: flex;
-                  height:100%;
+                  height: 100%;
                   width: 100%;
-                  color:white;
+                  color: white;
                   justify-content: center;
                   align-items: center;
-                  padding: .5rem;
+                  padding: 0.5rem;
                   font-size: 1.5rem;
                   font-weight: bolder;
                   //color:white;
-                  text-align:center;
+                  text-align: center;
                   white-space: nowrap;
                   text-shadow: var(--shadow);
                 }
@@ -250,7 +280,7 @@ app-busy {
                   display: none;
                   &:checked {
                     & + .text {
-                      background-color: rgba(#3ab3d2,.8);
+                      background-color: rgba(#3ab3d2, 0.8);
                       //color: white;
                       font-weight: bolder;
                     }
@@ -262,7 +292,7 @@ app-busy {
                   transition: all 0.2s;
                 }
                 &:hover {
-                  background-color: rgba(#3ab3d2,.6);
+                  background-color: rgba(#3ab3d2, 0.6);
                   //color: white;
                   .text {
                     transform: scale(1.2);
@@ -289,97 +319,123 @@ app-busy {
           }
         }
       }
-      .howto {
-        .tab-box {
-          margin: 2rem;
-          .tab-content {
-            height: 100%;
+    }
+    &__bottom {
+      background-color: var(--light-black);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      .s-records-info {
+        height: 100%;
+        align-self: center;
+        //width: 10rem;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 2rem;
+        text-align: center;
+        justify-content: center;
+        .s-record {
+          //background-color: var(--light);
+          min-width: 15rem;
+          width: 15rem;
+          min-height: 15rem;
+          height: 15rem;
+          overflow: hidden;
+          padding: 1rem;
+          border: 0.1px solid var(--light);
+          color: white;
+          &__figure {
+            font-weight: bolder;
+          }
+          &__text {
           }
         }
       }
-    }
-    .luckyme-body__right {
-      border-left: 1px solid var(--bordercolor);
-      height: calc(100vh - 9.5rem);
-      overflow: auto;
       .info-card {
-        background-color: rgba(white, 0.2);
-        min-height: 30rem;
-        height: 45%;
+        background-color: transparent;
+        //color:white;
+        max-height: 44rem;
+
         &__head {
           font-size: 1.5rem;
           letter-spacing: 0.2rem;
           color: white;
+          background-color: transparent;
         }
         &__body {
-          height: 100%;
-          overflow: hidden;
+          background-color: transparent;
           .winner-group {
             background-color: transparent;
             &__header {
               background-color: transparent;
               font-size: 1.2rem;
-            }
-          }
-          .tab-box {
-            height: calc(100% - 4rem);
-            .tab-content {
-              //min-height: 19rem;
-              height: 100%;
-              background-color: transparent;
-              .p-winnerscount {
-                text-align: center;
-                font-size: 1.2rem;
-                text-transform: uppercase;
-                letter-spacing: 0.2rem;
-                margin-bottom: 0.3rem;
-                color: white;
-                font-weight: bold;
-                position: absolute;
-                left:0;
-                bottom: 5px;
-                width: 100%;
-              }
-            }
-          }
-          .tab-box.m-bottom{
-            height: calc(100% - 6rem);
-          }
-          margin: 1rem;
-        }
-      }
-    }
-
-    @media (max-width: 1058px) {
-      overflow: auto;
-      .luckyme-body__left {
-        height: auto;
-
-        .choice-box {
-          padding: 0.5rem !important;
-          flex: 1 1 10rem !important;
-          .choice-amount {
-            font-size: 2rem !important;
-          }
-
-          .choice-selector__background {
-            .choice-selector {
-             // width: 3rem !important;
-              height: 3rem !important;
-
-              &::after {
-               // width: 1rem !important;
-                height: 2rem !important;
-              }
+              padding:.3rem 1rem;
             }
           }
         }
       }
-      .luckyme-body__right {
-        height: auto;
-        border-left: none;
-        width: 100%;
+    }
+    &--details {
+      .tab-box {
+        // height: 30rem;
+        margin: 2rem;
+        .tab-content {
+          height: 100%;
+          .panel {
+            .number {
+              background-color: orange;
+            }
+          }
+        }
       }
     }
+    .info-card{
+      background-color: transparent;
+      box-shadow: none;
+      
+      &__head{
+        box-shadow: none;
+        text-align: center;
+        display: block;
+        color:white;
+      }
+      &__body{
+        .tab-box{
+          .nav-tabs{
+            background-color: transparent;
+            .nav-item{
+              .nav-link{
+                background-color: transparent;
+                &.active{
+                  color:#007bff;
+                  font-weight: bolder;
+                }
+              }
+            }
+          }
+
+          .tab-content{
+            height:auto;
+            background-color: transparent;
+            .p-winnerscount{
+              color:var(--light);
+            }
+          }
+
+        }
+        .winner-group{
+          &__header{
+            padding:.3rem 1rem;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+.info-card {
+  &__footer {
+    color: var(--light);
   }
 }

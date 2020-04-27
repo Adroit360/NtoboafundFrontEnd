@@ -4,40 +4,13 @@
 <app-header></app-header>
 <div class="scholarship-body">
   <div class="scholarship-body__content">
-    <div class="scholarship-body__content--header">
-
-      <div class="scholarship-body__content--headerleft">
-        <div class="info-card participants">
-          <div class="info-card__head">Current Participants</div>
-          <div class="info-card__body">
-            <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
-            <div class="winner-group">
-              <!-- <div class="winner-group__header">
-                Today
-              </div> -->
-              <!-- *ngFor="let winner of winnings[key]" -->
-              <div *ngFor="let participant of signalRservice.scholarshipParticipants" class="winner-item">
-                <div class="winner-item__description">
-                  <span class="winner-name">{{participant.userName}}</span>
-                  <span class="winning-details">
-                    <span class="amount-won"> staked <span class="period"> </span>GH₵
-                      {{participant.amountStaked}}</span>
-                    <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="info-card__footer">{{signalRservice.potentialScholarshipWinnersCount}} potential winner<span
-              *ngIf="signalRservice.potentialScholarshipWinnersCount != 1">s</span></div>
-        </div>
-      </div>
-
-      <div class="scholarship-body__content--headercenter">
-        <!-- && scholarshipSeconds>=0 -->
-        <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && scholarshipSeconds>=0 "
+    <div class="scholarship-body__content__header">
+      <div class="scholarship-body__content__header__left">
+        <h6 class="main-header">WOULD YOU LIKE TO CONTRIBUTE IN OUR SCHOLARSHIP FUND?</h6>
+        <!-- <h3 class="sub-header">Invest Today, Win For Society</h3> -->
+        <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && scholarshipSeconds>=0"
           class="countdown">
-          <div class="header">Next scholarship Draw In</div>
+          <div class="header">The next Scholarship Fund winners get selected in </div>
           <div class="counters">
             <!-- <div class="ctd">{{scholarshipDays}} <span>Days</span></div> -->
             <div class="ctd">{{scholarshipDays}} <span>Days</span></div>
@@ -47,7 +20,37 @@
           </div>
         </div>
 
-        <div *ngIf="(winnerSelectionService.isQuaterlyDrawOngoing | async)" class="ongoingdraw">
+      </div>
+      <div class="scholarship-body__content__header__right">
+        <div class="info-card-1 participants">
+          <div class="info-card-1__head"><span>CURRENT PARTICIPANTS</span></div>
+          <div class="info-card-1__body">
+            <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
+            <div class="winner-group">
+              <!-- <div class="winner-group__header">
+              Today
+            </div> -->
+              <!-- *ngFor="let winner of winnings[key]" -->
+              <div *ngFor="let participant of signalRservice.scholarshipParticipants" class="winner-item">
+                <div class="winner-item__description">
+                  <span class="winner-name">{{participant.userName}}</span>
+                  <span class="winning-details">
+                    <span class="contrib">CONTIBUTED</span>
+                    <span class="amount-won"> <span class="period"> </span>GH₵
+                      {{participant.amountStaked}}</span>
+                    <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="info-card-1__footer">{{signalRservice.potentialScholarshipWinnersCount}} potential winner<span
+              *ngIf="signalRservice.potentialScholarshipWinnersCount != 1">s</span></div>
+        </div>
+      </div>
+    </div>
+    <div id="stake-center" class="scholarship-body__content__middle">
+        <div *ngIf="(winnerSelectionService.isQuaterlyDrawOngoing  | async)" class="ongoingdraw">
           <div class="header">Scholarship Draw is ongoing</div>
           <div class="drawbox">
             <div class="lds-hourglass loader"></div>
@@ -81,19 +84,61 @@
         </div>
 
         <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async)" class="stake-box">
-          <div class="stake-box__header">
-            <div class="text">Ntoboa scholarship</div>
-          </div>
           <input #stakeboxcontroller type="checkbox" id="stakeboxcontroller">
           <div class="stake-box__body">
             <div class="stake-box__body__info">
-              <div class="content">
-                The first scholarship crowdfund of its kind. Its very easy to win this amazing jackpot.
-                Every quater of a year, a lucky student is selected to win this once in a lifetime jackpot.
-                Parents can Invest for their wards as well as students for themselves.
+              <div class="stake-box__body__info__head">Select The Amount You Would Like To
+                Invest
               </div>
-              <div class="footer">
-                <label for="stakeboxcontroller" class="btn btn-info i-want">I Want to Invest</label>
+              <div class="amount-box">
+                <label for="20" class="amount-item">
+                  <input (change)="selectAmount(20)" id="20" name="amount" type="radio">
+                  <div class="amount-item__left">
+                    <p>GH₵ 20</p>
+                  </div>
+                  <div class="amount-item__right">
+                    <label for="20" class="c-checkbox-action">
+                      <span></span>
+                    </label>
+                  </div>
+                </label>
+                <label for="50" class="amount-item">
+                  <input (change)="selectAmount(50)" id="50" name="amount" type="radio">
+                  <div class="amount-item__left">
+                    <p>GH₵ 50</p>
+                  </div>
+                  <div class="amount-item__right">
+                    <label for="50" class="c-checkbox-action">
+                      <span></span>
+                    </label>
+                  </div>
+                </label>
+                <label for="100" class="amount-item">
+                  <input (change)="selectAmount(100)" id="100" name="amount" type="radio">
+                  <div class="amount-item__left">
+                    <p>GH₵ 100</p>
+                  </div>
+                  <div class="amount-item__right">
+                    <label for="100" class="c-checkbox-action">
+                      <span></span>
+                    </label>
+                  </div>
+                </label>
+              </div>
+              <div class="arrow">
+                <img src="assets/svgs/step-arrow.svg" alt="">
+              </div>
+              <div style="color:#f44336;" *ngIf="error" class="potential-returns">{{error}}
+              </div>
+              <div *ngIf="!error" class="potential-returns">Potential returns for this investment option is 
+                <span *ngIf="potentialReturns" class="returns">{{potentialReturns}}</span>
+              </div>
+              <div class="arrow">
+                <img src="assets/svgs/step-arrow.svg" alt="">
+              </div>
+              <div class="proceed">
+                <label for="stakeboxcontroller" class="btn-trans i-want" (click)="proceed($event)">Proceed
+                  <span>&rarr;</span></label>
               </div>
             </div>
             <div class="stake-box__body__staker">
@@ -105,7 +150,7 @@
                       aria-describedby="InstitutionHelp" placeholder="Enter Institution">
                     <span>
                       <small *ngIf="!scholarshipForm.get('Institution').valid && scholarshipForm.touched"
-                        class="form-text text-danger">The institution name is required !!</small>
+                        class="form-text">The institution name is required !!</small>
                     </span>
                   </div>
                   <div class="form-group">
@@ -114,7 +159,7 @@
                       placeholder="Enter Program" formControlName="Program">
                     <span>
                       <small *ngIf="!scholarshipForm.get('Program').valid && scholarshipForm.touched"
-                        class="form-text text-danger">Your offered program is required !!</small>
+                        class="form-text">Your offered program is required !!</small>
                     </span>
                   </div>
                   <div class="form-group">
@@ -123,7 +168,7 @@
                       placeholder="Enter Student Id" formControlName="StudentId">
                     <span>
                       <small *ngIf="!scholarshipForm.get('StudentId').valid && scholarshipForm.touched"
-                        class="form-text text-danger">Your student id is required !!</small>
+                        class="form-text">Your student id is required !!</small>
                     </span>
                   </div>
                   <div class="form-group">
@@ -139,139 +184,94 @@
                       </label>
                     </div>
                     <span>
-                      <small class="form-text text-danger" *ngIf="!scholarshipForm.get('PlayerType').valid && scholarshipForm.touched">Please select a
+                      <small class="form-text"
+                        *ngIf="!scholarshipForm.get('PlayerType').valid && scholarshipForm.touched">Please
+                        select a
                         player type</small>
                     </span>
                   </div>
                 </form>
               </div>
               <div class="footer">
-                <label for="stakeboxcontroller" class="btn btn-info i-resign">Back</label>
-                <!-- (click)="pay()" -->
-                <button *ngIf="settings.paymentGateway=='flutterwave'" angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
-                  (mouseover)="setRaveOptions(20)" (callback)="scholarshipPaymentCallback($event)"
-                  (close)="paymentFailed()" (init)="paymentInitialized(20)">Invest for <span class="pay-amt">₵20</span>
-                </button>
-                <button *ngIf="settings.paymentGateway=='flutterwave'" angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
-                  (mouseover)="setRaveOptions(50)" (callback)="scholarshipPaymentCallback($event)"
-                  (close)="paymentFailed()" (init)="paymentInitialized(50)">Invest for <span class="pay-amt">₵50</span>
-                </button>
-                <button *ngIf="settings.paymentGateway=='flutterwave'" angular-rave [raveOptions]="raveOptions" class="btn btn-primary i-Invest"
-                  (mouseover)="setRaveOptions(100)" (callback)="scholarshipPaymentCallback($event)"
-                  (close)="paymentFailed()" (init)="paymentInitialized(100)">Invest for <span class="pay-amt">₵100</span>
-                </button>
-
-
-                <button *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'" class="btn btn-primary i-Invest"
-                (click)="paymentInitialized(20)">Invest for <span class="pay-amt">₵20</span>
-             </button>
-                <button *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'" class="btn btn-primary i-Invest"
-                (click)="paymentInitialized(50)">Invest for <span class="pay-amt">₵50</span>
-             </button>
-                <button *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'" class="btn btn-primary i-Invest"
-                (click)="paymentInitialized(1000)">Invest for <span class="pay-amt">₵100</span>
-             </button>
-
-
-        
+                <label for="stakeboxcontroller" class="btn-trans i-resign"><span>&larr;</span>Back</label>
+                <label (click)="paymentInitialized()" class="btn-trans">Proceed<span>&rarr;</span></label>
               </div>
             </div>
           </div>
 
         </div>
-
-
-      </div>
-
-      <div class="scholarship-body__content--headerright">
-        <div class="info-card winnerscard">
-          <div class="info-card__head">Past Winners</div>
-          <div class="info-card__body">
-            <div *ngIf="winnerSelectionService.groupedScholarshipWinners">
-              <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedScholarshipWinners)"
-                class="winner-group">
-                <div class="winner-group__header">
-                  {{key}}
-                </div>
-                <div *ngFor="let winner of winnerSelectionService.groupedScholarshipWinners[key]" class="winner-item">
-                  <div class="winner-item__description">
-                    <span class="winner-name">{{winner.userName}}</span>
-                    <span *ngIf="winner.amountToWin" class="winning-details">
-                      <span class="amount-won"> Won <span class="period"> </span>GH₵
-                        {{winner.amountToWin}}</span>
-                      <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
-                    </span>
-                  </div>
-                </div>
+    </div>
+    <div class="past-winners">
+      <!-- Past Winners -->
+      <h6 *ngIf="winnerSelectionService.groupedScholarshipWinners"></h6>
+      <div *ngIf="winnerSelectionService.groupedScholarshipWinners" class="pan-view">
+        <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedScholarshipWinners)" class="pan-view-group">
+          <div *ngFor="let winner of winnerSelectionService.groupedScholarshipWinners[key]" class="pan-view__item">
+            <div class="pan-view__item__text">
+              <div class="pan-view__item__text--top">
+                <div class="first">{{winner.amountToWin}}</div>
+                <div class="second">GH₵</div>
+                <!-- <div class="amountcontrib">{{winner.amountStaked}}</div> -->
+              </div>
+              <div class="pan-view__item__text--bottom">
+                <div class="first">{{winner.userName}}</div>
+                <div class="second">{{key}}</div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
-
     </div>
-    <div class="scholarship-body__content--details">
-      <div class="tab-box">
-        <ul class="nav nav-tabs">
-          <li class="nav-item active">
-            <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How To Invest</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#where" role="tab" data-toggle="tab">The Must Knows</a>
-          </li>
-        </ul>
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane fade in show active" id="how">
-            <div class="panel" style="background-color: orange;color:black">
-              <div class="number">1</div>
-              <div class="text">Enter the name of your Institution, e.g. "University of Mines and Technology", program
-                of study and your student Id </div>
-            </div>
-            <div class="panel" style="background-color: #f06292">
-              <div class="number">2</div>
-              <div class="text">Press the "Invest" button to proceed to payment</div>
-            </div>
-            <div class="panel" style="background-color: #01c851">
-              <div class="number">3</div>
-              <div class="text">Choose mode of payment, enter details and click "continue"</div>
-            </div>
-            <div class="panel" style="background-color: #7383a7">
-              <div class="number">4</div>
-              <div class="text">Follow the displayed guideline to complete the investment process</div>
-            </div>
-            <div class="panel" style="background-color: #a563c7">
-              <div class="number">5</div>
-              <div class="text">Winners would be announced at the end of the draw.</div>
+    <div class="win-banner">
+      <div class="win-prize">
+        <span>Prizes Paid</span>
+        <strong>GH₵ 220,000</strong>
+        <p>With Ntoboafund, the more you invest the better your chances of winning BIG!.</p>
+      </div>
+    </div>
+    <section class="aritcles-sec">
+      <div class="container">
+        <h6 class="text-center">NEW ARTICLES</h6>
+        <div class="art-wrap article-slider">
+          <div class="art-item">
+            <figure><img src="assets/images/article-img01.jpg" alt="article-img01" /></figure>
+            <div class="info">
+              <h5>Crowdfunding Legal Issues for Small Businesses</h5>
+              <p class="profile-date">BY <strong>JEAN MURRAY</strong>, <span>Updated June 25, 2019</span></p>
+              <p class="desc">Most crowdfunding websites allow individuals or companies to present an idea to others, who donate money with no expectation of anything (other than a small token gift) in return. One of the largest crowdfunding sites, Kickstarter, sets itself as a middleman between creative types.</p>
             </div>
           </div>
-          <div role="tabpanel" class="tab-pane fade" id="where">
-            <div class="panel" style="background-color: rgb(138, 112, 63)">
-              <div class="number">*</div>
-              <div class="text">Scholarship Winners are announced every three months.</div>
+          <div class="art-item">
+            <figure><img src="assets/images/article-img02.jpg" alt="article-img02" /></figure>
+            <div class="info">
+              <h5>Peer-to-peer Lending as Crowdfunding Model</h5>
+              <p class="profile-date">BY <strong>JEAN MURRAY</strong>, <span>Updated June 25, 2019</span></p>
+              <p class="desc">Before you get too excited about this new way to raise money for your business, you should be aware of the potential legal issues involved. As usual, when a new idea gets ahead of current regulation and laws, some issues arise. This article addresses some of those issues.</p>
             </div>
-            <div class="panel" style="background-color: #9aa349">
-              <div class="number">*</div>
-              <div class="text">Winners would be paid via stated payment reception method. eg. mobile money or bank
-                account</div>
-            </div>
-            <div class="panel" style="background-color: #399191">
-              <div class="number">*</div>
-              <div class="text">Staked Amount is non refundable</div>
-            </div>
-            <div class="panel" style="background-color: #324675">
-              <div class="number">*</div>
-              <div class="text">Scholarship contributions  have three investment values which are GH₵ 20,GH₵ 50,GH₵ 100</div>
-            </div>
-            <div class="panel" style="background-color: #02b111">
-              <div class="number">*</div>
-              <div class="text">NB: Participants should be students of academic institutions.</div>
-            </div>
-
           </div>
         </div>
       </div>
+    </section>
+    <div class="scholarship-body__content__bottom">
+      <!-- <div class="s-records-info">
+        <div class="s-record">
+          <div class="s-record__figure">GHC 100K+</div>
+          <div class="s-record__text">Returns Paid to Our Scholarship Fund Investors so far</div>
+        </div>
+        <div class="s-record">
+          <div class="s-record__figure">GHC 500+</div>
+          <div class="s-record__text">Students Supported so far</div>
+        </div>
+        <div class="s-record">
+          <div class="s-record__figure">GHC 60K+</div>
+          <div class="s-record__text">Total Points Earned by
+            Scholarship Fund
+            Investors so far</div>
+        </div>
+      </div> -->
+
     </div>
+    <app-footer></app-footer>
   </div>
 </div>
 
@@ -294,10 +294,10 @@
 </div>
 
 
-  <!-- [ngClass]="{'visible':congratShown,'invisible':!congratShown}" -->
-  <div [ngClass]="{'visible':congratShown,'invisible':!congratShown}" class="popup regular visible" id="congrats-box">
-    <div class="popup__content">
-      <!-- <div class="popup__content--toolbar">
+<!-- [ngClass]="{'visible':congratShown,'invisible':!congratShown}" -->
+<div [ngClass]="{'visible':congratShown,'invisible':!congratShown}" class="popup regular visible" id="congrats-box">
+  <div class="popup__content">
+    <!-- <div class="popup__content--toolbar">
         <div class="toolbar--left">Error !</div>
         <div class="toolbar--right">
           <a (click)="closeCongratPopup()" class="closebtn">
@@ -305,26 +305,29 @@
           </a>
         </div>
       </div> -->
-      <div class="popup__content--body">
-        <div class="top">Congratulations</div>
-        <div class="body">{{congratMsg}}</div>
-      </div>
-      <div class="popup__content--footer">
-        <button (click)="closeCongratPopup()">Ok</button>
-      </div>
+    <div class="popup__content--body">
+      <div class="top">Congratulations</div>
+      <div class="body">{{congratMsg}}</div>
+    </div>
+    <div class="popup__content--footer">
+      <button (click)="closeCongratPopup()">Ok</button>
     </div>
   </div>
-  
+</div>
+
 
 <app-faq></app-faq>
 
-<app-payment-dialog [amount]="selectedAmount" [stakeType]="'Scholarship'" [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" [txRef]="this.raveOptions.txref" *ngIf="customPaymentDialogShown && this.raveOptions" (close)="closePaymentDialog()" (oncongratmessage)="showCongratulatoryMessage($event)"></app-payment-dialog>
+<app-payment-dialog [amount]="selectedAmount" [stakeType]="'Scholarship'"
+  [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" [txRef]="this.raveOptions.txref"
+  *ngIf="customPaymentDialogShown && this.raveOptions" (close)="closePaymentDialog()"
+  (oncongratmessage)="showCongratulatoryMessage($event)"></app-payment-dialog>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157438990-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'UA-157438990-1');

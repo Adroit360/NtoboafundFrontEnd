@@ -8,7 +8,7 @@ import { AuthService } from 'src/services/authservice';
 import { HttpClient } from '@angular/common/http';
 import { Business } from 'src/models/business';
 import { PaymentService } from 'src/services/payment.service';
-import { RaveOptions } from 'angular-rave';
+// import { RaveOptions } from 'angular-rave';
 
 @Component({
   selector: 'app-business',
@@ -30,7 +30,7 @@ export class BusinessComponent implements OnInit,AfterViewInit {
   error = null;
   errorShown = false;
   businesses: Array<Business> = [];
-  raveOptions: RaveOptions;
+  raveOptions: any;
   congratMsg: string = "";
   congratShown = false;
 

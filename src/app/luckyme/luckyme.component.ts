@@ -10,7 +10,7 @@ import { SignalRService } from 'src/services/signalr.service';
 import { LuckymeService } from 'src/services/luckyme.service';
 import { PaymentService } from 'src/services/payment.service';
 import { ReturnStatement } from '@angular/compiler';
-import { RaveOptions } from 'angular-rave';
+// import { RaveOptions } from 'angular-rave';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
@@ -21,7 +21,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class LuckymeComponent implements OnInit,AfterViewInit {
 
   ObjectKeys = Object.keys;
-
+  console = console.log;
   selectedChoice: number = null;
   selectedPeriod = null;
   loading = false;
@@ -30,7 +30,7 @@ export class LuckymeComponent implements OnInit,AfterViewInit {
   congratMsg: string = "";
   congratShown = false;
   customPaymentDialogShown = false;
-  raveOptions: RaveOptions;
+  raveOptions: any;
 
   slydepayRedirectUrl:SafeResourceUrl;;
 
@@ -53,7 +53,7 @@ export class LuckymeComponent implements OnInit,AfterViewInit {
   @ViewChild("ravepaybtn") ravePayBtn:ElementRef;
 
   settings:any = settings;
-
+  ddisplay = "daily";
   constructor(private http: HttpClient, public authService: AuthService, public paymentService: PaymentService,
     private router: Router, private activatedRoute: ActivatedRoute, private countDownService: CountDownService,
     public winnerSelectionService: WinnerSelectionService, public signalRService: SignalRService,public sanitizer:DomSanitizer) {
@@ -97,6 +97,10 @@ export class LuckymeComponent implements OnInit,AfterViewInit {
           }
          
         }
+  }
+
+  display(display){
+    this.ddisplay = display;
   }
 
   paymentInitialized() {

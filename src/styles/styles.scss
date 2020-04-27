@@ -14,8 +14,8 @@
 @import "base/utilities";
 @import "base/typography";
 @import "base/animations";
-
 //components
+@import "components/misc";
 @import "components/button";
 @import "components/c-inputs";
 @import "components/svgs";
@@ -33,28 +33,11 @@
 @import "components/flatradiobtns";
 @import "components/badge";
 @import "components/data-container";
+@import "components/scroll-view";
+@import "components/panview";
 
-
-footer{
-  position: fixed;
-  width: 100%;
-  background-color: #f2f2f2;
-  z-index: 1000;
-  bottom: 0;
-  height: 3.5rem;
-  font-size: 1.3rem;
-  .legal-stuff{
-    display: flex;
-    justify-content: center;
-    >a{
-      margin: 1rem;
-      color:rgb(97, 97, 97);
-      &:hover{
-        text-decoration: underline;
-      }
-    }
-  }
-}
+//Responsive
+@import "base/responsive";
 
 ::-webkit-scrollbar {
 	width: 8px;
@@ -80,3 +63,7 @@ footer{
   ::-webkit-scrollbar-thumb:active {
     background: linear-gradient(to left, grey, rgba(grey,.8));
   }
+
+
+  // "angular-rave": "^1.2.1",
+  // "bootstrap": "^4.3.1",

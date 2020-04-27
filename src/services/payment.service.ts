@@ -1,4 +1,4 @@
-import { RaveOptions } from 'angular-rave';
+// import { RaveOptions } from 'angular-rave';
 import { AuthService } from './authservice';
 import { User } from 'src/models/user';
 import { Injectable } from '@angular/core';
@@ -17,7 +17,7 @@ export class PaymentService {
     }
 
     getRaveOptions(stakeType: String, amount: number, condition: boolean = true) {
-        let paymentOptions: RaveOptions;
+        let paymentOptions: any;
         let user = this.authService.currentUser;
         
         if (user) {

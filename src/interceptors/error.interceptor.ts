@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/services/authservice';
@@ -7,21 +7,57 @@ import { isObject } from 'util';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private authenticationService: AuthService) {}
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        return next.handle(req).pipe(
+            catchError((error: any) => {
+                //console.log(error);
+                //Means its an error comming from API
+                if (error instanceof HttpErrorResponse) {
+                    //appError represents unhandled exceptions in the applications
+                    //global exception filter on backend add App-Error header with error string if an unhandled error occurs
+                    const appError = error.headers.get("App-Error");
+                    if (appError)
+                        return throwError(appError);
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(request).pipe(catchError(err => {
-            if (err.status === 401) {
-                // auto logout if 401 response returned from api
-                //this.authenticationService.logout();
-                //location.reload(true);
+                    if (error.status == 401) {
+                        return throwError(error.statusText);
+                    }
+
+                    //An Http Status Code error which can have content of array of errors or a single string
+                    let serverError;
+                    if (error.message)
+                        serverError = error.message;
+                    else if (error && Array.isArray(error.error))
+                        serverError = error.error;
+                    else if (error.error && Array.isArray(error.error.errors))
+                        serverError = error.error.errors;
+                    else
+                        serverError = error.error
+
+                    let ModelStateErrors = "";
+
+                    if (serverError && typeof serverError == "object") {
+                        if (serverError['isTrusted']) {
+                            //This is reached if the backend is not responding
+                            return throwError("Server not responding");
+                        }
+
+                        for (const key in serverError) {
+                            if (serverError[key]) {
+                                if (serverError[key]['description']) {
+                                    ModelStateErrors += serverError[key]['description'] + "\n";
+                                }
+                                else
+                                    ModelStateErrors += serverError[key] + "\n";
+                            }
+                        }
+                    }
+
+                    return throwError(ModelStateErrors || serverError || error || "Sorry An Error Occured");
+                }
             }
-             console.log(err);
-            //let error = err.error;
-            // if(isObject(err))
-                 //err= JSON.stringify(err);
-
-            return throwError(err);
-        }))
+            )
+        )
     }
+
 }

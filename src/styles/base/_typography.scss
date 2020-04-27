@@ -5,13 +5,33 @@
 //font-family: 'Merienda', cursive;
 @import url('https://fonts.googleapis.com/css?family=Lobster+Two|Merienda|Rye&display=swap');
 
+@import url('https://fonts.googleapis.com/css?family=Aladin&display=swap');
 // .fa{
 //    font-family: Font Awesome\ 5 Free !important;
 // }
 
+//font-family:aladin
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+/**
+*font-family: 'Roboto', ;
+*/
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 .ucase{
     text-transform: uppercase;
 }
+
+h1,h2,h3,h4,h5,h6{
+    letter-spacing: .1rem;
+}
+
+h6{font-size: 2rem;}
+h5{font-size: 2.5rem;}
+h4{font-size: 3rem;}
+h3{font-size: 3.5rem;}
+h2{font-size: 4rem;}
+h1{font-size: 4.5rem;}
 
 .h3{
     font-size: 1.5rem;

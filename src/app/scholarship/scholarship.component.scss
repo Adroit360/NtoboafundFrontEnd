@@ -8,243 +8,285 @@ app-busy {
 .scholarship-bg {
   position: fixed;
   // background-image: url(../../assets/images/luckyme2.jpg);
- /*background: url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png)
+  /*background: url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png)
     center center no-repeat #b441af;*/
-  background-image: url(../../assets/images/bsonscholarship.png);
+  //background-image: url(../../assets/images/bsonscholarship.png);
   background-size: cover;
- background-color: rgba(black, 0.4);
-  background-blend-mode: color;
-  background-position: center;
-  height: calc(100vh);
-  width: calc(100vw);
-  top: 0;
-  left: 0;
+  background-repeat: no-repeat;
+  //background-image: linear-gradient(to bottom, rgb(4, 134, 0), white);
+  // background-image: linear-gradient(to right,rgba(black,.5),rgba(black,.5)),url(../../assets/images/scholarship.jpg);
+  //background-blend-mode: color;
+  //background-color: #003c0c;
+  background-position: 0 20%;
+  height: 100%;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 0;
 }
-app-header{
-  color:white;
+app-header {
+  color: white;
 }
 .scholarship-body {
   position: relative;
   //padding-top: 6rem;
   top: 6rem;
-  height: calc(100vh - 9.5rem);
+  height: calc(100vh - 6rem);
   width: calc(100vw);
   overflow: auto;
   z-index: var(--level-three);
 
   &__content {
-    color: white;
+    color: var(--dark);
     height: 100%;
-    &--header {
-     // background-image: url(../../assets/images/bsonscholarship.png);
-      background-size: cover;
-    //  background-color: rgba(black, 0.5);
-      background-blend-mode: color;
-      background-position: center;
+    background-color: #003c0c;
+    &__header {
+      @include headerbox();
+      &__left {
+        
+        .main-header {
+          background-color: transparent;
+          color: white;
+          box-shadow: none;
+        }
+        // .countdown {
+        //   .header {
+        //     text-shadow: var(--primary-shadow);
+        //   }
+        //   .counters {
+        //     .ctd {
+        //       padding: 0.5rem 1rem;
+        //       background-color: rgba(white,.7);
+        //       border-radius: 0.7rem;
+        //       color: var(--dark);
+        //       // &:first-child{color:#ff5d5d;}
+        //       // &:nth-child(2){color:yellow;}
+        //       // &:nth-child(3){color:#2fff2f;}
+        //       // &:nth-child(4){color:white;}
+        //     }
+        //   }
+        // }
+      }
+    }
+    &__middle {
       display: flex;
       justify-content: space-evenly;
       padding: 2rem 0rem;
       flex-wrap: wrap;
       align-items: flex-start;
-      &left {
-        flex: 1 1 25%;
-        display: flex;
-        justify-content: center;
-        
-      }
-      &center {
-        flex: 1 1 40%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .countdown {
-          .header {
-          }
-          .counters {
-            .ctd {
-              padding: 0.5rem 1rem;
-              background-color: white;
-              border-radius: 0.7rem;
-              color: black;
-              // &:first-child{color:#ff5d5d;}
-              // &:nth-child(2){color:yellow;}
-              // &:nth-child(3){color:#2fff2f;}
-              // &:nth-child(4){color:white;}
-              span {
-                color: blue;
-              }
+      background-color: white;
+      padding: 3rem;
+      flex: 1 1 70%;
+      .stake-box {
+        //background-color: rgba(white, 0.9);
+        padding: 1rem;
+        //color: black;
+        overflow: hidden;
+        //min-width: 40rem;
+        justify-self: center;
+        border-radius: 0.5rem;
+        height: 100%;
+        width: 100%;
+        input[id="stakeboxcontroller"] {
+          display: none;
+          &:checked {
+            & ~ .stake-box__body > .stake-box__body__info {
+              transform: translateX(-100%);
+            }
+            & ~ .stake-box__body > .stake-box__body__staker {
+              transform: translateX(-100%);
+            }
+            & ~ .stake-box__body {
+              height: 43rem;
             }
           }
         }
-        .ongoingdraw{
-          .header{
-      
-          }
-          .drawbox{
-            .loader{
-            }
-            .participants{
-              .info-card__body{
-              }
-            }
-          }
-        }
-       
-        .stake-box {
-          background-color: rgba(white, 0.9);
+        &__body {
+          $bdy: &;
+          margin: 0.5rem;
           padding: 1rem;
-          color: black;
-          width: 30rem;
-          overflow: hidden;
-          min-width: 40rem;
-          justify-self: center;
-          border-radius: .5rem;
-          &__header {
-            text-align: center;
-            .text {
-              text-transform: uppercase;
-              display: inline-block;
-              font-size: 1.6rem;
-              letter-spacing: 0.2rem;
-              border-bottom: 1px solid red;
-            }
-            margin: 0.5rem;
-          }
-          input[id="stakeboxcontroller"] {
-            display: none;
-            &:checked {
-              & ~ .stake-box__body > .stake-box__body__info {
-                transform: translateX(-100%);
-              }
-              & ~ .stake-box__body > .stake-box__body__staker {
-                transform: translateX(-100%);
-              }
-              & ~ .stake-box__body {
-                height: 43rem;
-              }
-            }
-          }
-          &__body {
-            $bdy: &;
-            margin: 0.5rem;
-            padding: 1rem;
+          position: relative;
+          //overflow: hidden;
+          height: 100%;
+          width: 100%;
+          transition: all 0.3s var(--zoom-bezier);
+          &__info {
+            position: absolute;
+            left: 0;
+            transition: transform 0.5s var(--zoom-bezier);
+            display: flex;
+            align-items: center;
             position: relative;
-            height: 18rem;
-            overflow: hidden;
-            transition: all .3s var(--zoom-bezier);
-            &__info {
+            height: 100%;
+            width: 100%;
+            &__head {
               position: absolute;
-              left: 0;
-              width: 100%;
-              transition: transform 0.5s var(--zoom-bezier);
-              .footer{
-                display: flex;
-                justify-content: flex-end;
-              }
-            }
-            &__staker {
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-             // position: relative;
-              position: absolute;
-             left: 100%;
-             //left:0%;
-              width: 100%;
               top: 0;
-              transition: transform 0.5s var(--zoom-bezier);
-              height: 100%;
-              overflow: hidden;
-              //padding: 1rem;
-              .form-group{
-                margin: .5rem !important;
-                &>span{
-                  display: block;
-                  height: 2rem;
+              left: 50%;
+              transform: translateX(-50%);
+              font-size: 1.5rem;
+              top: -3rem;
+              color: #5cb4ef;
+              text-transform: uppercase;
+              //@include underline();
+            }
+            .amount-box {
+              display: flex;
+              flex-wrap: wrap;
+              flex: 1 1 25%;
+              width: 25%;
+              .amount-item {
+                cursor: pointer;
+                transition: all 0.3s;
+                margin: 0.5rem;
+                background-color: #e8e8e8;
+                text-align: center;
+                width: calc(50% - 2rem);
+                height: 4rem;
+                line-height: 4rem;
+                overflow: hidden;
+                input{display: none;}
+                input:checked {
+                  & ~ .amount-item__left {
+                    background-color: #0b5384;
+                    color: white;
+                  }
+                }
+                &__left {
+                  text-align: center;
+                }
+                &__right {
+                  //visibility: hidden;
+                }
+                &:hover {
+                  background-color: #0b5384;
+                  color: white;
                 }
               }
-              
-              .content {
-                .stake-form {
-                  .form-group {
-                    margin: 1rem;
-                    input {
-                      font-size: 1.4rem;
-                    }
+            }
+            .arrow{
+              margin:2rem;
+            }
+            .potential-returns {
+              margin: 2rem;
+              flex-grow: 1;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: var(--light);
+              padding: 1.5rem;
+              border-radius: 0.5rem;
+              text-align: center;
+              color: rgb(44, 44, 44);
+              .returns{
+                font-weight: bold;
+              }
+            }
+            .proceed {
+              .btn-trans {
+                background: #559A2C;
+                font-size: 2rem;
+                font-weight: 700;
+                border: 1px solid #559A2C;
+                padding: 19px 20px;
+                text-transform: uppercase;
+                color: #fff;
+                transition: all 0.3s ease-in-out;
+                font-family: 'Montserrat', sans-serif;
+                line-height: 1;
+                &:hover{
+                  background: #fff;
+                  color: #559A2C;
+                }
+              }
+            }
+          }
+          &__staker {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            // position: relative;
+            position: absolute;
+            left: 100%;
+            //left:0%;
+            width: 100%;
+            top: 0;
+            transition: transform 0.5s var(--zoom-bezier);
+            height: 100%;
+            overflow: hidden;
+            //padding: 1rem;
+            .form-group {
+              margin: 0.5rem !important;
+              & > span {
+                display: block;
+                height: 2rem;
+              }
+            }
+
+            .content {
+              .stake-form {
+                .form-group {
+                  margin: 1rem;
+                  .flatradios {
+                    color: black;
+                  }
+                  input {
+                    font-size: 1.4rem;
                   }
                 }
               }
-              .footer{
-                display: flex;
-                justify-content: space-between;
-              }
             }
             .footer {
-              // display: flex;
-              // justify-content: space-between;
-               align-items: center;
-
-              label {
-                font-size: 1.5rem;
-                cursor: pointer;
+              position: absolute;
+              bottom: 0;
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+              .btn-trans {
+                text-transform: uppercase;
               }
-              .i-want {
-                float: right;
+            }
+          }
+          .footer {
+            // display: flex;
+            // justify-content: space-between;
+            align-items: center;
+
+            label {
+              font-size: 1.5rem;
+              cursor: pointer;
+            }
+            .i-want {
+              float: right;
+              margin: 0.5rem;
+            }
+            .i-resign {
+              float: left;
+            }
+            .i-Invest {
+              float: right;
+              box-shadow: var(--shadow);
+              & > * {
                 margin: 0.5rem;
               }
-              .i-resign {
-                float: left;
-              }
-              .i-Invest {
-                float: right;
-                box-shadow: var(--shadow);
-                &>*{
-                  margin:.5rem
-                }
-                .pay-amt{
-                  font-size: 1.6rem;
-                  display: inline-block;
-                  color:black;
-                  background-color: white;
-                  font-weight: bolder;
-                  padding: .3rem;
-                  border-radius: .5rem;
-                }
+              .pay-amt {
+                font-size: 1.6rem;
+                display: inline-block;
+                color: black;
+                background-color: white;
+                font-weight: bolder;
+                padding: 0.3rem;
+                border-radius: 0.5rem;
               }
             }
           }
-          &__footer {
-            margin: 0.5rem;
-          }
-          @include clearfix;
         }
-      }
-      &right {
-        flex: 1 1 25%;
-        display: flex;
-        justify-content: center;
-      }
-      .info-card {
-        background-color: rgba(white, 0.2);
-        max-height: 44rem;
-
-        &__head {
-          font-size: 1.5rem;
-          letter-spacing: 0.2rem;
-          color: white;
+        &__footer {
+          margin: 0.5rem;
         }
-        &__body {
-          .winner-group {
-            background-color: transparent;
-            &__header {
-              background-color: transparent;
-              font-size: 1.2rem;
-            }
-          }
-        }
+        //@include clearfix;
       }
-
       @media (max-width: 1020px) {
         &left {
           min-width: 100%;
@@ -256,20 +298,79 @@ app-header{
         }
       }
     }
-    &--details {
-      .tab-box{
-       // height: 30rem;
+    &__bottom {
+      background-color: var(--light-black);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      .s-records-info {
+        height: 100%;
+        align-self: center;
+        //width: 10rem;
+        display: flex;
+        flex-wrap: wrap;
         margin: 2rem;
-        .tab-content{
+        text-align: center;
+        justify-content: center;
+        .s-record {
+          //background-color: var(--light);
+          min-width: 15rem;
+          width: 15rem;
+          min-height: 15rem;
+          height: 15rem;
+          overflow: hidden;
+          padding: 1rem;
+          border: 0.1px solid var(--light);
+          color: white;
+          &__figure {
+            font-weight: bolder;
+          }
+          &__text {
+          }
+        }
+      }
+      .info-card {
+        background-color: transparent;
+        //color:white;
+        max-height: 44rem;
+
+        &__head {
+          font-size: 1.5rem;
+          letter-spacing: 0.2rem;
+          color: white;
+          background-color: transparent;
+        }
+        &__body {
+          background-color: transparent;
+          .winner-group {
+            background-color: transparent;
+            &__header {
+              background-color: transparent;
+              font-size: 1.2rem;
+            }
+          }
+        }
+      }
+    }
+    &--details {
+      .tab-box {
+        // height: 30rem;
+        margin: 2rem;
+        .tab-content {
           height: 100%;
-          .panel{
-            .number{
+          .panel {
+            .number {
               background-color: orange;
             }
           }
         }
       }
-
     }
+  }
+}
+
+.info-card {
+  &__footer {
+    color: var(--dark);
   }
 }

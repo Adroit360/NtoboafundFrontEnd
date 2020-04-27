@@ -40,7 +40,6 @@ import { LuckymeService } from 'src/services/luckyme.service';
 import { BusinessService } from 'src/services/businesses.service';
 import { UsersService } from 'src/services/users.service';
 import { AdScholarshipsComponent } from './admin-dashboard/adscholarship/adscholarship.component';
-import { AngularRaveModule } from 'angular-rave';
 import { PaymentService } from 'src/services/payment.service';
 import { AnalysisService } from 'src/services/analysis.service';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
@@ -53,6 +52,9 @@ import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
 import { WebmailComponent } from './webmail/webmail.component';
 import { BlogComponent } from './blog/blog.component';
+import { FooterComponent } from './footer/footer.component';
+//import {CarouselModule} from "angular2-carousel";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +87,8 @@ import { BlogComponent } from './blog/blog.component';
     PdfViewerComponent,
     PaymentDialogComponent,
     WebmailComponent,
-    BlogComponent
+    BlogComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +97,6 @@ import { BlogComponent } from './blog/blog.component';
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
-    AngularRaveModule,
     CommonModule,
     AgGridModule.withComponents([DetailCellRendererComponent]),
     PdfViewerModule

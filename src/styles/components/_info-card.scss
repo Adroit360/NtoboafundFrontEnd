@@ -1,176 +1,366 @@
 .info-card {
-    background-color: rgba(white,.9);
-    box-shadow: var(--shadow);
-    margin: 2rem;
-    border-radius: 0.3rem;
+  background-color: rgba(white, 0.9);
+  box-shadow: var(--shadow);
+  margin: 2rem;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  &__head {
     display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
-    &__head{
-      display: flex;
-      color:black; 
-      justify-content: space-between;
-      align-items: center;
-      font-size: 2rem;
-      padding: 1rem;
-      box-shadow: var(--shadow);
-      text-align: center;
-      white-space: nowrap;
-      min-height: 5rem;
-      &--icon{
-        margin-left: 2rem;
-        //height: 4rem;
-        width: 4rem;
-        .fa{
-          font-size: 4rem;
-        }
-      }
-      &--text{
-        text-transform: uppercase;
-        flex: 1 1;
-        text-align: center;
-        letter-spacing: .3rem;
-       // margin: 1rem;
-      }
-      &--text1{
-        margin: 0 1rem 0 1rem;
+    color: black;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    white-space: nowrap;
+    min-height: 5rem;
+    &--icon {
+      margin-left: 2rem;
+      //height: 4rem;
+      width: 4rem;
+      .fa {
+        font-size: 4rem;
       }
     }
-    &__body{
-      overflow: auto;
-      margin-bottom: 2.5rem;
-      .winner-group{
-        //background-color: rgba(black,.2);
-      //  background-color: #0096cc96;
-        margin:.2rem;
-        padding:.3rem;
-        overflow: auto;
-        &__header{
-          padding: .2rem;
-          background-color: #000000;
-          display: inline-block;
-          font-size: 1.2rem;
-          white-space: nowrap;
-          border-radius: .5rem;
-        }
-       
-        .winner-item{
-          margin:.3rem;
-          background-color: rgba(black,.7);
-          border-radius: .5rem;
-          padding: .5rem;
-          overflow-x: auto;
-          overflow-y: hidden;
-          &__image{
-              height:5rem;
-              width: 5rem;
-              min-width: 5rem;
-              border-radius: 50%;
-              border:1px solid var(--bordercolor);
-              overflow: hidden;
-          }
-          &__description{
-            
-            color:black;
-            flex: 1 1;
-            margin:0rem 1rem;
-            .winner-name{
-              letter-spacing: .15rem;
-              font-weight: 400;
-              white-space: nowrap;
-              color:rgba(white,.6);
-            }
-            .winning-details{
-              font-size: 1.3rem;
-              >*{
-                white-space: nowrap;
-              }
-              .amount-won{
-                color:white;
-                .period{
-                  color:#00f0ff;
-                }
-              }
-              .amount-staked{
-                color:#03c85a;
-              }
-            }
-          }
-        }
-        .winner-item{
-          &__description{
-            display: flex;
-            justify-content: left;
-            align-items: center;
-            span{
-              margin: .2rem;
-            }
-            .isfixed{
-              font-size: 1.5rem;
-              font-weight: bold;
-              color:rgb(223, 19, 19);
-            }
-          }
-        }
-      }
-      .question-card{
-        color: black;
-        background-color: white;
-        border-radius: .5rem;
-        overflow: hidden;
-        margin: 1rem;
-        padding: 1rem;
-        box-shadow: var(--shadow);
-        input{
-          display: none;
-          &:not(:checked){
-            &~.question{
-              border-bottom: 0px solid transparent;
-              .fa-arrow-up{
-                transform: rotate(180deg);
-              }
-            }
-            &~.answer{
-              visibility: hidden;
-              height: 0rem;
-              margin-top: 0rem;
-              padding: 0rem;
-            }
-          }
-        }
-        .question{
-          display: block;
-          border-bottom: 1px solid var(--bordercolor);
-          margin-bottom: 0rem;
-          padding: 1rem;
-          font-size: 1.6rem;
-          letter-spacing: .2rem;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          .fa-arrow-up{
-            transition: all .1s;
-            cursor: pointer;
-          }
-        }
-        .answer{
-          transition: all .1s;
-          padding:1rem;
-        }
-      }
-    }
-    &__footer{
-      text-align: center;
-      font-size: 1.2rem;
+    &--text {
       text-transform: uppercase;
-      letter-spacing: .2rem;
-      margin-bottom: .3rem;
-      color: white;
-      font-weight: bold;
-      position: absolute;
-      bottom: 0;
-      left:0;
-      width: 100%;
+      flex: 1 1;
+      text-align: center;
+      letter-spacing: 0.3rem;
+      // margin: 1rem;
+    }
+    &--text1 {
+      margin: 0 1rem 0 1rem;
     }
   }
+  &__body {
+    overflow: auto;
+    margin-bottom: 2.5rem;
+    .winner-group {
+      //background-color: rgba(black,.2);
+      //  background-color: #0096cc96;
+      margin: 0.2rem;
+      padding: 0.3rem;
+      overflow: auto;
+      &__header {
+        padding: 0.2rem;
+        background-color: #000000;
+        display: inline-block;
+        font-size: 1.2rem;
+        white-space: nowrap;
+        border-radius: 0.5rem;
+        color: var(--light);
+      }
+
+      .winner-item {
+        margin: 0.3rem;
+        background-color: rgba(black, 0.7);
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        &__image {
+          height: 5rem;
+          width: 5rem;
+          min-width: 5rem;
+          border-radius: 50%;
+          border: 1px solid var(--bordercolor);
+          overflow: hidden;
+        }
+        &__description {
+          color: black;
+          flex: 1 1;
+          margin: 0rem 1rem;
+          .winner-name {
+            letter-spacing: 0.15rem;
+            font-weight: 400;
+            white-space: nowrap;
+            color: rgba(white, 0.6);
+          }
+          .winning-details {
+            font-size: 1.3rem;
+            > * {
+              white-space: nowrap;
+            }
+            .amount-won {
+              color: white;
+              .period {
+                color: #00f0ff;
+              }
+            }
+            .amount-staked {
+              color: #03c85a;
+            }
+          }
+        }
+      }
+      .winner-item {
+        &__description {
+          display: flex;
+          justify-content: left;
+          align-items: center;
+          span {
+            margin: 0.2rem;
+          }
+          .isfixed {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: rgb(223, 19, 19);
+          }
+        }
+      }
+    }
+    .question-card {
+      color: black;
+      background-color: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      margin: 1rem;
+      padding: 1rem;
+      box-shadow: var(--shadow);
+      input {
+        display: none;
+        &:not(:checked) {
+          & ~ .question {
+            border-bottom: 0px solid transparent;
+            .fa-arrow-up {
+              transform: rotate(180deg);
+            }
+          }
+          & ~ .answer {
+            visibility: hidden;
+            height: 0rem;
+            margin-top: 0rem;
+            padding: 0rem;
+          }
+        }
+      }
+      .question {
+        display: block;
+        border-bottom: 1px solid var(--bordercolor);
+        margin-bottom: 0rem;
+        padding: 1rem;
+        font-size: 1.6rem;
+        letter-spacing: 0.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .fa-arrow-up {
+          transition: all 0.1s;
+          cursor: pointer;
+        }
+      }
+      .answer {
+        transition: all 0.1s;
+        padding: 1rem;
+      }
+    }
+  }
+  &__footer {
+    text-align: center;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    margin-bottom: 0.3rem;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+.info-card-1 {
+  height: 21rem;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  background-color: #00300a;
+  &__head {
+    display: flex;
+    color: black;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    padding: 1rem;
+    text-align: center;
+    white-space: nowrap;
+    min-height: 5rem;
+
+    &--icon {
+      margin-left: 2rem;
+      //height: 4rem;
+      width: 4rem;
+      .fa {
+        font-size: 4rem;
+      }
+    }
+
+    &--text {
+      text-transform: uppercase;
+      flex: 1 1;
+      text-align: center;
+      letter-spacing: 0.3rem;
+      // margin: 1rem;
+    }
+
+    &--text1 {
+      margin: 0 1rem 0 1rem;
+    }
+    
+    span{
+      color:#487A29;
+      flex-basis: 30%;
+    text-align: center;
+    }
+  }
+  &__body {
+    overflow: auto;
+    margin-bottom: 2.5rem;
+    .winner-group {
+      //background-color: rgba(black,.2);
+      //  background-color: #0096cc96;
+      margin: 0.2rem;
+      padding: 0.3rem;
+      overflow: auto;
+      display: flex;
+      flex-wrap: wrap;
+      &__header {
+        padding: 0.2rem;
+        display: inline-block;
+        font-size: 1.2rem;
+        white-space: nowrap;
+        border-radius: 0.5rem;
+        color: var(--light);
+      }
+
+      .winner-item {
+        flex: 1 1 30%;
+        margin: 0.3rem;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        &__image {
+          height: 5rem;
+          width: 5rem;
+          min-width: 5rem;
+          border-radius: 50%;
+          border: 1px solid var(--bordercolor);
+          overflow: hidden;
+        }
+        &__description {
+          display: flex;
+          justify-content: center;
+          color: black;
+          flex: 1 1;
+          margin: 0rem 1rem;
+          .winner-name {
+            letter-spacing: 0.15rem;
+            font-weight: 400;
+            white-space: nowrap;
+            color: rgba(white, 0.6);
+          }
+          .winning-details {
+            font-size: 1.3rem;
+            > * {
+              white-space: nowrap;
+            }
+            .contrib{
+              color:#487A29;
+            }
+            .amount-won {
+              color: #89E353;;
+              .period {
+                color: #00f0ff;
+              }
+            }
+            .amount-staked {
+              color: #03c85a;
+            }
+          }
+        }
+      }
+      .winner-item {
+        &__description {
+          //display: flex;
+          //justify-content: left;
+          align-items: center;
+          span {
+            margin: 0.2rem;
+          }
+          .isfixed {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: rgb(223, 19, 19);
+          }
+        }
+      }
+    }
+    .question-card {
+      color: black;
+      background-color: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      margin: 1rem;
+      padding: 1rem;
+      box-shadow: var(--shadow);
+      input {
+        display: none;
+        &:not(:checked) {
+          & ~ .question {
+            border-bottom: 0px solid transparent;
+            .fa-arrow-up {
+              transform: rotate(180deg);
+            }
+          }
+          & ~ .answer {
+            visibility: hidden;
+            height: 0rem;
+            margin-top: 0rem;
+            padding: 0rem;
+          }
+        }
+      }
+      .question {
+        display: block;
+        border-bottom: 1px solid var(--bordercolor);
+        margin-bottom: 0rem;
+        padding: 1rem;
+        font-size: 1.6rem;
+        letter-spacing: 0.2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .fa-arrow-up {
+          transition: all 0.1s;
+          cursor: pointer;
+        }
+      }
+      .answer {
+        transition: all 0.1s;
+        padding: 1rem;
+      }
+    }
+  }
+  &__footer {
+    text-align: center;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    margin-bottom: 0.3rem;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+}

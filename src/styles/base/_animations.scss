@@ -15,14 +15,41 @@
 }
 
 //slide out left
-@keyframes slideleft{
+@keyframes slideInLeft{
     0%{
-        transform: scaleX(100%)
-    }
+        transform: translateX(-50%);
+        opacity: 0;
+      }
     100%{
-        transform: scaleX(0%)
+      transform: translateX(0%);
+      opacity: 1;
     }
 }
+
+@keyframes slideInRight{
+  0%{
+      transform: translateX(50%);
+      opacity: 0;
+  }
+  100%{
+      transform: translateX(0%);
+      opacity:1;
+  }
+}
+
+
+@keyframes slideInBottom{
+  0%{
+      transform: translateY(50%);
+      opacity: 0;
+  }
+  100%{
+      transform: translateY(0%);
+      opacity:1;
+  }
+}
+
+
 
 @keyframes beep{
     0%{

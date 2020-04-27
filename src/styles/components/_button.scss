@@ -1,25 +1,46 @@
 @import "../abstracts/variables";
 
-// .btn{
-//     border-radius: .2rem;
-//     &.btn-primary{
-//       padding: .5rem;
-//       background-color: White;
-//       transition: all .1s;
-//       backface-visibility: hidden;
-//       color:black;
-//       &:hover{
-//         background-color: rgba(black,.2);
-//         color: white;
-//       }
-//     }
-    
-//   }
-
 .btn{
   font-size: 1.5rem;
   margin: .5rem;
+  padding: .5rem 1.5rem;
+  text-align: center;
+  transition: all .1s;
+  cursor: pointer;
+  backface-visibility: hidden;
+  box-shadow: var(--primary-shadow);
+  &:hover{
+    letter-spacing: .1rem;
+    //box-shadow: var(--primary-shadow-hover);
+  }
+  &:focus,&:active{
+    outline: none;
+  }
 }
+
+.btn-primary{
+  @extend .btn;
+  background-color: var(--game-blue);
+  color:white;
+  &:hover{
+    background-color: var(--game-blue-dark);
+  }
+}
+
+.btn--rounded{
+  border-radius: 5rem;
+}
+
+.btn--big{
+  font-size: 3rem;
+  padding: 1rem 3rem;
+}
+
+.btn--small{
+  font-size: 1.5rem;
+}
+
+
   //user must specify normal and hover color
   .transbtn{
     font-size: 1.5rem;
@@ -66,3 +87,13 @@
     }
   }
 
+  .btn-green{
+    @extend .btn;
+  }
+  .btn-trans{
+    @extend .btn;
+    font-size: 2rem;
+    &:hover{
+      
+    }
+  }

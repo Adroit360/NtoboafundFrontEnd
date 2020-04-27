@@ -1,0 +1,296 @@
+@import "../../styles/abstracts/mixins";
+@import "../../styles/base/animations";
+
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  //background-image: url(../../assets/images/homebg2.jpg);
+  background:url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png) center center no-repeat #ffad01;
+  width: 100%;
+  //background-size: cover;
+  //background-repeat: no-repeat;
+  z-index: var(--level-one);
+  
+}
+.h-body {
+  z-index: var(--level-two);
+  position: relative;
+  margin-top: 6rem;
+  height: calc(100vh - 9.5rem);
+  overflow:auto;
+  .h-top {
+    color: white;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    .countdown{
+      .header{
+        color:black;
+      }
+      .counters{
+        .ctd{
+          background-color: rgba(black,.8);
+          &:first-child{color:#ff5d5d;}
+          &:nth-child(2){color:yellow;}
+          &:nth-child(3){color:#2fff2f;}
+          // &:nth-child(4){color:white;}
+          span{
+            color:cyan;
+          }
+        }
+      }
+
+    }
+
+    &__link-cards {
+      display: flex;
+      justify-content:space-evenly;
+      flex-wrap: wrap;
+      .link-card{
+        display: block;
+        //width: 30rem;
+        flex: 1 1 25rem;
+        max-width: 25rem;
+        height: 31rem;
+        margin:2rem;
+        overflow: hidden;
+        border:1px solid var(--bordercolor);
+        &,&:link,&:active{
+          color: black;
+        }
+
+        &__head{
+          background-color: #ffad01;
+          padding: 2rem 3rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          height:40%;
+          z-index: 2;
+          svg{
+            width:10rem;
+            height:10rem;
+            transition: all .1s;
+            fill: black;
+            animation-name: bounce;
+            animation-duration: 10s;
+            animation-delay: 1s;
+            animation-iteration-count: infinite;
+            transform-origin: center bottom;
+          }
+          .text{
+            color: black;
+            font-size: 2rem;
+            font-weight: bolder;
+            letter-spacing: .1rem;
+
+          }
+          &::after{
+            content: "";
+            height: 0rem;
+            border-top: 2rem solid #ffad01;
+            border-left:2rem solid transparent;
+            border-right: 2rem solid transparent;
+            border-bottom:2rem solid transparent;
+            position: absolute;
+            bottom: -4rem;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+        &__bottom{
+          background-color: white;
+          padding: 2rem;
+          text-align: center;
+          height: 60%;
+          display:flex;
+          align-items: center;
+          flex-direction: column;
+          position: relative;
+          .cover-text{
+            margin-bottom: 3.5rem;
+            height: 100%;
+            overflow:auto;
+          }
+          .Invest-btn{
+            position: absolute;
+            padding: .5rem 1.5rem; 
+            background-color: orangered;
+            color:white;
+            bottom: 1rem;
+            box-shadow: var(--shadow);
+          }
+        }
+        &:hover{
+          box-shadow: var(--shadow);
+          transform: translateY(-.2rem);
+          .link-card__head{
+            svg{
+              transform: scale(1.2) !important;
+            }
+          }
+        }
+        &:active{
+          box-shadow: none;
+          transform: translateY(.1rem);
+        }
+      }
+    }
+  }
+  .info-pane {
+    display: flex;
+    margin: 4rem 2rem 1rem 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    height:68rem;
+    @media (max-width:763px){
+      .ancment-cards{
+        order: 1;
+      }
+    }
+    .ancment-cards{
+      background-color: white;
+      box-shadow: var(--shadow);
+      flex:1 1;
+      min-width: 30rem;
+      margin: 2rem 1rem 2rem 2rem;
+      overflow-y:auto;
+      &>div{
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .ancment-card{
+        display: block;
+        width: 30rem;
+        flex: 1 1 25rem;
+        max-width: 25rem;
+        margin:2rem;
+        overflow: hidden;
+        &,&:link,&:active{
+          color: white;
+        }
+
+        &__head{
+          padding: 2rem 3rem .5rem 2rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: relative;
+          height:50%;
+          z-index: 2;
+          svg{
+            width:5rem;
+            height:5rem;
+            transition: all .1s;
+            fill: black;
+          }
+          .text{
+            color: #4677c4;
+            font-size: 1.5rem;
+            font-weight: bolder;
+            letter-spacing: .1rem;
+          }
+        }
+        &__bottom{
+          padding: 0rem 2rem 4rem 2rem;
+          text-align: center;
+          height: 50%;
+          display:flex;
+          align-items: center;
+          flex-direction: column;
+          
+          position: relative;
+          .cover-text{
+           color: #505050;
+          }
+          .action-btn{
+            padding: .5rem 1.5rem; 
+            border-bottom: 1px solid black;
+            color:black;
+            bottom: 1rem;
+            cursor: pointer;
+            &:hover{
+              color:#4677c4;
+              border-color:#4677c4;
+              
+            }
+          }
+        }
+
+      }
+    }
+    .info-card {
+      // background-color: var(--lightGrey);
+      min-width: 0;
+      box-shadow: var(--shadow);
+     // max-width:35rem;
+      margin: 2rem 2rem 2rem 1rem;
+      border-radius: 0.3rem;
+      &__body{
+        background:url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png) center center no-repeat green;
+        height: 100%;
+        overflow:auto;
+      }
+    }
+   
+  }
+  // }
+}
+
+@media (max-width:588px){
+  .h-body {
+    .h-top {
+      &__link-cards {
+        .link-card{
+          flex: 1 1 19rem;
+          max-width: 19rem;
+          min-width:0rem;
+          height: 35rem;
+          margin:.5rem;
+          &,&:link,&:active{
+            color: black;
+          }
+      
+          &__head{
+            padding: 1rem 1.5rem;
+            svg{
+              width:6rem;
+              height:6rem;
+            }
+            .text{
+              font-size: 1.6rem;
+            }
+            &::after{
+              content: "";
+              height: 0rem;
+              border-top: 1.5rem solid #ffad01;
+              border-left:1.5rem solid transparent;
+              border-right: 1.5rem solid transparent;
+              border-bottom:1.5rem solid transparent;
+              position: absolute;
+              bottom: -3rem;
+            }
+          }
+          &__bottom{
+           
+            padding: 1rem;
+            font-size: 1.5rem;
+            .Invest-btn{
+              bottom: .7rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+
+}
+

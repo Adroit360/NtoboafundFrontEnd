@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="33.1" height="36.571" viewBox="0 0 33.1 36.571">
+  <g id="Group_7" data-name="Group 7" transform="translate(0.55)">
+    <g id="cup-icon">
+      <path id="Oval_34" data-name="Oval 34" d="M4.571,0a4.571,4.571,0,0,0,0,9.143h0" transform="translate(0 4.571)" fill="none" stroke="#585858" stroke-miterlimit="10" stroke-width="1.1"/>
+      <path id="Oval_34-2" data-name="Oval 34" d="M0,9.143H0A4.571,4.571,0,0,0,4.571,4.571,4.571,4.571,0,0,0,0,0" transform="translate(27.429 4.571)" fill="none" stroke="#585858" stroke-miterlimit="10" stroke-width="1.1"/>
+      <g id="Rectangle_63" data-name="Rectangle 63" transform="translate(4.571)" fill="none" stroke="#585858" stroke-miterlimit="10" stroke-width="1.1">
+        <path d="M0,0H22.857a0,0,0,0,1,0,0V12.952A11.429,11.429,0,0,1,11.429,24.381h0A11.429,11.429,0,0,1,0,12.952V0A0,0,0,0,1,0,0Z" stroke="none"/>
+        <path d="M.61.55H22.247a.06.06,0,0,1,.06.06V12.952A10.879,10.879,0,0,1,11.429,23.831h0A10.879,10.879,0,0,1,.55,12.952V.61A.06.06,0,0,1,.61.55Z" fill="none"/>
+      </g>
+      <g id="Rectangle_64" data-name="Rectangle 64" transform="translate(15.238 22.857)" fill="none" stroke="#585858" stroke-miterlimit="10" stroke-width="1.1">
+        <rect width="1.524" height="13.714" stroke="none"/>
+        <rect x="0.55" y="0.55" width="0.424" height="12.614" fill="none"/>
+      </g>
+      <g id="Rectangle_65" data-name="Rectangle 65" transform="translate(4.571 35.048)" fill="none" stroke="#585858" stroke-miterlimit="10" stroke-width="1.1">
+        <rect width="24.381" height="1.524" stroke="none"/>
+        <rect x="0.55" y="0.55" width="23.281" height="0.424" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

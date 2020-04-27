@@ -1,0 +1,599 @@
+<app-busy class="invisible" [ngClass]="{'visible':loading,'invisible':!loading}"></app-busy>
+
+<div class="luckyme-bg"></div>
+<app-header></app-header>
+<div class="luckyme-body">
+  <div class="luckyme-body--content">
+    <div class="luckyme-body__left">
+      <div class="countdown-container">
+        <!-- style="display: none" -->
+        <div *ngIf="luckyMeDailySeconds>=0" class="countdown">
+          <div class="header">Next Daily LuckyMe Draw In</div>
+          <div class="counters">
+            <div class="ctd">{{luckyMeDailyHours}} <span>Hours</span></div>
+            <div class="ctd">{{luckyMeDailyMinutes}} <span>Minutes</span></div>
+            <div class="ctd">{{luckyMeDailySeconds}} <span>Seconds</span></div>
+          </div>
+        </div>
+        <div *ngIf="luckyMeWeeklySeconds>=0" class="countdown">
+          <div class="header">Next Weekly LuckyMe Draw In</div>
+          <div class="counters">
+            <div class="ctd">{{luckyMeWeeklyDays}} <span>Days</span></div>
+            <div class="ctd">{{luckyMeWeeklyHours}} <span>Hours</span></div>
+            <div class="ctd">{{luckyMeWeeklyMinutes}} <span>Minutes</span></div>
+            <div class="ctd">{{luckyMeWeeklySeconds}} <span>Seconds</span></div>
+          </div>
+        </div>
+        <div *ngIf="luckyMeMonthlySeconds>=0" class="countdown">
+          <div class="header">Next Monthly LuckyMe Draw In</div>
+          <div class="counters">
+            <div class="ctd">{{luckyMeMonthlyDays}} <span>Days</span></div>
+            <div class="ctd">{{luckyMeMonthlyHours}} <span>Hours</span></div>
+            <div class="ctd">{{luckyMeMonthlyMinutes}} <span>Minutes</span></div>
+            <div class="ctd">{{luckyMeMonthlySeconds}} <span>Seconds</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ongoingdraw-container">
+        <!-- *ngIf="winnerSelectionService.isDailyDrawOngoing" -->
+        <div class="ongoing-draw__info" *ngIf="winnerSelectionService.isDailyDrawOngoing">
+          <div class="text" style="background-color: #b9000a;">Daily Draw is ongoing</div>
+        </div>
+        <!-- *ngIf="winnerSelectionService.isWeeklyDrawOngoing" -->
+        <div class="ongoing-draw__info" *ngIf="winnerSelectionService.isWeeklyDrawOngoing">
+          <div class="text">Weekly Draw is ongoing</div>
+        </div>
+        <!-- *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)" -->
+        <div class="ongoing-draw__info" *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)">
+          <div class="text" style="background-color: #f57f17;">Monthly Draw is ongoing</div>
+        </div>
+      </div>
+
+      <div class="stake-box">
+        <div class="choice-scrolls">
+          <div class="choice-box">
+            <div class="choice-amount">GH₵ 1</div>
+            <!-- <div class="choice-description">
+                              <p>Mutiply Choice By 5</p>
+                              <p>5 Cedis for 5000</p>
+                            </div> -->
+            <input id="rone" value="1" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
+              name="choice" />
+            <label for="rone" class="choice-selector__background">
+              <label for="rone" class="choice-selector">
+                <div class="returns">{{getReturnsText(1)}}</div>
+              </label>
+            </label>
+
+          </div>
+          <div class="choice-box">
+            <div class="choice-amount">GH₵ 5</div>
+            <!-- <div class="choice-description">
+                          <p>Mutiply Choice By 5</p>
+                          <p>5 Cedis for 5000</p>
+                        </div> -->
+            <input id="rfive" value="5" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
+              name="choice" />
+            <label for="rfive" class="choice-selector__background">
+              <label for="rfive" class="choice-selector">
+                  <div class="returns">{{getReturnsText(5)}}</div>
+              </label>
+            </label>
+
+          </div>
+          <div class="choice-box">
+            <div class="choice-amount">GH₵ 10</div>
+            <!-- <div class="choice-description">
+                          <p>Mutiply Choice By 5</p>
+                          <p>5 Cedis for 5000</p>
+                        </div> -->
+            <input id="rten" value="10" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
+              name="choice" />
+            <label for="rten" class="choice-selector__background">
+              <label for="rten" class="choice-selector">
+                  <div class="returns">{{getReturnsText(10)}}</div>
+              </label>
+
+            </label>
+
+          </div>
+          <div class="choice-box">
+            <div class="choice-amount">GH₵ 20</div>
+            <!-- <div class="choice-description">
+                          <p>Mutiply Choice By 5</p>
+                          <p>5 Cedis for 5000</p>
+                        </div> -->
+            <input id="rtwenty" value="20" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
+              name="choice" />
+            <label for="rtwenty" class="choice-selector__background">
+
+              <label for="rtwenty" class="choice-selector">
+                  <div class="returns">{{getReturnsText(20)}}</div>
+              </label>
+            </label>
+
+          </div>
+          <div class="choice-box">
+            <div class="choice-amount">GH₵ 50</div>
+            <!-- <div class="choice-description">
+                          <p>Mutiply Choice By 5</p>
+                          <p>5 Cedis for 5000</p>
+                        </div> -->
+            <input id="rfifty"value="50" [(ngModel)]="selectedChoice"  (change)="resetTxRef()" class="choice-selector__radio" type="radio"
+              name="choice" />
+            <label for="rfifty" class="choice-selector__background">
+              <label for="rfifty" class="choice-selector"><div class="returns">{{getReturnsText(50)}}</div></label>
+            </label>
+          </div>
+          <div class="choice-box">
+            <div class="choice-amount">GH₵ 100</div>
+            <!-- <div class="choice-description">
+                          <p>Mutiply Choice By 5</p>
+                          <p>5 Cedis for 5000</p>
+                        </div> -->
+            <input id="rhundred" value="100" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
+              name="choice" />
+            <label for="rhundred" class="choice-selector__background">
+
+              <label for="rhundred" class="choice-selector">
+                  <div class="returns">{{getReturnsText(100)}}</div>
+              </label>
+            </label>
+
+          </div>
+          <div class="choice-box">
+            <div class="choice-amount">GH₵ 500</div>
+            <!-- <div class="choice-description">
+                          <p>Mutiply Choice By 5</p>
+                          <p>5 Cedis for 5000</p>
+                        </div> -->
+            <input id="rfivehundred" value="500" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
+              name="choice" />
+            <label for="rfivehundred" class="choice-selector__background">
+              <label for="rfivehundred" class="choice-selector">
+                  <div class="returns">{{getReturnsText(500)}}</div>
+              </label>
+
+            </label>
+
+          </div>
+        </div>
+        <div class="choice-period">
+          <div class="header">Choose Period</div>
+          <div class="body">
+            <div class="flatradios">
+              <label class="flatradio-choice" for="dailyperiod">
+                <input type="radio" value="daily" [(ngModel)]="selectedPeriod" (change)="resetTxRef()" name="period" id="dailyperiod">
+                <div class="text">Daily</div>
+              </label>
+              <label class="flatradio-choice" for="weeklyperiod">
+                <input type="radio" value="weekly" [(ngModel)]="selectedPeriod" (change)="resetTxRef()" name="period" id="weeklyperiod">
+                <div class="text">Weekly</div>
+              </label>
+              <label class="flatradio-choice" for="monthlyperiod">
+                <input type="radio" value="monthly" [(ngModel)]="selectedPeriod" ((change)="resetTxRef()" name="period" id="monthlyperiod">
+                <div class="text">Monthly</div>
+              </label>
+            </div>
+
+          </div>
+        </div>
+        <div
+          *ngIf="!winnerSelectionService.isDailyDrawOngoing && !winnerSelectionService.isWeeklyDrawOngoing && !(winnerSelectionService.isMonthlyDrawOngoing | async)"
+          class="payment-pane">
+
+          <!-- <a *ngIf="settings.paymentGateway=='flutterwave'" angular-rave #ravepaybtn [raveOptions]="raveOptions" class="transbtn" (callback)="luckymePaymentCallback($event)"
+            (close)="paymentFailed()" (init)="paymentInitialized()">Invest
+          </a> -->
+
+          <a *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'"  class="transbtn" (click)="paymentInitialized()">Invest
+          </a>
+        </div>
+      </div>
+
+      <div class="howto">
+          <div class="tab-box">
+              <ul class="nav nav-tabs">
+                <li class="nav-item active">
+                  <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How To Invest</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#where" role="tab" data-toggle="tab">The Must Knows</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in show active" id="how">
+                  <div class="panel" style="background-color: rgb(255, 166, 0);color:black">
+                    <div class="number">1</div>
+                    <div class="text">Select the amount you wish to invest and choose a peroid</div>
+                  </div>
+                  <div class="panel" style="background-color: #f06292">
+                    <div class="number">2</div>
+                    <div class="text">Press the "Invest" button to proceed to payment</div>
+                  </div>
+                  <div class="panel" style="background-color: #01c851">
+                    <div class="number">3</div>
+                    <div class="text">Choose mode of payment, enter details and click "continue"</div>
+                  </div>
+                  <div class="panel" style="background-color: #7383a7">
+                    <div class="number">4</div>
+                    <div class="text">Follow the displayed guideline to complete the investment process</div>
+                  </div>
+                  <div class="panel" style="background-color: #a563c7">
+                    <div class="number">5</div>
+                    <div class="text">Winners would be announced at the end of the draw.</div>
+                  </div>
+                      </div>
+                <div role="tabpanel" class="tab-pane fade" id="where">
+                  <div class="panel" style="background-color: rgb(138, 112, 63)">
+                    <div class="number">*</div>
+                    <div class="text">Lucky winners are announced daily, weekly and monthly</div>
+                  </div>
+                  <div class="panel" style="background-color: #9aa349">
+                    <div class="number">*</div>
+                    <div class="text">Winners would be paid via stated payment reception method. eg. mobile money or bank account</div>
+                  </div>
+                  <div class="panel" style="background-color: #399191">
+                    <div class="number">*</div>
+                    <div class="text">Staked Amount is non refundable</div>
+                  </div>
+                  <div class="panel" style="background-color: #324675">
+                    <div class="number">*</div>
+                    <div class="text">Luckyme contributions has seven investment amounts i.e GH₵ 1, GH₵ 5, GH₵ 10, GH₵ 20, GH₵ 50, GH₵ 100, GH₵ 5i00</div>
+                  </div>
+                      </div>
+              </div>
+            </div>
+      </div>
+
+    </div>
+    <div class="luckyme-body__right">
+
+      <!-- <div *ngIf="personalLuckymes.length>0" class="recentsbox">
+        <div class="recentsbox__header">
+          <div class="recentsbox__header--left">
+            <span class="fa fa-history"></span>
+          </div>
+          <div class="recentsbox__header--right">
+            Recent Stakes
+          </div>
+        </div>
+        <div class="recentsbox__body">
+          <div *ngFor="let luckyme of personalLuckymes" class="recent-stake-item">
+            <div class="recent-stake-item--top">
+              <div class="period">{{luckyme.period}}</div>
+              <div class="amount">GHS {{luckyme.amount}}</div>
+              <div class="date"> {{luckyme.date}} </div>
+            </div>
+            <div class="recent-stake-item--bottom">
+              <div class="status">Status : {{luckyme.status}}</div>
+              <div *ngIf="luckyme.isWinner" class="amount-won">To Win GHS {{luckyme.amountToWin}}</div>
+              <div *ngIf="!luckyme.isWinner" class="potential-returns">Potential Winning : GHS 2000</div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="info-card participantscard">
+        <div class="info-card__head">Current Participants</div>
+        <div class="info-card__body">
+          <!-- m-bottom class is to give some space below this tabbox to show potentialWinnersCount -->
+          <div class="tab-box m-bottom">
+            <ul class="nav nav-tabs">
+              <li class="nav-item active">
+                <a class="nav-link active" href="#daily" role="tab" data-toggle="tab">Daily</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#weekly" role="tab" data-toggle="tab">Weekly</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#monthly" role="tab" data-toggle="tab">Monthly</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade show in active" id="daily">
+
+                  <div *ngIf="!winnerSelectionService.isDailyDrawOngoing  && winnerSelectionService.currentDailyLuckymeWinners" class="winnerbox">
+                      <div class="title">Latest Daily Luckyme Winners</div>
+                      <div class="body">
+                        <div *ngFor="let winner of winnerSelectionService.currentDailyLuckymeWinners" class="winner">
+                          <span>{{winner.userName}}</span>
+                        </div>
+                      </div>
+                    </div>
+          
+                <div *ngIf="!winnerSelectionService.isDailyDrawOngoing" class="winner-group">
+                  <div *ngFor="let participant of signalRService.dailyLuckymeParticipants" class="winner-item">
+                    <div class="winner-item__description">
+                      <span class="winner-name">{{participant.userName}}</span>
+                      <span class="winning-details">
+                        <span class="amount-won"> staked <span class="period"> </span>GH₵
+                          {{participant.amountStaked}}</span>
+                        <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div *ngIf="winnerSelectionService.isDailyDrawOngoing" class="ongoingdraw">
+                  <div class="header">Daily Draw is ongoing</div>
+                  <div class="drawbox">
+                    <div class="lds-hourglass loader"></div>
+                    <div class="participants info-card">
+                      <div class="info-card__body">
+                        <div class="winner-group">
+                          <div *ngFor="let participant of signalRService.dailyLuckymeParticipants" class="winner-item">
+                            <div class="winner-item__description">
+                              <span class="winner-name">{{participant.userName}}</span>
+                              <span class="winning-details">
+                                <span class="amount-won"> staked <span class="period"> </span>GH₵
+                                  {{participant.amountStaked}}</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="p-winnerscount">{{signalRService.potentialDailyLuckymeWinnersCount}} potential winner<span *ngIf="signalRService.potentialDailyLuckymeWinnersCount != 1">s</span></div>
+
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="weekly">
+           
+                <div *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && winnerSelectionService.currentWeeklyLuckymeWinners" class="winnerbox">
+                    <div class="title">Latest Weekly Luckyme Winners</div>
+                    <div class="body">
+                      <div *ngFor="let winner of winnerSelectionService.currentWeeklyLuckymeWinners" class="winner">
+                        <span>{{winner.userName}}</span>
+                      </div>
+                    </div>
+                  </div>
+
+
+                <div *ngIf="!winnerSelectionService.isWeeklyDrawOngoing" class="winner-group">
+                  <!-- *ngFor="let winner of winnings[key]" -->
+                  <!-- *ngFor="let participant of winnerSelectionService.businessWinners"  -->
+                  <div *ngFor="let participant of signalRService.weeklyLuckymeParticipants" class="winner-item">
+                    <div class="winner-item__description">
+                      <span class="winner-name">{{participant.userName}}</span>
+                      <span class="winning-details">
+                        <span class="amount-won"> staked <span class="period"> </span>GH₵
+                          {{participant.amountStaked}}</span>
+                        <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div *ngIf="winnerSelectionService.isWeeklyDrawOngoing" class="ongoingdraw">
+                  <div class="header">Weekly Draw is ongoing</div>
+                  <div class="drawbox">
+                    <div class="lds-hourglass loader"></div>
+                    <div class="participants info-card">
+                      <div class="info-card__body">
+                        <div class="winner-group">
+                          <div *ngFor="let participant of signalRService.weeklyLuckymeParticipants" class="winner-item">
+                            <div class="winner-item__description">
+                              <span class="winner-name">{{participant.userName}}</span>
+                              <span class="winning-details">
+                                <span class="amount-won"> staked <span class="period"> </span>GH₵
+                                  {{participant.amountStaked}}</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="p-winnerscount">{{signalRService.potentialWeeklyLuckymeWinnersCount}} potential winner<span *ngIf="signalRService.potentialWeeklyLuckymeWinnersCount != 1">s</span></div>
+
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="monthly">
+               
+                <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentMonthlyLuckymeWinners" class="winnerbox">
+                    <div class="title">Latest Weekly Luckyme Winners</div>
+                    <div class="body">
+                      <div *ngFor="let winner of winnerSelectionService.currentMonthlyLuckymeWinners" class="winner">
+                        <span>{{winner.userName}}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="winner-group">
+                  <!-- *ngFor="let winner of winnings[key]" -->
+                  <!-- *ngFor="let participant of winnerSelectionService.businessWinners"  -->
+                  <div *ngFor="let participant of signalRService.monthlyLuckymeParticipants" class="winner-item">
+                    <div class="winner-item__description">
+                      <span class="winner-name">{{participant.userName}}</span>
+                      <span class="winning-details">
+                        <span class="amount-won"> staked <span class="period"> </span>GH₵
+                          {{participant.amountStaked}}</span>
+                        <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)" class="ongoingdraw">
+                  <div class="header">Monthly Draw is ongoing</div>
+                  <div class="drawbox">
+                    <div class="lds-hourglass loader"></div>
+                    <div class="participants info-card">
+                      <div class="info-card__body">
+                        <div class="winner-group">
+                          <div *ngFor="let participant of signalRService.monthlyLuckymeParticipants"
+                            class="winner-item">
+                            <div class="winner-item__description">
+                              <span class="winner-name">{{participant.userName}}</span>
+                              <span class="winning-details">
+                                <span class="amount-won"> staked <span class="period"> </span>GH₵
+                                  {{participant.amountStaked}}</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="p-winnerscount">{{signalRService.potentialMonthlyLuckymeWinnersCount}} potential winner<span *ngIf="signalRService.potentialMonthlyLuckymeWinnersCount != 1">s</span></div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card winnerscard">
+        <div class="info-card__head">Past Winners</div>
+        <div class="info-card__body">
+          <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
+          <div class="tab-box">
+            <ul class="nav nav-tabs">
+              <li class="nav-item active">
+                <a class="nav-link active" href="#daily-winner" role="tab" data-toggle="tab">Daily</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#weekly-winner" role="tab" data-toggle="tab">Weekly</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#monthly-winner" role="tab" data-toggle="tab">Monthly</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade show in active" id="daily-winner">
+                <div *ngIf="winnerSelectionService.groupedDailyLuckymeWinners">
+                  <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedDailyLuckymeWinners)"
+                    class="winner-group">
+                    <div class="winner-group__header">
+                      {{key}}
+                    </div>
+                    <div *ngFor="let winner of winnerSelectionService.groupedDailyLuckymeWinners[key]"
+                      class="winner-item">
+                      <div class="winner-item__description">
+                        <span class="winner-name">{{winner.userName}}</span>
+                        <span *ngIf="winner.amountToWin" class="winning-details">
+                          <span class="amount-won"> Won <span class="period"> </span>GH₵
+                            {{winner.amountToWin}}</span>
+                          <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="weekly-winner">
+                <div *ngIf="winnerSelectionService.groupedWeeklyLuckymeWinners">
+                  <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedWeeklyLuckymeWinners)"
+                    class="winner-group">
+                    <div class="winner-group__header">
+                      {{key}}
+                    </div>
+                    <div *ngFor="let winner of winnerSelectionService.groupedWeeklyLuckymeWinners[key]"
+                      class="winner-item">
+                      <div class="winner-item__description">
+                        <span class="winner-name">{{winner.userName}}</span>
+                        <span *ngIf="winner.amountToWin" class="winning-details">
+                          <span class="amount-won"> Won <span class="period"> </span>GH₵
+                            {{winner.amountToWin}}</span>
+                          <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="monthly-winner">
+                  <div *ngIf="winnerSelectionService.groupedMonthlyLuckymeWinners">
+                      <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedMonthlyLuckymeWinners)"
+                        class="winner-group">
+                        <div class="winner-group__header">
+                          {{key}}
+                        </div>
+                        <div *ngFor="let winner of winnerSelectionService.groupedMonthlyLuckymeWinners[key]" class="winner-item">
+                          <div class="winner-item__description">
+                            <span class="winner-name">{{winner.userName}}</span>
+                            <span *ngIf="winner.amountToWin" class="winning-details">
+                              <span class="amount-won"> Won <span class="period"> </span>GH₵
+                                {{winner.amountToWin}}</span>
+                              <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div [ngClass]="{'visible':errorShown,'invisible':!errorShown}" class="popup regular" id="error-box">
+  <div class="popup__content">
+    <div class="popup__content--toolbar">
+      <div class="toolbar--left">Error !</div>
+      <div class="toolbar--right">
+        <a (click)="closePopup()" class="closebtn">
+          <span class="fa fa-times"></span>
+        </a>
+      </div>
+    </div>
+    <div class="popup__content--body">
+      {{error}}
+    </div>
+    <div class="popup__content--footer"></div>
+  </div>
+</div>
+
+<!-- [ngClass]="{'visible':congratShown,'invisible':!congratShown}" -->
+<div [ngClass]="{'visible':congratShown,'invisible':!congratShown}" class="popup regular visible" id="congrats-box">
+  <div class="popup__content">
+    <!-- <div class="popup__content--toolbar">
+      <div class="toolbar--left">Error !</div>
+      <div class="toolbar--right">
+        <a (click)="closeCongratPopup()" class="closebtn">
+          <span class="fa fa-times"></span>
+        </a>
+      </div>
+    </div> -->
+    <div class="popup__content--body">
+      <div class="top">Congratulations</div>
+      <div class="body">{{congratMsg}}</div>
+    </div>
+    <div class="popup__content--footer">
+      <button (click)="closeCongratPopup()">Ok</button>
+    </div>
+  </div>
+</div>
+
+
+
+<app-faq></app-faq>
+<!-- Actual -->
+<app-payment-dialog [amount]="selectedChoice" [stakeType]="'Luckyme'" [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName"   (close)="closePaymentDialog()" (oncongratmessage)="showCongratulatoryMessage($event)" [txRef]="this.raveOptions.txref" *ngIf="customPaymentDialogShown && this.raveOptions"></app-payment-dialog>
+
+<!-- Test -->
+<!-- <app-payment-dialog [amount]="selectedChoice" [stakeType]="'Luckyme'" [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName"   (close)="closePaymentDialog()" (oncongratmessage)="showCongratulatoryMessage($event)"></app-payment-dialog> -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157438990-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-157438990-1');
+</script>

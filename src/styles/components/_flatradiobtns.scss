@@ -11,6 +11,7 @@
         position: relative;
         width: 100%;
         text-align: center;
+        overflow: hidden;
       &:not(:last-child) {
         &::after {
           content: "";

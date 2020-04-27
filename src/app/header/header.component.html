@@ -1,11 +1,11 @@
-<div class="header-body">
+<div #mainElement class="header-body">
   <input id="toggler-check" [checked]="isTogglerChecked" type="checkbox" />
   <label (click)="toggleNavigation()" class="nav-toggler">
     <div class="icon">
     </div>
   </label>
   <a routerLink="" class="brand-logo">
-    <img src="assets/images/logo.png" alt="">
+    <img src="assets/images/ntlog.png" alt="">
   </a>
   <div class="nav-links">
     <ul>
@@ -50,8 +50,8 @@
       </div>
     </div>
     <div *ngIf="!isAuthenticated" style="white-space: nowrap" class="notLoggedIn">
-      <a class="btn-local" routerLink="/login">Login</a>
-      <a class="btn-local" routerLink="/register">Sign Up</a>
+      <a routerLink="/login">Login</a>
+      <a routerLink="/register">Sign Up</a>
     </div>
 
   </div>

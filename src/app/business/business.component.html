@@ -1,147 +1,38 @@
 <app-busy class="invisible" [ngClass]="{'visible':loading,'invisible':!loading}"></app-busy>
 
-<div class="business-bg"></div>
+<!-- <div class="business-bg"></div> -->
 <app-header></app-header>
-<div class="business-body">
-  <div class="business-body__content">
-    <div class="business-body__content--header">
 
-      <div class="business-body__content--headerleft">
-        <div class="info-card participants">
-          <div class="info-card__head">Current Participants</div>
-          <div class="info-card__body">
-            <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
-            <div class="winner-group">
-              <!-- *ngFor="let winner of winnings[key]" -->
-              <div *ngFor="let participant of signalRservice.businessParticipants" class="winner-item">
-                <div class="winner-item__description">
-                  <span class="winner-name">{{participant.userName}}</span>
-                  <span class="winning-details">
-                    <span class="amount-won"> staked <span class="period"> </span>GH₵
-                      {{participant.amountStaked}}</span>
-                    <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="info-card__footer">{{signalRservice.potentialBusinessWinnersCount}} potential winner<span
-              *ngIf="signalRservice.potentialBusinessWinnersCount != 1">s</span></div>
 
+<div class="business">
+  <!-- Counter section Start -->
+  <section class="business-counter">
+    <div class="counter-sec">
+
+      <div class="container">
+        <h2>Would you like to Contribute in our business fund?</h2>
+        <p class="desc">Next business Draw In</p>
+        <div class="time-counter" id="timeCounter">
+          <div><strong>{{businessDays}}</strong> <span>Days</span></div>
+          <div><strong>{{businessHours}}</strong> <span>Hours</span></div>
+          <div><strong>{{businessMinutes}}</strong> <span>Minutes</span></div>
+          <div><strong>{{businessSeconds}}</strong> <span>Seconds</span></div>
         </div>
       </div>
 
-      <div class="business-body__content--headercenter">
-        <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && businessSeconds>=0" class="countdown">
-          <div class="header">Next business Draw In</div>
-          <div class="counters">
-            <!-- <div class="ctd">{{businessDays}} <span>Days</span></div> -->
-            <div class="ctd">{{businessDays}} <span>Days</span></div>
-            <div class="ctd">{{businessHours}} <span>Hours</span></div>
-            <div class="ctd">{{businessMinutes}} <span>Minutes</span></div>
-            <div class="ctd">{{businessSeconds}} <span>Seconds</span></div>
-          </div>
-        </div>
-        <div *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)" class="ongoingdraw">
-          <div class="header">Business Draw is ongoing</div>
-          <div class="drawbox">
-            <div class="lds-hourglass loader"></div>
-            <div class="participants info-card">
-              <div class="info-card__body">
-                <div class="winner-group">
-                  <div *ngFor="let participant of signalRservice.businessParticipants" class="winner-item">
-                    <div class="winner-item__description">
-                      <span class="winner-name">{{participant.userName}}</span>
-                      <span class="winning-details">
-                        <span class="amount-won"> staked <span class="period"> </span>GH₵
-                          {{participant.amountStaked}}</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div
-          *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentBusinessWinners"
-          class="winnerbox">
-          <div class="title">Latest Business Winners</div>
-          <div class="body">
-            <div *ngFor="let winner of winnerSelectionService.currentBusinessWinners" class="winner">
-              <span>{{winner.userName}}</span>
-            </div>
-          </div>
-        </div>
-
-        <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="stake-box">
-          <div class="stake-box-header">
-            <div class="text">Choose an option to Invest</div>
-            <div class="arrow">
-              <span class="fa fa-arrow-down"></span>
-            </div>
-          </div>
-          <div class="selector">
-            <input id="select100" value="100" [(ngModel)]="selectedAmount" (change)="selectChoice($event,100.00)"
-              class="selector-item__radio" type="radio" name="selectedamount" />
-            <label for="select100" class="selector-item">
-              <div class="selector-item__amount">GH₵ 100</div>
-            </label>
-            <input id="select400" value="2000" [(ngModel)]="selectedAmount" (change)="selectChoice($event,2000)"
-              class="selector-item__radio" type="radio" name="selectedamount" />
-            <label for="select400" class="selector-item">
-              <div class="selector-item__amount">GH₵ 2000</div>
-            </label>
-            <input id="select300" value="1000" [(ngModel)]="selectedAmount" (change)="selectChoice($event,1000.00)"
-              class="selector-item__radio" type="radio" name="selectedamount" />
-            <label for="select300" class="selector-item">
-              <div class="selector-item__amount">GH₵ 1000</div>
-            </label>
-            <input id="select200" value="500" [(ngModel)]="selectedAmount" (change)="selectChoice($event,500.00)"
-              class="selector-item__radio" type="radio" name="selectedamount" />
-            <label for="select200" class="selector-item">
-              <div class="selector-item__amount">GH₵ 500</div>
-            </label>
-
-          </div>
-          <div class="selector-info" [ngClass]="{'shown':selectedAmount!=null}">
-            <div class="chosen-amt inf">
-              <span class="text">Chosen Amount</span>
-              <span class="amount">GH₵ {{selectedAmount}}</span>
-            </div>
-            <div class="pot-ret inf">
-              <div class="text">Potential Returns</div>
-              <span class="amount">GH₵ {{potentialReturns}}</span>
-            </div>
-            <div class="actions">
-              <button *ngIf="settings.paymentGateway=='flutterwave'" angular-rave [raveOptions]="raveOptions"
-                class="btn btn-danger i-Invest" (callback)="businessPaymentCallback($event)"
-                (close)="businessPaymentFailed()" (init)="pay()">Invest</button>
-              <button *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'" class="btn btn-danger i-Invest" (click)="pay()">Invest
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="business-body__content--headerright">
-        <div class="info-card winnerscard">
-          <div class="info-card__head">Past Winners</div>
-          <div class="info-card__body">
-            <div *ngIf="winnerSelectionService.groupedBusinessWinners">
-              <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedBusinessWinners)" class="winner-group">
-                <div class="winner-group__header">
-                  {{key}}
-                </div>
-                <div *ngFor="let winner of winnerSelectionService.groupedBusinessWinners[key]" class="winner-item">
+      <div *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)" class="ongoingdraw">
+        <div class="header">Business Draw is ongoing</div>
+        <div class="drawbox">
+          <div class="lds-hourglass loader"></div>
+          <div class="participants info-card">
+            <div class="info-card__body">
+              <div class="winner-group">
+                <div *ngFor="let participant of signalRservice.businessParticipants" class="winner-item">
                   <div class="winner-item__description">
-                    <span class="winner-name">{{winner.userName}}</span>
-                    <span *ngIf="winner.amountToWin" class="winning-details">
-                      <span class="amount-won"> Won <span class="period"> </span>GH₵
-                        {{winner.amountToWin}}</span>
-                      <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                    <span class="winner-name">{{participant.userName}}</span>
+                    <span class="winning-details">
+                      <span class="amount-won"> staked <span class="period"> </span>GH₵
+                        {{participant.amountStaked}}</span>
                     </span>
                   </div>
                 </div>
@@ -149,90 +40,159 @@
             </div>
           </div>
         </div>
-
       </div>
+
+      <div
+        *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentBusinessWinners"
+        class="winnerbox">
+        <div class="title">Latest Business Winners</div>
+        <div class="body">
+          <div *ngFor="let winner of winnerSelectionService.currentBusinessWinners" class="winner">
+            <span>{{winner.userName}}</span>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <div class="business-body__content--details">
-      <div class="tab-box">
-        <ul class="nav nav-tabs">
-          <li class="nav-item active">
-            <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How To Invest</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#where" role="tab" data-toggle="tab">The Must Knows</a>
-          </li>
-        </ul>
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane fade in show active" id="how">
-            <div class="panel" style="background-color: orange;color:black">
-              <div class="number">1</div>
-              <div class="text">Choose the amount you want to invest in the blue circle above. For the detail panel to
-                show</div>
-            </div>
-            <div class="panel" style="background-color: #f06292">
-              <div class="number">2</div>
-              <div class="text">Press the "Invest" button in the detail panel to proceed to payment</div>
-            </div>
-            <div class="panel" style="background-color: #01c851">
-              <div class="number">3</div>
-              <div class="text">Choose mode of payment, enter details and click "continue"</div>
-            </div>
-            <div class="panel" style="background-color: #7383a7">
-              <div class="number">4</div>
-              <div class="text">Follow the displayed guideline to complete the investment process</div>
-            </div>
-            <div class="panel" style="background-color: #a563c7">
-              <div class="number">5</div>
-              <div class="text">Winners would be announced at the end of the draw.</div>
+    <div class="contribute-sec">
+      <div class="container">
+        <h6 class="contribute-title">Current Participants</h6>
+        <div class="contribute-info values-slider">
+          <div class="contribute-list">
+            <div *ngFor="let participant of signalRservice.businessParticipants" class="list-item">
+              <strong>{{participant.userName}}</strong>
+              <span>CONTRIBUTED</span>
+              <a href="">GH₵ {{participant.amountStaked}}</a>
             </div>
           </div>
-          <div role="tabpanel" class="tab-pane fade" id="where">
-            <div class="panel" style="background-color: rgb(138, 112, 63)">
-              <div class="number">*</div>
-              <div class="text">Business Winners are announced every month</div>
+        </div>
+        <div class="info-card__footer">{{signalRservice.potentialBusinessWinnersCount}} potential winner<span
+            *ngIf="signalRservice.potentialBusinessWinnersCount != 1">s</span></div>
+      </div>
+    </div>
+  </section>
+  <!-- Counter section End -->
+  <!-- Business Steps section Start -->
+  <section class="business-steps">
+    <div class="container">
+      <h6 class="text-center">CHOOSE AN OPTION TO Contribute</h6>
+      <form class="steps-wrap">
+        <div class="step">
+          <h6 class="step-title">1. Select the amount you would like to contribute</h6>
+          <div class="tickets">
+            <div class="radio-group">
+              <input type="radio" id="radioG1" name="radio" checked value="100" [(ngModel)]="selectedAmount" (change)="selectChoice($event,100.00)" />
+              <label for="radioG1">GH₵ 100</label>
             </div>
-            <div class="panel" style="background-color: #9aa349">
-              <div class="number">*</div>
-              <div class="text">Winners would be paid via stated payment reception method. eg. mobile money or bank
-                account</div>
+            <div class="radio-group">
+              <input type="radio" id="radioG2" name="radio" value="500" [(ngModel)]="selectedAmount" (change)="selectChoice($event,500.00)"/>
+              <label for="radioG2">GH₵ 500</label>
             </div>
-            <div class="panel" style="background-color: #399191">
-              <div class="number">*</div>
-              <div class="text">Staked Amount is non refundable</div>
+            <div class="radio-group">
+              <input type="radio" id="radioG3" name="radio" value="1000" [(ngModel)]="selectedAmount" (change)="selectChoice($event,1000.00)"/>
+              <label for="radioG3">GH₵ 1000</label>
             </div>
-            <div class="panel" style="background-color: #324675">
-              <div class="number">*</div>
-              <div class="text">Business contributions has four investment amounts i.e GH₵ 100,GH₵ 500,GH₵ 1000,GH₵ 2000
-              </div>
+            <div class="radio-group">
+              <input type="radio" id="radioG4" name="radio" value="2000" [(ngModel)]="selectedAmount" (change)="selectChoice($event,2000.00)"/>
+              <label for="radioG4">GH₵ 2000</label>
             </div>
+          </div>
+        </div>
+        <div class="step">
+          <h6 class="step-title">2. SELECT Contribution PERIOD</h6>
+          <p class="desc">Potential returns for a contribution of <strong>GH₵ {{selectedAmount}}</strong> is <strong>GH₵ {{potentialReturns}}</strong>
+          </p>
+        </div>
+        <div class="step">
+          <h6 class="step-title">3. PRESS Contribute BUTTON AND START</h6>
+          <button (click)="pay()" class="contribute-btn">Contribute</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!-- Business Steps section End -->
+  <!-- Past-winners section start -->
+  <section class="past-winners">
+    <div class="winners">
+      <div *ngIf="winnerSelectionService.groupedBusinessWinners" class="container">
+        <h6 class="text-center">Past Winners</h6>
+        <div class="win-list winner-slider">
+
+          <ng-template *ngFor="let key of ObjectKeys(winnerSelectionService.groupedBusinessWinners)">
+            <div *ngFor="let winner of winnerSelectionService.groupedBusinessWinners[key]" class="win-item">
+              <strong class="price">{{winner.amountToWin}}</strong>
+              <span class="sign">GH₵</span>
+              <h5>{{winner.userName}}</h5>
+              <p class="desc">{{key}}</p>
+            </div>
+          </ng-template>
+          
+        </div>
+      </div>
+    </div>
+    <div class="win-banner">
+      <div class="win-prize">
+        <span>Prizes Paid</span>
+        <strong>GH₵ 220,000</strong>
+        <p>With Ntoboafund, the more you invest the better your chances of winning BIG!.</p>
+      </div>
+    </div>
+  </section>
+  <!-- Past-winners section End -->
+  <!-- Articles section start -->
+  <section class="aritcles-sec">
+    <div class="container">
+      <h6 class="text-center">NEW ARTICLES</h6>
+      <div class="art-wrap article-slider">
+        <div class="art-item">
+          <figure><img src="assets/images/article-img01.jpg" alt="article-img01" /></figure>
+          <div class="info">
+            <h5>Crowdfunding Legal Issues for Small Businesses</h5>
+            <p class="profile-date">BY <strong>JEAN MURRAY</strong>, <span>Updated June 25, 2019</span></p>
+            <p class="desc">Most crowdfunding websites allow individuals or companies to present an idea to others, who
+              donate money with no expectation of anything (other than a small token gift) in return. One of the largest
+              crowdfunding sites, Kickstarter, sets itself as a middleman between creative types.</p>
+          </div>
+        </div>
+        <div class="art-item">
+          <figure><img src="assets/images/article-img02.jpg" alt="article-img02" /></figure>
+          <div class="info">
+            <h5>Peer-to-peer Lending as Crowdfunding Model</h5>
+            <p class="profile-date">BY <strong>JEAN MURRAY</strong>, <span>Updated June 25, 2019</span></p>
+            <p class="desc">Before you get too excited about this new way to raise money for your business, you should
+              be aware of the potential legal issues involved. As usual, when a new idea gets ahead of current
+              regulation and laws, some issues arise. This article addresses some of those issues.</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+  <!-- Articles section End -->
+  <app-footer></app-footer>
+</div>
 
-  <!-- [ngClass]="{'visible':errorShown,'invisible':!errorShown}" -->
-  <div class="popup regular" id="error-box">
-    <div class="popup__content">
-      <div class="popup__content--toolbar">
-        <div class="toolbar--left">Error !</div>
-        <div class="toolbar--right">
-          <a (click)="closePopup()" class="closebtn">
-            <span class="fa fa-times"></span>
-          </a>
-        </div>
+<!-- [ngClass]="{'visible':errorShown,'invisible':!errorShown}" -->
+<div class="popup regular" id="error-box">
+  <div class="popup__content">
+    <div class="popup__content--toolbar">
+      <div class="toolbar--left">Error !</div>
+      <div class="toolbar--right">
+        <a (click)="closePopup()" class="closebtn">
+          <span class="fa fa-times"></span>
+        </a>
       </div>
-      <div class="popup__content--body">
-        {{error}}
-      </div>
-      <div class="popup__content--footer"></div>
     </div>
+    <div class="popup__content--body">
+      {{error}}
+    </div>
+    <div class="popup__content--footer"></div>
   </div>
+</div>
 
-  <!-- [ngClass]="{'visible':congratShown,'invisible':!congratShown}" -->
-  <div [ngClass]="{'visible':congratShown,'invisible':!congratShown}" class="popup regular visible" id="congrats-box">
-    <div class="popup__content">
-      <!-- <div class="popup__content--toolbar">
+<!-- [ngClass]="{'visible':congratShown,'invisible':!congratShown}" -->
+<div [ngClass]="{'visible':congratShown,'invisible':!congratShown}" class="popup regular visible" id="congrats-box">
+  <div class="popup__content">
+    <!-- <div class="popup__content--toolbar">
       <div class="toolbar--left">Error !</div>
       <div class="toolbar--right">
         <a (click)="closeCongratPopup()" class="closebtn">
@@ -240,28 +200,29 @@
         </a>
       </div>
     </div> -->
-      <div class="popup__content--body">
-        <div class="top">Congratulations</div>
-        <div class="body">{{congratMsg}}</div>
-      </div>
-      <div class="popup__content--footer">
-        <button (click)="closeCongratPopup()">Ok</button>
-      </div>
+    <div class="popup__content--body">
+      <div class="top">Congratulations</div>
+      <div class="body">{{congratMsg}}</div>
+    </div>
+    <div class="popup__content--footer">
+      <button (click)="closeCongratPopup()">Ok</button>
     </div>
   </div>
+</div>
 
-  <app-faq></app-faq>
+<app-faq></app-faq>
 
-  <app-payment-dialog [amount]="selectedAmount" [stakeType]="'Business'"
-    [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName"
-    [txRef]="this.raveOptions.txref" *ngIf="customPaymentDialogShown && this.raveOptions" (close)="closePaymentDialog()" (oncongratmessage)="showCongratulatoryMessage($event)">
-  </app-payment-dialog>
+<app-payment-dialog [amount]="selectedAmount" [stakeType]="'Business'"
+  [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" [txRef]="this.raveOptions.txref"
+  *ngIf="customPaymentDialogShown && this.raveOptions" (close)="closePaymentDialog()"
+  (oncongratmessage)="showCongratulatoryMessage($event)">
+</app-payment-dialog>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157438990-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'UA-157438990-1');

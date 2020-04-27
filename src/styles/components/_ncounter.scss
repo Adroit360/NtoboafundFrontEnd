@@ -1,0 +1,77 @@
+.business-counter {
+	
+}
+.counter-sec{
+	background: #0A4C79;
+	padding: 60px 0 33px;
+}
+.counter-sec .desc {
+	text-transform: uppercase;
+	font-size: 1.2rem;
+	font-weight: 500;
+	color:#5CB4EF;
+	text-align: center;
+	margin-bottom: 34px;
+}
+.counter-sec .desc b{
+	font-size: 1.2rem;
+}
+.time-counter {
+	display: flex;
+}
+.time-counter > div {
+	width: 25%;
+	padding: 20px;
+	text-align: center;
+}
+.time-counter strong,
+.time-counter span{
+	color:#fff;
+	display: block;
+	font-size: 12rem;
+	font-weight: 500;
+	margin-bottom: 10px;
+}
+.time-counter span {
+	font-size: 1.6rem;
+}
+.contribute-sec {
+	background: #094771;
+	padding-bottom: 10px;
+}
+.contribute-title{
+	border-bottom: 1px solid #2883C0;
+	padding: 19px 0;
+}
+.contribute-info {
+	display: flex;
+    justify-content: space-between;
+}
+.contribute-list {
+	width: 27%;
+}
+.contribute-list .list-item{
+	display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.contribute-list strong{
+	color:#fff;
+	font-size: 1.2rem;
+	font-weight: 500;
+	width: 37%;
+}
+.contribute-list span{
+	font-size: 1.2rem;
+	font-weight: 500;
+	text-transform: uppercase;
+	color:#5CB4EF;
+	width: 30%;
+}
+.contribute-list a{
+	font-size: 1.2rem;
+	font-weight: 500;
+	color:#89E353;
+	width: 20%;
+    text-align: right;
+}

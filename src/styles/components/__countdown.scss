@@ -4,13 +4,14 @@
     margin-top: 1rem;
     
     .header{
-      font-family: 'Courier New', Courier, monospace;
-      text-transform: uppercase;
       letter-spacing: .2rem;
+      color: #89E353;
+      text-transform: uppercase;
+      font-size: 1rem;
     }
     .counters{
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       //flex-wrap: wrap;
       .ctd{
         display: inline-block;
@@ -21,7 +22,8 @@
         flex-direction: column;
         margin: .5rem;
         width:10rem;
-        font-size: 3rem;
+        font-size: 500%;
+        color:white;
         span{
           font-size: 1.5rem;
           letter-spacing: .1rem;

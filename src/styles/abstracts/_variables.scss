@@ -1,21 +1,31 @@
 
 //Colors
 :root{
+    --light:white;
+    --dark:#252525;
     --transparentWhite:rgba(255,255,255,.8);
     --myWhite:white;
-    --input-background: rgba(212, 214, 219, 0.8);
+    --dark-white:#f7f7f7;
+    --light-black:#383838;
+    --input-background: var(--myWhite);
     --input-text-inactive: #625959;
     --input-text-active: #000;
     --error-color: #ae1414;
     --bordercolor: #efefef;
     --lightGrey: #bebfc3;
-    --deepGrey: #a5a6ab;
+    --deepGrey: #6d6d6d;
     --royalBlue: rgba(0,35,102,1);
     --lightRoyalBlue:#002366c9;
     --transparentRoyalBlue:rgba(0,35,102,.8);
     --fineRed:#e74c3c;
     --transparentBlack:rgba(0,0,0,.5);
-    
+    --game-yellow:#ffad01;
+    --game-green-light:#00796b;
+    --game-green:#00796b;
+    --game-green-dark:#004c40;
+    --game-blue-dark:#018adf;
+    --game-blue-light:#34cfee;
+    --game-blue:#19a6fe;
     --iconColor:#72777a;
     --iconHoverColor:#72777a;
     --textFaded: #a7abc3;
@@ -38,6 +48,9 @@
     --whiteShadow:0 1px 3px rgba(white,0.12), 0 1px 2px rgba(white,0.24);
     --lightShadow:0px 0px 13px 0px rgba(82, 63, 105, 0.05); 
     --leftDownShadow:-1px 1px 3px rgba(0,0,0,0.25);
+    --primary-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --primary-shadow-hover: 0 7px 7px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
     
     
     //z-indexes

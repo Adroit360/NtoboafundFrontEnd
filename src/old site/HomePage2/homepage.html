@@ -1,0 +1,180 @@
+<app-header></app-header>
+<div class="home">
+  <div class="landing">
+    <div class="landing__left">
+      <h1 class="main-header">Welcome To Ntoboafund</h1>
+      <h3 class="sub-header">Invest Today, Win For Society</h3>
+      <a href="#category" class="btn-primary btn--big btn--rounded invest-btn">Invest Now</a>
+    </div>
+    <div class="landing__right">
+      <h6 *ngIf="winnings">Past Winners</h6>
+      <div *ngIf="winnings" class="scroll-view">
+        <div *ngFor="let key of ObjectKeys(winnings)" class="winner-group">
+          <div *ngFor="let winner of winnings[key]" class="scroll-view__item">
+            <div class="scroll-view__item__image">
+              <span>
+                s
+              </span>
+            </div>
+            <div class="scroll-view__item__text">
+              <div class="scroll-view__item__text--top">{{winner.userName}}
+                Won GH₵ {{winner.amountToWin}} with GH₵ {{winner.amountStaked}}</div>
+              <div class="scroll-view__item__text--bottom">
+                <svg class="ancmenticon icon icon-mid">
+                  <use href="assets/Icons/svgs.svg#icon-alarm" />
+                </svg>
+                <div class="time">{{key}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="category" class="category">
+    <div class="category__head"><h4>Choose Your Investment Option</h4></div>
+    <div class="category__body">
+      <a routerLink="luckyme" class="link-card">
+        <div class="link-card__head">
+          <svg class="linkicon icon icon-mid">
+            <use href="assets/Icons/svgs.svg#icon-moneybag" />
+          </svg>
+          <div class="text">LuckyMe</div>
+        </div>
+        <div class="link-card__bottom">
+          <div class="cover-text">Ntoboafund offers huge jackpot prizes that you can easily win when you invest. Invest online safely and securely with Ntoboafund.
+          </div>
+          <button class="btn-primary btn--rounded Invest-btn">Visit</button>
+        </div>
+      </a>
+      <a routerLink="business" class="link-card">
+        <div class="link-card__head">
+          <svg class="linkicon icon icon-mid">
+            <use href="assets/Icons/svgs.svg#icon-handshake-o" />
+          </svg>
+          <div class="text">Business</div>
+        </div>
+        <div class="link-card__bottom">
+          <div class="cover-text">Ntoboafund gives you an opportunity to fund your business. Fund that business idea now by investing with us.
+          </div>
+          <div class="btn-primary btn--rounded Invest-btn">Visit</div>
+        </div>
+      </a>
+      <a routerLink="scholarship" class="link-card">
+        <div class="link-card__head">
+          <svg class="linkicon icon icon-mid">
+            <use href="assets/Icons/svgs.svg#icon-study" />
+          </svg>
+          <div class="text">Scholarship</div>
+        </div>
+        <div class="link-card__bottom">
+          <div class="cover-text">You can win a scholarship with Ntoboafund by investing with as low as 10 cedis. With Ntoboafund you can start schooling today.
+          </div>
+          <div class="btn-primary btn--rounded Invest-btn">Visit</div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="initiative">
+    <div class="initiative__left">
+      <h4>Win for your self</h4>
+      <h4>Win for society</h4>
+      <h6>Start investing now for a brighter tommorrow</h6>
+    </div>
+    <div class="initiative__right">
+      <a target="_blank" href="https://www.facebook.com/Ntoboafund/" class="play-btn">
+        <svg>
+          <use href="../../assets/Icons/svgs.svg#icon-play"/>
+        </svg>
+      </a>
+      <div class="text">click to watch experiences of different people</div>
+    </div>
+  </div>
+  <div class="announcement">
+    <div class="ancment-card">
+      <div class="ancment-card__head">
+        <svg class="ancmenticon icon icon-mid">
+          <use href="assets/Icons/svgs.svg#icon-dollar" />
+        </svg>
+        <div class="text">Prizes Paid</div>
+      </div>
+      <div class="ancment-card__bottom">
+        <div style="font-size: 2rem;color:black;" class="maxprizes">GH₵ 220,000</div>
+        <div class="cover-text">With Ntoboafund, the more you invest the better your chances of winning BIG!.
+        </div>
+        <!-- <div class="action-btn">Read More &rarr;</div> -->
+      </div>
+    </div>
+    <div class="ancment-card">
+      <div class="ancment-card__head">
+        <svg class="ancmenticon icon icon-mid">
+          <use href="assets/Icons/svgs.svg#icon-smiley" />
+        </svg>
+        <div class="text">Convenience</div>
+      </div>
+      <div class="ancment-card__bottom">
+        <div class="cover-text">
+          Ntoboafund is easy to use as it supports card and mobile money payments accross the globe.
+        </div>
+        <!-- <div class="action-btn">Read More</div> -->
+      </div>
+    </div>
+    <div class="ancment-card">
+      <div class="ancment-card__head">
+        <svg class="ancmenticon icon icon-mid">
+          <use href="assets/Icons/svgs.svg#icon-hourglass" />
+        </svg>
+        <div class="text">Guarantee</div>
+      </div>
+      <div class="ancment-card__bottom">
+        <div class="cover-text">
+          We've partnered with reputable organizations, your funds are safe.
+        </div>
+        <!-- <div class="action-btn">Read More</div> -->
+      </div>
+    </div>
+    <div class="ancment-card">
+      <div class="ancment-card__head">
+        <svg class="ancmenticon icon icon-mid">
+          <use href="assets/Icons/svgs.svg#icon-lock" />
+        </svg>
+        <div class="text">Security</div>
+      </div>
+      <div class="ancment-card__bottom">
+        <div class="cover-text">Ntoboafund ensures that data of all clients are safe and protected.
+        </div>
+        <!-- <div class="action-btn">Read More &rarr;</div> -->
+      </div>
+    </div>
+    <div class="ancment-card">
+      <div class="ancment-card__head">
+        <svg class="ancmenticon icon icon-mid">
+          <use href="assets/Icons/svgs.svg#icon-support" />
+        </svg>
+        <div class="text">Customer Support</div>
+      </div>
+      <div class="ancment-card__bottom">
+        <div class="cover-text">Kindly contact customer care for any assistance or support.
+        </div>
+        <!-- <div class="action-btn">Visit</div> -->
+      </div>
+    </div>
+
+  </div>
+  <app-footer></app-footer>
+</div>
+<div class="bg"></div>
+<app-faq></app-faq>
+
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/6721552.js"></script>
+<!-- End of HubSpot Embed Code -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157438990-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-157438990-1');
+</script>

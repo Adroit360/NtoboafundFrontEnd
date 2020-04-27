@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, ViewChild, ElementRef } from '@angular/core';
 import { User } from 'src/models/user';
 import { AuthService } from 'src/services/authservice';
 import { settings } from 'src/settings';
@@ -16,12 +16,15 @@ export class HeaderComponent implements OnInit {
   apiPath:string;
   isTogglerChecked:boolean;
   userRole:string;
+  @Input() backgroundColor:string = "transparent";
+  @ViewChild("mainElement") mainElement:ElementRef;
   constructor(private authenticationService: AuthService,public faqService:FaqService) { }
 
   ngOnInit() {
     this.authenticationStatusChanged()
     this.apiPath = settings.currentApiUrl;
     this.isTogglerChecked = false;
+    this.mainElement.nativeElement.style.backgroundColor = this.backgroundColor;
   }
 
   logout(){

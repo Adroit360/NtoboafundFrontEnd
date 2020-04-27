@@ -1,99 +1,152 @@
 @import "../../styles/abstracts/mixins";
 @import "../../styles/abstracts/variables";
 
-app-header{
-  color:white;
+app-header {
+  color: white;
 }
-app-busy{
+app-busy {
   position: absolute;
   z-index: var(--level-three);
 }
-.register-bg{
+.register-bg {
   position: fixed;
   width: calc(100vw);
   height: calc(100vh);
-  background-image: url(../../assets/images/globalbg.jpg);
+  // background-image: linear-gradient(to bottom, rgba(0, 128, 0, 0.8), rgba(white, 0.8)),
+  //   url(../../assets/images/globalbg.jpg);
   background-size: cover;
   z-index: var(--level-one);
 }
 .register-body {
   position: relative;
-    display: flex;
-    z-index: var(--level-two);
-    height: calc(100vh - 10.5rem);
-    top: 5rem;
-    overflow: auto;
-    bottom: 3.5rem;
-    padding: 1rem;
+  display: flex;
+  z-index: var(--level-two);
+  height: calc(100vh - 6rem);
+  top: 5rem;
+  overflow: auto;
+  bottom: 3.5rem;
+  padding: 1rem;
   h3,
   h4,
   h5 {
     text-align: center;
   }
-  .register-box {
-    margin: 2rem;
-    background-color: rgba(white, 0.8);
-    box-shadow: var(--shadow);
-    flex: 0 1 40rem;
-    padding: 1rem;
-    margin:auto;
-    //@include absCenter();
-    &__header {
-      box-shadow: var(--shadow);
+  .register-box-wrapper {
+    width: 100rem;
+    display: flex;
+    //border-radius: 0.5rem;
+    margin: 1rem;
+    border: 1px solid #0098ff;
+    //box-shadow: var(--shadow);
+    margin: auto;
+    &__left {
+      min-width: 30%;
       padding: 1rem;
+      background-color: #0098ff;
       color: white;
-      background-image: linear-gradient(to right, transparent, rgba(green, 0.8), transparent);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 3rem;
+      font-weight: bold;
     }
-    &__body {
-      .userImage {
-        display: flex;
-        justify-content: center;
-        app-custom-file-input {
-          width: 15rem;
-          height: 15rem;
+    &__right {
+      background-color: white;
+      min-width: 70%;
+      .register-box {
+        margin: 2rem;
+        flex: 0 1 40rem;
+        padding: 1rem;
+
+        &__header {
+          padding: 1rem;
+          color: #0098ff;
+        }
+        &__body {
+          .userImage {
+            display: flex;
+            justify-content: center;
+            app-custom-file-input {
+              width: 15rem;
+              height: 15rem;
+            }
+          }
+          padding: 1rem;
+          .c-input {
+            margin-top: 2rem;
+          }
+        }
+        .error-pane {
+          text-align: center;
+          color: var(--error-color);
+          padding: 1rem;
+        }
+        .legal {
+          display: flex;
+        }
+        .registerbtnpane {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .loginlink {
+            text-decoration: underline;
+          }
+
+          button {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+          }
+        }
+        .socials {
+          display: flex;
+          justify-content: center;
+          .slink {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0.4rem;
+            cursor: pointer;
+          }
+        }
+        &__footer {
         }
       }
-      padding: 1rem;
-      .c-input {
-        margin-top: 2rem;
-      }
     }
-    .error-pane {
-      text-align: center;
-      color: var(--error-color);
-      padding: 1rem;
-    }
-    .legal{
-      display: flex;
-    }
-    .registerbtnpane {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
 
-      .loginlink{
-        text-decoration: underline;
+    @media screen and (max-width: 780px) {
+      width: auto;
+      margin-top: 5rem;
+      &__right {
+        min-width: 0rem !important;
+        width: 100%;
+        padding-top: 4rem;
+        .register-box {
+          .loginbtnpane {
+            justify-content: center;
+          }
+        }
       }
-
-      button {
-        cursor: pointer;
-        font-size: 1.5rem;
-        color: white;
-      }
-    }
-    .socials {
-      display: flex;
-      justify-content: center;
-      .slink {
-        width: 5rem;
-        height: 5rem;
+      &__left {
+        position: absolute;
+        min-width: 0rem !important;
+        width: 10rem;
+        height: 10rem;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -50%);
         border-radius: 50%;
         overflow: hidden;
-        margin: 0.4rem;
-        cursor: pointer;
+        padding: 0.2rem;
+        margin-top: 6rem;
+
+        font-size: 1.2rem;
+        padding: 1rem;
+        align-items: center;
       }
     }
-    &__footer {
-    }
+
   }
 }

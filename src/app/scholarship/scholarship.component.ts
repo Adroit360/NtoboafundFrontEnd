@@ -10,7 +10,7 @@ import { SignalRService } from 'src/services/signalr.service';
 import { ScholarshipParticipant } from 'src/models/Dtos/scholarshipParticipant';
 import { WinnerSelectionService } from 'src/services/winnerselection.service';
 import { PaymentService } from 'src/services/payment.service';
-import { RaveOptions } from 'angular-rave';
+// import { RaveOptions } from 'angular-rave';
 
 @Component({
   selector: 'app-scholarship',
@@ -34,11 +34,12 @@ export class ScholarshipComponent implements OnInit,AfterViewInit {
 
   scholarhips: Array<Scholarship> = [];
   scholarshipForm:FormGroup
-  raveOptions: RaveOptions;
+  raveOptions: any;
   //selectedPlayerType: string;
   congratMsg: string = "";
   congratShown = false;
   selectedAmount:number;
+  potentialReturns:string;
   customPaymentDialogShown:boolean;
   settings:any = settings;
   @ViewChild("stakeboxcontroller") stakeBoxController:ElementRef;
@@ -100,7 +101,10 @@ export class ScholarshipComponent implements OnInit,AfterViewInit {
    * Start the Payment Process
    * @param amount The Scholarship Amount to be paid
    */
-  paymentInitialized(amount){
+  paymentInitialized(_amount?){
+    let amount = this.selectedAmount;
+
+    if(_amount)amount = _amount;
 
     this.scholarshipForm.markAsTouched();
     this.paymentService.paymentInit();
@@ -187,12 +191,10 @@ export class ScholarshipComponent implements OnInit,AfterViewInit {
 
   }
 
-
   showCongratulatoryMessage(message:string){
     this.congratMsg = message;
     this.congratShown = true;
   }
-
 
   closePopup() {
     this.error = null;
@@ -206,6 +208,13 @@ export class ScholarshipComponent implements OnInit,AfterViewInit {
 
   closePaymentDialog(){
     this.customPaymentDialogShown = false;
+  }
+
+
+  selectAmount(amount){
+    this.selectedAmount = amount;
+    this.setPotentialReturns();
+    console.log("SelectedAmount",this.selectedAmount);
   }
 
 
@@ -231,4 +240,17 @@ export class ScholarshipComponent implements OnInit,AfterViewInit {
 
     this.raveOptions = this.paymentService.getRaveOptions('scholarship',amount,isValid);
  }
+
+ proceed(event:Event){
+    if(!this.selectedAmount){
+      event.preventDefault();
+      this.potentialReturns = null;
+      this.error = "Please select your investment amount";
+    }
+ }
+
+ setPotentialReturns() {
+   this.error = null;
+  this.potentialReturns = ` GH₵ ${(this.selectedAmount * settings.scholarshipStakeOdds).toLocaleString()}`;
+}
 }

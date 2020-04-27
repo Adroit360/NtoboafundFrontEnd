@@ -1,0 +1,19 @@
+<svg id="bulb-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="36.842" viewBox="0 0 28 36.842">
+  <g id="Rectangle_36" data-name="Rectangle 36" transform="translate(8.842 32.421)" fill="none" stroke="#585858" stroke-miterlimit="10" stroke-width="1.1">
+    <rect width="8.842" height="4.421" rx="2" stroke="none"/>
+    <rect x="0.55" y="0.55" width="7.742" height="3.321" rx="1.45" fill="none"/>
+  </g>
+  <g id="Rectangle_36-2" data-name="Rectangle 36" transform="translate(7.368 29.474)" fill="none" stroke="#585858" stroke-miterlimit="10" stroke-width="1.1">
+    <rect width="11.789" height="4.421" rx="2" stroke="none"/>
+    <rect x="0.55" y="0.55" width="10.689" height="3.321" rx="1.45" fill="none"/>
+  </g>
+  <g id="Rectangle_36-3" data-name="Rectangle 36" transform="translate(7.368 26.526)" fill="none" stroke="#585858" stroke-miterlimit="10" stroke-width="1.1">
+    <rect width="11.789" height="4.421" rx="2" stroke="none"/>
+    <rect x="0.55" y="0.55" width="10.689" height="3.321" rx="1.45" fill="none"/>
+  </g>
+  <g id="Oval_16" data-name="Oval 16" transform="translate(0 0)" fill="none" stroke="#585858" stroke-miterlimit="10" stroke-width="1.1">
+    <circle cx="14" cy="14" r="14" stroke="none"/>
+    <circle cx="14" cy="14" r="13.45" fill="none"/>
+  </g>
+  <path id="Path_4" data-name="Path 4" d="M7.372,0S0-.389,0,7.375" transform="translate(5.312 4.927)" fill="none" stroke="#585858" stroke-miterlimit="10" stroke-width="1.1"/>
+</svg>

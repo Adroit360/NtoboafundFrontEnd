@@ -1,44 +1,59 @@
 <app-header></app-header>
 <app-busy class="loader" [ngClass]="{'visible':loading,'invisible':!loading}" #loader></app-busy>
+
 <div class="login-body">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-box">
-    <div class="login-box__header">
-      <h3>Login</h3>
+  <div class="login-box-wrapper">
+    <div class="login-box-wrapper__left">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-box">
+        <div class="login-box__header">
+          <div>LOGIN WITH EMAIL</div>
+        </div>
+        <div class="login-box__body">
+          <div class="c-input">
+            <input type="email" formControlName="email" placeholder="Email" />
+            <i class="c-addon fa fa-envelope"></i>
+            <b class="val-msg"></b>
+          </div>
+          <div class="c-input">
+            <input type="password" formControlName="password" placeholder="Password" />
+            <i class="c-addon fa fa-lock"></i>
+            <b class="val-msg"></b>
+          </div>
+        </div>
+        <div class="loading"></div>
+        <div *ngIf="error" class="error-msg">{{error}}</div>
+
+        <div class="loginbtnpane">
+          <a class="redirect-link" routerLink="../register">Don't have an account? Signup</a>
+          <a class="redirect-link forgot-pwd" routerLink="../resetpassword">Forgot Password ?</a>
+        </div>
+        
+        <div class="loginbtnpane">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+
+        <!-- <h4>Or Login With</h4>
+        <div class="socials">
+            <a href="" class="slink"><img src="assets/images/fblogo.png" alt="facebook"></a>
+            <a href="" class="slink"><img src="assets/images/googlelogo.png" alt="google"></a>
+            <a href="" class="slink"><img src="assets/images/twitterlogo.png" alt="twitter"></a>
+        </div> -->
+        <div class="login-box__footer">
+
+        </div>
+      </form>
     </div>
-    <div class="login-box__body">
-      <div class="c-input">
-        <input type="email" formControlName="email" placeholder="Email" />
-        <i class="c-addon fa fa-envelope"></i>
-        <b class="val-msg"></b>
+    <div class="login-box-wrapper__right">
+      <div>
+        <P>NTOBOA</P>
+        <P>FUND</P> 
       </div>
-      <div class="c-input">
-        <input type="password" formControlName="password" placeholder="Password" />
-        <i class="c-addon fa fa-lock"></i>
-        <b class="val-msg"></b>
+      <div>
+        <P>We Missed</P>
+        <P>YOU</P> 
       </div>
     </div>
-    <div class="loading"></div>
-    <div *ngIf="error" class="error-msg">{{error}}</div>
-
-    <div class="loginbtnpane">
-      <a class="redirect-link" routerLink="../resetpassword">Forgot Password ?</a>
-      <button type="submit" class="btn btn-primary">Login</button>
-    </div>
-
-    <div class="loginbtnpane">
-      <a class="redirect-link" routerLink="../register">Don't have an account? Signup</a>
-    </div>
-
-    <!-- <h4>Or Login With</h4>
-    <div class="socials">
-        <a href="" class="slink"><img src="assets/images/fblogo.png" alt="facebook"></a>
-        <a href="" class="slink"><img src="assets/images/googlelogo.png" alt="google"></a>
-        <a href="" class="slink"><img src="assets/images/twitterlogo.png" alt="twitter"></a>
-    </div> -->
-    <div class="login-box__footer">
-
-    </div>
-  </form>
+  </div>
 </div>
 <app-faq></app-faq>
 
@@ -46,7 +61,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157438990-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'UA-157438990-1');
