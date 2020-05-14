@@ -44,27 +44,48 @@ export class WinnerSelectionService {
             .build();
         this.winnerSelectionHubConnection.keepAliveIntervalInMilliseconds = 300000;
         this.winnerSelectionHubConnection.serverTimeoutInMilliseconds = 8.64e+7;
-        this.winnerSelectionHubConnection.start().then(() => {
-            this.initiateOngoingQuaterlyDraw();
-            this.initiateGetScholarshipWinners();
-            this.initiatescholarshipWinner();
-
-            this.initiateOngoingMonthlyDraw();
-            this.initiateGetBusinessWinners();
-            this.initiateBusinessWinner();
-
-            this.initiateGetMonthlyLuckymeWinners();
-            this.initiateLuckymeMonthlyWinner();
-
-            this.initiateOngoingWeeklyDraw();
-            this.initiateGetWeeklyLuckymeWinners();
-            this.initiateLuckymeWeeklyWinner();
-
-            this.initiateOngoingDailyDraw();
-            this.initiateGetDailyLuckymeWinners();
-            this.initiateLuckymeDailyWinner();
-        });
+        this.start(this.winnerSelectionHubConnection,this.wireWinnerSelectionEventHandlers);
     }
+
+    async start(hub: signalR.HubConnection, successCallback = undefined) {
+        try {
+            await hub.start();
+            if (successCallback)
+                successCallback.call(this);
+        } catch (error) {
+            window.setTimeout(() => {
+                this.start(hub, successCallback);
+            }, 5000)
+        }
+    }
+
+    wireWinnerSelectionEventHandlers(){
+        this.initiateOngoingQuaterlyDraw();
+        this.initiateGetScholarshipWinners();
+        this.initiatescholarshipWinner();
+
+        this.initiateOngoingMonthlyDraw();
+        this.initiateGetBusinessWinners();
+        this.initiateBusinessWinner();
+
+        this.initiateGetMonthlyLuckymeWinners();
+        this.initiateLuckymeMonthlyWinner();
+
+        this.initiateOngoingWeeklyDraw();
+        this.initiateGetWeeklyLuckymeWinners();
+        this.initiateLuckymeWeeklyWinner();
+
+        this.initiateOngoingDailyDraw();
+        this.initiateGetDailyLuckymeWinners();
+        this.initiateLuckymeDailyWinner();
+
+        this.winnerSelectionHubConnection.onclose(()=>{
+            console.log("Winner Selection hub Disconnected.. Reconnecting...");
+            this.start(this.winnerSelectionHubConnection);
+        });
+
+    }
+
 
     initiateOngoingQuaterlyDraw() {
         this.winnerSelectionHubConnection.on("ongoingQuaterlyDraw", (data: boolean) => {

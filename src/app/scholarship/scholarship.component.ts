@@ -38,7 +38,7 @@ export class ScholarshipComponent implements OnInit,AfterViewInit {
   //selectedPlayerType: string;
   congratMsg: string = "";
   congratShown = false;
-  selectedAmount:number;
+  selectedAmount:number = 20;
   potentialReturns:string;
   customPaymentDialogShown:boolean;
   settings:any = settings;
@@ -73,6 +73,7 @@ export class ScholarshipComponent implements OnInit,AfterViewInit {
       'PlayerType':new FormControl('',Validators.required)
     });
 
+    this.selectAmount(this.selectedAmount);
   }
 
   ngAfterViewInit(){

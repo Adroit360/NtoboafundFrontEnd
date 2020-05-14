@@ -1,0 +1,52 @@
+@import "../../../styles/abstracts/mixins";
+
+@mixin scrollButtons {
+    position: absolute;
+    z-index: 2;
+    //padding: .5rem;
+    height: 3.5rem;
+    width: 3.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: grey;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+
+    svg {
+        transition: transform 0.2s;
+        fill: grey;
+    }
+    &:hover {
+        background-color: white;
+        svg {
+            //transform: scale(1.2);
+            fill: black;
+        }
+    }
+}
+.slide-panel {
+    position: relative;
+    &__leftbutton {
+        @include scrollButtons;
+        left: -0.8rem;
+    }
+    &__rightbutton {
+        @include scrollButtons;
+        right: -0.8rem;
+    }
+    &__content {
+        overflow: auto;
+        z-index: 1;
+        margin:0rem 4rem;
+        .slides {
+            //display: flex;
+        }
+       @include setScrollbarVisibility('hidden');
+    }
+}
+
+svg {
+    width: 100%;
+}

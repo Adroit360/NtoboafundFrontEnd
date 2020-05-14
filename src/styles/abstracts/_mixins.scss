@@ -1,3 +1,46 @@
+@mixin setScrollbarVisibility($visibility) {
+    
+  &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+      background: transparent;
+      border: none;
+  }
+  @if($visibility == 'hidden'){
+      &::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+          background: linear-gradient(to left, transparent, transparent);
+          border: none;
+      }
+  
+      &::-webkit-scrollbar-thumb:hover {
+          background:transparent;
+      }
+  
+      &::-webkit-scrollbar-thumb:active {
+          background: linear-gradient(to left, transparent, transparent);
+      }
+  }@else{
+      ::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+          background: linear-gradient(to left, #fff, #e4e4e4);
+          border: 1px solid #aaa;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+          background: #fff;
+        }
+        
+        ::-webkit-scrollbar-thumb:active {
+          background: linear-gradient(to left, grey, rgba(grey, 0.8));
+        }
+  }
+}
+
 @mixin absCenter {
   position: absolute;
   top: 50%;
@@ -60,10 +103,21 @@
   }
 }
 
+@mixin pageSetup(){
+  position: relative;
+  top: 6rem;
+  height: calc(100vh - 6rem);
+  width: calc(100vw);
+  overflow: auto;
+  z-index: var(--level-three);
+  overflow-x:hidden;
+}
+
+
 @mixin headerbox(){
   margin-top: 0rem;
   color: var(--light);
-  height: calc(100%);
+  //height: calc(100%);
   width: calc(100%);
   position: relative;
   display: flex;

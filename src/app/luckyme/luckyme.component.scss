@@ -25,17 +25,17 @@ app-busy {
   z-index: 0;
 }
 app-header {
-  color: white;
+  //color: white;
 }
 
 .luckyme{
   position: relative;
-  //padding-top: 6rem;
   top: 6rem;
   height: calc(100vh - 6rem);
   width: calc(100vw);
   overflow: auto;
   z-index: var(--level-three);
+  overflow-x:hidden;
   .business-counter{
     color:white;
   }

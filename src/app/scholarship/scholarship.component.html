@@ -2,15 +2,14 @@
 
 <div class="scholarship-bg"></div>
 <app-header></app-header>
-<div class="scholarship-body">
-  <div class="scholarship-body__content">
-    <div class="scholarship-body__content__header">
-      <div class="scholarship-body__content__header__left">
-        <h6 class="main-header">WOULD YOU LIKE TO CONTRIBUTE IN OUR SCHOLARSHIP FUND?</h6>
+<div class="scholarship-page">
+  <div class="scholarship-page__content">
+    <div class="scholarship-page__content__header">
+      <div class="scholarship-page__content__header__left">
+        <h2 class="main-header">WOULD YOU LIKE TO CONTRIBUTE TO OUR SCHOLARSHIP FUND?</h2>
         <!-- <h3 class="sub-header">Invest Today, Win For Society</h3> -->
-        <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && scholarshipSeconds>=0"
-          class="countdown">
-          <div class="header">The next Scholarship Fund winners get selected in </div>
+        <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && scholarshipSeconds>=0" class="countdown">
+          <p class="desc header">The next Scholarship Fund winners get selected in </p>
           <div class="counters">
             <!-- <div class="ctd">{{scholarshipDays}} <span>Days</span></div> -->
             <div class="ctd">{{scholarshipDays}} <span>Days</span></div>
@@ -21,207 +20,220 @@
         </div>
 
       </div>
-      <div class="scholarship-body__content__header__right">
+      <div class="scholarship-page__content__header__right">
         <div class="info-card-1 participants">
-          <div class="info-card-1__head"><span>CURRENT PARTICIPANTS</span></div>
+          <div class="info-card-1__head">
+            <div class="contribute-title">CURRENT PARTICIPANTS</div>
+          </div>
           <div class="info-card-1__body">
             <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
-            <div class="winner-group">
+            <div class="winner-group contribute-info">
               <!-- <div class="winner-group__header">
               Today
             </div> -->
               <!-- *ngFor="let winner of winnings[key]" -->
-              <div *ngFor="let participant of signalRservice.scholarshipParticipants" class="winner-item">
-                <div class="winner-item__description">
-                  <span class="winner-name">{{participant.userName}}</span>
-                  <span class="winning-details">
+              <div *ngFor="let participant of signalRservice.scholarshipParticipants"
+                class="winner-item contribute-list">
+                <div class="winner-item__description list-item">
+                  <strong class="winner-name">{{participant.userName}}</strong>
+                  <span class="contrib">CONTIBUTED</span>
+                  <a class="amount-won">GH₵
+                    {{participant.amountStaked}}</a>
+                  <!-- <span class="winning-details">
                     <span class="contrib">CONTIBUTED</span>
                     <span class="amount-won"> <span class="period"> </span>GH₵
                       {{participant.amountStaked}}</span>
-                    <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
-                  </span>
+                    <span class="amount-staked"> with GH₵ winner.amount</span>
+                  </span> -->
                 </div>
               </div>
             </div>
           </div>
-          <div class="info-card-1__footer">{{signalRservice.potentialScholarshipWinnersCount}} potential winner<span
-              *ngIf="signalRservice.potentialScholarshipWinnersCount != 1">s</span></div>
+          <!-- <div class="info-card-1__footer">{{signalRservice.potentialScholarshipWinnersCount}} potential winner<span
+              *ngIf="signalRservice.potentialScholarshipWinnersCount != 1">s</span></div> -->
         </div>
       </div>
     </div>
-    <div id="stake-center" class="scholarship-body__content__middle">
-        <div *ngIf="(winnerSelectionService.isQuaterlyDrawOngoing  | async)" class="ongoingdraw">
-          <div class="header">Scholarship Draw is ongoing</div>
-          <div class="drawbox">
-            <div class="lds-hourglass loader"></div>
-            <div class="participants info-card">
-              <div class="info-card__body">
-                <div class="winner-group">
-                  <div *ngFor="let participant of signalRservice.scholarshipParticipants" class="winner-item">
-                    <div class="winner-item__description">
-                      <span class="winner-name">{{participant.userName}}</span>
-                      <span class="winning-details">
-                        <span class="amount-won"> staked <span class="period"> </span>GH₵
-                          {{participant.amountStaked}}</span>
-                      </span>
-                    </div>
+    <div id="stake-center" class="scholarship-page__content__middle">
+      <div *ngIf="(winnerSelectionService.isQuaterlyDrawOngoing  | async)" class="ongoingdraw">
+        <div class="header">Scholarship Draw is ongoing</div>
+        <div class="drawbox">
+          <div class="lds-hourglass loader"></div>
+          <div class="participants info-card">
+            <div class="info-card__body">
+              <div class="winner-group">
+                <div *ngFor="let participant of signalRservice.scholarshipParticipants" class="winner-item">
+                  <div class="winner-item__description">
+                    <span class="winner-name">{{participant.userName}}</span>
+                    <span class="winning-details">
+                      <span class="amount-won"> staked <span class="period"> </span>GH₵
+                        {{participant.amountStaked}}</span>
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div
-          *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && winnerSelectionService.currentScholarshipWinners"
-          class="winnerbox">
-          <div class="title">Latest Scholarship Winners</div>
-          <div class="body">
-            <div *ngFor="let winner of winnerSelectionService.currentScholarshipWinners" class="winner">
-              <span>{{winner.userName}}</span>
-            </div>
+      <div
+        *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && winnerSelectionService.currentScholarshipWinners"
+        class="winnerbox">
+        <div class="title">Latest Scholarship Winners</div>
+        <div class="body">
+          <div *ngFor="let winner of winnerSelectionService.currentScholarshipWinners" class="winner">
+            <span>{{winner.userName}}</span>
           </div>
         </div>
+      </div>
 
-        <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async)" class="stake-box">
-          <input #stakeboxcontroller type="checkbox" id="stakeboxcontroller">
-          <div class="stake-box__body">
-            <div class="stake-box__body__info">
-              <div class="stake-box__body__info__head">Select The Amount You Would Like To
-                Invest
-              </div>
-              <div class="amount-box">
-                <label for="20" class="amount-item">
-                  <input (change)="selectAmount(20)" id="20" name="amount" type="radio">
-                  <div class="amount-item__left">
-                    <p>GH₵ 20</p>
-                  </div>
-                  <div class="amount-item__right">
-                    <label for="20" class="c-checkbox-action">
-                      <span></span>
-                    </label>
-                  </div>
-                </label>
-                <label for="50" class="amount-item">
-                  <input (change)="selectAmount(50)" id="50" name="amount" type="radio">
-                  <div class="amount-item__left">
-                    <p>GH₵ 50</p>
-                  </div>
-                  <div class="amount-item__right">
-                    <label for="50" class="c-checkbox-action">
-                      <span></span>
-                    </label>
-                  </div>
-                </label>
-                <label for="100" class="amount-item">
-                  <input (change)="selectAmount(100)" id="100" name="amount" type="radio">
-                  <div class="amount-item__left">
-                    <p>GH₵ 100</p>
-                  </div>
-                  <div class="amount-item__right">
-                    <label for="100" class="c-checkbox-action">
-                      <span></span>
-                    </label>
-                  </div>
-                </label>
-              </div>
-              <div class="arrow">
-                <img src="assets/svgs/step-arrow.svg" alt="">
-              </div>
+      <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async)" class="stake-box">
+        <input #stakeboxcontroller type="checkbox" id="stakeboxcontroller">
+        <div class="stake-box__body">
+          <div class="stake-box__body__info">
+            <h6 class="stake-box__body__info__head text-center">CHOOSE AN OPTION TO CONTRIBUTE
+            </h6>
+            <div class="amount-box business-steps">
+              <h6 class="step-title">1. Select the amount you would like to contribute</h6>
+              <label for="20" class="amount-item">
+                <input (change)="selectAmount(20)" [value]="20" [(ngModel)]="selectedAmount" id="20" name="amount"
+                  type="radio">
+                <div class="amount-item__left">
+                  <p>GH₵ 20</p>
+                </div>
+                <div class="amount-item__right">
+                  <label for="20" class="c-checkbox-action">
+                    <span></span>
+                  </label>
+                </div>
+              </label>
+              <label for="50" class="amount-item">
+                <input (change)="selectAmount(50)" [value]="50" [(ngModel)]="selectedAmount" id="50" name="amount"
+                  type="radio">
+                <div class="amount-item__left">
+                  <p>GH₵ 50</p>
+                </div>
+                <div class="amount-item__right">
+                  <label for="50" class="c-checkbox-action">
+                    <span></span>
+                  </label>
+                </div>
+              </label>
+              <label for="100" class="amount-item">
+                <input (change)="selectAmount(100)" [value]="100" [(ngModel)]="selectedAmount" id="100" name="amount"
+                  type="radio">
+                <div class="amount-item__left">
+                  <p>GH₵ 100</p>
+                </div>
+                <div class="amount-item__right">
+                  <label for="100" class="c-checkbox-action">
+                    <span></span>
+                  </label>
+                </div>
+              </label>
+            </div>
+            <div class="arrow">
+              <img src="assets/svgs/step-arrow.svg" alt="">
+            </div>
+            <div class="potential-returns business-steps">
+              <!-- <h6 class="step-title">2. SELECT Contribution PERIOD</h6> -->
               <div style="color:#f44336;" *ngIf="error" class="potential-returns">{{error}}
               </div>
-              <div *ngIf="!error" class="potential-returns">Potential returns for this investment option is 
+              <div *ngIf="!error" class="potential-returns">Potential returns for this investment option is
                 <span *ngIf="potentialReturns" class="returns">{{potentialReturns}}</span>
               </div>
-              <div class="arrow">
-                <img src="assets/svgs/step-arrow.svg" alt="">
-              </div>
-              <div class="proceed">
-                <label for="stakeboxcontroller" class="btn-trans i-want" (click)="proceed($event)">Proceed
-                  <span>&rarr;</span></label>
-              </div>
             </div>
-            <div class="stake-box__body__staker">
-              <div class="content">
-                <form class="stake-form" [formGroup]="scholarshipForm">
-                  <div class="form-group">
-                    <label for="exampleInputInstitution">Which institution do you belong to</label>
-                    <input type="text" class="form-control" id="exampleInputInstitution" formControlName="Institution"
-                      aria-describedby="InstitutionHelp" placeholder="Enter Institution">
-                    <span>
-                      <small *ngIf="!scholarshipForm.get('Institution').valid && scholarshipForm.touched"
-                        class="form-text">The institution name is required !!</small>
-                    </span>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputProgram">Which program do you offer</label>
-                    <input type="text" class="form-control" id="exampleInputProgram" aria-describedby="ProgramHelp"
-                      placeholder="Enter Program" formControlName="Program">
-                    <span>
-                      <small *ngIf="!scholarshipForm.get('Program').valid && scholarshipForm.touched"
-                        class="form-text">Your offered program is required !!</small>
-                    </span>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputStudentId">What is your student Id number</label>
-                    <input type="text" class="form-control" id="exampleInputStudentId" aria-describedby="StudentIdHelp"
-                      placeholder="Enter Student Id" formControlName="StudentId">
-                    <span>
-                      <small *ngIf="!scholarshipForm.get('StudentId').valid && scholarshipForm.touched"
-                        class="form-text">Your student id is required !!</small>
-                    </span>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputStudentId">Select your player type</label>
-                    <div class="flatradios">
-                      <label class="flatradio-choice" for="student">
-                        <input type="radio" value="student" formControlName="PlayerType" name="PlayerType" id="student">
-                        <div class="text">Student</div>
-                      </label>
-                      <label class="flatradio-choice" for="parent">
-                        <input type="radio" value="parent" formControlName="PlayerType" name="PlayerType" id="parent">
-                        <div class="text">Parent/Guardian</div>
-                      </label>
-                    </div>
-                    <span>
-                      <small class="form-text"
-                        *ngIf="!scholarshipForm.get('PlayerType').valid && scholarshipForm.touched">Please
-                        select a
-                        player type</small>
-                    </span>
-                  </div>
-                </form>
-              </div>
-              <div class="footer">
-                <label for="stakeboxcontroller" class="btn-trans i-resign"><span>&larr;</span>Back</label>
-                <label (click)="paymentInitialized()" class="btn-trans">Proceed<span>&rarr;</span></label>
-              </div>
+
+            <div class="arrow">
+              <img src="assets/svgs/step-arrow.svg" alt="">
+            </div>
+            <div class="proceed business-steps">
+              <h6 class="step-title">2. PRESS Proceed BUTTON AND START</h6>
+              <label for="stakeboxcontroller" class="btn-trans i-want" (click)="proceed($event)">proceed
+                <span>&rarr;</span></label>
             </div>
           </div>
-
-        </div>
-    </div>
-    <div class="past-winners">
-      <!-- Past Winners -->
-      <h6 *ngIf="winnerSelectionService.groupedScholarshipWinners"></h6>
-      <div *ngIf="winnerSelectionService.groupedScholarshipWinners" class="pan-view">
-        <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedScholarshipWinners)" class="pan-view-group">
-          <div *ngFor="let winner of winnerSelectionService.groupedScholarshipWinners[key]" class="pan-view__item">
-            <div class="pan-view__item__text">
-              <div class="pan-view__item__text--top">
-                <div class="first">{{winner.amountToWin}}</div>
-                <div class="second">GH₵</div>
-                <!-- <div class="amountcontrib">{{winner.amountStaked}}</div> -->
-              </div>
-              <div class="pan-view__item__text--bottom">
-                <div class="first">{{winner.userName}}</div>
-                <div class="second">{{key}}</div>
-              </div>
+          <div class="stake-box__body__staker">
+            <div class="content">
+              <form class="stake-form" [formGroup]="scholarshipForm">
+                <div class="form-group">
+                  <label for="exampleInputInstitution">Which institution do you belong to</label>
+                  <input type="text" class="form-control" id="exampleInputInstitution" formControlName="Institution"
+                    aria-describedby="InstitutionHelp" placeholder="Enter Institution">
+                  <span>
+                    <small *ngIf="!scholarshipForm.get('Institution').valid && scholarshipForm.touched"
+                      class="form-text">The institution name is required !!</small>
+                  </span>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputProgram">Which program do you offer</label>
+                  <input type="text" class="form-control" id="exampleInputProgram" aria-describedby="ProgramHelp"
+                    placeholder="Enter Program" formControlName="Program">
+                  <span>
+                    <small *ngIf="!scholarshipForm.get('Program').valid && scholarshipForm.touched"
+                      class="form-text">Your offered program is required !!</small>
+                  </span>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputStudentId">What is your student Id number</label>
+                  <input type="text" class="form-control" id="exampleInputStudentId" aria-describedby="StudentIdHelp"
+                    placeholder="Enter Student Id" formControlName="StudentId">
+                  <span>
+                    <small *ngIf="!scholarshipForm.get('StudentId').valid && scholarshipForm.touched"
+                      class="form-text">Your student id is required !!</small>
+                  </span>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputStudentId">Select your player type</label>
+                  <div class="flatradios">
+                    <label class="flatradio-choice" for="student">
+                      <input type="radio" [value]="'student'" formControlName="PlayerType" name="PlayerType"
+                        id="student">
+                      <div class="text">Student</div>
+                    </label>
+                    <label class="flatradio-choice" for="parent">
+                      <input type="radio" [value]="'parent'" formControlName="PlayerType" name="PlayerType" id="parent">
+                      <div class="text">Parent/Guardian</div>
+                    </label>
+                  </div>
+                  <span>
+                    <small class="form-text"
+                      *ngIf="!scholarshipForm.get('PlayerType').valid && scholarshipForm.touched">Please
+                      select a
+                      player type</small>
+                  </span>
+                </div>
+              </form>
             </div>
+            <div class="footer">
+              <label for="stakeboxcontroller" class="btn-trans i-resign"><span>&larr;</span>Back</label>
+              <label (click)="paymentInitialized()" class="btn-trans">Contribute<span>&rarr;</span></label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <section class="past-winners lucky-winner-sec">
+      <div class="winners">
+        <div class="container">
+          <h6 class="text-center">Past Winners</h6>
+          <div *ngIf="winnerSelectionService.groupedScholarshipWinners">
+            <app-slide-panel [classes]="['win-list','winner-slider']">
+              <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedScholarshipWinners)" class="win-item">
+                <strong class="price">{{winnerSelectionService.groupedScholarshipWinners[key][0].amountToWin}}</strong>
+                <span class="sign">GH₵</span>
+                <h5>{{winnerSelectionService.groupedScholarshipWinners[key][0].userName}}</h5>
+                <p class="desc">{{key}}</p>
+              </div>
+            </app-slide-panel>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+
     <div class="win-banner">
       <div class="win-prize">
         <span>Prizes Paid</span>
@@ -238,7 +250,9 @@
             <div class="info">
               <h5>Crowdfunding Legal Issues for Small Businesses</h5>
               <p class="profile-date">BY <strong>JEAN MURRAY</strong>, <span>Updated June 25, 2019</span></p>
-              <p class="desc">Most crowdfunding websites allow individuals or companies to present an idea to others, who donate money with no expectation of anything (other than a small token gift) in return. One of the largest crowdfunding sites, Kickstarter, sets itself as a middleman between creative types.</p>
+              <p class="desc">Most crowdfunding websites allow individuals or companies to present an idea to others,
+                who donate money with no expectation of anything (other than a small token gift) in return. One of the
+                largest crowdfunding sites, Kickstarter, sets itself as a middleman between creative types.</p>
             </div>
           </div>
           <div class="art-item">
@@ -246,13 +260,15 @@
             <div class="info">
               <h5>Peer-to-peer Lending as Crowdfunding Model</h5>
               <p class="profile-date">BY <strong>JEAN MURRAY</strong>, <span>Updated June 25, 2019</span></p>
-              <p class="desc">Before you get too excited about this new way to raise money for your business, you should be aware of the potential legal issues involved. As usual, when a new idea gets ahead of current regulation and laws, some issues arise. This article addresses some of those issues.</p>
+              <p class="desc">Before you get too excited about this new way to raise money for your business, you should
+                be aware of the potential legal issues involved. As usual, when a new idea gets ahead of current
+                regulation and laws, some issues arise. This article addresses some of those issues.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <div class="scholarship-body__content__bottom">
+    <div class="scholarship-page__content__bottom">
       <!-- <div class="s-records-info">
         <div class="s-record">
           <div class="s-record__figure">GHC 100K+</div>
@@ -316,7 +332,7 @@
 </div>
 
 
-<app-faq></app-faq>
+
 
 <app-payment-dialog [amount]="selectedAmount" [stakeType]="'Scholarship'"
   [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" [txRef]="this.raveOptions.txref"

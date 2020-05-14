@@ -1,22 +1,55 @@
-
-POST https://api.hubtel.com/v2/pos/onlinecheckout/items/initiate HTTP/1.1
-Content-Type: application/json
-Authorization: Basic eVByeHdaUDo5NzBmN2IxNDExYjU0M2ViODQyM2U0OTI4ZTk2MDkyNg==
-
 {
-    "items": [
-        {
-            "name": "65345",
-            "quantity": 1,
-            "unitPrice": 6.0
-        }
-    ],
-    "totalAmount": 6.0,
-    "description": "Online Sale",
-    "callbackUrl": "https://csspsvoucherportal.azurewebsites.net/transaction",
-    "returnUrl": "https://csspsvoucherportal.azurewebsites.net/transaction",
-    "merchantBusinessLogoUrl": "https://cssps.gov.gh/assets/img/coa-sm.png",
-    "merchantAccountNumber": "HM2706190002",
-    "cancellationUrl": "https://csspsvoucherportal.azurewebsites.net/transaction",
-    "clientReference": "65345-61053.7592259-19"
+    "return": {
+        "MESSAGE": "INVOICE IS ACCEPPTED - ECHO THE PAYMENT URL",
+        "CODE": "0",
+        "SUCCESS": true,
+        "RESULT": [
+            {
+                "TOTALAMOUNT": 50.0,
+                "GSTATUS": null,
+                "CONTACT": "0544332025",
+                "DATACOMPLETE": "http://5132f0b9.ngrok.io/api/transaction/paymentcomplete/1",
+                "APIPAYREDIRECTURL": "https://calpay.caleservice.net/pay/payoptions?paytoken=a3fa9270-ba7d-4e69-8333-f1934d00fea5",
+                "SBMDESSACCT": "",
+                "TRANSACTIONMODE": "PURCHASE",
+                "ITEMS": [
+                    {
+                        "SUBTOTAL": 50.0,
+                        "PRICE": 50.0,
+                        "QUANTITY": 1,
+                        "ITEMNAME": "Request for Magnate's Service",
+                        "DISCOUNT": 0.0
+                    }
+                ],
+                "EMAIL": "kwasi.spreadcom@gmail.com",
+                "SBMCD": "",
+                "ORDERID": null,
+                "STATUS": "NEW",
+                "COUNTRY": "GHA",
+                "DESCRIPTION": "Service Request Payment",
+                "PAYMENTTOKEN": "a3fa9270-ba7d-4e69-8333-f1934d00fea5",
+                "PAYMENTCODE": "VEMAU6OWVO",
+                "MERCHANTLOGO": "https://calpay.caleservice.net/merchantlogos/6ea9ab1baa0efb9e19094440c317e21b7XW92LGC7M.png",
+                "ORDERCODE": "inv.0525.14:59:32.3934240",
+                "PAYFORMTYPE": "MPGSPOPUP",
+                "CURRENCY": "GHS",
+                "PAYMENTFORM": null,
+                "CAPTUREDAMOUNT": 0.0,
+                "QRLCODEURL": "https://calpay.caleservice.net/paymentqrs/VEMAU6OWVO.png",
+                "CALLBACK": null,
+                "GMESSAGE": null,
+                "STREET": "ACCRA",
+                "CALLBACKURL": "http://5132f0b9.ngrok.io/api/transaction/paymentcallback",
+                "NAME": "Kwasi Asare",
+                "UID": null,
+                "FINALSTATUS": "PENDING",
+                "DATACANCELURL": "http://5132f0b9.ngrok.io/api/transaction/paymentcancel",
+                "CITY": "ACCRA",
+                "MERCHANTNAME": "MAGNATE TECH AND SERV. LTD",
+                "OTHERDATA": null,
+                "SENDALERT": "YES",
+                "REFUNDEDAMOUNT": 0.0
+            }
+        ]
+    }
 }

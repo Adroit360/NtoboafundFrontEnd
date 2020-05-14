@@ -53,6 +53,10 @@ import { PaymentDialogComponent } from './payment-dialog/payment-dialog.componen
 import { WebmailComponent } from './webmail/webmail.component';
 import { BlogComponent } from './blog/blog.component';
 import { FooterComponent } from './footer/footer.component';
+import { ContactComponent } from './contact/contact.component';
+import { HowitworksComponent } from './howitworks/howitworks.component';
+import { SlidePanelComponent } from './shared/slide-panel/slide-panel.component';
+import { SharedModule } from './shared/shared.module';
 //import {CarouselModule} from "angular2-carousel";
 
 @NgModule({
@@ -88,7 +92,9 @@ import { FooterComponent } from './footer/footer.component';
     PaymentDialogComponent,
     WebmailComponent,
     BlogComponent,
-    FooterComponent
+    FooterComponent,
+    ContactComponent,
+    HowitworksComponent
   ],
   imports: [
     BrowserModule,
@@ -98,6 +104,7 @@ import { FooterComponent } from './footer/footer.component';
     ReactiveFormsModule,
     ChartsModule,
     CommonModule,
+    SharedModule,
     AgGridModule.withComponents([DetailCellRendererComponent]),
     PdfViewerModule
   ],

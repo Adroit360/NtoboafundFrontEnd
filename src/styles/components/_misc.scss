@@ -46,9 +46,14 @@
 }
 .contribute-info {
 	display: flex;
-    justify-content: space-between;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	@media screen and (max-width:800px) {
+		justify-content: center;
+	}
 }
 .contribute-list {
+	min-width: 180px;
 	width: 27%;
 }
 .contribute-list .list-item{
@@ -148,6 +153,7 @@
 	font-weight: 500;
 	font-size: 2.6rem;
 	color:#000000;
+	text-align: center;
 }
 .steps-wrap .desc strong {
 	font-weight: 700;
@@ -188,7 +194,7 @@
 }
 .winners .win-list {
 	white-space: nowrap;
-    overflow: auto;
+    //overflow: auto;
     text-align: center;
 }
 .winners h6 {
@@ -197,7 +203,8 @@
 .win-list .win-item {
 	width: 20%;
     text-align: center;
-    display: inline-block;
+	display: inline-block;
+	margin:.3rem;
 }
 .win-list .price {
 	font-weight: 500;
@@ -268,12 +275,16 @@
 }
 .aritcles-sec .info {
 	width: calc(100% - 232px);
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .aritcles-sec h6 {
 	margin-bottom: 59px;
 }
 .aritcles-sec h5 {
 	font-size: 1.8rem;
+	text-overflow: ellipsis;
+    overflow: hidden;
 }
 .aritcles-sec .profile-date {
 	font-size: 1.2rem;
@@ -697,6 +708,13 @@ input {
 .home-banner {
 	text-align:Center;
 }
+.banner-item .overlay{
+	position: absolute;
+	top:0px;
+	height: 100%;
+	width: 100%;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2));
+}
 .home-banner .banner-item {
 	position: relative;
 }
@@ -718,7 +736,9 @@ input {
 	font-weight: 500;
 	color:#fff;
 	font-size:1.8rem;
-	text-shadow: 0px 0px 8px rgba(0,0,0,0.7);
+	text-shadow: var(--primary-shadow);
+	//text-shadow: 0px 0px 8px rgba(0,0,0,0.7);
+	//font-weight: bolder;
 }
 .slick-dots {
 	position: absolute;
@@ -981,6 +1001,7 @@ input {
 	font-size: 1.2rem;
 	font-weight: 500;
 	color:#828282;
+	cursor: pointer;
 }
 .lucky-winers a:hover{
 	color:#89E353;
@@ -989,5 +1010,11 @@ input {
     background: url(../assets/images/lucky-banner-img.jpg) no-repeat;
     -webkit-background-size: cover;
     background-size: cover;
+}
+.tickets{
+	text-align: center;
+}
+.contribution-period{
+	text-align: center;
 }
 /*Lucky me page End*/

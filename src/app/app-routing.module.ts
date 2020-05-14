@@ -24,6 +24,9 @@ import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
 import {BlogComponent} from "./blog/blog.component";
 import { WebmailComponent } from './webmail/webmail.component';
+import { ContactComponent } from './contact/contact.component';
+import { HowitworksComponent } from './howitworks/howitworks.component';
+import { FaqComponent } from './faq/faq.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -33,6 +36,7 @@ const routes: Routes = [
   {path:"scholarship",component:ScholarshipComponent},
   {path:"business",component:BusinessComponent},
   {path:"insurance",component:InsuranceComponent},
+  {path:"faq",component:FaqComponent},
   {path:"tnx",component:TnxluckymeComponent},
   {path:"manage",component:ManageComponent,children:[
     {path:"",component:MHomeComponent,pathMatch:"full"},
@@ -53,6 +57,8 @@ const routes: Routes = [
   {path:"resetpasswordform",component:ResetpasswordformComponent},
   {path:"terms",component:PdfViewerComponent},
   {path:"cookiepolicy",component:PdfViewerComponent},
+  {path:"contact",component:ContactComponent},
+  {path:"how-it-works",component:HowitworksComponent},
   {path:"payment",component:PaymentDialogComponent},
   {path:"webmail",component:WebmailComponent},
   {path:"blog",component:BlogComponent},

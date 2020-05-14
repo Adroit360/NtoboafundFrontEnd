@@ -28,7 +28,7 @@ app-busy {
 app-header {
   color: white;
 }
-.scholarship-body {
+.scholarship-page {
   position: relative;
   //padding-top: 6rem;
   top: 6rem;
@@ -44,11 +44,12 @@ app-header {
     &__header {
       @include headerbox();
       &__left {
-        
+        background-color: #003c0c;
         .main-header {
           background-color: transparent;
           color: white;
           box-shadow: none;
+          text-align: center;
         }
         // .countdown {
         //   .header {
@@ -92,9 +93,11 @@ app-header {
           display: none;
           &:checked {
             & ~ .stake-box__body > .stake-box__body__info {
+              opacity: 0;
               transform: translateX(-100%);
             }
             & ~ .stake-box__body > .stake-box__body__staker {
+              opacity: 1;
               transform: translateX(-100%);
             }
             & ~ .stake-box__body {
@@ -120,16 +123,12 @@ app-header {
             position: relative;
             height: 100%;
             width: 100%;
+            opacity: 1;
             &__head {
               position: absolute;
               top: 0;
-              left: 50%;
-              transform: translateX(-50%);
-              font-size: 1.5rem;
-              top: -3rem;
-              color: #5cb4ef;
-              text-transform: uppercase;
-              //@include underline();
+              text-align: center;
+              width: 100%;
             }
             .amount-box {
               display: flex;
@@ -146,7 +145,9 @@ app-header {
                 height: 4rem;
                 line-height: 4rem;
                 overflow: hidden;
-                input{display: none;}
+                input {
+                  display: none;
+                }
                 input:checked {
                   & ~ .amount-item__left {
                     background-color: #0b5384;
@@ -165,39 +166,69 @@ app-header {
                 }
               }
             }
-            .arrow{
-              margin:2rem;
+            .arrow {
+              margin: 2rem;
             }
             .potential-returns {
               margin: 2rem;
               flex-grow: 1;
-              display: flex;
               align-items: center;
-              justify-content: center;
               color: var(--light);
               padding: 1.5rem;
               border-radius: 0.5rem;
               text-align: center;
               color: rgb(44, 44, 44);
-              .returns{
+              .returns {
                 font-weight: bold;
               }
             }
             .proceed {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              align-self: flex-start;
               .btn-trans {
-                background: #559A2C;
+                background: #559a2c;
                 font-size: 2rem;
                 font-weight: 700;
-                border: 1px solid #559A2C;
+                border: 1px solid #559a2c;
                 padding: 19px 20px;
                 text-transform: uppercase;
                 color: #fff;
                 transition: all 0.3s ease-in-out;
-                font-family: 'Montserrat', sans-serif;
+                font-family: "Montserrat", sans-serif;
                 line-height: 1;
-                &:hover{
+                &:hover {
                   background: #fff;
-                  color: #559A2C;
+                  color: #559a2c;
+                }
+              }
+            }
+          }
+          @media screen and (max-width: 1070px) {
+            &__info {
+              flex-direction: column;
+              padding-top: 2rem;
+              &__head {
+              }
+              .amount-box {
+                width: 100%;
+                  justify-content: center;
+                .amount-item {
+                  
+                }
+              }
+              .arrow {
+                margin: 2rem;
+                transform: rotate(90deg);
+              }
+              .potential-returns {
+                .returns {
+                }
+              }
+              .proceed {
+                align-self: center;
+                .btn-trans {
                 }
               }
             }
@@ -216,6 +247,7 @@ app-header {
             height: 100%;
             overflow: hidden;
             //padding: 1rem;
+            opacity: 0;
             .form-group {
               margin: 0.5rem !important;
               & > span {
@@ -286,7 +318,7 @@ app-header {
           margin: 0.5rem;
         }
         //@include clearfix;
-      }
+    }
       @media (max-width: 1020px) {
         &left {
           min-width: 100%;

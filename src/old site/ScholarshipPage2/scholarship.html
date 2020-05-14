@@ -2,10 +2,10 @@
 
 <div class="scholarship-bg"></div>
 <app-header></app-header>
-<div class="scholarship-body">
-  <div class="scholarship-body__content">
-    <div class="scholarship-body__content__header">
-      <div class="scholarship-body__content__header__left">
+<div class="scholarship-page">
+  <div class="scholarship-page__content">
+    <div class="scholarship-page__content__header">
+      <div class="scholarship-page__content__header__left">
         <h1 class="main-header">Contribute to our scholarship fund</h1>
         <!-- <h3 class="sub-header">Invest Today, Win For Society</h3> -->
         <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && scholarshipSeconds>=0"
@@ -22,7 +22,7 @@
 
         <a href="scholarship#stake-center" class="btn-primary btn--big btn--rounded invest-btn">Invest Now</a>
       </div>
-      <div class="scholarship-body__content__header__right">
+      <div class="scholarship-page__content__header__right">
         <h6 *ngIf="winnerSelectionService.groupedScholarshipWinners">Past Winners</h6>
         <div *ngIf="winnerSelectionService.groupedScholarshipWinners" class="scroll-view">
           <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedScholarshipWinners)" class="winner-group">
@@ -50,7 +50,7 @@
         </div>
       </div>
     </div>
-    <div id="stake-center" class="scholarship-body__content__middle">
+    <div id="stake-center" class="scholarship-page__content__middle">
         <div *ngIf="(winnerSelectionService.isQuaterlyDrawOngoing  | async)" class="ongoingdraw">
           <div class="header">Scholarship Draw is ongoing</div>
           <div class="drawbox">
@@ -196,7 +196,7 @@
 
         </div>
     </div>
-    <div class="scholarship-body__content__bottom">
+    <div class="scholarship-page__content__bottom">
       <div class="info-card participants">
         <div class="info-card__head">Current Participants</div>
         <div class="info-card__body">
@@ -284,7 +284,7 @@
 </div>
 
 
-<app-faq></app-faq>
+
 
 <app-payment-dialog [amount]="selectedAmount" [stakeType]="'Scholarship'"
   [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" [txRef]="this.raveOptions.txref"
