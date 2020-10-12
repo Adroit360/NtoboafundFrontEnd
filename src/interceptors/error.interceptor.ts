@@ -3,13 +3,14 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/services/authservice';
-import { isObject } from 'util';
+import { isObject, isString } from 'util';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(
             catchError((error: any) => {
+                console.log(error);
                 //console.log(error);
                 //Means its an error comming from API
                 if (error instanceof HttpErrorResponse) {
@@ -25,8 +26,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 
                     //An Http Status Code error which can have content of array of errors or a single string
                     let serverError;
-                    if (error.message)
-                        serverError = error.message;
+                    if (isString(error.error))
+                        serverError = error.error;
                     else if (error && Array.isArray(error.error))
                         serverError = error.error;
                     else if (error.error && Array.isArray(error.error.errors))

@@ -143,15 +143,17 @@ export class AdluckymesComponent implements OnInit {
 
     this.paymentService.addPaymentRecord('lkm', amount, transactionId, this.selectedluckyme.transferId).subscribe(
       (response: any) => {
+        //console.log(response);
         this.paymentRecordMessage = response.message;
         this.isAddingPaymentRecord = false;
         this.isPaymentInputsDisabled = true;
         this.getUnpaidWinnersCount();
         this.showUnpaidWinners(false);
-        console.log(response);
+        //console.log(response);
       },
       xhr => {
-        this.paymentRecordMessage = xhr.error;
+        //console.log(xhr);
+        this.paymentRecordMessage = xhr;
         this.isAddingPaymentRecord = false;
       }
     )

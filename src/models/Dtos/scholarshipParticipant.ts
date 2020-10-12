@@ -7,4 +7,5 @@ export class ScholarshipParticipant{
     scholarship:any;
     dateDeclared:string;   
     txRef:string;
+    status:string;
 }

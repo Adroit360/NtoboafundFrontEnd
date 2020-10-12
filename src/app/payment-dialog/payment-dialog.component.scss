@@ -128,14 +128,16 @@
     border-color: orange;
   }
   .head {
-    position: absolute;
+    // position: absolute;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1rem;
     margin: 0.5rem 1.5rem;
   }
   input {
-    padding: 1.9rem 1rem 0.5rem 1.5rem;
+    // padding: 1.9rem 1rem 0.5rem 1.5rem;
+    padding: 1rem;
+    font-size: 1.4rem;
   }
   select {
     padding: 1.9rem 1rem 0.5rem 1rem;

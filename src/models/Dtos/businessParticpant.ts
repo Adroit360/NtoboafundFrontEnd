@@ -7,4 +7,5 @@ export class BusinessParticipant{
     business:any;
     dateDeclared:string; 
     txRef:string;
+    status:string;
 }

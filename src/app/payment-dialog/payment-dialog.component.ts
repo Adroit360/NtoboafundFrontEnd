@@ -96,7 +96,6 @@ export class PaymentDialogComponent implements OnInit {
       this.momoStarVoucherOrEmail = this.cardInvoiceEmail ? this.cardInvoiceEmail : "default";
     }
 
-
     if (this.stakeType == "Luckyme") {
       paymentUrl = `${settings.currentApiUrl}/transaction/payforluckyme/${this.txRef}/${this.selectedPaymentMethod}/${this.momoStarVoucherOrEmail}`;
       verificationUrl = `${settings.currentApiUrl}/transaction/verifyLuckymePayment/${this.txRef}?paymentType=${this.selectedPaymentMethod}`;
@@ -124,9 +123,11 @@ export class PaymentDialogComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
+          
           if (this.selectedPaymentMethod == this.paymentMethods[0]) {
             this.setSuccessMessage("Prompt Sent...Waiting for confirmation..");
           }
+
           else if (this.selectedPaymentMethod == this.paymentMethods[1]) {
             if (response.paymentToken) {
               if (!shouldRedirect) {

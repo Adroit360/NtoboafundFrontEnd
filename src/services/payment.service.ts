@@ -75,7 +75,9 @@ export class PaymentService {
 
     addPaymentRecord(stakeTypeShortName:string,amount,transactionId,transferId){
         let payerId = this.authService.currentUser.id;
-        return this.http.post(`${settings.currentApiUrl}/transaction/addpaymentrecord`,{amount,transactionId,transferId,stakeTypeShortName,payerId});
+        let paymentRecord = {amount,transactionId,transferId,stakeTypeShortName,payerId};
+        console.log("paymentrecord",paymentRecord);
+        return this.http.post(`${settings.currentApiUrl}/transaction/addpaymentrecord`,paymentRecord);
     }
 
     getPaymentByDetails(itemPayedFor,itemPayedForId):Observable<any>{

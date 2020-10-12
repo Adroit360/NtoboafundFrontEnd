@@ -185,6 +185,8 @@ export class WinnerSelectionService {
         this.winnerSelectionHubConnection.on('getCurrentDailyLuckymeWinners', (data: LuckymeParticipant[]) => {
             this.dailyLuckymeWinners = data;
             this.groupedDailyLuckymeWinners = groupBy("dateDeclared")(data);
+            console.log(this.groupedDailyLuckymeWinners);
+
         });
         //Invoke the GetCurrentScholarshipWinnersMethods
         this.winnerSelectionHubConnection.invoke('GetCurrentDailyLuckymeWinners');
