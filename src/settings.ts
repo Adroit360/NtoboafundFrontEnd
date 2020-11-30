@@ -2,7 +2,7 @@ const data = {
     urls:{
         apiUrl: "https://ntoboafund.gear.host",
         LocalApiUrl: "https://localhost:44311",
-        localKestrelUrl: "https://localhost:5001",
+        localKestrelUrl: "http://localhost:5000",
         azure: "https://ntoboafundwebapi.azurewebsites.net"
     },
     payment:{

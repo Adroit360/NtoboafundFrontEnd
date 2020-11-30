@@ -79,7 +79,7 @@
 
         <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="stake-box">
           <div class="stake-box-header">
-            <div class="text">Choose an option to Invest</div>
+            <div class="text">Choose an option to contribute</div>
             <div class="arrow">
               <span class="fa fa-arrow-down"></span>
             </div>
@@ -118,9 +118,9 @@
             </div>
             <div class="actions">
               <!-- <button *ngIf="settings.paymentGateway=='flutterwave'" angular-rave [raveOptions]="raveOptions"
-                class="btn btn-danger i-Invest" (callback)="businessPaymentCallback($event)"
-                (close)="businessPaymentFailed()" (init)="pay()">Invest</button> -->
-              <button *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'" class="btn btn-danger i-Invest" (click)="pay()">Invest
+                class="btn btn-danger i-contribute" (callback)="businessPaymentCallback($event)"
+                (close)="businessPaymentFailed()" (init)="pay()">contribute</button> -->
+              <button *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'" class="btn btn-danger i-contribute" (click)="pay()">contribute
               </button>
             </div>
           </div>
@@ -157,7 +157,7 @@
       <!-- <div class="tab-box">
         <ul class="nav nav-tabs">
           <li class="nav-item active">
-            <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How To Invest</a>
+            <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How To contribute</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#where" role="tab" data-toggle="tab">The Must Knows</a>
@@ -167,12 +167,12 @@
           <div role="tabpanel" class="tab-pane fade in show active" id="how">
             <div class="panel" style="background-color: orange;color:black">
               <div class="number">1</div>
-              <div class="text">Choose the amount you want to invest in the blue circle above. For the detail panel to
+              <div class="text">Choose the amount you want to contribute in the blue circle above. For the detail panel to
                 show</div>
             </div>
             <div class="panel" style="background-color: #f06292">
               <div class="number">2</div>
-              <div class="text">Press the "Invest" button in the detail panel to proceed to payment</div>
+              <div class="text">Press the "contribute" button in the detail panel to proceed to payment</div>
             </div>
             <div class="panel" style="background-color: #01c851">
               <div class="number">3</div>
@@ -180,7 +180,7 @@
             </div>
             <div class="panel" style="background-color: #7383a7">
               <div class="number">4</div>
-              <div class="text">Follow the displayed guideline to complete the investment process</div>
+              <div class="text">Follow the displayed guideline to complete the contribution process</div>
             </div>
             <div class="panel" style="background-color: #a563c7">
               <div class="number">5</div>
@@ -203,7 +203,7 @@
             </div>
             <div class="panel" style="background-color: #324675">
               <div class="number">*</div>
-              <div class="text">Business contributions has four investment amounts i.e GH₵ 100,GH₵ 500,GH₵ 1000,GH₵ 2000
+              <div class="text">Business contributions has four contribution amounts i.e GH₵ 100,GH₵ 500,GH₵ 1000,GH₵ 2000
               </div>
             </div>
           </div>

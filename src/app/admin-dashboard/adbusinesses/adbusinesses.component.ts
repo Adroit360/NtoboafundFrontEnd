@@ -44,7 +44,7 @@ export class AdbusinessesComponent implements OnInit {
   businessColumnDefs = [
     { headerName: "Period", field: "period", sortable: true, filter: true, resizable: true, cellRenderer: "agGroupCellRenderer" },
     { headerName: "Date", field: "date", sortable: true, filter: true, resizable: true },
-    { headerName: "Investment(GHS)", field: "amount", sortable: true, filter: true, resizable: true },
+    { headerName: "Contribution(GHS)", field: "amount", sortable: true, filter: true, resizable: true },
     { headerName: "Status", field: "status", sortable: true, filter: true, resizable: true },
     { headerName: "AmountToWin", field: "amountToWin", sortable: true, filter: true, resizable: true },
     { headerName: "DrawDate", field: "dateDeclared", sortable: true, filter: true, resizable: true }
@@ -56,7 +56,7 @@ export class AdbusinessesComponent implements OnInit {
   groupDefaultExpanded: number;
   frameworkComponents: { myDetailCellRenderer: typeof DetailCellRendererComponent; };
 
-  mainHeaderText = "Business Investments";
+  mainHeaderText = "Business Contributions";
   paymentForm: FormGroup;
   canUserBePaid: boolean = false;
 
@@ -325,7 +325,7 @@ export class AdbusinessesComponent implements OnInit {
 
   payWinner() {
     if (!this.selectedbusiness) {
-      alert("No Business Investment Is Selected");
+      alert("No Business Contribution Is Selected");
       return;
     }
     this.getPaymentRecord();

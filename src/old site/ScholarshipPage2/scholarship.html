@@ -7,7 +7,7 @@
     <div class="scholarship-page__content__header">
       <div class="scholarship-page__content__header__left">
         <h1 class="main-header">Contribute to our scholarship fund</h1>
-        <!-- <h3 class="sub-header">Invest Today, Win For Society</h3> -->
+        <!-- <h3 class="sub-header">contribute Today, Win For Society</h3> -->
         <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && scholarshipSeconds>=0"
           class="countdown">
           <div class="header">The next Scholarship Fund winners get selected in : </div>
@@ -20,7 +20,7 @@
           </div>
         </div>
 
-        <a href="scholarship#stake-center" class="btn-primary btn--big btn--rounded invest-btn">Invest Now</a>
+        <a href="scholarship#stake-center" class="btn-primary btn--big btn--rounded contribute-btn">contribute Now</a>
       </div>
       <div class="scholarship-page__content__header__right">
         <h6 *ngIf="winnerSelectionService.groupedScholarshipWinners">Past Winners</h6>
@@ -89,7 +89,7 @@
           <div class="stake-box__body">
             <div class="stake-box__body__info">
               <div class="stake-box__body__info__head">Select The Amount You Would Like To
-                Invest
+                contribute
               </div>
               <div class="amount-box">
                 <label for="20" class="amount-item">
@@ -128,7 +128,7 @@
               </div>
               <div *ngIf="error" class="potential-returns">{{error}}
               </div>
-              <div *ngIf="potentialReturns" class="potential-returns">Potential returns for this investment option is
+              <div *ngIf="potentialReturns" class="potential-returns">Potential returns for this contribution option is
                 <span class="returns">{{potentialReturns}}</span>
               </div>
               <div class="proceed">
@@ -224,7 +224,7 @@
       <div class="s-records-info">
         <div class="s-record">
           <div class="s-record__figure">GHC 100K+</div>
-          <div class="s-record__text">Returns Paid to Our Scholarship Fund Investors so far</div>
+          <div class="s-record__text">Returns Paid to Our Scholarship Fund Contributors so far</div>
         </div>
         <div class="s-record">
           <div class="s-record__figure">GHC 500+</div>
@@ -234,7 +234,7 @@
           <div class="s-record__figure">GHC 60K+</div>
           <div class="s-record__text">Total Points Earned by
             Scholarship Fund
-            Investors so far</div>
+            Contributors so far</div>
         </div>
       </div>
 

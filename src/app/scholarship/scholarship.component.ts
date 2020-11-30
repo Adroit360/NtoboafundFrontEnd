@@ -246,7 +246,7 @@ export class ScholarshipComponent implements OnInit,AfterViewInit {
     if(!this.selectedAmount){
       event.preventDefault();
       this.potentialReturns = null;
-      this.error = "Please select your investment amount";
+      this.error = "Please select your contribution amount";
     }
  }
 
