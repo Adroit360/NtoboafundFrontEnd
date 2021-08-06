@@ -98,7 +98,7 @@ export class BusinessComponent implements OnInit,AfterViewInit {
             }
           );
       }
-
+      
 
     } else {
       this.router.navigate(['login']);

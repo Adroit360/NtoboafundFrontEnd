@@ -10,7 +10,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(
             catchError((error: any) => {
-                console.log(error);
+                console.log("Error",error);
                 //console.log(error);
                 //Means its an error comming from API
                 if (error instanceof HttpErrorResponse) {
