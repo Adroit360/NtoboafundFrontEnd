@@ -1,0 +1,128 @@
+<section>
+
+  <app-header></app-header>
+
+  <div class="container page-title">
+    <div class="col-lg-12">
+      <div class="page-header">
+        <h2>Add CrowdFund</h2>
+        <hr>
+      </div>
+    </div>
+
+    <mat-card>
+      <div class="row">
+        <div class="col-lg-12">
+          <mat-form-field hintLabel="Max 50 Characters">
+            <input matInput maxlength="50" #input type="text" name="title" placeholder="Title" required>
+            <mat-hint align="end">{{ input.value?.length || 0 }} / 50</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row d-flex align-items-end">
+        <div class="col-lg-4">
+          <mat-form-field>
+            <mat-select placeholder="Select Category">
+              <mat-option value="Accidents & Emergencies">Accidents & Emergencies</mat-option>
+              <mat-option value="Nonprofit">Nonprofit</mat-option>
+              <mat-option value="Business & Entrepreneurs">Business & Entrepreneurs</mat-option>
+              <mat-option value="Arts and Entertainment">Arts and Entertainment</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-4">
+          <mat-form-field>
+            <input matInput placeholder="Amount" type="text" name="amount" required>
+            <span matPrefix>GH¢&nbsp;</span>
+            <span matSuffix>.00</span>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 pb-5">
+          <h6>Description</h6>
+          <angular-editor [config]="config"></angular-editor>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>Add CrowdFund Images</h6>
+          <button mat-raised-button color="accent" type="button" (click)="filePicker.click()">Upload Images</button>
+          <input type="file" #filePicker (change)="fileProgress($event)" accept=" image/png, image/jpg, image/jpeg"
+            multiple>
+          <div class="image-preview mt-3" *ngIf="previewURL">
+            <img [src]="previewURL" height="200">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>Set Cover Image</h6>
+          <button mat-raised-button color="accent" type="button" (click)="filePicker.click()">Set Cover Image</button>
+          <input type="file" #filePicker (change)="fileProgress($event)" accept=" image/png, image/jpg, image/jpeg">
+          <div class="image-preview mt-3" *ngIf="previewURL">
+            <img [src]="previewURL" height="200">
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="check">
+        <mat-checkbox (change)="changeCheck($event)">I agree to the</mat-checkbox>
+        <span class="terms" (click)="open(content)">Terms and Conditions</span>
+      </div>
+
+
+      <div class="d-flex justify-content-end">
+        <button mat-raised-button color="accent">Save CrowdFund</button>
+      </div>
+
+
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">
+            Terms and Conditions
+          </h4>
+          <button type="button" class="close" aria-label="close" (click)="modal.dismiss('Cross Click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi
+            necessitatibus rerum dignissimos, magni velit vero quasi impedit?
+            Iste, vel eos est minus perferendis sit dolor magni. Qui tempora sit
+            atque. Lorem ipsum dolor sit amet consectetur adipisicing elit. In
+            at quos fugiat voluptates veniam, aperiam necessitatibus laudantium,
+            ducimus accusamus cumque nulla quaerat laboriosam tempore qui, omnis
+            nam deleniti officia officiis! Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Deserunt minus rerum aspernatur
+            distinctio accusantium quis modi suscipit pariatur, similique quia,
+            sunt numquam labore quasi atque vitae, enim assumenda nam sed! Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Et deserunt
+            libero esse illum saepe fugiat maiores ipsam, sunt beatae pariatur,
+            dolor facilis, reprehenderit fuga nobis minima quas. Odit, earum
+            nisi. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Dicta repudiandae eos quaerat dignissimos quod soluta aut. Debitis
+            ducimus porro asperiores dolores, quod accusantium earum sunt, harum
+            quasi eos nam impedit!lorem Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Nam vitae aspernatur numquam maiores totam soluta
+            obcaecati necessitatibus consectetur illum incidunt optio fuga odit,
+            laborum illo cupiditate iusto, eos, dignissimos ipsam.lorem
+          </p>
+
+        </div>
+      </ng-template>
+    </mat-card>
+
+  </div>
+
+
+
+</section>

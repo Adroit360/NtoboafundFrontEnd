@@ -1,0 +1,142 @@
+.crowdfund {
+  z-index: var(--level-two);
+  position: relative;
+  margin-top: 6rem;
+  height: calc(100vh - 6rem);
+  width: calc(100vw);
+  overflow: auto;
+
+  .banner-item {
+    position: relative;
+    height: 500px;
+    background: url(../../assets/images/crowdd.jpg);
+    // img {
+    //   height: 500px;
+    // }
+
+    .banner-content {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .search {
+    margin: 20px 0;
+
+    .mat-form-field {
+      width: 100%;
+    }
+  }
+}
+
+.inner {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.features .image:before {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  right: -15px;
+  width: 70px;
+  height: 70px;
+  border-radius: 6px;
+  -webkit-transform: rotate(33.75deg);
+  transform: rotate(33.75deg);
+  background: linear-gradient(45deg, transparent, rgba(47, 85, 212, 0.09));
+  z-index: -1;
+}
+
+.features .title-2 {
+  font-size: 20px;
+}
+
+.features:hover .image:before {
+  background: rgba(47, 85, 212, 0.07);
+  -webkit-animation: spinner-border 5s linear infinite;
+  animation: spinner-border 5s linear infinite;
+}
+
+.avatar.avatar-small {
+  height: 65px;
+  width: 65px;
+}
+
+.choose-use {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.border-top {
+  border-top: 1px solid #e9ecef !important;
+}
+
+.section-title {
+  position: relative;
+}
+
+.section-title .title {
+  letter-spacing: 0.5px;
+  font-size: 30px;
+}
+
+.para-desc {
+  max-width: 600px;
+}
+
+mat-card {
+  .title-tl {
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  .title-desc {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+.site-section-heading {
+  padding-bottom: 20px;
+  margin-bottom: 50px;
+  position: relative;
+  font-size: 2.5rem;
+  color: black;
+}
+@media (min-width: 768px) {
+  .site-section-heading {
+    font-size: 4rem;
+  }
+}
+.site-section-heading:after {
+  content: "";
+  left: 0%;
+  bottom: 0;
+  position: absolute;
+  width: 100px;
+  height: 3px;
+  background: #0d0cb5;
+}
+.site-section-heading.text-center:after {
+  content: "";
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  content: "";
+  left: 50%;
+  bottom: 0;
+  position: absolute;
+  width: 100px;
+  height: 3px;
+  background: #0d0cb5;
+}
+
+.featured {
+  margin-bottom: 100px;
+}
