@@ -1,4 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { NgbModalConfig, NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { AuthService } from "src/services/authservice";
+import { CrowdFundService } from "src/services/crowdFund.service";
+import { Location } from "@angular/common";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-single-crowd",
@@ -6,9 +12,67 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./single-crowd.component.scss"],
 })
 export class SingleCrowdComponent implements OnInit {
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  crowdID: any;
+  crowdFund: any;
 
-  constructor() {}
+  urlLink = "https://ntoboafundwebapi.azurewebsites.net";
 
-  ngOnInit() {}
+  userId: any;
+  // pathUrl = this.router.url;
+  pathUrl = window.location.href;
+
+  constructor(
+    private route: ActivatedRoute,
+    private crowdService: CrowdFundService,
+    private authService: AuthService,
+    config: NgbModalConfig,
+    private modalService: NgbModal,
+    private router: Router,
+    private location: Location,
+    private snackbar: MatSnackBar
+  ) {
+    config.backdrop = "static";
+    config.keyboard = false;
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe((res) => {
+      this.crowdID = res["id"];
+      this.getCrowdFund();
+    });
+
+    this.getUser();
+  }
+
+  getCrowdFund() {
+    this.crowdService.singleCrowd(this.crowdID).subscribe(
+      (res) => {
+        this.crowdFund = res;
+      },
+      (err) => {
+        this.location.back();
+      }
+    );
+  }
+
+  async getUser() {
+    const userid = await this.authService.currentUser;
+    this.userId = userid.id;
+  }
+
+  copyInputMessage(inputElement) {
+    inputElement.select();
+    document.execCommand("copy");
+    inputElement.setSelectionRange(0, 0);
+    this.modalService.dismissAll();
+    this.snackbar.open("Link Copied", "OK", {
+      duration: 3000,
+      verticalPosition: "top",
+      horizontalPosition: "center",
+    });
+  }
+
+  open(content) {
+    this.modalService.open(content, { centered: true });
+  }
 }

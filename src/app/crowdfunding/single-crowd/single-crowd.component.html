@@ -2,99 +2,130 @@
 
   <app-header></app-header>
 
-  <div class="container mb-5">
-    <div class="section-header">
-      <div class="col-lg-12">
-        <div class="page-header">
-          <h2 class="pageheader-title">CrowdFund Name</h2>
+  <div *ngIf="crowdFund;else loader">
+    <div class="container mb-5">
+      <div class="section-header">
+        <div class="col-lg-12">
+          <div class="page-header">
+            <h2 class="pageheader-title">{{crowdFund.userId}}'s CrowdFund</h2>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-lg-8">
-        <ngb-carousel *ngIf="images" [showNavigationArrows]="false">
-          <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
-              <img [src]="images[0]" alt="Random first slide">
-            </div>
-          </ng-template>
-          <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
-              <img [src]="images[1]" alt="Random second slide">
-            </div>
-          </ng-template>
-          <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
-              <img [src]="images[2]" alt="Random third slide">
-            </div>
-          </ng-template>
-        </ngb-carousel>
+      <div class="row">
+        <div class="col-lg-8">
+          <ngb-carousel [showNavigationArrows]="false">
+            <ng-template ngbSlide>
+              <div class="picsum-img-wrapper" *ngIf="crowdFund.mainImageUrl">
+                <img [src]="urlLink + crowdFund.mainImageUrl">
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <div *ngIf="crowdFund.videoUrl != null">
+                <div class="picsum-img-wrapper">
+                  <video [src]="urlLink + crowdFund.videoUrl"></video>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <div *ngIf="crowdFund.secondImageUrl != null">
+                <div class="picsum-img-wrapper">
+                  <img [src]="urlLink + crowdFund.secondImageUrl">
+                </div>
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <div *ngIf="crowdFund.thirdImageUrl != null">
+                <div class="picsum-img-wrapper">
+                  <img [src]="urlLink + crowdFund.thirdImageUrl">
+                </div>
+              </div>
+            </ng-template>
+          </ngb-carousel>
 
-        <div class="user-details">
-          <p>Username CrowdFund</p>
-          <div class="row">
-            <div class="date-created d-flex align-items-end">
-              <mat-icon color="accent">schedule</mat-icon>
-              <span>3 June, 2021</span>
+          <div class="user-details">
+            <p>{{crowdFund.title}}</p>
+            <div class="row">
+              <div class="date-created d-flex align-items-end">
+                <mat-icon color="accent">schedule</mat-icon>
+                <span>3 June, 2021</span>
+              </div>
+              <div class="crowd-category d-flex align-items-end">
+                <mat-icon color="accent">label</mat-icon>
+                <span>Business & Entrepreneurs</span>
+              </div>
             </div>
-            <div class="crowd-category d-flex align-items-end">
-              <mat-icon color="accent">label</mat-icon>
-              <span>Business & Entrepreneurs</span>
+
+            <div class="crowd-description">
+              <p>Description</p>
+              <span [innerHTML]="crowdFund.description"></span>
             </div>
           </div>
-
         </div>
 
-        <div class="crowd-description">
-          <p>Description</p>
-          <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt non ipsam ratione corporis quos vitae
-            possimus, quam nam autem fuga minima, veritatis adipisci aut repudiandae voluptas maiores officiis? Placeat,
-            est. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt non ipsam ratione corporis quos vitae
-            possimus, quam nam autem fuga minima, veritatis adipisci aut repudiandae voluptas maiores officiis? Placeat,
-            est. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt non ipsam ratione corporis quos vitae
-            possimus, quam nam autem fuga minima, veritatis adipisci aut repudiandae voluptas maiores officiis? Placeat,
-            est.</span>
+        <div class="col-lg-4">
+          <mat-card>
+            <div class="amount-raised">
+              <p><span class="raised">{{crowdFund.totalAmountRecieved | currency:'GH¢'}}</span> raised of
+                GH{{crowdFund.totalAmount | currency:'GH¢'}}</p>
+              <p>
+                <ngb-progressbar type="info" [value]="(crowdFund.totalAmountRecieved / crowdFund.totalAmount) * 100">
+                </ngb-progressbar>
+              </p>
+              <div class="amount-details">
+                <span>13.6K</span>
+                <p>people contributed</p>
+
+                <br>
+
+                <span>17</span>
+                <p>days to go</p>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <button mat-raised-button color="accent">Contribute to CrowdFund</button>
+                <button mat-stroked-button color="primary" (click)="open(content)">Share CrowdFund</button>
+              </div>
+
+              <hr>
+
+              <div class="amount-contribute" *ngIf="userId == crowdFund.userId">
+                <p class="contribute-head">My Contributions:</p>
+                <br>
+                <p><span>GH¢50.00</span> on 2/06/21</p>
+              </div>
+            </div>
+
+
+
+            <ng-template #content let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Share Link</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <input type="text" [value]="pathUrl" #userinput>
+                <button (click)="copyInputMessage(userinput)" class="btn btn-primary btn-lg btn-block">Copy
+                  Link</button>
+              </div>
+              <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Share</button>
+              </div> -->
+            </ng-template>
+          </mat-card>
         </div>
       </div>
 
-      <div class="col-lg-4">
-        <mat-card>
-          <div class="amount-raised">
-            <p><span class="raised">GH¢200,000</span> raised of GH¢300,000</p>
-            <div class="progress">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75"
-                aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
+      <ng-template #loader>
+        <app-spinner></app-spinner>
+      </ng-template>
 
-            <div class="amount-details">
-              <span>13.6K</span>
-              <p>people contributed</p>
 
-              <br>
-
-              <span>17</span>
-              <p>days to go</p>
-            </div>
-
-            <div class="d-flex justify-content-between">
-              <button mat-raised-button color="accent">Contribute to CrowdFund</button>
-              <button mat-stroked-button color="primary">Share CrowdFund</button>
-            </div>
-
-            <hr>
-
-            <div class="amount-contribute">
-              <p class="contribute-head">My Contributions:</p>
-              <br>
-              <p><span>GH¢50.00</span> on 2/06/21</p>
-            </div>
-          </div>
-        </mat-card>
-      </div>
     </div>
-
   </div>
+
 
   <app-footer></app-footer>
 
