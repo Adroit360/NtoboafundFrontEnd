@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { CrowdFundService } from "src/services/crowdFund.service";
 
 @Component({
   selector: "app-crowdfunding",
@@ -6,7 +7,14 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./crowdfunding.component.scss"],
 })
 export class CrowdfundingComponent implements OnInit {
-  constructor() {}
+  crowdFund: any;
+  urlLink = "https://ntoboafundwebapi.azurewebsites.net";
 
-  ngOnInit() {}
+  constructor(private crowdService: CrowdFundService) {}
+
+  ngOnInit() {
+    this.crowdService.getCrowd("crowdfund/all/3/0/").subscribe((res) => {
+      this.crowdFund = res;
+    });
+  }
 }

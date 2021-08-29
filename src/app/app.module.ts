@@ -61,6 +61,7 @@ import { AngularEditorModule } from "@kolkov/angular-editor";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { SingleCrowdComponent } from './crowdfunding/single-crowd/single-crowd.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { CrowdsComponent } from './crowdfunding/crowds/crowds.component';
 //import {CarouselModule} from "angular2-carousel";
 
 @NgModule({
@@ -101,6 +102,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     AddCrowdfundComponent,
     SingleCrowdComponent,
     SpinnerComponent,
+    CrowdsComponent,
   ],
   imports: [
     BrowserModule,

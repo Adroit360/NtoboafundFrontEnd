@@ -140,3 +140,38 @@ mat-card {
 .featured {
   margin-bottom: 100px;
 }
+
+.boxed-btn {
+  display: inline-block;
+  padding: 11px 29px 13px 29px;
+  font-size: 16px;
+  font-weight: 500;
+  border-color: #30e3ca;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff !important;
+  text-transform: capitalize;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+  color: #30e3ca !important;
+  border: 1px solid #30e3ca;
+  background: transparent;
+
+  &:hover {
+    color: #fff !important;
+    border: 1px solid #30e3ca;
+    background: transparent;
+    border: 0;
+    background: #30e3ca;
+    border: 1px solid transparent;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
