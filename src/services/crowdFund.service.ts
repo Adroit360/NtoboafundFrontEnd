@@ -18,4 +18,12 @@ export class CrowdFundService {
   singleCrowd(id) {
     return this.http.get(`${BASEURL}` + "crowdfund/single/" + `${id}`);
   }
+
+  deleteCrowd(id) {
+    return this.http.delete(`${BASEURL}` + "crowdfund/delete/" + `${id}`);
+  }
+
+  updateCrowd(body) {
+    return this.http.put(`${BASEURL}` + "crowdfund/update", body);
+  }
 }

@@ -67,12 +67,36 @@ export class SingleCrowdComponent implements OnInit {
     this.modalService.dismissAll();
     this.snackbar.open("Link Copied", "OK", {
       duration: 3000,
-      verticalPosition: "top",
+      verticalPosition: "bottom",
       horizontalPosition: "center",
     });
   }
 
   open(content) {
     this.modalService.open(content, { centered: true });
+  }
+
+  deleteCrowdFund() {
+    this.crowdService.deleteCrowd(this.crowdID).subscribe(
+      (res) => {
+        this.router.navigate(["/crowds"]);
+        this.snackbar.open("Crowdfund successfully deleted", "OK", {
+          duration: 5000,
+          verticalPosition: "top",
+          horizontalPosition: "center",
+        });
+        this.modalService.dismissAll();
+      },
+      (err) => {
+        console.log(err);
+
+        this.snackbar.open(err.error.message, "Retry", {
+          duration: 5000,
+          verticalPosition: "top",
+          horizontalPosition: "center",
+        });
+        this.modalService.dismissAll();
+      }
+    );
   }
 }

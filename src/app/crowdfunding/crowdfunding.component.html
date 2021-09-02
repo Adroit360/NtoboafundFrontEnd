@@ -7,12 +7,13 @@
 
       <div class="container banner-content">
         <!-- <p class="banner-title">Crowdfund Your Business With Us</p> -->
-        <mat-card style="width: 40vw;">
+        <mat-card>
           <span class="title-tl">Raise more money from donors.</span>
           <p class="title-desc">Reach, engage, and mobilize your community with the Ghana's leading digital
             fundraising
             platform for crowdfunding</p>
-          <button mat-raised-button color="accent" routerLink="/add-crowdfunding" class="mr-2">Add Crowdfund</button>
+          <button mat-raised-button color="accent" routerLink="/add-crowdfunding" class="mr-2 add_btn">Add
+            Crowdfund</button>
           <button mat-stroked-button color="primary" routerLink='/crowds'>View Crowdfunds</button>
         </mat-card>
       </div>
@@ -86,11 +87,13 @@
                 <div [innerHTML]="crowd.description"></div>
               </div>
               <hr>
-              <span class="text-info">{{crowd.totalAmountRecieved |currency:'GH¢'}} Contributed</span>
-              <p>
-                <ngb-progressbar type="info" [value]="(crowd.totalAmountRecieved / crowd.totalAmount) * 100">
-                </ngb-progressbar>
-              </p>
+              <div class="contributed">
+                <span class="text-info">{{crowd.totalAmountRecieved |currency:'GH¢'}} Contributed</span>
+                <p>
+                  <ngb-progressbar type="info" [value]="(crowd.totalAmountRecieved / crowd.totalAmount) * 100">
+                  </ngb-progressbar>
+                </p>
+              </div>
             </mat-card-content>
           </mat-card>
         </div>

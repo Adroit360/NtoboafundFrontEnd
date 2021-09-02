@@ -25,9 +25,9 @@ app-busy {
   transform: translate(-50%, -50%);
   z-index: 0;
 }
-app-header {
-  color: white;
-}
+// app-header {
+//   color: white;
+// }
 .scholarship-body {
   position: relative;
   //padding-top: 6rem;
@@ -44,7 +44,6 @@ app-header {
     &__header {
       @include headerbox();
       &__left {
-        
         .main-header {
           background-color: transparent;
           color: white;
@@ -146,7 +145,9 @@ app-header {
                 height: 4rem;
                 line-height: 4rem;
                 overflow: hidden;
-                input{display: none;}
+                input {
+                  display: none;
+                }
                 input:checked {
                   & ~ .amount-item__left {
                     background-color: #0b5384;
@@ -165,8 +166,8 @@ app-header {
                 }
               }
             }
-            .arrow{
-              margin:2rem;
+            .arrow {
+              margin: 2rem;
             }
             .potential-returns {
               margin: 2rem;
@@ -179,25 +180,25 @@ app-header {
               border-radius: 0.5rem;
               text-align: center;
               color: rgb(44, 44, 44);
-              .returns{
+              .returns {
                 font-weight: bold;
               }
             }
             .proceed {
               .btn-trans {
-                background: #559A2C;
+                background: #559a2c;
                 font-size: 2rem;
                 font-weight: 700;
-                border: 1px solid #559A2C;
+                border: 1px solid #559a2c;
                 padding: 19px 20px;
                 text-transform: uppercase;
                 color: #fff;
                 transition: all 0.3s ease-in-out;
-                font-family: 'Montserrat', sans-serif;
+                font-family: "Montserrat", sans-serif;
                 line-height: 1;
-                &:hover{
+                &:hover {
                   background: #fff;
-                  color: #559A2C;
+                  color: #559a2c;
                 }
               }
             }

@@ -29,19 +29,21 @@ import { AddCrowdfundComponent } from "./crowdfunding/add-crowdfund/add-crowdfun
 import { SingleCrowdComponent } from "./crowdfunding/single-crowd/single-crowd.component";
 import { AuthGuard } from "src/guards/auth.guard";
 import { CrowdsComponent } from "./crowdfunding/crowds/crowds.component";
+import { EditCrowdfundComponent } from "./crowdfunding/edit-crowdfund/edit-crowdfund.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "crowdfunding", component: CrowdfundingComponent },
-  {path:'crowds', component:CrowdsComponent},
+  { path: "crowds", component: CrowdsComponent },
   {
     path: "add-crowdfunding",
     component: AddCrowdfundComponent,
     canActivate: [AuthGuard],
   },
   { path: "crowdfunding/:id", component: SingleCrowdComponent },
+  { path: "crowdfund/edit/:id", component: EditCrowdfundComponent },
   { path: "luckyme", component: LuckymeComponent },
   { path: "scholarship", component: ScholarshipComponent },
   { path: "business", component: BusinessComponent },

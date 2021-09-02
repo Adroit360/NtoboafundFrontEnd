@@ -16,6 +16,10 @@ img {
   max-height: 200px;
 }
 
-.mat-card {
-  height: 60vh;
+@media (max-width: 576px) {
+  .section_header {
+    h3 {
+      font-size: 20px;
+    }
+  }
 }

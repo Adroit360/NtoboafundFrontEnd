@@ -21,11 +21,13 @@
                 <div [innerHTML]="crowd.description"></div>
               </div>
               <hr>
-              <span class="text-info">{{crowd.totalAmountRecieved |currency:'GH¢'}} Contributed</span>
-              <p>
-                <ngb-progressbar type="info" [value]="(crowd.totalAmountRecieved / crowd.totalAmount) * 100">
-                </ngb-progressbar>
-              </p>
+              <div class="contributed">
+                <span class="text-info">{{crowd.totalAmountRecieved |currency:'GH¢'}} Contributed</span>
+                <p>
+                  <ngb-progressbar type="info" [value]="(crowd.totalAmountRecieved / crowd.totalAmount) * 100">
+                  </ngb-progressbar>
+                </p>
+              </div>
             </mat-card-content>
           </mat-card>
         </div>

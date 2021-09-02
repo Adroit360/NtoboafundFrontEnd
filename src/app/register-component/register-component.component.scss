@@ -1,9 +1,9 @@
 @import "../../styles/abstracts/mixins";
 @import "../../styles/abstracts/variables";
 
-app-header {
-  color: white;
-}
+// app-header {
+//   color: white;
+// }
 app-busy {
   position: absolute;
   z-index: var(--level-three);
@@ -147,6 +147,5 @@ app-busy {
         align-items: center;
       }
     }
-
   }
 }

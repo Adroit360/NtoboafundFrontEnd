@@ -91,6 +91,7 @@
 }
 
 mat-card {
+  width: 40vw;
   .title-tl {
     font-size: 30px;
     font-weight: 600;
@@ -173,5 +174,38 @@ mat-card {
 
   &:focus {
     outline: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner-content {
+    mat-card {
+      width: 200px;
+
+      .title-tl {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .title-desc {
+        font-size: 12px;
+      }
+
+      .add_btn {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .choose-use {
+    .features {
+      text-align: center;
+    }
+  }
+
+  .featured {
+    mat-card {
+      width: 100%;
+    }
   }
 }

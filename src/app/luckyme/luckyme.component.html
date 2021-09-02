@@ -318,34 +318,34 @@
         </ul>
         <div *ngIf="ddisplay == 'daily' && winnerSelectionService.groupedDailyLuckymeWinners">
           <div class="win-list winner-slider">
-              <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedDailyLuckymeWinners)" class="win-item">
-                <strong class="price">{{winnerSelectionService.groupedDailyLuckymeWinners[key][0].amountToWin}}</strong>
-                <span class="sign">GH₵</span>
-                <h5>{{winnerSelectionService.groupedDailyLuckymeWinners[key][0].userName}}</h5>
-                <p class="desc">{{key}}</p>
-              </div>
+            <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedDailyLuckymeWinners)" class="win-item">
+              <strong class="price">{{winnerSelectionService.groupedDailyLuckymeWinners[key][0].amountToWin}}</strong>
+              <span class="sign">GH₵</span>
+              <h5>{{winnerSelectionService.groupedDailyLuckymeWinners[key][0].userName}}</h5>
+              <p class="desc">{{key}}</p>
+            </div>
           </div>
         </div>
 
         <div *ngIf="ddisplay == 'weekly' && winnerSelectionService.groupedWeeklyLuckymeWinners">
           <div class="win-list winner-slider">
-              <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedWeeklyLuckymeWinners)" class="win-item">
-                <strong class="price">{{winnerSelectionService.groupedWeeklyLuckymeWinners[key][0].amountToWin}}</strong>
-                <span class="sign">GH₵</span>
-                <h5>{{winnerSelectionService.groupedWeeklyLuckymeWinners[key][0].userName}}</h5>
-                <p class="desc">{{key}}</p>
-              </div>
+            <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedWeeklyLuckymeWinners)" class="win-item">
+              <strong class="price">{{winnerSelectionService.groupedWeeklyLuckymeWinners[key][0].amountToWin}}</strong>
+              <span class="sign">GH₵</span>
+              <h5>{{winnerSelectionService.groupedWeeklyLuckymeWinners[key][0].userName}}</h5>
+              <p class="desc">{{key}}</p>
+            </div>
           </div>
         </div>
 
         <div *ngIf="ddisplay == 'monthly' && winnerSelectionService.groupedMonthlyLuckymeWinners">
           <div class="win-list winner-slider">
-              <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedMonthlyLuckymeWinners)" class="win-item">
-                <strong class="price">{{winnerSelectionService.groupedMonthlyLuckymeWinners[key][0].amountToWin}}</strong>
-                <span class="sign">GH₵</span>
-                <h5>{{winnerSelectionService.groupedMonthlyLuckymeWinners[key][0].userName}}</h5>
-                <p class="desc">{{key}}</p>
-              </div>
+            <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedMonthlyLuckymeWinners)" class="win-item">
+              <strong class="price">{{winnerSelectionService.groupedMonthlyLuckymeWinners[key][0].amountToWin}}</strong>
+              <span class="sign">GH₵</span>
+              <h5>{{winnerSelectionService.groupedMonthlyLuckymeWinners[key][0].userName}}</h5>
+              <p class="desc">{{key}}</p>
+            </div>
           </div>
         </div>
 
@@ -356,7 +356,7 @@
       <div class="win-prize">
         <span>Prizes Paid</span>
         <strong>GH₵ 220,000</strong>
-        <p>With Ntoboafund, the more you invest the better your chances of winning BIG!.</p>
+        <p>With Ntoboafund, the more you contribute the better your chances of winning BIG!.</p>
       </div>
     </div>
   </section>

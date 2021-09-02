@@ -1,18 +1,29 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { Router } from "@angular/router";
-import { AngularEditorConfig } from "@kolkov/angular-editor";
-import { NgbModal, NgbModalConfig } from "@ng-bootstrap/ng-bootstrap";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/services/authservice";
 import { CrowdFundService } from "src/services/crowdFund.service";
+import { Location } from "@angular/common";
+import { AngularEditorConfig } from "@kolkov/angular-editor";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
-  selector: "app-add-crowdfund",
-  templateUrl: "./add-crowdfund.component.html",
-  styleUrls: ["./add-crowdfund.component.scss"],
+  selector: "app-edit-crowdfund",
+  templateUrl: "./edit-crowdfund.component.html",
+  styleUrls: ["./edit-crowdfund.component.scss"],
 })
-export class AddCrowdfundComponent implements OnInit {
+export class EditCrowdfundComponent implements OnInit {
+  @ViewChild("loader") Loader: ElementRef;
+
+  userID: any;
+  crowdID: any;
+
+  crowdForm: FormGroup;
+  crowdFund: any;
+
+  loading: Boolean = false;
+  categories: any;
+
   mainImage: any;
   secondImage: any;
   thirdImage: any;
@@ -24,33 +35,31 @@ export class AddCrowdfundComponent implements OnInit {
   thirdPreview: any;
   videoPreview: any;
 
-  disabledAgreement: boolean = true;
-
-  crowdForm: FormGroup;
-  userId: any;
-
-  categories: any;
-  loading: Boolean = false;
-
-  minDate = new Date();
-
-  @ViewChild("loader") Loader: ElementRef;
+  urlLink = "https://ntoboafundwebapi.azurewebsites.net";
 
   constructor(
-    private modalService: NgbModal,
-    config: NgbModalConfig,
-    private crowdService: CrowdFundService,
-    private fb: FormBuilder,
-    private snackbar: MatSnackBar,
     private authService: AuthService,
-    private router: Router
-  ) {
-    config.backdrop = "static";
-    config.keyboard = false;
+    private crowdService: CrowdFundService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private location: Location,
+    private router: Router,
+    private snackbar: MatSnackBar
+  ) {}
+
+  ngOnInit() {
+    this.route.params.subscribe((res) => {
+      this.crowdID = res["id"];
+      this.getCrowdFund();
+    });
+
+    this.init();
+    this.getCategory();
   }
 
   init() {
     this.crowdForm = this.fb.group({
+      id: this.crowdID,
       title: ["", Validators.required],
       description: ["", Validators.required],
       mainImage: [""],
@@ -58,21 +67,14 @@ export class AddCrowdfundComponent implements OnInit {
       thirdImage: [""],
       videoUrl: [""],
       totalAmount: ["", Validators.required],
-      userId: this.userId,
       typeId: ["", Validators.required],
       endDate: ["", Validators.required],
     });
   }
 
-  ngOnInit() {
-    this.init();
-    this.getUser();
-    this.getCategory();
-  }
-
   async getUser() {
     const userid = await this.authService.currentUser;
-    this.userId = userid.id;
+    this.userID = userid;
   }
 
   async getCategory() {
@@ -82,55 +84,91 @@ export class AddCrowdfundComponent implements OnInit {
     this.categories = category;
   }
 
-  async addCrowdFund() {
+  getCrowdFund() {
+    this.crowdService.singleCrowd(this.crowdID).subscribe(
+      (res) => {
+        this.crowdFund = res;
+        console.log(this.crowdFund["endDate"]);
+        this.crowdForm.patchValue(this.crowdFund);
+      },
+      (err) => {
+        this.location.back();
+      }
+    );
+  }
+
+  async removeImage(section) {
+    this.loading = true;
+
+    const formData = new FormData();
+    formData.append(`${section}`, this.crowdForm.get(`${section}`).value);
+
+    await this.crowdService.updateCrowd(formData).subscribe(
+      (res) => {
+        this.getCrowdFund();
+        this.snackbar.open("Item reoved successfully", "OK", {
+          duration: 5000,
+          verticalPosition: "top",
+          horizontalPosition: "center",
+        });
+        this.loading = false;
+      },
+      (err) => {
+        this.snackbar.open("Item could not be removed", "Retry", {
+          duration: 5000,
+          verticalPosition: "bottom",
+          horizontalPosition: "center",
+        });
+        this.loading = false;
+      }
+    );
+  }
+
+  async editCrowdfund() {
     if (this.crowdForm.invalid) return;
 
     this.loading = true;
 
     const formData = new FormData();
+    formData.append("id", this.crowdForm.get("id").value);
     formData.append("title", this.crowdForm.get("title").value);
-    formData.append("mainImage", this.mainImage);
     formData.append("description", this.crowdForm.get("description").value);
     formData.append("totalAmount", this.crowdForm.get("totalAmount").value);
-    formData.append("userId", this.userId);
     formData.append("typeId", this.crowdForm.get("typeId").value);
     formData.append("endDate", this.crowdForm.get("endDate").value);
 
+    if (this.mainPreview) {
+      formData.append("mainImage", this.mainImage);
+    } else {
+      formData.append("mainImageUrl", this.crowdFund["mainImageUrl"]);
+    }
+
     if (this.secondPreview) {
       formData.append("secondImage", this.secondImage);
+    } else {
+      formData.append("secondImageUrl", this.crowdFund["secondImageUrl"]);
     }
 
     if (this.thirdPreview) {
       formData.append("thirdImage", this.thirdImage);
+    } else {
+      formData.append("thirdImageUrl", this.crowdFund["thirdImageUrl"]);
     }
 
     if (this.videoPreview) {
       formData.append("video", this.videoLink);
+    } else {
+      formData.append("videoUrl", this.crowdFund["videoUrl"]);
     }
 
-    // for (let i = 0; i < this.otherImage.length; i++) {
-    //   formData.append("otherImages", this.otherImage[i]);
-    // }
-
-    // console.log(formData.get("title"));
-    // console.log(formData.get("description"));
-    // console.log(formData.get("totalAmount"));
-    // console.log(formData.get("userId"));
-    // console.log(formData.get("typeId"));
-
-    await this.crowdService.addCrowdFund(formData).subscribe(
+    await this.crowdService.updateCrowd(formData).subscribe(
       (res) => {
         this.router.navigate([`/crowdfunding/${res["id"]}`]);
-        this.snackbar.open("Added Successfully", "OK", {
+        this.snackbar.open("Update Successfully", "OK", {
           duration: 3000,
           verticalPosition: "top",
           horizontalPosition: "right",
         });
-        // this.snackbar.open("Add Successfully", "OK", {
-        //   duration: 50000000,
-        //   verticalPosition: "top",
-        //   horizontalPosition: "center",
-        // });
         this.loading = false;
       },
       (err) => {
@@ -238,31 +276,5 @@ export class AddCrowdfundComponent implements OnInit {
   videoProgress(file: any) {
     this.videoLink = <File>file.target.files[0];
     this.video_preview();
-  }
-
-  // onFileChange(event) {
-  //   for (let i = 1; i < event.target.files.length; i++) {
-  //     this.otherImage.push(event.target.files[i]);
-  //   }
-
-  //   this.urls = [];
-  //   let files = event.target.files;
-  //   if (files) {
-  //     for (let file of files) {
-  //       let reader = new FileReader();
-  //       reader.readAsDataURL(file);
-  //       reader.onload = (e: any) => {
-  //         this.urls.push(e.target.result);
-  //       };
-  //     }
-  //   }
-  // }
-
-  changeCheck(event) {
-    this.disabledAgreement = !event.checked;
-  }
-
-  open(content) {
-    this.modalService.open(content);
   }
 }
