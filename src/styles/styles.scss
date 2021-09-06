@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 //Css Resets
 
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 @import "~@ag-grid-enterprise/all-modules/dist/styles/ag-grid.css";
 @import "~@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham.css";
 
@@ -40,30 +42,29 @@
 @import "base/responsive";
 
 ::-webkit-scrollbar {
-	width: 8px;
-    height: 8px;
+  width: 8px;
+  height: 8px;
   //  background-color: #F5F5F5;
 }
 
 ::-webkit-scrollbar-track {
-    background:transparent;
-    border:none;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: linear-gradient(to left, #fff, #e4e4e4);
-    border: 1px solid #aaa;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #fff;
-  }
-  
-  ::-webkit-scrollbar-thumb:active {
-    background: linear-gradient(to left, grey, rgba(grey,.8));
-  }
+  background: transparent;
+  border: none;
+}
 
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(to left, #fff, #e4e4e4);
+  border: 1px solid #aaa;
+}
 
-  // "angular-rave": "^1.2.1",
-  // "bootstrap": "^4.3.1",
+::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(to left, grey, rgba(grey, 0.8));
+}
+
+// "angular-rave": "^1.2.1",
+// "bootstrap": "^4.3.1",
