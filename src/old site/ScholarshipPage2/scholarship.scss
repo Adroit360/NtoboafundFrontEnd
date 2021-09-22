@@ -14,7 +14,12 @@ app-busy {
   background-size: cover;
   background-repeat: no-repeat;
   //background-image: linear-gradient(to bottom, rgb(4, 134, 0), white);
-  background-image: linear-gradient(to right,rgba(black,.5),rgba(black,.5)),url(../../assets/images/scholarship.jpg);
+  background-image: linear-gradient(
+      to right,
+      rgba(black, 0.5),
+      rgba(black, 0.5)
+    ),
+    url(../../assets/images/scholarship.jpg);
   //background-blend-mode: color;
   background-position: 0 20%;
   height: 100%;
@@ -24,10 +29,10 @@ app-busy {
   transform: translate(-50%, -50%);
   z-index: 0;
 }
-app-header {
-  color: white;
-}
-.scholarship-page {
+// app-header {
+//   color: white;
+// }
+.scholarship-body {
   //background-color: rgba(#00796b,.9);
   position: relative;
   //padding-top: 6rem;
@@ -45,7 +50,7 @@ app-header {
       &__left {
         .main-header {
           background-color: transparent;
-          color:white;
+          color: white;
           box-shadow: none;
         }
         .countdown {
@@ -55,7 +60,7 @@ app-header {
           .counters {
             .ctd {
               padding: 0.5rem 1rem;
-              background-color: rgba(white,.7);
+              background-color: rgba(white, 0.7);
               border-radius: 0.7rem;
               color: var(--dark);
               // &:first-child{color:#ff5d5d;}
@@ -74,7 +79,7 @@ app-header {
       flex-wrap: wrap;
       align-items: flex-start;
       background-color: white;
-      padding:3rem;
+      padding: 3rem;
       flex: 1 1 70%;
       .stake-box {
         //background-color: rgba(white, 0.9);
@@ -120,7 +125,7 @@ app-header {
             padding-bottom: 5rem;
             height: 100%;
             width: 100%;
-            &__head{
+            &__head {
               font-size: 2rem;
               @include underline();
             }
@@ -132,9 +137,9 @@ app-header {
                 justify-content: space-between;
                 transition: all 0.3s;
                 margin: 0rem;
-                &>*{
-                  margin:1rem;
-                  &:first-child{
+                & > * {
+                  margin: 1rem;
+                  &:first-child {
                     margin-right: 3rem;
                   }
                 }
@@ -233,7 +238,7 @@ app-header {
             .i-resign {
               float: left;
             }
-            .i-contribute {
+            .i-Invest {
               float: right;
               box-shadow: var(--shadow);
               & > * {

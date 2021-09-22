@@ -25,10 +25,10 @@ app-busy {
   transform: translate(-50%, -50%);
   z-index: 0;
 }
-app-header {
-  color: white;
-}
-.scholarship-page {
+// app-header {
+//   color: white;
+// }
+.scholarship-body {
   position: relative;
   //padding-top: 6rem;
   top: 6rem;
@@ -44,12 +44,10 @@ app-header {
     &__header {
       @include headerbox();
       &__left {
-        background-color: #003c0c;
         .main-header {
           background-color: transparent;
           color: white;
           box-shadow: none;
-          text-align: center;
         }
         // .countdown {
         //   .header {
@@ -93,11 +91,9 @@ app-header {
           display: none;
           &:checked {
             & ~ .stake-box__body > .stake-box__body__info {
-              opacity: 0;
               transform: translateX(-100%);
             }
             & ~ .stake-box__body > .stake-box__body__staker {
-              opacity: 1;
               transform: translateX(-100%);
             }
             & ~ .stake-box__body {
@@ -123,12 +119,16 @@ app-header {
             position: relative;
             height: 100%;
             width: 100%;
-            opacity: 1;
             &__head {
               position: absolute;
               top: 0;
-              text-align: center;
-              width: 100%;
+              left: 50%;
+              transform: translateX(-50%);
+              font-size: 1.5rem;
+              top: -3rem;
+              color: #5cb4ef;
+              text-transform: uppercase;
+              //@include underline();
             }
             .amount-box {
               display: flex;
@@ -172,7 +172,9 @@ app-header {
             .potential-returns {
               margin: 2rem;
               flex-grow: 1;
+              display: flex;
               align-items: center;
+              justify-content: center;
               color: var(--light);
               padding: 1.5rem;
               border-radius: 0.5rem;
@@ -183,10 +185,6 @@ app-header {
               }
             }
             .proceed {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              align-self: flex-start;
               .btn-trans {
                 background: #559a2c;
                 font-size: 2rem;
@@ -205,34 +203,6 @@ app-header {
               }
             }
           }
-          @media screen and (max-width: 1070px) {
-            &__info {
-              flex-direction: column;
-              padding-top: 2rem;
-              &__head {
-              }
-              .amount-box {
-                width: 100%;
-                  justify-content: center;
-                .amount-item {
-                  
-                }
-              }
-              .arrow {
-                margin: 2rem;
-                transform: rotate(90deg);
-              }
-              .potential-returns {
-                .returns {
-                }
-              }
-              .proceed {
-                align-self: center;
-                .btn-trans {
-                }
-              }
-            }
-          }
           &__staker {
             display: flex;
             flex-direction: column;
@@ -247,7 +217,6 @@ app-header {
             height: 100%;
             overflow: hidden;
             //padding: 1rem;
-            opacity: 0;
             .form-group {
               margin: 0.5rem !important;
               & > span {
@@ -296,7 +265,7 @@ app-header {
             .i-resign {
               float: left;
             }
-            .i-contribute {
+            .i-Invest {
               float: right;
               box-shadow: var(--shadow);
               & > * {
@@ -318,7 +287,7 @@ app-header {
           margin: 0.5rem;
         }
         //@include clearfix;
-    }
+      }
       @media (max-width: 1020px) {
         &left {
           min-width: 100%;

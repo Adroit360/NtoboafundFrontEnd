@@ -7,16 +7,17 @@
 
       <div class="container banner-content">
         <!-- <p class="banner-title">Crowdfund Your Business With Us</p> -->
-        <mat-card style="width: 40vw;">
+        <mat-card class="banner_card">
           <span class="title-tl">Raise more money from donors.</span>
           <p class="title-desc">Reach, engage, and mobilize your community with the Ghana's leading digital
             fundraising
             platform for crowdfunding</p>
-          <button mat-raised-button color="accent" routerLink="/add-crowdfunding">Add Crowdfund</button>
+          <button mat-raised-button color="accent" routerLink="/add-crowdfunding" class="mr-2 add_btn">Add
+            Crowdfund</button>
+          <button mat-stroked-button color="primary" routerLink='/crowds'>View Crowdfunds</button>
         </mat-card>
       </div>
     </div>
-
 
     <div class="choose-use container">
       <div class="row">
@@ -72,33 +73,30 @@
 
       <h2 class="text-black h1 site-section-heading text-center">Featured CrowdFund</h2>
 
-      <div class="row">
-        <div class="col-lg-4 pb-4" routerLink="/crowdfunding/1">
+      <div class="row" *ngIf="crowdFund;else spinner">
+        <div class="col-lg-4 pb-4" *ngFor="let crowd of crowdFund" routerLink="/crowdfunding/{{crowd.id}}">
           <mat-card>
-            <img mat-card-image src="https://d2g8igdw686xgo.cloudfront.net/57616471_1623017622550747_r.jpeg"
-              alt="Photo of a Shiba Inu">
+            <img mat-card-image [src]="urlLink + crowd.mainImageUrl">
             <mat-card-content>
               <span class="font-weight-bold">Title</span>
-              <p>Funeral Expense and immediate support</p>
+              <p>{{crowd.title}}</p>
               <br>
               <span class="font-weight-bold">Description</span>
-              <div class="inner">
-                <p>It is with deep sadness Nepal Center of North Carolina, Inc. announces the death of our beloved
-                  community member,
-                  Bharat Raj Oli.
-                  Bharat Raj Oli was admitted to Duke University Hospital on June 4,
-                  2021 with a large intracranial hemorrhage or brain bleed...</p>
+              <div class="crowd_description">
+                <div [innerHTML]="crowd.description"></div>
               </div>
               <hr>
-              <span class="text-info">80% Funds Contributed</span>
-              <div class="progress">
-                <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80"
-                  aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="contributed">
+                <span class="text-info">{{crowd.totalAmountRecieved |currency:'GH¢'}} Contributed</span>
+                <p>
+                  <ngb-progressbar type="info" [value]="(crowd.totalAmountRecieved / crowd.totalAmount) * 100">
+                  </ngb-progressbar>
+                </p>
               </div>
             </mat-card-content>
           </mat-card>
         </div>
-        <div class="col-lg-4 pb-4" routerLink="/crowdfunding/1">
+        <!-- <div class="col-lg-4 pb-4" routerLink="/crowdfunding/1">
           <mat-card>
             <img mat-card-image
               src="https://images.gofundme.com/dfXRmIu9AbgTq_f_OXkUalXX_fA=/720x405/https://d2g8igdw686xgo.cloudfront.net/57329171_1622136604154854_r.jpeg"
@@ -144,10 +142,17 @@
               </div>
             </mat-card-content>
           </mat-card>
-        </div>
+        </div> -->
       </div>
-    </div>
 
+      <div class="text-center mt-5">
+        <a routerLink="/crowds" class="boxed-btn">Browse All CrowdFunds</a>
+      </div>
+
+      <ng-template #spinner>
+        <app-spinner></app-spinner>
+      </ng-template>
+    </div>
 
     <div class="container">
       <div class="section border-top">
@@ -183,9 +188,5 @@
         </div>
       </div>
     </div>
-
   </div>
-
-  <app-footer></app-footer>
-
 </section>

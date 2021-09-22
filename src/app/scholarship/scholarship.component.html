@@ -2,14 +2,14 @@
 
 <div class="scholarship-bg"></div>
 <app-header></app-header>
-<div class="scholarship-page">
-  <div class="scholarship-page__content">
-    <div class="scholarship-page__content__header">
-      <div class="scholarship-page__content__header__left">
-        <h2 class="main-header">WOULD YOU LIKE TO CONTRIBUTE TO OUR SCHOLARSHIP FUND?</h2>
-        <!-- <h3 class="sub-header">contribute Today, Win For Society</h3> -->
+<div class="scholarship-body">
+  <div class="scholarship-body__content">
+    <div class="scholarship-body__content__header">
+      <div class="scholarship-body__content__header__left">
+        <h6 class="main-header">WOULD YOU LIKE TO CONTRIBUTE IN OUR SCHOLARSHIP FUND?</h6>
+        <!-- <h3 class="sub-header">Invest Today, Win For Society</h3> -->
         <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && scholarshipSeconds>=0" class="countdown">
-          <p class="desc header">The next Scholarship Fund winners get selected in </p>
+          <div class="header">The next Scholarship Fund winners get selected in </div>
           <div class="counters">
             <!-- <div class="ctd">{{scholarshipDays}} <span>Days</span></div> -->
             <div class="ctd">{{scholarshipDays}} <span>Days</span></div>
@@ -54,7 +54,7 @@
         </div>
       </div>
     </div>
-    <div id="stake-center" class="scholarship-page__content__middle">
+    <div id="stake-center" class="scholarship-body__content__middle">
       <div *ngIf="(winnerSelectionService.isQuaterlyDrawOngoing  | async)" class="ongoingdraw">
         <div class="header">Scholarship Draw is ongoing</div>
         <div class="drawbox">
@@ -92,13 +92,12 @@
         <input #stakeboxcontroller type="checkbox" id="stakeboxcontroller">
         <div class="stake-box__body">
           <div class="stake-box__body__info">
-            <h6 class="stake-box__body__info__head text-center">CHOOSE AN OPTION TO CONTRIBUTE
-            </h6>
-            <div class="amount-box business-steps">
-              <h6 class="step-title">1. Select the amount you would like to contribute</h6>
+            <div class="stake-box__body__info__head">Select The Amount You Would Like To
+              Invest
+            </div>
+            <div class="amount-box">
               <label for="20" class="amount-item">
-                <input (change)="selectAmount(20)" [value]="20" [(ngModel)]="selectedAmount" id="20" name="amount"
-                  type="radio">
+                <input (change)="selectAmount(20)" id="20" name="amount" type="radio">
                 <div class="amount-item__left">
                   <p>GH₵ 20</p>
                 </div>
@@ -109,8 +108,7 @@
                 </div>
               </label>
               <label for="50" class="amount-item">
-                <input (change)="selectAmount(50)" [value]="50" [(ngModel)]="selectedAmount" id="50" name="amount"
-                  type="radio">
+                <input (change)="selectAmount(50)" id="50" name="amount" type="radio">
                 <div class="amount-item__left">
                   <p>GH₵ 50</p>
                 </div>
@@ -121,8 +119,7 @@
                 </div>
               </label>
               <label for="100" class="amount-item">
-                <input (change)="selectAmount(100)" [value]="100" [(ngModel)]="selectedAmount" id="100" name="amount"
-                  type="radio">
+                <input (change)="selectAmount(100)" id="100" name="amount" type="radio">
                 <div class="amount-item__left">
                   <p>GH₵ 100</p>
                 </div>
@@ -136,21 +133,16 @@
             <div class="arrow">
               <img src="assets/svgs/step-arrow.svg" alt="">
             </div>
-            <div class="potential-returns business-steps">
-              <!-- <h6 class="step-title">2. SELECT Contribution PERIOD</h6> -->
-              <div style="color:#f44336;" *ngIf="error" class="potential-returns">{{error}}
-              </div>
-              <div *ngIf="!error" class="potential-returns">Potential returns for this contribution option is
-                <span *ngIf="potentialReturns" class="returns">{{potentialReturns}}</span>
-              </div>
+            <div style="color:#f44336;" *ngIf="error" class="potential-returns">{{error}}
             </div>
-
+            <div *ngIf="!error" class="potential-returns">Potential returns for this contribution option is
+              <span *ngIf="potentialReturns" class="returns">{{potentialReturns}}</span>
+            </div>
             <div class="arrow">
               <img src="assets/svgs/step-arrow.svg" alt="">
             </div>
-            <div class="proceed business-steps">
-              <h6 class="step-title">2. PRESS Proceed BUTTON AND START</h6>
-              <label for="stakeboxcontroller" class="btn-trans i-want" (click)="proceed($event)">proceed
+            <div class="proceed">
+              <label for="stakeboxcontroller" class="btn-trans i-want" (click)="proceed($event)">Proceed
                 <span>&rarr;</span></label>
             </div>
           </div>
@@ -188,12 +180,11 @@
                   <label for="exampleInputStudentId">Select your player type</label>
                   <div class="flatradios">
                     <label class="flatradio-choice" for="student">
-                      <input type="radio" [value]="'student'" formControlName="PlayerType" name="PlayerType"
-                        id="student">
+                      <input type="radio" value="student" formControlName="PlayerType" name="PlayerType" id="student">
                       <div class="text">Student</div>
                     </label>
                     <label class="flatradio-choice" for="parent">
-                      <input type="radio" [value]="'parent'" formControlName="PlayerType" name="PlayerType" id="parent">
+                      <input type="radio" value="parent" formControlName="PlayerType" name="PlayerType" id="parent">
                       <div class="text">Parent/Guardian</div>
                     </label>
                   </div>
@@ -208,7 +199,7 @@
             </div>
             <div class="footer">
               <label for="stakeboxcontroller" class="btn-trans i-resign"><span>&larr;</span>Back</label>
-              <label (click)="paymentInitialized()" class="btn-trans">Contribute<span>&rarr;</span></label>
+              <label (click)="paymentInitialized()" class="btn-trans">Proceed<span>&rarr;</span></label>
             </div>
           </div>
         </div>

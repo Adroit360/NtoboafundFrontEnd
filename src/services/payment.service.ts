@@ -26,7 +26,7 @@ export class PaymentService {
                 customer_email: user.email,
                 customer_firstname: user.firstName,
                 customer_lastname: user.lastName,
-                custom_description: `Payment for ${stakeType} stake`,
+                custom_description: `Payment for ${stakeType}`,
                 amount: amount,
                 currency: "GHS",
                 country: "GH",
@@ -80,6 +80,13 @@ export class PaymentService {
         return this.http.post(`${settings.currentApiUrl}/transaction/addpaymentrecord`,paymentRecord);
     }
 
+    addPayment(stakeTypeShortName:string,amount,transactionId,transferId){
+        let payerId = this.authService.currentUser.id;
+        let paymentRecord = {amount,transactionId,transferId,stakeTypeShortName,payerId};
+        console.log("paymentrecord",paymentRecord);
+        return this.http.post(`${settings.currentApiUrl}/transaction/addpayment`,paymentRecord);
+    }
+
     getPaymentByDetails(itemPayedFor,itemPayedForId):Observable<any>{
         return this.http.get(`${settings.currentApiUrl}/payments/bydetails/${itemPayedFor}/${itemPayedForId}`);
     }
@@ -98,5 +105,5 @@ export class PaymentService {
            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
            return v.toString(16);
         });
-     }
+    }
 }

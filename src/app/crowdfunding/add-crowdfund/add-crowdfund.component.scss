@@ -46,3 +46,13 @@ input {
   margin: 0;
   height: auto;
 }
+
+// app-header {
+//   color: white;
+// }
+
+@media (max-width: 576px) {
+  h6 {
+    font-size: 15px;
+  }
+}

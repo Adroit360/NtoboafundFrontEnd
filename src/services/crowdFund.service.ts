@@ -1,16 +1,29 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import { ICrowd } from "src/models/crowdFund";
+
+const BASEURL = "https://ntoboafundwebapi.azurewebsites.net/api/";
 
 @Injectable({ providedIn: "root" })
-export class CrowdFund {
-  _url = "src/_data/crowd_fund_demo.json";
-
+export class CrowdFundService {
   constructor(private http: HttpClient) {}
 
-  getCrowd(): Observable<ICrowd[]> {
-    return this.http.get<ICrowd[]>("src/_data/crowd_fund_demo.json");
+  addCrowdFund(body) {
+    return this.http.post(`${BASEURL}` + "crowdfund/add", body);
+  }
+
+  getCrowd(link) {
+    return this.http.get(`${BASEURL}` + link);
+  }
+
+  singleCrowd(id) {
+    return this.http.get(`${BASEURL}` + "crowdfund/single/" + `${id}`);
+  }
+
+  deleteCrowd(id) {
+    return this.http.delete(`${BASEURL}` + "crowdfund/delete/" + `${id}`);
+  }
+
+  updateCrowd(body) {
+    return this.http.put(`${BASEURL}` + "crowdfund/update", body);
   }
 }

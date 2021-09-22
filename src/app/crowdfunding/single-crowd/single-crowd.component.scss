@@ -8,6 +8,7 @@ section {
 
   .page-header {
     margin-bottom: 30px;
+    border-bottom: 1px solid lightgray;
 
     .pageheader-title {
       font-size: 24px;
@@ -16,7 +17,6 @@ section {
       text-align: start;
       margin-top: 20px;
       padding: 0;
-      border-bottom: 1px solid lightgray;
     }
   }
 
@@ -86,4 +86,16 @@ section {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+}
+
+video {
+  width: 100%;
+}
+
+.btn_edit {
+  color: #198754;
+}
+
+.btn_delete {
+  color: red;
 }

@@ -63,6 +63,9 @@ import { SingleCrowdComponent } from './crowdfunding/single-crowd/single-crowd.c
 import { HowitworksComponent } from "./howitworks/howitworks.component";
 import { ContactComponent } from "./contact/contact.component";
 import { SharedModule } from "./shared/shared.module";
+import { SpinnerComponent } from './spinner/spinner.component';
+import { CrowdsComponent } from './crowdfunding/crowds/crowds.component';
+import { EditCrowdfundComponent } from './crowdfunding/edit-crowdfund/edit-crowdfund.component';
 //import {CarouselModule} from "angular2-carousel";
 
 @NgModule({
@@ -104,6 +107,9 @@ import { SharedModule } from "./shared/shared.module";
     CrowdfundingComponent,
     AddCrowdfundComponent,
     SingleCrowdComponent,
+    SpinnerComponent,
+    CrowdsComponent,
+    EditCrowdfundComponent,
   ],
   imports: [
     BrowserModule,

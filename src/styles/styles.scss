@@ -66,5 +66,13 @@
   background: linear-gradient(to left, grey, rgba(grey, 0.8));
 }
 
+.crowd_description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
 // "angular-rave": "^1.2.1",
 // "bootstrap": "^4.3.1",

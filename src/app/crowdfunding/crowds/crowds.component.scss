@@ -1,0 +1,25 @@
+.page_section {
+  z-index: var(--level-two);
+  position: relative;
+  margin-top: 6rem;
+  height: calc(100vh - 6rem);
+  width: calc(100vw);
+  overflow: auto;
+  padding: 0 50px;
+
+  .section_header {
+    padding-top: 20px;
+  }
+}
+
+img {
+  max-height: 200px;
+}
+
+@media (max-width: 576px) {
+  .section_header {
+    h3 {
+      font-size: 20px;
+    }
+  }
+}

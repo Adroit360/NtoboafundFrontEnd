@@ -57,8 +57,8 @@
                               <p>Mutiply Choice By 5</p>
                               <p>5 Cedis for 5000</p>
                             </div> -->
-            <input id="rone" value="1" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
-              name="choice" />
+            <input id="rone" value="1" [(ngModel)]="selectedChoice" (change)="resetTxRef()"
+              class="choice-selector__radio" type="radio" name="choice" />
             <label for="rone" class="choice-selector__background">
               <label for="rone" class="choice-selector">
                 <div class="returns">{{getReturnsText(1)}}</div>
@@ -72,11 +72,11 @@
                           <p>Mutiply Choice By 5</p>
                           <p>5 Cedis for 5000</p>
                         </div> -->
-            <input id="rfive" value="5" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
-              name="choice" />
+            <input id="rfive" value="5" [(ngModel)]="selectedChoice" (change)="resetTxRef()"
+              class="choice-selector__radio" type="radio" name="choice" />
             <label for="rfive" class="choice-selector__background">
               <label for="rfive" class="choice-selector">
-                  <div class="returns">{{getReturnsText(5)}}</div>
+                <div class="returns">{{getReturnsText(5)}}</div>
               </label>
             </label>
 
@@ -87,11 +87,11 @@
                           <p>Mutiply Choice By 5</p>
                           <p>5 Cedis for 5000</p>
                         </div> -->
-            <input id="rten" value="10" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
-              name="choice" />
+            <input id="rten" value="10" [(ngModel)]="selectedChoice" (change)="resetTxRef()"
+              class="choice-selector__radio" type="radio" name="choice" />
             <label for="rten" class="choice-selector__background">
               <label for="rten" class="choice-selector">
-                  <div class="returns">{{getReturnsText(10)}}</div>
+                <div class="returns">{{getReturnsText(10)}}</div>
               </label>
 
             </label>
@@ -103,12 +103,12 @@
                           <p>Mutiply Choice By 5</p>
                           <p>5 Cedis for 5000</p>
                         </div> -->
-            <input id="rtwenty" value="20" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
-              name="choice" />
+            <input id="rtwenty" value="20" [(ngModel)]="selectedChoice" (change)="resetTxRef()"
+              class="choice-selector__radio" type="radio" name="choice" />
             <label for="rtwenty" class="choice-selector__background">
 
               <label for="rtwenty" class="choice-selector">
-                  <div class="returns">{{getReturnsText(20)}}</div>
+                <div class="returns">{{getReturnsText(20)}}</div>
               </label>
             </label>
 
@@ -119,10 +119,12 @@
                           <p>Mutiply Choice By 5</p>
                           <p>5 Cedis for 5000</p>
                         </div> -->
-            <input id="rfifty"value="50" [(ngModel)]="selectedChoice"  (change)="resetTxRef()" class="choice-selector__radio" type="radio"
-              name="choice" />
+            <input id="rfifty" value="50" [(ngModel)]="selectedChoice" (change)="resetTxRef()"
+              class="choice-selector__radio" type="radio" name="choice" />
             <label for="rfifty" class="choice-selector__background">
-              <label for="rfifty" class="choice-selector"><div class="returns">{{getReturnsText(50)}}</div></label>
+              <label for="rfifty" class="choice-selector">
+                <div class="returns">{{getReturnsText(50)}}</div>
+              </label>
             </label>
           </div>
           <div class="choice-box">
@@ -131,12 +133,12 @@
                           <p>Mutiply Choice By 5</p>
                           <p>5 Cedis for 5000</p>
                         </div> -->
-            <input id="rhundred" value="100" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
-              name="choice" />
+            <input id="rhundred" value="100" [(ngModel)]="selectedChoice" (change)="resetTxRef()"
+              class="choice-selector__radio" type="radio" name="choice" />
             <label for="rhundred" class="choice-selector__background">
 
               <label for="rhundred" class="choice-selector">
-                  <div class="returns">{{getReturnsText(100)}}</div>
+                <div class="returns">{{getReturnsText(100)}}</div>
               </label>
             </label>
 
@@ -147,11 +149,11 @@
                           <p>Mutiply Choice By 5</p>
                           <p>5 Cedis for 5000</p>
                         </div> -->
-            <input id="rfivehundred" value="500" [(ngModel)]="selectedChoice" (change)="resetTxRef()" class="choice-selector__radio" type="radio"
-              name="choice" />
+            <input id="rfivehundred" value="500" [(ngModel)]="selectedChoice" (change)="resetTxRef()"
+              class="choice-selector__radio" type="radio" name="choice" />
             <label for="rfivehundred" class="choice-selector__background">
               <label for="rfivehundred" class="choice-selector">
-                  <div class="returns">{{getReturnsText(500)}}</div>
+                <div class="returns">{{getReturnsText(500)}}</div>
               </label>
 
             </label>
@@ -163,15 +165,18 @@
           <div class="body">
             <div class="flatradios">
               <label class="flatradio-choice" for="dailyperiod">
-                <input type="radio" value="daily" [(ngModel)]="selectedPeriod" (change)="resetTxRef()" name="period" id="dailyperiod">
+                <input type="radio" value="daily" [(ngModel)]="selectedPeriod" (change)="resetTxRef()" name="period"
+                  id="dailyperiod">
                 <div class="text">Daily</div>
               </label>
               <label class="flatradio-choice" for="weeklyperiod">
-                <input type="radio" value="weekly" [(ngModel)]="selectedPeriod" (change)="resetTxRef()" name="period" id="weeklyperiod">
+                <input type="radio" value="weekly" [(ngModel)]="selectedPeriod" (change)="resetTxRef()" name="period"
+                  id="weeklyperiod">
                 <div class="text">Weekly</div>
               </label>
               <label class="flatradio-choice" for="monthlyperiod">
-                <input type="radio" value="monthly" [(ngModel)]="selectedPeriod" ((change)="resetTxRef()" name="period" id="monthlyperiod">
+                <input type="radio" value="monthly" [(ngModel)]="selectedPeriod" ((change)="resetTxRef()" name="period"
+                  id="monthlyperiod">
                 <div class="text">Monthly</div>
               </label>
             </div>
@@ -183,67 +188,70 @@
           class="payment-pane">
 
           <!-- <a *ngIf="settings.paymentGateway=='flutterwave'" angular-rave #ravepaybtn [raveOptions]="raveOptions" class="transbtn" (callback)="luckymePaymentCallback($event)"
-            (close)="paymentFailed()" (init)="paymentInitialized()">contribute
+            (close)="paymentFailed()" (init)="paymentInitialized()">Invest
           </a> -->
 
-          <a *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'"  class="transbtn" (click)="paymentInitialized()">contribute
+          <a *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'" class="transbtn"
+            (click)="paymentInitialized()">Invest
           </a>
         </div>
       </div>
 
       <div class="howto">
-          <div class="tab-box">
-              <ul class="nav nav-tabs">
-                <li class="nav-item active">
-                  <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How To contribute</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#where" role="tab" data-toggle="tab">The Must Knows</a>
-                </li>
-              </ul>
-              <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in show active" id="how">
-                  <div class="panel" style="background-color: rgb(255, 166, 0);color:black">
-                    <div class="number">1</div>
-                    <div class="text">Select the amount you wish to contribute and choose a peroid</div>
-                  </div>
-                  <div class="panel" style="background-color: #f06292">
-                    <div class="number">2</div>
-                    <div class="text">Press the "contribute" button to proceed to payment</div>
-                  </div>
-                  <div class="panel" style="background-color: #01c851">
-                    <div class="number">3</div>
-                    <div class="text">Choose mode of payment, enter details and click "continue"</div>
-                  </div>
-                  <div class="panel" style="background-color: #7383a7">
-                    <div class="number">4</div>
-                    <div class="text">Follow the displayed guideline to complete the contribution process</div>
-                  </div>
-                  <div class="panel" style="background-color: #a563c7">
-                    <div class="number">5</div>
-                    <div class="text">Winners would be announced at the end of the draw.</div>
-                  </div>
-                      </div>
-                <div role="tabpanel" class="tab-pane fade" id="where">
-                  <div class="panel" style="background-color: rgb(138, 112, 63)">
-                    <div class="number">*</div>
-                    <div class="text">Lucky winners are announced daily, weekly and monthly</div>
-                  </div>
-                  <div class="panel" style="background-color: #9aa349">
-                    <div class="number">*</div>
-                    <div class="text">Winners would be paid via stated payment reception method. eg. mobile money or bank account</div>
-                  </div>
-                  <div class="panel" style="background-color: #399191">
-                    <div class="number">*</div>
-                    <div class="text">Staked Amount is non refundable</div>
-                  </div>
-                  <div class="panel" style="background-color: #324675">
-                    <div class="number">*</div>
-                    <div class="text">Luckyme contributions has seven contribution amounts i.e GH₵ 1, GH₵ 5, GH₵ 10, GH₵ 20, GH₵ 50, GH₵ 100, GH₵ 5i00</div>
-                  </div>
-                      </div>
+        <div class="tab-box">
+          <ul class="nav nav-tabs">
+            <li class="nav-item active">
+              <a class="nav-link active" href="#how" role="tab" data-toggle="tab">How To Invest</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#where" role="tab" data-toggle="tab">The Must Knows</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in show active" id="how">
+              <div class="panel" style="background-color: rgb(255, 166, 0);color:black">
+                <div class="number">1</div>
+                <div class="text">Select the amount you wish to contribute and choose a peroid</div>
+              </div>
+              <div class="panel" style="background-color: #f06292">
+                <div class="number">2</div>
+                <div class="text">Press the "Invest" button to proceed to payment</div>
+              </div>
+              <div class="panel" style="background-color: #01c851">
+                <div class="number">3</div>
+                <div class="text">Choose mode of payment, enter details and click "continue"</div>
+              </div>
+              <div class="panel" style="background-color: #7383a7">
+                <div class="number">4</div>
+                <div class="text">Follow the displayed guideline to complete the contribution process</div>
+              </div>
+              <div class="panel" style="background-color: #a563c7">
+                <div class="number">5</div>
+                <div class="text">Winners would be announced at the end of the draw.</div>
               </div>
             </div>
+            <div role="tabpanel" class="tab-pane fade" id="where">
+              <div class="panel" style="background-color: rgb(138, 112, 63)">
+                <div class="number">*</div>
+                <div class="text">Lucky winners are announced daily, weekly and monthly</div>
+              </div>
+              <div class="panel" style="background-color: #9aa349">
+                <div class="number">*</div>
+                <div class="text">Winners would be paid via stated payment reception method. eg. mobile money or bank
+                  account</div>
+              </div>
+              <div class="panel" style="background-color: #399191">
+                <div class="number">*</div>
+                <div class="text">Staked Amount is non refundable</div>
+              </div>
+              <div class="panel" style="background-color: #324675">
+                <div class="number">*</div>
+                <div class="text">Luckyme has seven contribution amounts i.e GH₵ 1, GH₵ 5, GH₵ 10, GH₵ 20,
+                  GH₵ 50, GH₵ 100, GH₵ 5i00</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -293,15 +301,17 @@
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade show in active" id="daily">
 
-                  <div *ngIf="!winnerSelectionService.isDailyDrawOngoing  && winnerSelectionService.currentDailyLuckymeWinners" class="winnerbox">
-                      <div class="title">Latest Daily Luckyme Winners</div>
-                      <div class="body">
-                        <div *ngFor="let winner of winnerSelectionService.currentDailyLuckymeWinners" class="winner">
-                          <span>{{winner.userName}}</span>
-                        </div>
-                      </div>
+                <div
+                  *ngIf="!winnerSelectionService.isDailyDrawOngoing  && winnerSelectionService.currentDailyLuckymeWinners"
+                  class="winnerbox">
+                  <div class="title">Latest Daily Luckyme Winners</div>
+                  <div class="body">
+                    <div *ngFor="let winner of winnerSelectionService.currentDailyLuckymeWinners" class="winner">
+                      <span>{{winner.userName}}</span>
                     </div>
-          
+                  </div>
+                </div>
+
                 <div *ngIf="!winnerSelectionService.isDailyDrawOngoing" class="winner-group">
                   <div *ngFor="let participant of signalRService.dailyLuckymeParticipants" class="winner-item">
                     <div class="winner-item__description">
@@ -338,19 +348,22 @@
                   </div>
                 </div>
 
-                <div class="p-winnerscount">{{signalRService.potentialDailyLuckymeWinnersCount}} potential winner<span *ngIf="signalRService.potentialDailyLuckymeWinnersCount != 1">s</span></div>
+                <div class="p-winnerscount">{{signalRService.potentialDailyLuckymeWinnersCount}} potential winner<span
+                    *ngIf="signalRService.potentialDailyLuckymeWinnersCount != 1">s</span></div>
 
               </div>
               <div role="tabpanel" class="tab-pane fade" id="weekly">
-           
-                <div *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && winnerSelectionService.currentWeeklyLuckymeWinners" class="winnerbox">
-                    <div class="title">Latest Weekly Luckyme Winners</div>
-                    <div class="body">
-                      <div *ngFor="let winner of winnerSelectionService.currentWeeklyLuckymeWinners" class="winner">
-                        <span>{{winner.userName}}</span>
-                      </div>
+
+                <div
+                  *ngIf="!winnerSelectionService.isWeeklyDrawOngoing && winnerSelectionService.currentWeeklyLuckymeWinners"
+                  class="winnerbox">
+                  <div class="title">Latest Weekly Luckyme Winners</div>
+                  <div class="body">
+                    <div *ngFor="let winner of winnerSelectionService.currentWeeklyLuckymeWinners" class="winner">
+                      <span>{{winner.userName}}</span>
                     </div>
                   </div>
+                </div>
 
 
                 <div *ngIf="!winnerSelectionService.isWeeklyDrawOngoing" class="winner-group">
@@ -391,19 +404,22 @@
                   </div>
                 </div>
 
-                <div class="p-winnerscount">{{signalRService.potentialWeeklyLuckymeWinnersCount}} potential winner<span *ngIf="signalRService.potentialWeeklyLuckymeWinnersCount != 1">s</span></div>
+                <div class="p-winnerscount">{{signalRService.potentialWeeklyLuckymeWinnersCount}} potential winner<span
+                    *ngIf="signalRService.potentialWeeklyLuckymeWinnersCount != 1">s</span></div>
 
               </div>
               <div role="tabpanel" class="tab-pane fade" id="monthly">
-               
-                <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentMonthlyLuckymeWinners" class="winnerbox">
-                    <div class="title">Latest Weekly Luckyme Winners</div>
-                    <div class="body">
-                      <div *ngFor="let winner of winnerSelectionService.currentMonthlyLuckymeWinners" class="winner">
-                        <span>{{winner.userName}}</span>
-                      </div>
+
+                <div
+                  *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentMonthlyLuckymeWinners"
+                  class="winnerbox">
+                  <div class="title">Latest Weekly Luckyme Winners</div>
+                  <div class="body">
+                    <div *ngFor="let winner of winnerSelectionService.currentMonthlyLuckymeWinners" class="winner">
+                      <span>{{winner.userName}}</span>
                     </div>
                   </div>
+                </div>
 
                 <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="winner-group">
                   <!-- *ngFor="let winner of winnings[key]" -->
@@ -443,7 +459,8 @@
                   </div>
                 </div>
 
-                <div class="p-winnerscount">{{signalRService.potentialMonthlyLuckymeWinnersCount}} potential winner<span *ngIf="signalRService.potentialMonthlyLuckymeWinnersCount != 1">s</span></div>
+                <div class="p-winnerscount">{{signalRService.potentialMonthlyLuckymeWinnersCount}} potential winner<span
+                    *ngIf="signalRService.potentialMonthlyLuckymeWinnersCount != 1">s</span></div>
 
               </div>
             </div>
@@ -511,25 +528,26 @@
                 </div>
               </div>
               <div role="tabpanel" class="tab-pane fade" id="monthly-winner">
-                  <div *ngIf="winnerSelectionService.groupedMonthlyLuckymeWinners">
-                      <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedMonthlyLuckymeWinners)"
-                        class="winner-group">
-                        <div class="winner-group__header">
-                          {{key}}
-                        </div>
-                        <div *ngFor="let winner of winnerSelectionService.groupedMonthlyLuckymeWinners[key]" class="winner-item">
-                          <div class="winner-item__description">
-                            <span class="winner-name">{{winner.userName}}</span>
-                            <span *ngIf="winner.amountToWin" class="winning-details">
-                              <span class="amount-won"> Won <span class="period"> </span>GH₵
-                                {{winner.amountToWin}}</span>
-                              <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
-                            </span>
-                          </div>
-                        </div>
+                <div *ngIf="winnerSelectionService.groupedMonthlyLuckymeWinners">
+                  <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedMonthlyLuckymeWinners)"
+                    class="winner-group">
+                    <div class="winner-group__header">
+                      {{key}}
+                    </div>
+                    <div *ngFor="let winner of winnerSelectionService.groupedMonthlyLuckymeWinners[key]"
+                      class="winner-item">
+                      <div class="winner-item__description">
+                        <span class="winner-name">{{winner.userName}}</span>
+                        <span *ngIf="winner.amountToWin" class="winning-details">
+                          <span class="amount-won"> Won <span class="period"> </span>GH₵
+                            {{winner.amountToWin}}</span>
+                          <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
+                        </span>
                       </div>
                     </div>
-        
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -581,9 +599,12 @@
 
 
 
-
+<app-faq></app-faq>
 <!-- Actual -->
-<app-payment-dialog [amount]="selectedChoice" [stakeType]="'Luckyme'" [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName"   (close)="closePaymentDialog()" (oncongratmessage)="showCongratulatoryMessage($event)" [txRef]="this.raveOptions.txref" *ngIf="customPaymentDialogShown && this.raveOptions"></app-payment-dialog>
+<app-payment-dialog [amount]="selectedChoice" [stakeType]="'Luckyme'"
+  [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" (close)="closePaymentDialog()"
+  (oncongratmessage)="showCongratulatoryMessage($event)" [txRef]="this.raveOptions.txref"
+  *ngIf="customPaymentDialogShown && this.raveOptions"></app-payment-dialog>
 
 <!-- Test -->
 <!-- <app-payment-dialog [amount]="selectedChoice" [stakeType]="'Luckyme'" [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName"   (close)="closePaymentDialog()" (oncongratmessage)="showCongratulatoryMessage($event)"></app-payment-dialog> -->
@@ -592,7 +613,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157438990-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'UA-157438990-1');

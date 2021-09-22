@@ -51,7 +51,6 @@
         <div class="contribute-info lucky-slider-nav">
 
           <!-- <ng-template> -->
-
           <div *ngIf="!winnerSelectionService.isDailyDrawOngoing  && winnerSelectionService.currentDailyLuckymeWinners"
             class="contribute-list winnerbox">
             <div class="title">Latest Daily Luckyme Winners</div>
@@ -97,8 +96,6 @@
               </div>
             </div>
           </div>
-
-
 
           <!-- </ng-template> -->
 
@@ -153,7 +150,6 @@
             </div>
           </div>
 
-
           <!-- </ng-template> -->
 
           <!-- <ng-template> -->
@@ -204,7 +200,6 @@
               </div>
             </div>
           </div>
-
 
           <!-- </ng-template> -->
 
@@ -315,36 +310,36 @@
           <li><a (click)="display('monthly')">Monthly</a></li>
         </ul>
         <div *ngIf="ddisplay == 'daily' && winnerSelectionService.groupedDailyLuckymeWinners">
-            <app-slide-panel [classes]="['win-list','winner-slider']">
-              <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedDailyLuckymeWinners)" class="win-item">
-                <strong class="price">{{winnerSelectionService.groupedDailyLuckymeWinners[key][0].amountToWin}}</strong>
-                <span class="sign">GH₵</span>
-                <h5>{{winnerSelectionService.groupedDailyLuckymeWinners[key][0].userName}}</h5>
-                <p class="desc">{{key}}</p>
-              </div>
-            </app-slide-panel>
+          <div class="win-list winner-slider">
+            <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedDailyLuckymeWinners)" class="win-item">
+              <strong class="price">{{winnerSelectionService.groupedDailyLuckymeWinners[key][0].amountToWin}}</strong>
+              <span class="sign">GH₵</span>
+              <h5>{{winnerSelectionService.groupedDailyLuckymeWinners[key][0].userName}}</h5>
+              <p class="desc">{{key}}</p>
+            </div>
+          </div>
         </div>
 
         <div *ngIf="ddisplay == 'weekly' && winnerSelectionService.groupedWeeklyLuckymeWinners">
-          <app-slide-panel [classes]="['win-list','winner-slider']">
-              <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedWeeklyLuckymeWinners)" class="win-item">
-                <strong class="price">{{winnerSelectionService.groupedWeeklyLuckymeWinners[key][0].amountToWin}}</strong>
-                <span class="sign">GH₵</span>
-                <h5>{{winnerSelectionService.groupedWeeklyLuckymeWinners[key][0].userName}}</h5>
-                <p class="desc">{{key}}</p>
-              </div>
-          </app-slide-panel>
+          <div class="win-list winner-slider">
+            <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedWeeklyLuckymeWinners)" class="win-item">
+              <strong class="price">{{winnerSelectionService.groupedWeeklyLuckymeWinners[key][0].amountToWin}}</strong>
+              <span class="sign">GH₵</span>
+              <h5>{{winnerSelectionService.groupedWeeklyLuckymeWinners[key][0].userName}}</h5>
+              <p class="desc">{{key}}</p>
+            </div>
+          </div>
         </div>
 
         <div *ngIf="ddisplay == 'monthly' && winnerSelectionService.groupedMonthlyLuckymeWinners">
-          <app-slide-panel [classes]="['win-list','winner-slider']">
-              <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedMonthlyLuckymeWinners)" class="win-item">
-                <strong class="price">{{winnerSelectionService.groupedMonthlyLuckymeWinners[key][0].amountToWin}}</strong>
-                <span class="sign">GH₵</span>
-                <h5>{{winnerSelectionService.groupedMonthlyLuckymeWinners[key][0].userName}}</h5>
-                <p class="desc">{{key}}</p>
-              </div>
-          </app-slide-panel>
+          <div class="win-list winner-slider">
+            <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedMonthlyLuckymeWinners)" class="win-item">
+              <strong class="price">{{winnerSelectionService.groupedMonthlyLuckymeWinners[key][0].amountToWin}}</strong>
+              <span class="sign">GH₵</span>
+              <h5>{{winnerSelectionService.groupedMonthlyLuckymeWinners[key][0].userName}}</h5>
+              <p class="desc">{{key}}</p>
+            </div>
+          </div>
         </div>
 
 
@@ -360,7 +355,7 @@
   </section>
   <!-- Past-winners section End -->
   <!-- Articles section start -->
-  <section class="aritcles-sec">
+  <!-- <section class="aritcles-sec">
     <div class="container">
       <h6 class="text-center">NEW ARTICLES</h6>
       <div class="art-wrap article-slider">
@@ -390,7 +385,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
   <!-- Articles section End -->
   <app-footer></app-footer>
 </div>

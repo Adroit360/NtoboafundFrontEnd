@@ -14,7 +14,7 @@ app-busy {
   background-size: cover;
   background-repeat: no-repeat;
   //background-image: linear-gradient(to bottom, rgb(4, 134, 0), white);
- // background-image: linear-gradient(to right,rgba(black,.5),rgba(black,.5)),url(../../assets/images/luckyme.jpg);
+  // background-image: linear-gradient(to right,rgba(black,.5),rgba(black,.5)),url(../../assets/images/luckyme.jpg);
   //background-blend-mode: color;
   background-position: 0% 10%;
   height: 100%;
@@ -25,7 +25,7 @@ app-busy {
   z-index: 0;
 }
 app-header {
-  color: white;
+  color: black;
 }
 .luckyme-body {
   //background-color: rgba(#00796b,.9);
@@ -46,7 +46,7 @@ app-header {
         .main-header {
           background-color: transparent;
           box-shadow: none;
-          color:var(--light);
+          color: var(--light);
         }
         .countdown-container {
           white-space: nowrap;
@@ -61,15 +61,14 @@ app-header {
             text-align: center;
             font-size: 1.2rem;
             margin: 0.5rem;
-            background-color: rgba(white,.7);
+            background-color: rgba(white, 0.7);
             border-radius: 0.3rem;
             padding: 0.5rem;
             display: inline-block;
-            color:var(--dark);
+            color: var(--dark);
             .header {
               //text-transform: uppercase;
               letter-spacing: 0.1rem;
-              
             }
             .counters {
               display: flex;
@@ -235,7 +234,12 @@ app-header {
             letter-spacing: 0.3rem;
             font-weight: 500;
             padding: 0.5rem;
-            background-image: linear-gradient(to right, transparent, rgba(white, 0.6), transparent);
+            background-image: linear-gradient(
+              to right,
+              transparent,
+              rgba(white, 0.6),
+              transparent
+            );
           }
           .body {
             margin-top: 2rem;
@@ -356,7 +360,7 @@ app-header {
             &__header {
               background-color: transparent;
               font-size: 1.2rem;
-              padding:.3rem 1rem;
+              padding: 0.3rem 1rem;
             }
           }
         }
@@ -376,48 +380,46 @@ app-header {
         }
       }
     }
-    .info-card{
+    .info-card {
       background-color: transparent;
       box-shadow: none;
-      
-      &__head{
+
+      &__head {
         box-shadow: none;
         text-align: center;
         display: block;
-        color:white;
+        color: white;
       }
-      &__body{
-        .tab-box{
-          .nav-tabs{
+      &__body {
+        .tab-box {
+          .nav-tabs {
             background-color: transparent;
-            .nav-item{
-              .nav-link{
+            .nav-item {
+              .nav-link {
                 background-color: transparent;
-                &.active{
-                  color:#007bff;
+                &.active {
+                  color: #007bff;
                   font-weight: bolder;
                 }
               }
             }
           }
 
-          .tab-content{
-            height:auto;
+          .tab-content {
+            height: auto;
             background-color: transparent;
-            .p-winnerscount{
-              color:var(--light);
+            .p-winnerscount {
+              color: var(--light);
             }
           }
-
         }
-        .winner-group{
-          &__header{
-            padding:.3rem 1rem;
+        .winner-group {
+          &__header {
+            padding: 0.3rem 1rem;
           }
         }
       }
     }
-
   }
 }
 

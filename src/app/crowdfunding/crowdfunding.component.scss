@@ -90,7 +90,8 @@
   max-width: 600px;
 }
 
-mat-card {
+.banner_card {
+  width: 40vw;
   .title-tl {
     font-size: 30px;
     font-weight: 600;
@@ -139,4 +140,72 @@ mat-card {
 
 .featured {
   margin-bottom: 100px;
+}
+
+.boxed-btn {
+  display: inline-block;
+  padding: 11px 29px 13px 29px;
+  font-size: 16px;
+  font-weight: 500;
+  border-color: #30e3ca;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff !important;
+  text-transform: capitalize;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+  color: #30e3ca !important;
+  border: 1px solid #30e3ca;
+  background: transparent;
+
+  &:hover {
+    color: #fff !important;
+    border: 1px solid #30e3ca;
+    background: transparent;
+    border: 0;
+    background: #30e3ca;
+    border: 1px solid transparent;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner-content {
+    mat-card {
+      width: 200px;
+
+      .title-tl {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .title-desc {
+        font-size: 12px;
+      }
+
+      .add_btn {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .choose-use {
+    .features {
+      text-align: center;
+    }
+  }
+
+  .featured {
+    mat-card {
+      width: 100%;
+    }
+  }
 }
