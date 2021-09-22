@@ -59,10 +59,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AddCrowdfundComponent } from "./crowdfunding/add-crowdfund/add-crowdfund.component";
 import { AngularEditorModule } from "@kolkov/angular-editor";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { SingleCrowdComponent } from './crowdfunding/single-crowd/single-crowd.component';
-import { SpinnerComponent } from './spinner/spinner.component';
-import { CrowdsComponent } from './crowdfunding/crowds/crowds.component';
-import { EditCrowdfundComponent } from './crowdfunding/edit-crowdfund/edit-crowdfund.component';
+import { SingleCrowdComponent } from "./crowdfunding/single-crowd/single-crowd.component";
+import { SpinnerComponent } from "./spinner/spinner.component";
+import { CrowdsComponent } from "./crowdfunding/crowds/crowds.component";
+import { EditCrowdfundComponent } from "./crowdfunding/edit-crowdfund/edit-crowdfund.component";
 //import {CarouselModule} from "angular2-carousel";
 
 @NgModule({

@@ -5,6 +5,7 @@ import { AuthService } from "src/services/authservice";
 import { CrowdFundService } from "src/services/crowdFund.service";
 import { Location } from "@angular/common";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatBottomSheet } from "@angular/material";
 
 @Component({
   selector: "app-single-crowd",
@@ -21,6 +22,8 @@ export class SingleCrowdComponent implements OnInit {
   // pathUrl = this.router.url;
   pathUrl = window.location.href;
 
+  showAmount: Boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private crowdService: CrowdFundService,
@@ -29,7 +32,8 @@ export class SingleCrowdComponent implements OnInit {
     private modalService: NgbModal,
     private router: Router,
     private location: Location,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private btSheet: MatBottomSheet
   ) {
     config.backdrop = "static";
     config.keyboard = false;
@@ -98,5 +102,10 @@ export class SingleCrowdComponent implements OnInit {
         this.modalService.dismissAll();
       }
     );
+  }
+
+  showPayment() {
+    this.showAmount = !this.showAmount;
+    console.log("show");
   }
 }
