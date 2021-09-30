@@ -30,6 +30,9 @@ import { SingleCrowdComponent } from "./crowdfunding/single-crowd/single-crowd.c
 import { AuthGuard } from "src/guards/auth.guard";
 import { CrowdsComponent } from "./crowdfunding/crowds/crowds.component";
 import { EditCrowdfundComponent } from "./crowdfunding/edit-crowdfund/edit-crowdfund.component";
+import { LuckymeLandComponent } from "./luckyme-land/luckyme-land.component";
+import { ScholarshipLandComponent } from "./scholarship-land/scholarship-land.component";
+import { BusinessLandComponent } from "./business-land/business-land.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -44,9 +47,12 @@ const routes: Routes = [
   },
   { path: "crowdfunding/:id", component: SingleCrowdComponent },
   { path: "crowdfund/edit/:id", component: EditCrowdfundComponent },
-  { path: "luckyme", component: LuckymeComponent },
-  { path: "scholarship", component: ScholarshipComponent },
-  { path: "business", component: BusinessComponent },
+  { path: "luckyme", component: LuckymeLandComponent },
+  { path: "luckyme/get-started", component: LuckymeComponent },
+  { path: "scholarship", component: ScholarshipLandComponent },
+  { path: "scholarship/get-started", component: ScholarshipComponent },
+  { path: "business", component: BusinessLandComponent },
+  { path: "business/get-started", component: BusinessComponent },
   { path: "insurance", component: InsuranceComponent },
   { path: "tnx", component: TnxluckymeComponent },
   {

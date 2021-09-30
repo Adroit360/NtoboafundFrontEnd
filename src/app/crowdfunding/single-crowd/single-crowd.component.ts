@@ -23,7 +23,14 @@ export class SingleCrowdComponent implements OnInit {
   pathUrl = window.location.href;
 
   showAmount: Boolean = false;
+  contributedList: any;
 
+  todayDate = new Date();
+  endDate: Date;
+  leftDate: any;
+
+  groupedContributed = {};
+  groupedKeys;
   constructor(
     private route: ActivatedRoute,
     private crowdService: CrowdFundService,
@@ -32,8 +39,7 @@ export class SingleCrowdComponent implements OnInit {
     private modalService: NgbModal,
     private router: Router,
     private location: Location,
-    private snackbar: MatSnackBar,
-    private btSheet: MatBottomSheet
+    private snackbar: MatSnackBar
   ) {
     config.backdrop = "static";
     config.keyboard = false;
@@ -43,6 +49,7 @@ export class SingleCrowdComponent implements OnInit {
     this.route.params.subscribe((res) => {
       this.crowdID = res["id"];
       this.getCrowdFund();
+      this.getContributionList();
     });
 
     this.getUser();
@@ -52,11 +59,30 @@ export class SingleCrowdComponent implements OnInit {
     this.crowdService.singleCrowd(this.crowdID).subscribe(
       (res) => {
         this.crowdFund = res;
+        this.endDate = this.crowdFund.endDate;
+
+        var timeLeft =
+          new Date(this.endDate).getTime() - this.todayDate.getTime();
+        this.leftDate = timeLeft / (1000 * 3600 * 24);
       },
       (err) => {
         this.location.back();
       }
     );
+  }
+
+  getContributionList() {
+    this.crowdService.getPeopleContribution(this.crowdID).subscribe((res) => {
+      this.contributedList = res;
+      this.groupedContributed = [];
+      (<Array<any>>res).forEach((item) => {
+        if (!this.groupedContributed[item.username])
+          this.groupedContributed[item.username] = [];
+        this.groupedContributed[item.username].push(item);
+      });
+      this.groupedKeys = Object.keys(this.groupedContributed);
+      console.log(this.groupedContributed);
+    });
   }
 
   async getUser() {

@@ -63,6 +63,9 @@ import { SingleCrowdComponent } from "./crowdfunding/single-crowd/single-crowd.c
 import { SpinnerComponent } from "./spinner/spinner.component";
 import { CrowdsComponent } from "./crowdfunding/crowds/crowds.component";
 import { EditCrowdfundComponent } from "./crowdfunding/edit-crowdfund/edit-crowdfund.component";
+import { LuckymeLandComponent } from "./luckyme-land/luckyme-land.component";
+import { BusinessLandComponent } from "./business-land/business-land.component";
+import { ScholarshipLandComponent } from "./scholarship-land/scholarship-land.component";
 //import {CarouselModule} from "angular2-carousel";
 
 @NgModule({
@@ -105,6 +108,9 @@ import { EditCrowdfundComponent } from "./crowdfunding/edit-crowdfund/edit-crowd
     SpinnerComponent,
     CrowdsComponent,
     EditCrowdfundComponent,
+    LuckymeLandComponent,
+    BusinessLandComponent,
+    ScholarshipLandComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,4 +26,10 @@ export class CrowdFundService {
   updateCrowd(body) {
     return this.http.put(`${BASEURL}` + "crowdfund/update", body);
   }
+
+  getPeopleContribution(id) {
+    return this.http.get(
+      `${BASEURL}` + "crowdfund/donations/forfund/" + `${id}`
+    );
+  }
 }
