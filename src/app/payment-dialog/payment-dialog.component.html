@@ -58,8 +58,8 @@
             </button>
           </div>
           <strong *ngIf="settings.paymentGateway == 'slydepay'">OR</strong>
-          <iframe id="checkout-frame"(load)="checkoutFrameLoaded($event)" *ngIf="settings.paymentGateway == 'redde' && checkoutUrl" [src]="checkoutUrl"></iframe>
-          <div class="ccgroup">
+          <iframe id="checkout-frame"(load)="checkoutFrameLoaded($event)" *ngIf="(settings.paymentGateway == 'redde'||settings.paymentGateway == 'theTeller' ) && checkoutUrl" [src]="checkoutUrl"></iframe>
+          <div *ngIf="(settings.paymentGateway == 'redde'||settings.paymentGateway == 'theTeller' ) && !checkoutUrl" class="ccgroup">
             <button (click)="Pay(true,false)" *ngIf="txRef" class="rave-btn">
               <span>Redirect me to pay</span>
             </button>

@@ -53,8 +53,10 @@
     }
     &__body {
       background-color: #fef6e9;
-      padding: 20px 40px;
+      padding: 20px 15px;
       position: relative;
+      display: flex;
+      flex-direction: column;
       .errorbox {
         color: rgb(150, 18, 18);
         font-weight: bold;
@@ -81,27 +83,29 @@
         align-items: center;
       }
       &--middle {
-        #checkout-frame{
-          position: absolute;
-          left:0;
-          top:0;
-          width:100%;
+        flex-grow: 1;
+        #checkout-frame {
+          width: 100%;
           height: 100%;
+          border: none;
         }
         .paytypebox {
           padding: 1rem;
           display: flex;
           flex-direction: column;
           align-items: center;
+          height: 100%;
         }
       }
     }
   }
-  .paymentbox.megabox{
+  .paymentbox.megabox {
     max-width: 100%;
-    .paymentbox__body{
+    .paymentbox__body {
       width: calc(80vw);
       height: calc(65vh);
+      display: flex;
+      flex-direction: column;
     }
   }
   &__footer {

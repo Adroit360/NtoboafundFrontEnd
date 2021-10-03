@@ -126,7 +126,7 @@ export class LuckymeComponent implements OnInit,AfterViewInit {
               this.loading = false;
                console.log(response);
                
-               if(settings.paymentGateway == "slydepay" || settings.paymentGateway == "redde"){
+               if(settings.paymentGateway == "slydepay" || settings.paymentGateway == "redde" || settings.paymentGateway == "theTeller"){
                 this.customPaymentDialogShown = true;
               //   if(response.paymentToken){
               //     window.location.href = settings.slydePayCallbackUrlPrefix + response.paymentToken;

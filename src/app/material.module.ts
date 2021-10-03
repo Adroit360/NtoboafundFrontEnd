@@ -34,6 +34,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
+import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
 
 @NgModule({
   imports: [
@@ -71,6 +72,7 @@ import { MatTreeModule } from "@angular/material/tree";
     MatTooltipModule,
     MatTreeModule,
     MatNativeDateModule,
+    MatBottomSheetModule,
   ],
   exports: [
     MatAutocompleteModule,
@@ -107,6 +109,7 @@ import { MatTreeModule } from "@angular/material/tree";
     MatTooltipModule,
     MatTreeModule,
     MatNativeDateModule,
+    MatBottomSheetModule,
   ],
 })
 export class MaterialModule {

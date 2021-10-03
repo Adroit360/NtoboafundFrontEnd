@@ -89,7 +89,7 @@ export class BusinessComponent implements OnInit,AfterViewInit {
             response => {
               this.loading = false;
                console.log(response);
-              if(settings.paymentGateway == "slydepay" || settings.paymentGateway == "redde")
+              // if(settings.paymentGateway == "slydepay" || settings.paymentGateway == "redde")
                 this.customPaymentDialogShown = true;
             },
             error => {

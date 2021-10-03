@@ -9,6 +9,7 @@ import { PaymentService } from "src/services/payment.service";
 import { settings } from "src/settings";
 import { HttpClient } from "@angular/common/http";
 import { Donation } from "src/models/donation";
+import { MatBottomSheet } from "@angular/material";
 
 @Component({
   selector: "app-single-crowd",
@@ -30,6 +31,9 @@ export class SingleCrowdComponent implements OnInit {
   congratMsg: string;
   congratShown: boolean;
   amount: number = 20;
+
+  showAmount: Boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private crowdService: CrowdFundService,
@@ -40,7 +44,8 @@ export class SingleCrowdComponent implements OnInit {
     private location: Location,
     private snackbar: MatSnackBar,
     private paymentService: PaymentService,
-    private http: HttpClient
+    private http: HttpClient,
+    private btSheet: MatBottomSheet
   ) {
     config.backdrop = "static";
     config.keyboard = false;
@@ -58,6 +63,8 @@ export class SingleCrowdComponent implements OnInit {
   }
 
   paymentInitialized() {
+    // this.customPaymentDialogShown = true;
+    // return;
     if (this.authService.isAuthenticated) {
       // if (!this.selectedChoice) {
       //   this.error = "Please Select a Choice";
@@ -72,11 +79,11 @@ export class SingleCrowdComponent implements OnInit {
           .post<any>(
             `${settings.currentApiUrl}/api/crowdfund/donate`,
             new Donation({
-              amountDonated: this.amount,
+              amount: this.amount,
               userId: this.authService.currentUser.id,
               txRef: this.raveOptions.txref,
-              crowdfundId:this.crowdFund.id,
-              paid:false
+              crowdfundId: this.crowdFund.id,
+              paid: false,
             })
           )
           .subscribe(
@@ -86,7 +93,8 @@ export class SingleCrowdComponent implements OnInit {
 
               if (
                 settings.paymentGateway == "slydepay" ||
-                settings.paymentGateway == "redde"
+                settings.paymentGateway == "redde" || 
+                settings.paymentGateway == "theTeller"
               ) {
                 this.customPaymentDialogShown = true;
               }
@@ -171,7 +179,11 @@ export class SingleCrowdComponent implements OnInit {
     this.congratShown = true;
   }
 
-  closePaymentDialog(){
+  closePaymentDialog() {
     this.customPaymentDialogShown = false;
+  }
+  showPayment() {
+    this.showAmount = !this.showAmount;
+    console.log("show");
   }
 }

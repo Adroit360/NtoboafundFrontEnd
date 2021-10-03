@@ -1,7 +1,7 @@
 export class Donation{
     id:string;
     userId:string;
-    amountDonated:number;
+    amount:number;
     txRef:string;
     crowdfundId:number;
     paid:boolean;

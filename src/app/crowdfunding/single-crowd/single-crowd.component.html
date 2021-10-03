@@ -87,8 +87,19 @@
               </div>
 
               <div class="d-flex justify-content-between">
-                <button (click)="paymentInitialized()" mat-raised-button color="accent">Contribute to CrowdFund</button>
+                <button mat-raised-button color="accent" (click)="showPayment()">Contribute to CrowdFund</button>
                 <button mat-stroked-button color="primary" (click)="open(content)">Share CrowdFund</button>
+              </div>
+
+              <div class="add_amount" *ngIf="showAmount">
+                <hr>
+                <div class="row container">
+                  <mat-form-field style="width: 100%;">
+                    <mat-label>Enter Amount</mat-label>
+                    <input  [(ngModel)]="amount" type="number" matInput>
+                  </mat-form-field>
+                  <button (click)="paymentInitialized()" mat-stroked-button color="accent">Send Amount</button>
+                </div>
               </div>
 
               <hr>
@@ -151,7 +162,7 @@
 
   <app-footer></app-footer>
 
-  <app-payment-dialog [amount]="20" [stakeType]="'CrowdFund'"
+  <app-payment-dialog [amount]="amount" [stakeType]="'CrowdFund'"
   [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" (close)="closePaymentDialog()"
   (oncongratmessage)="showCongratulatoryMessage($event)" [txRef]="this.raveOptions.txref"
   *ngIf="customPaymentDialogShown && this.raveOptions"></app-payment-dialog>

@@ -13,9 +13,10 @@ const data = {
 //flutterwave,slydepay,redde
 export const settings = {
 
-    currentApiUrl: data.urls.localKestrelUrl,
+    currentApiUrl: data.urls.azure,
 
-    paymentGateway:"redde",
+    // paymentGateway:"redde",
+    paymentGateway:"theTeller",
 
     getPublicApi: function (): string {
         return data.payment.publicLive
