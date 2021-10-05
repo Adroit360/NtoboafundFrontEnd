@@ -1,0 +1,75 @@
+.business {
+  z-index: var(--level-two);
+  position: relative;
+  margin-top: 6rem;
+  height: calc(100vh - 6rem);
+  width: calc(100vw);
+  overflow: auto;
+
+  .bg-section {
+    padding: 170px 0;
+    background-size: cover;
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
+    align-self: center;
+    position: relative;
+    background-position: center center;
+    object-fit: cover;
+
+    .title-heading {
+      line-height: 26px;
+      padding: 4%;
+      width: 80%;
+
+      .heading {
+        font-size: 45px;
+        letter-spacing: 1px;
+      }
+
+      .para-desc {
+        font-size: 18px;
+        max-width: 400px;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .bg-section {
+      padding: 150px 0;
+      height: auto;
+    }
+
+    .title-heading .heading {
+      font-size: 35px !important;
+    }
+
+    .title-heading .para-desc {
+      font-size: 18px;
+    }
+  }
+}
+
+.section-title {
+  position: relative;
+
+  .title {
+    letter-spacing: 0.5px;
+    font-size: 30px;
+  }
+
+  .para-desc {
+    max-width: 600px;
+  }
+}
+
+.rounded {
+  border-radius: 6px !important;
+}
+
+.sc_section {
+  margin: 50px;
+}
+
+.dt_section {
+  margin-bottom: 60px;
+}

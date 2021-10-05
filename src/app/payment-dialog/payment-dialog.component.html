@@ -1,5 +1,5 @@
 <div class="payment-bg">
-  <div [ngClass]="{megabox:checkoutUrl}" class="paymentbox">
+  <div *ngIf="!loading" [ngClass]="{megabox:checkoutUrl}" class="paymentbox">
     <div (click)="close(true)" class="closebtn">x</div>
     <div class="paymentbox__header">
       <div class="paymentbox__header--left">
@@ -111,4 +111,5 @@
       </div> -->
     </div>
   </div>
+  <app-busy [isWholePage]="true" [text]="''" [ngClass]="{'visible':loading,'invisible':!loading}"></app-busy>
 </div>

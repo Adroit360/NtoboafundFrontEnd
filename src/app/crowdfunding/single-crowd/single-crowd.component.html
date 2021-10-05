@@ -8,7 +8,7 @@
       <div class="section-header">
         <div class="col-lg-12">
           <div class="page-header d-flex justify-content-between align-items-center">
-            <h2 class="pageheader-title">{{crowdFund.username}}'s CrowdFund</h2>
+            <h4 class="pageheader-title">CrowdFund Posted By {{crowdFund.username}}</h4>
             <div class="header-actions" *ngIf="userId == crowdFund.userId">
               <button mat-icon-button class="btn_edit" matTooltip="Edit crowdfund"
                 routerLink="/crowdfund/edit/{{crowdFund.id}}">
@@ -27,22 +27,22 @@
           <ngb-carousel [showNavigationArrows]="true">
             <ng-template ngbSlide>
               <div class="picsum-img-wrapper" *ngIf="crowdFund.mainImageUrl">
-                <img [src]="urlLink + crowdFund.mainImageUrl">
+                <img [src]="crowdFund.mainImageUrl|cookimage">
               </div>
             </ng-template>
             <ng-template *ngIf="crowdFund.videoUrl" ngbSlide>
               <div class="picsum-img-wrapper">
-                <video [src]="urlLink + crowdFund.videoUrl"></video>
+                <video [src]="crowdFund.videoUrl|cookimage"></video>
               </div>
             </ng-template>
             <ng-template *ngIf="crowdFund.secondImageUrl" ngbSlide>
               <div class="picsum-img-wrapper">
-                <img [src]="urlLink + crowdFund.secondImageUrl">
+                <img [src]="crowdFund.secondImageUrl|cookimage">
               </div>
             </ng-template>
             <ng-template *ngIf="crowdFund.thirdImageUrl" ngbSlide>
               <div class="picsum-img-wrapper">
-                <img [src]="urlLink + crowdFund.thirdImageUrl">
+                <img [src]="crowdFund.thirdImageUrl|cookimage">
               </div>
             </ng-template>
           </ngb-carousel>
@@ -77,13 +77,16 @@
                 </ngb-progressbar>
               </p>
               <div class="amount-details">
-                <span>13.6K</span>
+                <span>{{crowdFund.peopleContributed}}</span>
                 <p>people contributed</p>
 
                 <br>
 
-                <span>17</span>
-                <p>days to go</p>
+                <span *ngIf="leftDate > 0;else leftDone">{{leftDate | number: '1.0-0' }}</span>
+                <ng-template #leftDone>
+                  <span>0</span>
+                </ng-template>
+                <p>days left</p>
               </div>
 
               <div class="d-flex justify-content-between">
@@ -104,19 +107,37 @@
 
               <hr>
 
-              <div class="amount-contribute" *ngIf="userId == crowdFund.userId">
-                <p class="contribute-head">Total Contributions:</p>
-                <br>
-                <p><span>GH¢50.00</span> on 2/06/21</p>
+              <div class="amount-contribute">
+                <p class="contribute-head">Contributions List:</p>
+                <mat-accordion>
+                  <mat-expansion-panel *ngFor="let key of groupedKeys">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>{{key}}</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="user-contribute" *ngFor="let list of groupedContributed[key]">
+                      <p>{{list.amount | currency: 'GH¢'}} - <span>{{list.date | date: 'shortDate'}}</span></p>
+                      <hr>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-accordion>
+                <!-- <p class="contribute-head">Contributions List:</p>
+                <br> -->
+                <!-- <div class="user-contribute" *ngFor="let list of contributedList">
+                  <p>{{list.username}} - <span>{{list.date | date: 'shortDate'}}</span></p>
+                  <span>{{list.amount | currency: 'GH¢'}}</span>
+                  <hr>
+                </div> -->
+                <!-- <p>
+                  <span>GH¢50.00</span> on 2/06/21
+                </p> -->
               </div>
             </div>
 
 
 
             <ng-template #content let-c="close" let-d="dismiss">
-              <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">Share Link</h4>
-                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <div class="modal-header"> <button type="button" class="close" aria-label="Close"
+                  (click)="d('Cross click')">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>

@@ -11,7 +11,7 @@
       <div class="row" *ngIf="crowds;else spinner">
         <div class="col-lg-3 pb-4" *ngFor="let crowd of crowds" routerLink="/crowdfunding/{{crowd.id}}">
           <mat-card>
-            <img mat-card-image [src]="urlLink + crowd.mainImageUrl">
+            <img mat-card-image [src]="crowd.mainImageUrl|cookimage">
             <mat-card-content>
               <span class="font-weight-bold">Title</span>
               <p>{{crowd.title}}</p>

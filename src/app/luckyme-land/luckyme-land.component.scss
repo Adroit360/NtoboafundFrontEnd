@@ -1,0 +1,115 @@
+.luccky {
+  z-index: var(--level-two);
+  position: relative;
+  margin-top: 6rem;
+  height: calc(100vh - 6rem);
+  width: calc(100vw);
+  overflow: auto;
+}
+
+.bg-section {
+  padding: 170px 0;
+  background-size: cover;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
+  position: relative;
+  background-position: center center;
+  object-fit: cover;
+
+  .title-heading {
+    line-height: 26px;
+    padding: 4%;
+    width: 80%;
+
+    .heading {
+      font-size: 45px;
+      letter-spacing: 1px;
+    }
+
+    .para-desc {
+      font-size: 18px;
+      max-width: 400px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .bg-section {
+    padding: 150px 0;
+    height: auto;
+  }
+
+  .title-heading .heading {
+    font-size: 35px !important;
+  }
+
+  .title-heading .para-desc {
+    font-size: 18px;
+  }
+}
+
+.wrapper {
+  background-color: #fff !important;
+
+  .inner {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+
+    .title-color {
+      font-size: 1.8rem;
+      line-height: 1.1rem;
+      margin-bottom: 1.05rem;
+      text-transform: uppercase;
+      color: #999;
+    }
+
+    .display-3 {
+      font-size: 2.6rem;
+      line-height: 2.2rem;
+      font-weight: normal;
+    }
+
+    .space40 {
+      height: 2rem !important;
+    }
+  }
+}
+
+.space20 {
+  height: 1rem !important;
+}
+
+.icon-blob {
+  width: 4rem;
+  height: 4rem;
+  display: table;
+  position: relative;
+  z-index: 1;
+
+  &::after {
+    font-family: "Snowlake" !important;
+    content: "\0041";
+    font-size: 4rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .mat-icon {
+    display: table-cell;
+    text-align: center;
+    margin: 0 auto;
+    vertical-align: middle;
+    font-size: 1.6rem !important;
+  }
+}
+
+.mr-25 {
+  margin-right: 1.25rem !important;
+}
+
+.icon-blob-green:after {
+  color: rgba(156, 205, 126, 0.25);
+}

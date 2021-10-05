@@ -59,13 +59,17 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AddCrowdfundComponent } from "./crowdfunding/add-crowdfund/add-crowdfund.component";
 import { AngularEditorModule } from "@kolkov/angular-editor";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { SingleCrowdComponent } from './crowdfunding/single-crowd/single-crowd.component';
 import { HowitworksComponent } from "./howitworks/howitworks.component";
 import { ContactComponent } from "./contact/contact.component";
 import { SharedModule } from "./shared/shared.module";
-import { SpinnerComponent } from './spinner/spinner.component';
-import { CrowdsComponent } from './crowdfunding/crowds/crowds.component';
-import { EditCrowdfundComponent } from './crowdfunding/edit-crowdfund/edit-crowdfund.component';
+import { SingleCrowdComponent } from "./crowdfunding/single-crowd/single-crowd.component";
+import { SpinnerComponent } from "./spinner/spinner.component";
+import { CrowdsComponent } from "./crowdfunding/crowds/crowds.component";
+import { EditCrowdfundComponent } from "./crowdfunding/edit-crowdfund/edit-crowdfund.component";
+import { LuckymeLandComponent } from "./luckyme-land/luckyme-land.component";
+import { BusinessLandComponent } from "./business-land/business-land.component";
+import { ScholarshipLandComponent } from "./scholarship-land/scholarship-land.component";
+import { CookImagePipe } from "src/pipes/cook-image.pipe";
 //import {CarouselModule} from "angular2-carousel";
 
 @NgModule({
@@ -110,6 +114,10 @@ import { EditCrowdfundComponent } from './crowdfunding/edit-crowdfund/edit-crowd
     SpinnerComponent,
     CrowdsComponent,
     EditCrowdfundComponent,
+    LuckymeLandComponent,
+    BusinessLandComponent,
+    ScholarshipLandComponent,
+    CookImagePipe
   ],
   imports: [
     BrowserModule,

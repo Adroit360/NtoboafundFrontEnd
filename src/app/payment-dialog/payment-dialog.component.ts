@@ -5,6 +5,7 @@ import { settings } from "src/settings";
 import { PaymentService } from "src/services/payment.service";
 import { SignalRService } from "src/services/signalr.service";
 import { SafeUrl, DomSanitizer } from "@angular/platform-browser";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-payment-dialog",
@@ -31,6 +32,7 @@ export class PaymentDialogComponent implements OnInit {
 
   isVodafone: boolean = false;
   paying: boolean = false;
+  loading: boolean = false;
 
   errorMessage: any;
   successMessage: any;
@@ -72,8 +74,17 @@ export class PaymentDialogComponent implements OnInit {
     private http: HttpClient,
     private paymentService: PaymentService,
     private signalRService: SignalRService,
-    private sanitizer: DomSanitizer
-  ) {}
+    private sanitizer: DomSanitizer,
+    private activatedRoute:ActivatedRoute
+  ) {
+    let queryParams = activatedRoute.snapshot.queryParams;
+    let statusCode = queryParams['code'];
+    let txId = queryParams['transaction_id'];
+    if (txId && statusCode) {
+      // console.log('txStatus', txId, statusCode);
+      this.loading = true;
+    }
+  }
 
   ngOnInit() {
    
