@@ -7,7 +7,7 @@
     <div class="luckyme-body__content__header">
       <div class="luckyme-body__content__header__left">
         <h1 class="main-header">Contribute to our luckyme fund</h1>
-        <!-- <h3 class="sub-header">Invest Today, Win For Society</h3> -->
+        <!-- <h3 class="sub-header">contribute Today, Win For Society</h3> -->
         <div class="countdown-container">
           <!-- style="display: none" -->
           <div *ngIf="luckyMeMonthlySeconds>=0" class="countdown">
@@ -40,7 +40,7 @@
           </div>
         </div>
 
-        <a href="luckyme#stake-center" class="btn-primary btn--big btn--rounded invest-btn">Invest Now</a>
+        <a href="luckyme#stake-center" class="btn-primary btn--big btn--rounded contribute-btn">contribute Now</a>
       </div>
       <div class="luckyme-body__content__header__right">
         <div *ngIf="winnerSelectionService.groupedDailyLuckymeWinners" class="info-card winnerscard">
@@ -306,11 +306,11 @@
 
           <!-- <a *ngIf="settings.paymentGateway=='flutterwave'" angular-rave #ravepaybtn [raveOptions]="raveOptions"
             class="transbtn" (callback)="luckymePaymentCallback($event)" (close)="paymentFailed()"
-            (init)="paymentInitialized()">Invest
+            (init)="paymentInitialized()">contribute
           </a> -->
 
           <a *ngIf="settings.paymentGateway=='slydepay' || settings.paymentGateway=='redde'" class="transbtn"
-            (click)="paymentInitialized()">Invest
+            (click)="paymentInitialized()">contribute
           </a>
         </div>
       </div>
@@ -504,7 +504,7 @@
       <div class="s-records-info">
         <div class="s-record">
           <div class="s-record__figure">GHC 100K+</div>
-          <div class="s-record__text">Returns Paid to Our Luckyme Fund Investors so far</div>
+          <div class="s-record__text">Returns Paid to Our Luckyme Fund Contributors so far</div>
         </div>
         <div class="s-record">
           <div class="s-record__figure">GHC 500+</div>
@@ -514,7 +514,7 @@
           <div class="s-record__figure">GHC 60K+</div>
           <div class="s-record__text">Total Points Earned by
             Luckyme Fund
-            Investors so far</div>
+            Contributors so far</div>
         </div>
       </div>
 
@@ -564,7 +564,7 @@
 
 
 
-<app-faq></app-faq>
+
 <!-- Actual -->
 <app-payment-dialog [amount]="selectedChoice" [stakeType]="'Luckyme'"
   [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" (close)="closePaymentDialog()"

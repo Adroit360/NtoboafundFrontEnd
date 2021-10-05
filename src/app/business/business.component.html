@@ -10,7 +10,7 @@
     <div class="counter-sec">
 
       <div class="container">
-        <h2>Would you like to Contribute in our business fund?</h2>
+        <h2>Would you like to Contribute to our business fund?</h2>
         <p class="desc">Next business Draw In</p>
         <div class="time-counter" id="timeCounter">
           <div><strong>{{businessDays}}</strong> <span>Days</span></div>
@@ -66,8 +66,7 @@
             </div>
           </div>
         </div>
-        <div class="info-card__footer">{{signalRservice.potentialBusinessWinnersCount}} potential winner<span
-            *ngIf="signalRservice.potentialBusinessWinnersCount != 1">s</span></div>
+        <!-- <div class="p-winnerscount"><strong>{{signalRservice.potentialBusinessWinnersCount}} potential winner(s)</strong></div> -->
       </div>
     </div>
   </section>
@@ -121,18 +120,17 @@
     <div class="winners">
       <div *ngIf="winnerSelectionService.groupedBusinessWinners" class="container">
         <h6 class="text-center">Past Winners</h6>
-        <div class="win-list winner-slider">
-
-          <ng-template *ngFor="let key of ObjectKeys(winnerSelectionService.groupedBusinessWinners)">
-            <div *ngFor="let winner of winnerSelectionService.groupedBusinessWinners[key]" class="win-item">
-              <strong class="price">{{winner.amountToWin}}</strong>
+        <app-slide-panel [classes]="['win-list','winner-slider']">
+            <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedBusinessWinners)" class="win-item">
+              <strong class="price">{{winnerSelectionService.groupedBusinessWinners[key][0].amountToWin}}</strong>
               <span class="sign">GH₵</span>
-              <h5>{{winner.userName}}</h5>
+              <h5>{{winnerSelectionService.groupedBusinessWinners[key][0].userName}}</h5>
               <p class="desc">{{key}}</p>
             </div>
-          </ng-template>
+        </app-slide-panel>
+          <!-- </ng-template> -->
 
-        </div>
+        <!-- </div> -->
       </div>
     </div>
     <div class="win-banner">
@@ -215,7 +213,7 @@
   </div>
 </div>
 
-<app-faq></app-faq>
+
 
 <app-payment-dialog [amount]="selectedAmount" [stakeType]="'Business'"
   [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" [txRef]="this.raveOptions.txref"

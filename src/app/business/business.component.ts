@@ -24,7 +24,7 @@ export class BusinessComponent implements OnInit,AfterViewInit {
   businessMinutes: number;
   businessSeconds: number;
 
-  selectedAmount: any;
+  selectedAmount: any = 100;
   potentialReturns: any;
   loading = false;
   error = null;
@@ -59,7 +59,7 @@ export class BusinessComponent implements OnInit,AfterViewInit {
     this.countDownService.MonthlyHoursTime.subscribe((hours: number) => { this.businessHours = hours });
     this.countDownService.MonthlyMinutesTime.subscribe((minutes: number) => { this.businessMinutes = minutes });
     this.countDownService.MonthlySecondsTime.subscribe((seconds: number) => { this.businessSeconds = seconds });
-
+    this.selectChoice(null, this.selectedAmount);
   }
 
 
@@ -89,7 +89,7 @@ export class BusinessComponent implements OnInit,AfterViewInit {
             response => {
               this.loading = false;
                console.log(response);
-              if(settings.paymentGateway == "slydepay" || settings.paymentGateway == "redde")
+              // if(settings.paymentGateway == "slydepay" || settings.paymentGateway == "redde")
                 this.customPaymentDialogShown = true;
             },
             error => {
@@ -98,7 +98,7 @@ export class BusinessComponent implements OnInit,AfterViewInit {
             }
           );
       }
-
+      
 
     } else {
       this.router.navigate(['login']);

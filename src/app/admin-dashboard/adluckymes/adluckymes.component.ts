@@ -44,7 +44,7 @@ export class AdluckymesComponent implements OnInit {
   luckymeColumnDefs = [
     { headerName: "Period", field: "period", sortable: true, filter: true, resizable: true, cellRenderer: "agGroupCellRenderer" },
     { headerName: "Date", field: "date", sortable: true, filter: true, resizable: true },
-    { headerName: "Investment(GHS)", field: "amount", sortable: true, filter: true, resizable: true },
+    { headerName: "Contribution(GHS)", field: "amount", sortable: true, filter: true, resizable: true },
     { headerName: "Status", field: "status", sortable: true, filter: true, resizable: true },
     { headerName: "AmountToWin", field: "amountToWin", sortable: true, filter: true, resizable: true },
     { headerName: "DrawDate", field: "dateDeclared", sortable: true, filter: true, resizable: true }
@@ -56,7 +56,7 @@ export class AdluckymesComponent implements OnInit {
   groupDefaultExpanded: number;
   frameworkComponents: { myDetailCellRenderer: typeof DetailCellRendererComponent; };
 
-  mainHeaderText = "Luckyme Investments";
+  mainHeaderText = "Luckyme Contributions";
   paymentForm: FormGroup;
   canUserBePaid: boolean = false;
 
@@ -143,15 +143,17 @@ export class AdluckymesComponent implements OnInit {
 
     this.paymentService.addPaymentRecord('lkm', amount, transactionId, this.selectedluckyme.transferId).subscribe(
       (response: any) => {
+        //console.log(response);
         this.paymentRecordMessage = response.message;
         this.isAddingPaymentRecord = false;
         this.isPaymentInputsDisabled = true;
         this.getUnpaidWinnersCount();
         this.showUnpaidWinners(false);
-        console.log(response);
+        //console.log(response);
       },
       xhr => {
-        this.paymentRecordMessage = xhr.error;
+        //console.log(xhr);
+        this.paymentRecordMessage = xhr;
         this.isAddingPaymentRecord = false;
       }
     )
@@ -330,7 +332,7 @@ export class AdluckymesComponent implements OnInit {
 
   payWinner() {
     if (!this.selectedluckyme) {
-      alert("No LuckyMe Investment Is Selected");
+      alert("No LuckyMe Contribution Is Selected");
       return;
     }
     this.getPaymentRecord();

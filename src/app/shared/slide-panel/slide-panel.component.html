@@ -1,0 +1,18 @@
+<div class="slide-panel">
+  <div #leftButton (click)="startScroll('left')" class="slide-panel__leftbutton">
+    <svg class="leftbutton rotatedLeft">
+      <use href="assets/Icons/svgs.svg#icon-chevron-small-left" />
+  </svg>
+  </div>
+  <div #rightButton (click)="startScroll('right')" class="slide-panel__rightbutton">
+    <svg class="rightbutton rotatedRight">
+      <use href="assets/Icons/svgs.svg#icon-chevron-small-right" />
+  </svg>
+  </div>
+  <div #contentBox (window:resize)="onWindowResized($event)" (scroll)="onContentScroll($event)"
+    class="slide-panel__content">
+    <div class="slides" [ngClass]="classes">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

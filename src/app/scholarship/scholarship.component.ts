@@ -89,6 +89,8 @@ export class ScholarshipComponent implements OnInit, AfterViewInit {
       StudentId: new FormControl("", Validators.required),
       PlayerType: new FormControl("", Validators.required),
     });
+
+    this.selectAmount(this.selectedAmount);
   }
 
   ngAfterViewInit() {
@@ -163,10 +165,10 @@ export class ScholarshipComponent implements OnInit, AfterViewInit {
             (response) => {
               this.loading = false;
               console.log(response);
-              if (
-                settings.paymentGateway == "slydepay" ||
-                settings.paymentGateway == "redde"
-              )
+              // if (
+              //   settings.paymentGateway == "slydepay" ||
+              //   settings.paymentGateway == "redde"
+              // )
                 this.customPaymentDialogShown = true;
             },
             (error) => {

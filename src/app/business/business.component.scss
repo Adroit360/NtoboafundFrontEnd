@@ -6,6 +6,7 @@
   width: calc(100vw);
   overflow: auto;
   z-index: var(--level-three);
+  overflow-x:hidden;
   .business-counter{
     color:white;
   }

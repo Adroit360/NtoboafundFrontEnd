@@ -5,6 +5,10 @@ import { AuthService } from "src/services/authservice";
 import { CrowdFundService } from "src/services/crowdFund.service";
 import { Location } from "@angular/common";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { PaymentService } from "src/services/payment.service";
+import { settings } from "src/settings";
+import { HttpClient } from "@angular/common/http";
+import { Donation } from "src/models/donation";
 import { MatBottomSheet } from "@angular/material";
 
 @Component({
@@ -21,6 +25,12 @@ export class SingleCrowdComponent implements OnInit {
   userId: any;
   // pathUrl = this.router.url;
   pathUrl = window.location.href;
+  loading = false;
+  raveOptions: any;
+  customPaymentDialogShown: boolean;
+  congratMsg: string;
+  congratShown: boolean;
+  amount: number = 20;
 
   showAmount: Boolean = false;
   contributedList: any;
@@ -34,12 +44,15 @@ export class SingleCrowdComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private crowdService: CrowdFundService,
-    private authService: AuthService,
+    public authService: AuthService,
     config: NgbModalConfig,
     private modalService: NgbModal,
     private router: Router,
     private location: Location,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private paymentService: PaymentService,
+    private http: HttpClient,
+    private btSheet: MatBottomSheet
   ) {
     config.backdrop = "static";
     config.keyboard = false;
@@ -53,6 +66,64 @@ export class SingleCrowdComponent implements OnInit {
     });
 
     this.getUser();
+
+    this.setRaveOptions();
+  }
+
+  paymentInitialized() {
+    // this.customPaymentDialogShown = true;
+    // return;
+    if (this.authService.isAuthenticated) {
+      // if (!this.selectedChoice) {
+      //   this.error = "Please Select a Choice";
+      //   this.errorShown = true;
+      //   return;
+      // }
+
+      if (this.authService.hasPaymentDetails(`${this.amount}`, true)) {
+        this.loading = true;
+        this.setRaveOptions();
+        this.http
+          .post<any>(
+            `${settings.currentApiUrl}/api/crowdfund/donate`,
+            new Donation({
+              amount: this.amount,
+              userId: this.authService.currentUser.id,
+              txRef: this.raveOptions.txref,
+              crowdfundId: this.crowdFund.id,
+              paid: false,
+            })
+          )
+          .subscribe(
+            (response) => {
+              this.loading = false;
+              console.log(response);
+
+              if (
+                settings.paymentGateway == "slydepay" ||
+                settings.paymentGateway == "redde" || 
+                settings.paymentGateway == "theTeller"
+              ) {
+                this.customPaymentDialogShown = true;
+              }
+            },
+            (error) => {
+              this.loading = false;
+              console.log(error);
+            }
+          );
+      }
+    } else {
+      this.router.navigate(["login"]);
+    }
+  }
+
+  setRaveOptions() {
+    this.raveOptions = this.paymentService.getRaveOptions(
+      "CrowdFund",
+      this.amount,
+      this.amount && this.authService.hasPaymentDetails(`${this.amount}`)
+    );
   }
 
   getCrowdFund() {
@@ -129,6 +200,14 @@ export class SingleCrowdComponent implements OnInit {
     );
   }
 
+  showCongratulatoryMessage(message: string) {
+    this.congratMsg = message;
+    this.congratShown = true;
+  }
+
+  closePaymentDialog() {
+    this.customPaymentDialogShown = false;
+  }
   showPayment() {
     this.showAmount = !this.showAmount;
     console.log("show");

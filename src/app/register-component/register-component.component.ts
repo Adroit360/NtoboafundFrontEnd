@@ -74,7 +74,12 @@ export class RegisterComponent implements OnInit {
           
         },
         xher => {
-          this.error = xher.error;
+          if(xher.error){
+            this.error = xher.error;
+          }else{
+            this.error = xher;
+          }
+          
           this.loading = false;
         }
       );

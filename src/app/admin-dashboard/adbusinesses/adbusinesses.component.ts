@@ -41,6 +41,12 @@ export class AdbusinessesComponent implements OnInit {
   gridApi: any;
   // checkboxSelection: true,
   businessColumnDefs = [
+    { headerName: "Period", field: "period", sortable: true, filter: true, resizable: true, cellRenderer: "agGroupCellRenderer" },
+    { headerName: "Date", field: "date", sortable: true, filter: true, resizable: true },
+    { headerName: "Contribution(GHS)", field: "amount", sortable: true, filter: true, resizable: true },
+    { headerName: "Status", field: "status", sortable: true, filter: true, resizable: true },
+    { headerName: "AmountToWin", field: "amountToWin", sortable: true, filter: true, resizable: true },
+    { headerName: "DrawDate", field: "dateDeclared", sortable: true, filter: true, resizable: true },
     {
       headerName: "Period",
       field: "period",

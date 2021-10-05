@@ -1,6 +1,6 @@
-<div class="adscholarship-body">
-  <div class="adscholarship-body__top">
-    <div class="adscholarship-body__top--left">
+<div class="adscholarship-page">
+  <div class="adscholarship-page__top">
+    <div class="adscholarship-page__top--left">
       <select [(ngModel)]="usersTypeFilterText" (change)="getScholarshipsByType($event.target.value)" class="form-control"
         id="cbotypeOptions">
         <option value="all">All</option>
@@ -8,7 +8,7 @@
         <option value="2">Dummy</option>
       </select>
     </div>
-    <div class="adscholarship-body__top--right">
+    <div class="adscholarship-page__top--right">
       <div [ngClass]="{disabled:unpdaidWinnersCount==0}" (click)="showUnpaidWinners()" class="unpaid badged">
         <span class="badge">{{unpdaidWinnersCount}}</span>
         <svg class="linkicon icon icon-mid">
@@ -17,8 +17,8 @@
       </div>
     </div>
   </div>
-  <div class="adscholarship-body__bottom">
-    <div class="adscholarship-body__bottom--left">
+  <div class="adscholarship-page__bottom">
+    <div class="adscholarship-page__bottom--left">
       <div class="info-card" id="allscholarship">
         <div class="info-card__head">
           <div class="info-card__head--left">
@@ -65,7 +65,7 @@
 
 
     </div>
-    <div class="adscholarship-body__bottom--right">
+    <div class="adscholarship-page__bottom--right">
       <div class="info-card participants">
         <div class="info-card__head">Current Participants</div>
         <div class="info-card__body">

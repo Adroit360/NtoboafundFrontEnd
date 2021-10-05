@@ -1,59 +1,33 @@
-<div [ngClass]="{'visible':faqService.isShown,'invisible':!faqService.isShown}" class="popup regular" id="error-box">
-  <div class="popup__content">
-    <div class="info-card">
-      <div class="info-card__head">
-        <div class="info-card__head--icon">
-          <span class="fa fa-comments"></span>
-        </div>
-        <div class="info-card__head--text">What you need to know</div>
-        <div (click)="closefaq()" class="closebtn"><span class="fa fa-times"></span></div>
-      </div>
-      <div class="info-card__body">
-        <div class="question-card">
-          <input type="checkbox" id="q1">
-          <label class="question" for="q1">
-            1. How do i register
-            <span class="fa fa-arrow-up"></span>
-          </label>
-          <div class="answer">
-            Click login or signup on the homepage and enter your details,
-            An sms/email message will be sent to you to confirm your details.
-
+<app-header></app-header>
+<div class="wrapper scroller">
+  <div class="content">
+    <!-- Faq section Start -->
+    <section class="contact-sec faq-sec">
+      <div class="container">
+        <h6 class="contact-title">frequently asked question</h6>
+        <div class="question-row">
+          <div class="q-cols">
+            <h5 class="q-title">1. How do i register</h5>
+            <p class="q-desc">Click login or signup on the homepage and enter your details, An sms/email message will be sent to you to confirm your details.</p>
+          </div>
+          <div class="q-cols">
+            <h5 class="q-title">2. Who can Contribute</h5>
+            <p class="q-desc">Persons at or above the age of 18 years, who are in school, established a business or anyone else who wants to get lucky.</p>
           </div>
         </div>
-        <div class="question-card">
-          <input type="checkbox" id="q2">
-          <label class="question" for="q2">
-            2. Who can Invest
-            <span class="fa fa-arrow-up"></span>
-          </label>
-          <div class="answer">
-            Persons at or above the age of 18 years, who are in school, established a business or anyone else who wants
-            to get lucky.
+        <div class="question-row">
+          <div class="q-cols">
+            <h5 class="q-title">3. How to Contribute</h5>
+            <p class="q-desc">Follow the instructions stipulated with the scholarship, business and luckyme sections to contribute.</p>
           </div>
-        </div>
-        <div class="question-card">
-          <input type="checkbox" id="q3">
-          <label class="question" for="q3">
-            3. How to Invest
-            <span class="fa fa-arrow-up"></span>
-          </label>
-          <div class="answer">
-            Follow the instructions stipulated with the scholarship, business and luckyme sections to Invest.
-          </div>
-        </div>
-        <div class="question-card">
-          <input type="checkbox" id="q4">
-          <label class="question" for="q4">
-            4. How Do I Get Paid
-            <span class="fa fa-arrow-up"></span>
-          </label>
-          <div class="answer">
-            Once you are selected as the winner for the period you have selected, you will receive an alert via sms or
-            email and the money would be paid to your mobile money or bank account immediately.
+          <div class="q-cols">
+            <h5 class="q-title">4. How Do I Get Paid</h5>
+            <p class="q-desc">Once you are selected as the winner for the period you have selected, you will receive an alert via sms or email and the money would be paid to your mobile money or bank account immediately.</p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+    <!-- faq section End -->
   </div>
+  <app-footer></app-footer>
 </div>

@@ -1,3 +1,4 @@
+<app-busy class="invisible" [ngClass]="{'visible':loading,'invisible':!loading}"></app-busy>
 <section>
 
   <app-header></app-header>
@@ -7,7 +8,7 @@
       <div class="section-header">
         <div class="col-lg-12">
           <div class="page-header d-flex justify-content-between align-items-center">
-            <h2 class="pageheader-title">{{crowdFund.username}}'s CrowdFund</h2>
+            <h4 class="pageheader-title">CrowdFund Posted By {{crowdFund.username}}</h4>
             <div class="header-actions" *ngIf="userId == crowdFund.userId">
               <button mat-icon-button class="btn_edit" matTooltip="Edit crowdfund"
                 routerLink="/crowdfund/edit/{{crowdFund.id}}">
@@ -26,22 +27,22 @@
           <ngb-carousel [showNavigationArrows]="true">
             <ng-template ngbSlide>
               <div class="picsum-img-wrapper" *ngIf="crowdFund.mainImageUrl">
-                <img [src]="urlLink + crowdFund.mainImageUrl">
+                <img [src]="crowdFund.mainImageUrl|cookimage">
               </div>
             </ng-template>
             <ng-template *ngIf="crowdFund.videoUrl" ngbSlide>
               <div class="picsum-img-wrapper">
-                <video [src]="urlLink + crowdFund.videoUrl"></video>
+                <video [src]="crowdFund.videoUrl|cookimage"></video>
               </div>
             </ng-template>
             <ng-template *ngIf="crowdFund.secondImageUrl" ngbSlide>
               <div class="picsum-img-wrapper">
-                <img [src]="urlLink + crowdFund.secondImageUrl">
+                <img [src]="crowdFund.secondImageUrl|cookimage">
               </div>
             </ng-template>
             <ng-template *ngIf="crowdFund.thirdImageUrl" ngbSlide>
               <div class="picsum-img-wrapper">
-                <img [src]="urlLink + crowdFund.thirdImageUrl">
+                <img [src]="crowdFund.thirdImageUrl|cookimage">
               </div>
             </ng-template>
           </ngb-carousel>
@@ -98,9 +99,9 @@
                 <div class="row container">
                   <mat-form-field style="width: 100%;">
                     <mat-label>Enter Amount</mat-label>
-                    <input type="text" matInput>
+                    <input  [(ngModel)]="amount" type="number" matInput>
                   </mat-form-field>
-                  <button mat-stroked-button color="accent">Send Amount</button>
+                  <button (click)="paymentInitialized()" mat-stroked-button color="accent">Send Amount</button>
                 </div>
               </div>
 
@@ -169,15 +170,22 @@
         </div>
       </div>
 
-      <ng-template #loader>
-        <app-spinner></app-spinner>
-      </ng-template>
+      
 
 
     </div>
   </div>
 
+  <ng-template #loader>
+    <app-spinner></app-spinner>
+  </ng-template>
+
 
   <app-footer></app-footer>
+
+  <app-payment-dialog [amount]="amount" [stakeType]="'CrowdFund'"
+  [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" (close)="closePaymentDialog()"
+  (oncongratmessage)="showCongratulatoryMessage($event)" [txRef]="this.raveOptions.txref"
+  *ngIf="customPaymentDialogShown && this.raveOptions"></app-payment-dialog>
 
 </section>

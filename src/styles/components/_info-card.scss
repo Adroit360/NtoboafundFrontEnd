@@ -176,7 +176,7 @@
 }
 
 .info-card-1 {
-  height: 21rem;
+  //height: 21rem;
   border-radius: 0.3rem;
   display: flex;
   flex-direction: column;
@@ -184,13 +184,13 @@
   position: relative;
   background-color: #00300a;
   &__head {
-    display: flex;
+    //display: flex;
     color: black;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 2rem;
+    //justify-content: space-between;
+    //align-items: center;
+    //font-size: 2rem;
     padding: 1rem;
-    text-align: center;
+    //text-align: center;
     white-space: nowrap;
     min-height: 5rem;
 
@@ -232,6 +232,7 @@
       overflow: auto;
       display: flex;
       flex-wrap: wrap;
+      //justify-content: center;
       &__header {
         padding: 0.2rem;
         display: inline-block;
@@ -242,7 +243,10 @@
       }
 
       .winner-item {
-        flex: 1 1 30%;
+        //flex: 1 1 30%;
+        @media screen and (max-width:620px) {
+          flex:auto;
+        }
         margin: 0.3rem;
         border-radius: 0.5rem;
         padding: 0.5rem;
@@ -263,10 +267,10 @@
           flex: 1 1;
           margin: 0rem 1rem;
           .winner-name {
-            letter-spacing: 0.15rem;
-            font-weight: 400;
+            //letter-spacing: 0.15rem;
+            //font-weight: 400;
             white-space: nowrap;
-            color: rgba(white, 0.6);
+            //color: rgba(white, 0.6);
           }
           .winning-details {
             font-size: 1.3rem;

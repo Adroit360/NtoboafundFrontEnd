@@ -75,9 +75,9 @@
                     <!-- <input type="checkbox" id="dropdown-checker"> -->
                     <label for="dropdown-checker" class="dropdown-toggle" id="dropdownMenuButton">
                         <div id="user-det">
-                            <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt="">
+                            <!-- <img [src]="apiPath +'/users/getimage/'+ currentUser.email.split('@')[0]" alt=""> -->
                             <p>Hello</p>
-                            <p>{{currentUser.firstName}}</p>
+                            <p *ngIf="currentUser">{{currentUser.firstName}}</p>
                         </div>
                     </label>
                     <div class="my-dropdown">

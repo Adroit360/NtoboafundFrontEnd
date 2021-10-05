@@ -21,49 +21,68 @@ export class SignalRService {
     monthlyLuckymeParticipants: LuckymeParticipant[] = [];
     usersOnline: number;
 
-    potentialDailyLuckymeWinnersCount : number = 0;
-    potentialWeeklyLuckymeWinnersCount : number =  0;
-    potentialMonthlyLuckymeWinnersCount : number = 0;
-    potentialScholarshipWinnersCount : number = 0;
-    potentialBusinessWinnersCount : number = 0;
-    
-    onNewParticipantAdded:Subject<string> = new Subject();
+    potentialDailyLuckymeWinnersCount: number = 0;
+    potentialWeeklyLuckymeWinnersCount: number = 0;
+    potentialMonthlyLuckymeWinnersCount: number = 0;
+    potentialScholarshipWinnersCount: number = 0;
+    potentialBusinessWinnersCount: number = 0;
+
+    onNewParticipantAdded: Subject<string> = new Subject();
 
     constructor() {
         this.startStakersConnection();
     }
+
+    async start(hub: signalR.HubConnection, successCallback = undefined) {
+        try {
+            await hub.start()
+            if (successCallback)
+                successCallback.call(this);
+        } catch (error) {
+            window.setTimeout(() => {
+                this.start(hub, successCallback);
+            }, 5000)
+        }
+    }
+
     //build and start the connectiont to the stakers hub
     startStakersConnection() {
         this.stakersHubConnection = new signalR.HubConnectionBuilder().withUrl(this.stakersHubUrl).build()
         this.stakersHubConnection.keepAliveIntervalInMilliseconds = 300000;
         this.stakersHubConnection.serverTimeoutInMilliseconds = 8.64e+7;
-        this.stakersHubConnection.start().then((() => {
-            this.initiateGetScholarshipParticipants();
-            this.initiateAddScholarshipParticipant();
+        
+        this.start(this.stakersHubConnection,this.wireStakersHubEventHandlers);
+    }
 
-            this.initiateGetBusinessParticipants();
-            this.initiateAddBusinessParticipant();
+    wireStakersHubEventHandlers() {
+        this.initiateGetScholarshipParticipants();
+        this.initiateAddScholarshipParticipant();
 
-            this.initiateGetDailyLuckymeParticipants();
-            this.initiateAddDailyLuckymeParticipant();
+        this.initiateGetBusinessParticipants();
+        this.initiateAddBusinessParticipant();
 
-            this.initiateGetWeeklyLuckymeParticipants();
-            this.initiateAddWeeklyLuckymeParticipant();
+        this.initiateGetDailyLuckymeParticipants();
+        this.initiateAddDailyLuckymeParticipant();
 
-            this.initiateGetMonthlyLuckymeParticipants();
-            this.initiateAddMonthlyLuckymeParticipant();
+        this.initiateGetWeeklyLuckymeParticipants();
+        this.initiateAddWeeklyLuckymeParticipant();
+
+        this.initiateGetMonthlyLuckymeParticipants();
+        this.initiateAddMonthlyLuckymeParticipant();
 
 
-            this.initiateGetPotentialScholarshipWinnersCount();
-            this.initiateGetPotentialBusinessWinnersCount();
-            this.initiateGetPotentialDailyLuckymeWinnersCount();
-            this.initiateGetPotentialWeeklyLuckymeWinnersCount();
-            this.initiateGetPotentialMonthlyLuckymeWinnersCount();
+        this.initiateGetPotentialScholarshipWinnersCount();
+        this.initiateGetPotentialBusinessWinnersCount();
+        this.initiateGetPotentialDailyLuckymeWinnersCount();
+        this.initiateGetPotentialWeeklyLuckymeWinnersCount();
+        this.initiateGetPotentialMonthlyLuckymeWinnersCount();
+        this.initiateNewUserOnline();
 
-            this.initiateNewUserOnline();
-        }).bind(this)).catch(() => {
-            console.log("Failed to start staker hub connection");
-        })
+        this.stakersHubConnection.onclose(() => {
+
+            console.log("Stakers hub Disconnected.. Reconnecting...");
+            this.start(this.stakersHubConnection);
+        });
     }
 
     initiateAddDailyLuckymeParticipant() {

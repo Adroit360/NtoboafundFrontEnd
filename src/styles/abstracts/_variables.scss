@@ -25,7 +25,7 @@
     --game-green-dark:#004c40;
     --game-blue-dark:#018adf;
     --game-blue-light:#34cfee;
-    --game-blue:#19a6fe;
+    --game-blue:#0098FF;
     --iconColor:#72777a;
     --iconHoverColor:#72777a;
     --textFaded: #a7abc3;
@@ -34,7 +34,7 @@
     --primaryColor:#459dd9;
     --primaryColorDark:#1774b3;
     //text
-    
+    --hover-color:var(--game-blue);
     
     //shadows
     --bottom-shadow:0 1px 3px 0 rgba(0,0,0,0.25);

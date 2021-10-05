@@ -77,7 +77,6 @@ export class AuthService {
             switch (rMethod) {
                 case "momo":
                     //Build the error message to show base on what info the user is missing
-
                     let momoError: string = "";
                     if (!this.currentUser.momoDetails.country)
                         momoError += "Please add your mobile money country\n";

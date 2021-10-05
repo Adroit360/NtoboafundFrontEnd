@@ -84,7 +84,7 @@
               </div>
               <ng-template #noImage>
                 <div class="image-preview mt-3">
-                  <img width="200" [src]="urlLink + crowdFund.mainImageUrl" alt="">
+                  <img width="200" [src]="crowdFund.mainImageUrl|cookimage" alt="">
                 </div>
               </ng-template>
             </div>

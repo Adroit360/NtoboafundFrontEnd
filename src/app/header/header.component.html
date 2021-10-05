@@ -5,7 +5,7 @@
     </div>
   </label>
   <a routerLink="" class="brand-logo">
-    <img src="assets/images/ntlog.png" alt="">
+    <img src="assets/images/logo.png" alt="">
   </a>
   <div class="nav-links">
     <ul>
@@ -27,7 +27,7 @@
         <app-rot-border><a (click)="navClicked()" routerLink="/insurance">Insurance</a></app-rot-border>
       </li> -->
       <li>
-        <app-rot-border><a (click)="openFaq()">FAQ</a></app-rot-border>
+        <app-rot-border><a (click)="navClicked()" routerLink="/faq">FAQ</a></app-rot-border>
       </li>
       <li>
         <app-rot-border><a (click)="navClicked()" routerLink="/blog">Blog</a></app-rot-border>
@@ -53,9 +53,8 @@
       </div>
     </div>
     <div *ngIf="!isAuthenticated" style="white-space: nowrap" class="notLoggedIn">
-      <a routerLink="/login">Login</a>
-      <a routerLink="/register">Sign Up</a>
+      <a routerLink="/login">LOGIN</a>
+      <a routerLink="/register">SIGN UP</a>
     </div>
-
   </div>
 </div>

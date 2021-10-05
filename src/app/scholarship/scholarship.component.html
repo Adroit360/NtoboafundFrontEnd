@@ -20,31 +20,37 @@
         </div>
 
       </div>
-      <div class="scholarship-body__content__header__right">
+      <div class="scholarship-page__content__header__right">
         <div class="info-card-1 participants">
-          <div class="info-card-1__head"><span>CURRENT PARTICIPANTS</span></div>
+          <div class="info-card-1__head">
+            <div class="contribute-title">CURRENT PARTICIPANTS</div>
+          </div>
           <div class="info-card-1__body">
             <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
-            <div class="winner-group">
+            <div class="winner-group contribute-info">
               <!-- <div class="winner-group__header">
               Today
             </div> -->
               <!-- *ngFor="let winner of winnings[key]" -->
-              <div *ngFor="let participant of signalRservice.scholarshipParticipants" class="winner-item">
-                <div class="winner-item__description">
-                  <span class="winner-name">{{participant.userName}}</span>
-                  <span class="winning-details">
+              <div *ngFor="let participant of signalRservice.scholarshipParticipants"
+                class="winner-item contribute-list">
+                <div class="winner-item__description list-item">
+                  <strong class="winner-name">{{participant.userName}}</strong>
+                  <span class="contrib">CONTIBUTED</span>
+                  <a class="amount-won">GH₵
+                    {{participant.amountStaked}}</a>
+                  <!-- <span class="winning-details">
                     <span class="contrib">CONTIBUTED</span>
                     <span class="amount-won"> <span class="period"> </span>GH₵
                       {{participant.amountStaked}}</span>
-                    <!-- <span class="amount-staked"> with GH₵ winner.amount</span> -->
-                  </span>
+                    <span class="amount-staked"> with GH₵ winner.amount</span>
+                  </span> -->
                 </div>
               </div>
             </div>
           </div>
-          <div class="info-card-1__footer">{{signalRservice.potentialScholarshipWinnersCount}} potential winner<span
-              *ngIf="signalRservice.potentialScholarshipWinnersCount != 1">s</span></div>
+          <!-- <div class="info-card-1__footer">{{signalRservice.potentialScholarshipWinnersCount}} potential winner<span
+              *ngIf="signalRservice.potentialScholarshipWinnersCount != 1">s</span></div> -->
         </div>
       </div>
     </div>
@@ -200,32 +206,30 @@
 
       </div>
     </div>
-    <div class="past-winners">
-      <!-- Past Winners -->
-      <h6 *ngIf="winnerSelectionService.groupedScholarshipWinners"></h6>
-      <div *ngIf="winnerSelectionService.groupedScholarshipWinners" class="pan-view">
-        <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedScholarshipWinners)" class="pan-view-group">
-          <div *ngFor="let winner of winnerSelectionService.groupedScholarshipWinners[key]" class="pan-view__item">
-            <div class="pan-view__item__text">
-              <div class="pan-view__item__text--top">
-                <div class="first">{{winner.amountToWin}}</div>
-                <div class="second">GH₵</div>
-                <!-- <div class="amountcontrib">{{winner.amountStaked}}</div> -->
+
+    <section class="past-winners lucky-winner-sec">
+      <div class="winners">
+        <div class="container">
+          <h6 class="text-center">Past Winners</h6>
+          <div *ngIf="winnerSelectionService.groupedScholarshipWinners">
+            <app-slide-panel [classes]="['win-list','winner-slider']">
+              <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedScholarshipWinners)" class="win-item">
+                <strong class="price">{{winnerSelectionService.groupedScholarshipWinners[key][0].amountToWin}}</strong>
+                <span class="sign">GH₵</span>
+                <h5>{{winnerSelectionService.groupedScholarshipWinners[key][0].userName}}</h5>
+                <p class="desc">{{key}}</p>
               </div>
-              <div class="pan-view__item__text--bottom">
-                <div class="first">{{winner.userName}}</div>
-                <div class="second">{{key}}</div>
-              </div>
-            </div>
+            </app-slide-panel>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+
     <div class="win-banner">
       <div class="win-prize">
         <span>Prizes Paid</span>
         <strong>GH₵ 220,000</strong>
-        <p>With Ntoboafund, the more you invest the better your chances of winning BIG!.</p>
+        <p>With Ntoboafund, the more you contribute the better your chances of winning BIG!.</p>
       </div>
     </div>
     <section class="aritcles-sec">
@@ -255,11 +259,11 @@
         </div>
       </div>
     </section>
-    <div class="scholarship-body__content__bottom">
+    <div class="scholarship-page__content__bottom">
       <!-- <div class="s-records-info">
         <div class="s-record">
           <div class="s-record__figure">GHC 100K+</div>
-          <div class="s-record__text">Returns Paid to Our Scholarship Fund Investors so far</div>
+          <div class="s-record__text">Returns Paid to Our Scholarship Fund Contributors so far</div>
         </div>
         <div class="s-record">
           <div class="s-record__figure">GHC 500+</div>
@@ -269,7 +273,7 @@
           <div class="s-record__figure">GHC 60K+</div>
           <div class="s-record__text">Total Points Earned by
             Scholarship Fund
-            Investors so far</div>
+            Contributors so far</div>
         </div>
       </div> -->
 
@@ -319,7 +323,7 @@
 </div>
 
 
-<app-faq></app-faq>
+
 
 <app-payment-dialog [amount]="selectedAmount" [stakeType]="'Scholarship'"
   [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" [txRef]="this.raveOptions.txref"

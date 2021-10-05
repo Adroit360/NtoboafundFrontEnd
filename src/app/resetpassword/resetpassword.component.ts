@@ -30,7 +30,8 @@ export class ResetpasswordComponent implements OnInit {
         this.isSuccessful = true;
         this.isbuttonHidden = false;
       },xhr=>{
-        this.errorMessage = xhr.error.message;
+        if(xhr.error)
+           this.errorMessage = xhr.error.message;
         this.isbuttonHidden = false;
       })
     }else{

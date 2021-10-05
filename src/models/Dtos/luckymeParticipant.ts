@@ -9,4 +9,5 @@ export class LuckymeParticipant{
     luckyme:any;
     dateDeclared:string; 
     txRef:string;
+    status:string;
 }

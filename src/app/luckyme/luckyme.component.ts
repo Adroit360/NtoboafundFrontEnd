@@ -22,8 +22,8 @@ export class LuckymeComponent implements OnInit,AfterViewInit {
 
   ObjectKeys = Object.keys;
   console = console.log;
-  selectedChoice: number = null;
-  selectedPeriod = null;
+  selectedChoice: number = 1;
+  selectedPeriod = 'daily';
   loading = false;
   error = null;
   errorShown = false;
@@ -126,7 +126,7 @@ export class LuckymeComponent implements OnInit,AfterViewInit {
               this.loading = false;
                console.log(response);
                
-               if(settings.paymentGateway == "slydepay" || settings.paymentGateway == "redde"){
+               if(settings.paymentGateway == "slydepay" || settings.paymentGateway == "redde" || settings.paymentGateway == "theTeller"){
                 this.customPaymentDialogShown = true;
               //   if(response.paymentToken){
               //     window.location.href = settings.slydePayCallbackUrlPrefix + response.paymentToken;
@@ -233,7 +233,7 @@ export class LuckymeComponent implements OnInit,AfterViewInit {
    * @param stakeAmount The Amount the use Chooses to stake
    */
   getReturnsText(stakeAmount: number = 0) {
-    return `Get GH₵ ${stakeAmount * settings.luckymeStakeOdds}`;
+    return ` GH₵ ${stakeAmount * settings.luckymeStakeOdds}`;
   }
 
 }

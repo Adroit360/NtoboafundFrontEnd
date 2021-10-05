@@ -19,6 +19,7 @@
     box-shadow: var(--shadow);
     input{
       font-size: inherit;
+      background:transparent;
       &.ng-invalid.ng-touched{
        
         &~.val-msg{

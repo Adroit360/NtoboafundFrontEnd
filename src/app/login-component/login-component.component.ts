@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
             this.loading = false; 
         },
         xher => {
-          this.error = xher.error;
+          this.error = xher;
           this.loading = false;
         });
   }

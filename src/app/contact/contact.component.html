@@ -1,0 +1,66 @@
+<app-header></app-header>
+<app-busy class="invisible" [ngClass]="{'visible':loading,'invisible':!loading}"></app-busy>
+<div class="wrapper scroller">
+  <div class="content">
+    <!-- Contact section Start -->
+    <section class="contact-sec">
+      <div class="container">
+        <div class="contact-wrap mob-manage">
+          <form class="contact-form mob-ord-2" [formGroup]="contactForm" (ngSubmit)="sumbitContactForm()">
+            <h6 class="contact-title">SEND MESSAGE TO US</h6>
+            <div class="input-group">
+              <input type="text" formControlName="name" placeholder="Name">
+            </div>
+            <div class="input-group">
+              <input type="text" formControlName="email" placeholder="Email">
+            </div>
+            <div class="input-group">
+              <input type="text" formControlName="mobileNumber" placeholder="Mobile Number">
+            </div>
+            <div class="input-group">
+              <input type="text" formControlName="reason" placeholder="Reason for Contacting us">
+            </div>
+            <div class="textarea-group">
+              <textarea formControlName="description" placeholder="Detailed Description"></textarea>
+            </div>
+            <div class="check-group">
+              <input type="checkbox" id="privacyTerm">
+              <label for="privacyTerm">By checking this box, you agree to our <a href="#!">terms and condition</a> and <a href="#!">privacy and cookie policy</a>.</label>
+            </div>
+            <h5 *ngIf="message" [ngStyle]="{color:message.color}" class="contact-title">{{message.text}}</h5>
+            <div class="text-right btn-wrap">
+              <button type="submit" class="primary-btn">SEND</button>
+            </div>
+          </form>
+          <div class="company-data mob-ord-1">
+            <h6 class="contact-title">COMPANY DATA</h6>
+            <ul>
+              <li>
+                <h6 class="data-title">ADDRESS</h6>
+                <p class="desc">Accra Digital Centre | John Dramani Mahama Block | Digital Address: GA 174-4681</p>
+              </li>
+              <li>
+                <h6 class="data-title">TELEPHONE</h6>
+                <p class="desc"><a href="tel:0303964581">0303964581</a> | <a href="tel:+233273975782">+233273975782</a> | <a href="tel:+233593396321">+233593396321</a></p>
+              </li>
+              <li>
+                <h6 class="data-title">Whatsapp</h6>
+                <p class="desc"><a href="https://api.whatsapp.com/send?phone=+233273975782">+233273975782</a> | <a href="https://api.whatsapp.com/send?phone=+233593396321">+233593396321</a></p>
+              </li>
+              <li>
+                <h6 class="data-title">EMAIL</h6>
+                <p class="desc"><a href="mailto:ntoboafundgh@gmail.com">ntoboafundgh@gmail.com</a></p>
+              </li>
+              <li>
+                <h6 class="data-title">SOCIAL PROFILES</h6>
+                <p class="desc"><a target="_blank" href="https://www.facebook.com/Ntoboafund/" class="social-icn"><img src="assets/images/fblogo.png" alt="fblogo"></a><a target="_blank" href="https://www.instagram.com/ntoboafund/" class="social-icn"><img src="../../assets/images/instagram.png" alt="twitterlogo"></a></p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact section End -->
+  </div>
+  <app-footer></app-footer>
+</div>

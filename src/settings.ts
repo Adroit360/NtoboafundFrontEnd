@@ -2,7 +2,7 @@ const data = {
     urls:{
         apiUrl: "https://ntoboafund.gear.host",
         LocalApiUrl: "https://localhost:44311",
-        localKestrelUrl: "https://localhost:5001",
+        localKestrelUrl: "http://localhost:5000",
         azure: "https://ntoboafundwebapi.azurewebsites.net"
     },
     payment:{
@@ -15,7 +15,8 @@ export const settings = {
 
     currentApiUrl: data.urls.azure,
 
-    paymentGateway:"redde",
+    // paymentGateway:"redde",
+    paymentGateway:"theTeller",
 
     getPublicApi: function (): string {
         return data.payment.publicLive
@@ -30,7 +31,6 @@ export const settings = {
     businessStakeOdds: 10,
 
     luckymeStakeOdds: 10
-    
     
 } 
 

@@ -52,40 +52,57 @@ export class CountDownService {
         this.countDownV2();
     }
 
+    async start(hub: signalR.HubConnection, successCallback = undefined) {
+        try {
+            await hub.start();
+            if (successCallback)
+                successCallback.call(this);
+        } catch (error) {
+            window.setTimeout(() => {
+                this.start(hub, successCallback);
+            }, 5000)
+        }
+    }
+
+
     startcountDownHubConnection(){
         this.countDownHub = new signalR.HubConnectionBuilder().withUrl(this.countDownHubUrl).build();
         this.countDownHub.keepAliveIntervalInMilliseconds = 3600000;
         this.countDownHub.serverTimeoutInMilliseconds = 8.64e+7;
-
-        this.countDownHub.start().then(()=>{
-            this.countDownHub.on("getDailyTime",(hours,minutes,seconds)=>{
-                //console.log(hours,minutes,seconds);
-                this.DailyHoursTime.next(hours);
-                this.DailyMinutesTime.next(minutes);
-                this.DailySecondsTime.next(seconds);
-            });
-            this.countDownHub.on("getWeeklyTime",(days,hours,minutes,seconds)=>{
-                this.WeeklyDaysTime.next(days);
-                this.WeeklyHoursTime.next(hours);
-                this.WeeklyMinutesTime.next(minutes);
-                this.WeeklySecondsTime.next(seconds);
-            });
-
-            this.countDownHub.on("getMonthlyTime",(days,hours,minutes,seconds)=>{
-                this.MonthlyDaysTime.next(days);
-                this.MonthlyHoursTime.next(hours);
-                this.MonthlyMinutesTime.next(minutes);
-                this.MonthlySecondsTime.next(seconds);
-            });
-
-            this.countDownHub.on("getQuaterlyTime",(days,hours,minutes,seconds)=>{
-                this.QuaterlyDaysTime.next(days);
-                this.QuaterlyHoursTime.next(hours);
-                this.QuaterlyMinutesTime.next(minutes);
-                this.QuaterlySecondsTime.next(seconds);
-            });
-        })
+        this.start(this.countDownHub,this.wireCountDownEventsHandlers);
     }
+
+    wireCountDownEventsHandlers(){
+        this.countDownHub.on("getDailyTime",(hours,minutes,seconds)=>{
+            //console.log(hours,minutes,seconds);
+            this.DailyHoursTime.next(hours);
+            this.DailyMinutesTime.next(minutes);
+            this.DailySecondsTime.next(seconds);
+        });
+        this.countDownHub.on("getWeeklyTime",(days,hours,minutes,seconds)=>{
+            this.WeeklyDaysTime.next(days);
+            this.WeeklyHoursTime.next(hours);
+            this.WeeklyMinutesTime.next(minutes);
+            this.WeeklySecondsTime.next(seconds);
+        });
+        this.countDownHub.on("getMonthlyTime",(days,hours,minutes,seconds)=>{
+            this.MonthlyDaysTime.next(days);
+            this.MonthlyHoursTime.next(hours);
+            this.MonthlyMinutesTime.next(minutes);
+            this.MonthlySecondsTime.next(seconds);
+        });
+        this.countDownHub.on("getQuaterlyTime",(days,hours,minutes,seconds)=>{
+            this.QuaterlyDaysTime.next(days);
+            this.QuaterlyHoursTime.next(hours);
+            this.QuaterlyMinutesTime.next(minutes);
+            this.QuaterlySecondsTime.next(seconds);
+        });
+        this.countDownHub.onclose(()=>{
+            console.log("Countdown hub Disconnected.. Reconnecting...");
+            this.start(this.countDownHub);
+        });
+    }
+
     // countDown() {
     //     //get the current date
     //     var d = new Date();
@@ -156,17 +173,4 @@ export class CountDownService {
 
     }
 
-    // getQuaterlyMonth(currentMonth){
-    //     for(let month of this.quaterlyMonths){
-    //         if(month >= currentMonth){
-    //             //set the quaterly months
-    //             return month
-    //         }
-    //         continue;
-    //     }
-    // }
-
-    // daysInMonth (month, year) { 
-    //     return new Date(year, month, 0).getDate(); 
-    // }
 }
