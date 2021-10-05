@@ -60,7 +60,6 @@ export class SingleCrowdComponent implements OnInit {
       (res) => {
         this.crowdFund = res;
         this.endDate = this.crowdFund.endDate;
-
         var timeLeft =
           new Date(this.endDate).getTime() - this.todayDate.getTime();
         this.leftDate = timeLeft / (1000 * 3600 * 24);
