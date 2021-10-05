@@ -83,7 +83,9 @@
               <br>
               <span class="font-weight-bold">Description</span>
               <div class="crowd_description">
-                <div [innerHTML]="crowd.description"></div>
+                <div class="description" style="-webkit-box-orient: vertical;" [innerHTML]="crowd.description">
+                  <p>{{crowd.description}}</p>
+                </div>
               </div>
               <hr>
               <div class="contributed">
@@ -157,7 +159,7 @@
     <div class="container">
       <div class="section border-top">
         <div class="container">
-          <div class="card rounded shadow border-0 bg-light overflow-hidden">
+          <div class="card rounded shadow border-0 bg-light overflow-hidden mb-5">
             <div class="row no-gutters align-items-center">
               <div class="col-lg-6">
                 <img src="../../assets/images/covid-800x800.jpg" class="img-fluid" alt="">
@@ -188,5 +190,7 @@
         </div>
       </div>
     </div>
+
+    <app-footer></app-footer>
   </div>
 </section>

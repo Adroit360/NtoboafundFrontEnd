@@ -4,7 +4,7 @@ import { CrowdFundService } from "src/services/crowdFund.service";
 @Component({
   selector: "app-crowds",
   templateUrl: "./crowds.component.html",
-  styleUrls: ["./crowds.component.scss"],
+  styleUrls: ["./crowds.component.scss", "../crowdfunding.component.scss"],
 })
 export class CrowdsComponent implements OnInit {
   crowds: any;

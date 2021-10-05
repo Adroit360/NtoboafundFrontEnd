@@ -72,3 +72,29 @@
     }
   }
 }
+
+@media (max-width: 576px) {
+  .home .gamechanger .changer_body img {
+    width: 100% !important;
+    height: 200px !important;
+  }
+
+  .home .gamechanger .changer_body .changer_text {
+    padding: 0;
+    margin-left: 20px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 991.98px) {
+  .home .gamechanger .changer_body img {
+    width: 100% !important;
+    height: 400px !important;
+  }
+
+  .home .gamechanger .changer_body .changer_text {
+    padding: 0 !important;
+    margin-left: 20px !important;
+    text-align: center !important;
+  }
+}
