@@ -138,7 +138,7 @@
 
         <div class="check">
           <mat-checkbox (change)="changeCheck($event)">I agree to the</mat-checkbox>
-          <span class="terms" (click)="open(content)">Terms and Conditions</span>
+          <span class="terms" [routerLink]="'/terms'">Terms and Conditions</span>
         </div>
 
 
