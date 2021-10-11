@@ -9,7 +9,7 @@
 
     <div class="crowds_section">
       <div class="row" *ngIf="crowds;else spinner">
-        <div class="col-lg-3 pb-4" *ngFor="let crowd of crowds" routerLink="/crowdfunding/{{crowd.id}}">
+        <div class="col-lg-4 pb-4" *ngFor="let crowd of crowds" routerLink="/crowdfunding/{{crowd.id}}">
           <mat-card>
             <img mat-card-image [src]="crowd.mainImageUrl|cookimage">
             <mat-card-content>
@@ -18,7 +18,9 @@
               <br>
               <span class="font-weight-bold">Description</span>
               <div class="crowd_description">
-                <div [innerHTML]="crowd.description"></div>
+                <div class="description" style="-webkit-box-orient: vertical;" [innerHTML]="crowd.description">
+                  <p>{{crowd.description}}</p>
+                </div>
               </div>
               <hr>
               <div class="contributed">
