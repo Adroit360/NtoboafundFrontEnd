@@ -45,6 +45,7 @@
               <span matPrefix>GH¢&nbsp;</span>
               <span matSuffix>.00</span>
               <mat-error *ngIf="crowdForm.controls.totalAmount.invalid">crowd amount required</mat-error>
+              <mat-error *ngIf="crowdForm.hasError()">Valid amount is required</mat-error>
             </mat-form-field>
           </div>
 
@@ -71,7 +72,7 @@
           <hr>
 
           <div class="image-wrapper">
-            <div class="row">
+            <div class="row d-flex justify-content-around">
               <div class="box col-lg-3">
                 <div class="js--preview-preview">
                   <div *ngIf="mainPreview">
@@ -170,8 +171,8 @@
           <h6>Upload Video</h6>
           <hr>
 
-          <div class="video-section">
-            <div class="col-lg-4">
+          <div class="video-section image-wrapper">
+            <div class="col-lg-4 box">
               <div class="js--preview-preview">
                 <div *ngIf="videoPreview">
                   <video [src]="videoPreview" controls></video>
@@ -249,8 +250,7 @@
 
 
         <div class="d-flex justify-content-end">
-          <button mat-raised-button color="accent" type="submit" [disabled]="crowdForm.invalid"
-            [disabled]="disabledAgreement == false">Save CrowdFund</button>
+          <button mat-raised-button color="accent" type="submit">Save CrowdFund</button>
         </div>
 
       </form>
