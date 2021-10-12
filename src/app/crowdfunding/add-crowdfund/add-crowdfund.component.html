@@ -44,7 +44,7 @@
                 type="text" name="amount" required>
               <span matPrefix>GH¢&nbsp;</span>
               <span matSuffix>.00</span>
-              <mat-error *ngIf="crowdForm.controls.totalAmount.invalid">input amount required</mat-error>
+              <mat-error *ngIf="crowdForm.controls.totalAmount.invalid">crowd amount required</mat-error>
             </mat-form-field>
           </div>
 
@@ -67,9 +67,90 @@
         </div>
 
         <div class="images">
-          <h6>Upload Cover Image</h6>
+          <h6>Upload Image</h6>
           <hr>
-          <div class="row mt-3">
+
+          <div class="image-wrapper">
+            <div class="row">
+              <div class="box col-lg-3">
+                <div class="js--preview-preview">
+                  <div *ngIf="mainPreview">
+                    <img [src]="mainPreview" alt="">
+                  </div>
+                </div>
+                <div class="upload-options">
+                  <label>
+                    <input type="file" class="image-upload" accept="image/*" #filePickerMain
+                      (change)="mian_fileProgress($event)">
+                  </label>
+                </div>
+              </div>
+
+              <div class="box col-lg-3" *ngIf="mainPreview">
+                <div class="js--preview-preview">
+                  <div *ngIf="secondPreview">
+                    <img [src]="secondPreview" alt="">
+                  </div>
+                </div>
+                <div class="upload-options">
+                  <label>
+                    <input type="file" class="image-upload" accept="image/*" #filePickerSecond
+                      (change)="second_fileProgress($event)" />
+                  </label>
+                </div>
+              </div>
+
+              <div class="box col-lg-3" *ngIf="secondPreview">
+                <div class="js--preview-preview">
+                  <div *ngIf="thirdPreview">
+                    <img [src]="thirdPreview" alt="">
+                  </div>
+                </div>
+                <div class="upload-options">
+                  <label>
+                    <input type="file" class="image-upload" accept="image/*" #filePickerThird
+                      (change)="third_fileProgress($event)" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="wrapper">
+            <div class="box">
+              <div class="js--image-preview">
+                <img [src]="mainPreview" alt="">
+              </div>
+              <div class="upload-options">
+                <label>
+                  <input type="file" class="image-upload" accept="image/*" #filePickerMain
+                    (change)="mian_fileProgress($event)" />
+                </label>
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="js--image-preview" [style.background-image]="secondPreview"></div>
+              <div class="upload-options">
+                <label>
+                  <input type="file" class="image-upload" accept="image/*" #filePickerSecond
+                    (change)="second_fileProgress($event)" />
+                </label>
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="js--image-preview" [style.background-image]="thirdPreview"></div>
+              <div class="upload-options">
+                <label>
+                  <input type="file" class="image-upload" accept="image/*" #filePickerThird
+                    (change)="third_fileProgress($event)" />
+                </label>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- <div class="row mt-3">
             <div class="col-lg-4 ">
               <button mat-raised-button color="accent" type="button" (click)="filePickerMain.click()">Upload
                 Cover Image</button>
@@ -77,15 +158,36 @@
                 accept=" image/png, image/jpg, image/jpeg">
               <div class="image-preview" *ngIf="mainPreview">
                 <img height="200" [src]="mainPreview" alt="">
-              </div>
-              <!-- <div class="image-preview" *ngIf="mainPreview">
+              </div> -->
+          <!-- <div class="image-preview" *ngIf="mainPreview">
                 <img height="200" [src]="mainPreview">
               </div> -->
+          <!-- </div>
+          </div> -->
+        </div>
+
+        <div class="videos" *ngIf="mainPreview">
+          <h6>Upload Video</h6>
+          <hr>
+
+          <div class="video-section">
+            <div class="col-lg-4">
+              <div class="js--preview-preview">
+                <div *ngIf="videoPreview">
+                  <video [src]="videoPreview" controls></video>
+                </div>
+              </div>
+              <div class="upload-options">
+                <label>
+                  <input type="file" class="image-upload" accept="video/*" #videoPicker
+                    (change)="videoProgress($event)" />
+                </label>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="images" *ngIf="mainPreview">
+        <!-- <div class="images" *ngIf="mainPreview">
           <h6>Upload Other Images</h6>
           <hr>
           <div class="row mt-3">
@@ -109,9 +211,9 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="video-section" *ngIf="mainPreview">
+        <!-- <div class="video-section" *ngIf="mainPreview">
           <h6 class="upload-video">Add Video</h6>
           <hr>
           <div class="row  mt-3">
@@ -121,12 +223,12 @@
               <input type="file" #videoPicker (change)="videoProgress($event)"
                 accept=" video/mp4, video/webm, video/ogg">
               <div class="image-preview" *ngIf="videoPreview">
-                <video [src]="videoPreview" height="200" controls></video>
-                <!-- <img [src]="thirdPreview" alt=""> -->
-              </div>
+                <video [src]="videoPreview" height="200" controls></video> -->
+        <!-- <img [src]="thirdPreview" alt=""> -->
+        <!-- </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- <div class="row">
           <div class="col-lg-12">
             <h6>Set Cover Image</h6>
