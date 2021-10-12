@@ -52,12 +52,12 @@ export class AddCrowdfundComponent implements OnInit {
   init() {
     this.crowdForm = this.fb.group({
       title: ["", Validators.required],
-      description: ["", [Validators.required, Validators.pattern("^[0-9]*$")]],
+      description: ["", [Validators.required]],
       mainImage: [""],
       secondImage: [""],
       thirdImage: [""],
       videoUrl: [""],
-      totalAmount: ["", Validators.required],
+      totalAmount: ["", [Validators.required, Validators.pattern("^[0-9]*$")]],
       userId: this.userId,
       typeId: ["", Validators.required],
       endDate: ["", Validators.required],
@@ -83,8 +83,12 @@ export class AddCrowdfundComponent implements OnInit {
   }
 
   async addCrowdFund() {
-    if (this.crowdForm.invalid) return;
-
+    if (this.crowdForm.invalid)
+      return this.snackbar.open("Please check the data for errors", "Retry", {
+        duration: 5000,
+        verticalPosition: "top",
+        horizontalPosition: "right",
+      });
     this.loading = true;
 
     const formData = new FormData();
@@ -273,5 +277,12 @@ export class AddCrowdfundComponent implements OnInit {
     if (event.keyCode != 8 && !pattern.test(inputChar)) {
       event.preventDefault();
     }
+  }
+
+  formValidation() {
+    if (this.crowdForm.invalid) {
+      return "Hello";
+    }
+    return true;
   }
 }
