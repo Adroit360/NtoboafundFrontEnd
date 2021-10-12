@@ -52,7 +52,7 @@ export class AddCrowdfundComponent implements OnInit {
   init() {
     this.crowdForm = this.fb.group({
       title: ["", Validators.required],
-      description: ["", Validators.required],
+      description: ["", [Validators.required, Validators.pattern("^[0-9]*$")]],
       mainImage: [""],
       secondImage: [""],
       thirdImage: [""],
