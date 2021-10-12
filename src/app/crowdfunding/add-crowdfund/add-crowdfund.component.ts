@@ -37,7 +37,7 @@ export class AddCrowdfundComponent implements OnInit {
   @ViewChild("loader") Loader: ElementRef;
 
   constructor(
-    private modalService: NgbModal,
+    public modalService: NgbModal,
     config: NgbModalConfig,
     private crowdService: CrowdFundService,
     private fb: FormBuilder,
@@ -263,8 +263,10 @@ export class AddCrowdfundComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content);
+    this.modalService.open(content,{ size:'lg'});
   }
+
+  
 
   keyPress(event: any) {
     const pattern = /[0-9\+\-\ ]/;
@@ -274,4 +276,5 @@ export class AddCrowdfundComponent implements OnInit {
       event.preventDefault();
     }
   }
+
 }

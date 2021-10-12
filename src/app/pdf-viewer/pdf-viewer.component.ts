@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pdf-viewer',
@@ -7,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PdfViewerComponent implements OnInit {
 
-  pdfSource:string;
+  pdfSource:string = "/assets/TERMS AND CONDITIONS -NTOBOA FUND.pdf";
+
+  @Input("showHeader")showHeader = true;
   constructor() { }
 
   ngOnInit() {
-
     //get the currrent page's url
     var path = window.location.href;
     if(path.includes("terms")){

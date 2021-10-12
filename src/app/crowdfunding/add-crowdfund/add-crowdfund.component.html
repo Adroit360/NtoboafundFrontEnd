@@ -244,7 +244,7 @@
 
         <div class="check">
           <mat-checkbox (change)="changeCheck($event)">I agree to the</mat-checkbox>
-          <span class="terms" [routerLink]="'/terms'">Terms and Conditions</span>
+          <span class="terms" (click)="open(content)">Terms and Conditions</span>
         </div>
 
 
@@ -265,29 +265,8 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-            necessitatibus rerum dignissimos, magni velit vero quasi impedit?
-            Iste, vel eos est minus perferendis sit dolor magni. Qui tempora sit
-            atque. Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-            at quos fugiat voluptates veniam, aperiam necessitatibus laudantium,
-            ducimus accusamus cumque nulla quaerat laboriosam tempore qui, omnis
-            nam deleniti officia officiis! Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Deserunt minus rerum aspernatur
-            distinctio accusantium quis modi suscipit pariatur, similique quia,
-            sunt numquam labore quasi atque vitae, enim assumenda nam sed! Lorem
-            ipsum dolor sit amet consectetur adipisicing elit. Et deserunt
-            libero esse illum saepe fugiat maiores ipsam, sunt beatae pariatur,
-            dolor facilis, reprehenderit fuga nobis minima quas. Odit, earum
-            nisi. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Dicta repudiandae eos quaerat dignissimos quod soluta aut. Debitis
-            ducimus porro asperiores dolores, quod accusantium earum sunt, harum
-            quasi eos nam impedit!lorem Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Nam vitae aspernatur numquam maiores totam soluta
-            obcaecati necessitatibus consectetur illum incidunt optio fuga odit,
-            laborum illo cupiditate iusto, eos, dignissimos ipsam.lorem
-          </p>
-
+          <app-pdf-viewer [showHeader]="false"></app-pdf-viewer>
+          <!-- <h1>happy</h1> -->
         </div>
       </ng-template>
     </mat-card>
