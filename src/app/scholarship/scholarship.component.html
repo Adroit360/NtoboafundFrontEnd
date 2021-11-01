@@ -23,7 +23,7 @@
       <div class="scholarship-page__content__header__right">
         <div class="info-card-1 participants">
           <div class="info-card-1__head">
-            <div class="contribute-title">CURRENT PARTICIPANTS</div>
+            <div class="contribute-title white">CURRENT PARTICIPANTS</div>
           </div>
           <div class="info-card-1__body">
             <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
@@ -92,12 +92,12 @@
         <input #stakeboxcontroller type="checkbox" id="stakeboxcontroller">
         <div class="stake-box__body">
           <div class="stake-box__body__info">
-            <div class="stake-box__body__info__head">Select The Amount You Would Like To
+            <div class="stake-box__body__info__head white">Select The Amount You Would Like To
               Invest
             </div>
             <div class="amount-box">
               <label for="20" class="amount-item">
-                <input (change)="selectAmount(20)" id="20" name="amount" type="radio">
+                <input checked (change)="selectAmount(20)" id="20" name="amount" type="radio">
                 <div class="amount-item__left">
                   <p>GH₵ 20</p>
                 </div>
@@ -135,7 +135,7 @@
             </div>
             <div style="color:#f44336;" *ngIf="error" class="potential-returns">{{error}}
             </div>
-            <div *ngIf="!error" class="potential-returns">Potential returns for this contribution option is
+            <div *ngIf="!error" class="potential-returns white">Potential returns for this contribution option is
               <span *ngIf="potentialReturns" class="returns">{{potentialReturns}}</span>
             </div>
             <div class="arrow">
@@ -150,34 +150,34 @@
             <div class="content">
               <form class="stake-form" [formGroup]="scholarshipForm">
                 <div class="form-group">
-                  <label for="exampleInputInstitution">Which institution do you belong to</label>
+                  <label for="exampleInputInstitution" class="white">Which institution do you belong to</label>
                   <input type="text" class="form-control" id="exampleInputInstitution" formControlName="Institution"
                     aria-describedby="InstitutionHelp" placeholder="Enter Institution">
                   <span>
                     <small *ngIf="!scholarshipForm.get('Institution').valid && scholarshipForm.touched"
-                      class="form-text">The institution name is required !!</small>
+                      class="form-text white">The institution name is required !!</small>
                   </span>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputProgram">Which program do you offer</label>
+                  <label for="exampleInputProgram" class="white">Which program do you offer</label>
                   <input type="text" class="form-control" id="exampleInputProgram" aria-describedby="ProgramHelp"
                     placeholder="Enter Program" formControlName="Program">
                   <span>
                     <small *ngIf="!scholarshipForm.get('Program').valid && scholarshipForm.touched"
-                      class="form-text">Your offered program is required !!</small>
+                      class="form-text white">Your offered program is required !!</small>
                   </span>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputStudentId">What is your student Id number</label>
+                  <label for="exampleInputStudentId" class="white">What is your student Id number</label>
                   <input type="text" class="form-control" id="exampleInputStudentId" aria-describedby="StudentIdHelp"
                     placeholder="Enter Student Id" formControlName="StudentId">
                   <span>
                     <small *ngIf="!scholarshipForm.get('StudentId').valid && scholarshipForm.touched"
-                      class="form-text">Your student id is required !!</small>
+                      class="form-text white">Your student id is required !!</small>
                   </span>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputStudentId">Select your player type</label>
+                  <label for="exampleInputStudentId" class="white">Select your player type</label>
                   <div class="flatradios">
                     <label class="flatradio-choice" for="student">
                       <input type="radio" value="student" formControlName="PlayerType" name="PlayerType" id="student">
@@ -189,7 +189,7 @@
                     </label>
                   </div>
                   <span>
-                    <small class="form-text"
+                    <small class="form-text white"
                       *ngIf="!scholarshipForm.get('PlayerType').valid && scholarshipForm.touched">Please
                       select a
                       player type</small>
@@ -198,8 +198,8 @@
               </form>
             </div>
             <div class="footer">
-              <label for="stakeboxcontroller" class="btn-trans i-resign"><span>&larr;</span>Back</label>
-              <label (click)="paymentInitialized()" class="btn-trans">Proceed<span>&rarr;</span></label>
+              <label for="stakeboxcontroller" class="btn-trans i-resign white"><span>&larr;</span>Back</label>
+              <label (click)="paymentInitialized()" class="btn-trans white">Proceed<span>&rarr;</span></label>
             </div>
           </div>
         </div>

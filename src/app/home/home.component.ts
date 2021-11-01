@@ -11,8 +11,10 @@ import { Participant } from 'src/models/Dtos/participant';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  // templateUrl: './home.component.html',
+  // styleUrls: ['./home.component.scss']
+  templateUrl:'../../oldsite/HomePage/homepage.html',
+  styleUrls: ['../../oldsite/HomePage/homepage.scss']
 })
 export class HomeComponent implements OnInit,OnDestroy {
   

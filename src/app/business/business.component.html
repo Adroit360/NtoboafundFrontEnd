@@ -1,6 +1,6 @@
 <app-busy class="invisible" [ngClass]="{'visible':loading,'invisible':!loading}"></app-busy>
 
-<!-- <div class="business-bg"></div> -->
+<div class="business-bg"></div>
 <app-header></app-header>
 
 
@@ -74,41 +74,41 @@
   <!-- Business Steps section Start -->
   <section class="business-steps">
     <div class="container">
-      <h6 class="text-center">CHOOSE AN OPTION TO Contribute</h6>
+      <h6 class="text-center white">CHOOSE AN OPTION TO Contribute</h6>
       <form class="steps-wrap">
         <div class="step">
-          <h6 class="step-title">1. Select the amount you would like to contribute</h6>
+          <h6 class="step-title white">1. Select the amount you would like to contribute</h6>
           <div class="tickets">
             <div class="radio-group">
-              <input type="radio" id="radioG1" name="radio" checked value="100" [(ngModel)]="selectedAmount"
+              <input type="radio" checked id="radioG1" name="radio" value="100"
                 (change)="selectChoice($event,100.00)" />
               <label for="radioG1">GH₵ 100</label>
             </div>
             <div class="radio-group">
-              <input type="radio" id="radioG2" name="radio" value="500" [(ngModel)]="selectedAmount"
+              <input type="radio" id="radioG2" name="radio" value="500"
                 (change)="selectChoice($event,500.00)" />
               <label for="radioG2">GH₵ 500</label>
             </div>
             <div class="radio-group">
-              <input type="radio" id="radioG3" name="radio" value="1000" [(ngModel)]="selectedAmount"
+              <input type="radio" id="radioG3" name="radio" value="1000"
                 (change)="selectChoice($event,1000.00)" />
               <label for="radioG3">GH₵ 1000</label>
             </div>
             <div class="radio-group">
-              <input type="radio" id="radioG4" name="radio" value="2000" [(ngModel)]="selectedAmount"
+              <input type="radio" id="radioG4" name="radio" value="2000"
                 (change)="selectChoice($event,2000.00)" />
               <label for="radioG4">GH₵ 2000</label>
             </div>
           </div>
         </div>
         <div class="step">
-          <h6 class="step-title">2. SELECT Contribution PERIOD</h6>
-          <p class="desc">Potential returns for a contribution of <strong>GH₵ {{selectedAmount}}</strong> is <strong>GH₵
+          <h6 class="step-title white">2. SELECT Contribution PERIOD</h6>
+          <p class="desc white">Potential returns for a contribution of <strong>GH₵ {{selectedAmount}}</strong> is <strong>GH₵
               {{potentialReturns}}</strong>
           </p>
         </div>
         <div class="step">
-          <h6 class="step-title">3. PRESS Contribute BUTTON AND START</h6>
+          <h6 class="step-title white">3. PRESS Contribute BUTTON AND START</h6>
           <button (click)="pay()" class="contribute-btn">Contribute</button>
         </div>
       </form>

@@ -14,6 +14,8 @@ import { PaymentService } from 'src/services/payment.service';
   selector: 'app-business',
   templateUrl: './business.component.html',
   styleUrls: ['./business.component.scss']
+  // templateUrl: '../../oldsite/BusinessPage2/business.html',
+  // styleUrls: ['../../oldsite/BusinessPage2/business.scss']
 })
 export class BusinessComponent implements OnInit,AfterViewInit {
 

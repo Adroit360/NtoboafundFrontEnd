@@ -1,3 +1,25 @@
+.business-bg {
+  position: fixed;
+  // background-image: url(../../assets/images/luckyme2.jpg);
+  /*background: url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png)
+    center center no-repeat #b441af;*/
+  //background-image: url(../../assets/images/bsonscholarship.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  //background-image: linear-gradient(to bottom, rgb(4, 134, 0), white);
+  // background-image: linear-gradient(to right,rgba(black,.5),rgba(black,.5)),url(../../assets/images/luckyme.jpg);
+  //background-blend-mode: color;
+  background-position: 0% 10%;
+  height: 100%;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  background:url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png) center center no-repeat #0a4c79;
+
+}
+
 .business{
   position: relative;
   //padding-top: 6rem;
@@ -8,6 +30,6 @@
   z-index: var(--level-three);
   overflow-x:hidden;
   .business-counter{
-    color:white;
+    color:#0a4c79;
   }
 }

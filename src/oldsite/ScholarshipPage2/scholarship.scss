@@ -13,13 +13,13 @@ app-busy {
   //background-image: url(../../assets/images/bsonscholarship.png);
   background-size: cover;
   background-repeat: no-repeat;
-  //background-image: linear-gradient(to bottom, rgb(4, 134, 0), white);
-  background-image: linear-gradient(
-      to right,
-      rgba(black, 0.5),
-      rgba(black, 0.5)
-    ),
-    url(../../assets/images/scholarship.jpg);
+  background-image: url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png),linear-gradient(to bottom, #005613, #009535);
+  // background-image: linear-gradient(
+  //     to right,
+  //     rgba(black, 0.5),
+  //     rgba(black, 0.5)
+  //   ),
+  //   url(../../assets/images/scholarship.jpg);
   //background-blend-mode: color;
   background-position: 0 20%;
   height: 100%;

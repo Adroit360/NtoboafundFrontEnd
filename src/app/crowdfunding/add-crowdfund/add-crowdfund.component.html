@@ -44,8 +44,8 @@
                 type="text" name="amount" required>
               <span matPrefix>GH¢&nbsp;</span>
               <span matSuffix>.00</span>
-              <mat-error *ngIf="crowdForm.controls.totalAmount.invalid">crowd amount required</mat-error>
-              <mat-error *ngIf="crowdForm.hasError()">Valid amount is required</mat-error>
+              <mat-error *ngIf="crowdForm.controls.totalAmount.invalid">amount required</mat-error>
+              <mat-error *ngIf="crowdForm.errors?.pattern">Valid amount is required</mat-error>
             </mat-form-field>
           </div>
 

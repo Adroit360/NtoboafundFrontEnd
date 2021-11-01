@@ -7,6 +7,11 @@
 /*
  1.) Media Query for Handheld Devices
  ===============================*/
+ .winner-slider {
+	text-align: center;
+	overflow-x: auto;
+	width: 100%;
+}
  @media only screen and (max-width: 1199px) {
 	.contribute-list {
 	    width: 31%;
@@ -529,6 +534,8 @@
 	}
 	.winner-slider {
 		text-align: center;
+		overflow-x: auto;
+		width: 100%;
 	}
 	.win-list .price {
 		font-size: 2.8rem;

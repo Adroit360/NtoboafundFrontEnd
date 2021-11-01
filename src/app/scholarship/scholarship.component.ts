@@ -21,7 +21,9 @@ import { PaymentService } from "src/services/payment.service";
 @Component({
   selector: "app-scholarship",
   templateUrl: "./scholarship.component.html",
-  styleUrls: ["./scholarship.component.scss"],
+  styleUrls: ["./scholarship.component.scss"]
+  // templateUrl: '../../oldsite/scholarshipPage2/scholarship.html',
+  // styleUrls: ['../../oldsite/scholarshipPage2/scholarship.scss'],
 })
 export class ScholarshipComponent implements OnInit, AfterViewInit {
   ObjectKeys = Object.keys;
@@ -41,7 +43,7 @@ export class ScholarshipComponent implements OnInit, AfterViewInit {
   //selectedPlayerType: string;
   congratMsg: string = "";
   congratShown = false;
-  selectedAmount: number;
+  selectedAmount: number = 20;
   potentialReturns: string;
   customPaymentDialogShown: boolean;
   settings: any = settings;

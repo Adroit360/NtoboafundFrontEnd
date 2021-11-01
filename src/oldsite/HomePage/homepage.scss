@@ -31,7 +31,13 @@
         color:black;
       }
       .counters{
+        justify-content: center;
         .ctd{
+          margin:1rem;
+          border-radius: 1rem;
+          padding: 3rem;
+          min-width: 16rem;
+          width: auto;
           background-color: rgba(black,.8);
           &:first-child{color:#ff5d5d;}
           &:nth-child(2){color:yellow;}
@@ -230,6 +236,7 @@
       // background-color: var(--lightGrey);
       min-width: 0;
       box-shadow: var(--shadow);
+      max-height: 64rem;
      // max-width:35rem;
       margin: 2rem 2rem 2rem 1rem;
       border-radius: 0.3rem;

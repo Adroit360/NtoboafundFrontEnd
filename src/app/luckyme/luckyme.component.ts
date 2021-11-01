@@ -12,11 +12,12 @@ import { PaymentService } from 'src/services/payment.service';
 import { ReturnStatement } from '@angular/compiler';
 // import { RaveOptions } from 'angular-rave';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-
 @Component({
   selector: 'app-luckyme',
-  templateUrl: './luckyme.component.html',
+    templateUrl: './luckyme.component.html',
   styleUrls: ['./luckyme.component.scss']
+  // templateUrl: '../../oldsite/Luckyme/LuckymeTextHolder.html',
+  // styleUrls: ['../../oldsite/Luckyme/luckymeStyleHolder.scss']
 })
 export class LuckymeComponent implements OnInit,AfterViewInit {
 

@@ -34,9 +34,6 @@ export class HeaderComponent implements OnInit {
 
   authenticationStatusChanged(){
     this.isAuthenticated = this.authenticationService.isAuthenticated;
-    console.log(this.isAuthenticated);
-
-    
     if(this.isAuthenticated){
       this.currentUser = this.authenticationService.currentUser;
       this.authenticationService.getUserRole(this.currentUser.id).subscribe((response:any)=>{
@@ -46,6 +43,7 @@ export class HeaderComponent implements OnInit {
       },
       error=>{
         //console.log(error);
+        this.logout();
       }
       );
     }

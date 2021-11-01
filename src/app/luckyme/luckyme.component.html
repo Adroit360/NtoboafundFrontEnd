@@ -211,10 +211,10 @@
   <!-- Business Steps section Start -->
   <section class="business-steps">
     <div class="container">
-      <h6 class="text-center">Contribute NOW in 3 steps</h6>
+      <h6 class="text-center white">Contribute NOW in 3 steps</h6>
       <form class="steps-wrap lucky-steps">
         <div class="step">
-          <h6 class="step-title">1. Select the amount you would like to contribute</h6>
+          <h6 class="step-title white">1. Select the amount you would like to contribute</h6>
           <div class="tickets">
             <div class="radio-group">
               <input type="radio" id="radioG1" name="radio" [value]="1" [(ngModel)]="selectedChoice"
@@ -254,7 +254,7 @@
           </div>
         </div>
         <div class="step">
-          <h6 class="step-title">2. SELECT Contribution PERIOD</h6>
+          <h6 class="step-title white">2. SELECT Contribution PERIOD</h6>
           <div class="contribution-period">
             <div class="radio-group">
               <input type="radio" id="period1" name="period" checked [value]="'daily'" [(ngModel)]="selectedPeriod"
@@ -274,7 +274,7 @@
           </div>
         </div>
         <div class="step">
-          <h6 class="step-title">3. PRESS Contribute BUTTON AND START</h6>
+          <h6 class="step-title white">3. PRESS Contribute BUTTON AND START</h6>
           <button
             *ngIf="!winnerSelectionService.isDailyDrawOngoing && !winnerSelectionService.isWeeklyDrawOngoing && !(winnerSelectionService.isMonthlyDrawOngoing | async)"
             (click)="paymentInitialized()" class="contribute-btn">Contribute</button>

@@ -24,12 +24,12 @@ import { PdfViewerComponent } from "./pdf-viewer/pdf-viewer.component";
 import { PaymentDialogComponent } from "./payment-dialog/payment-dialog.component";
 import { BlogComponent } from "./blog/blog.component";
 import { WebmailComponent } from "./webmail/webmail.component";
-import { CrowdfundingComponent } from "./crowdfunding/crowdfunding.component";
-import { AddCrowdfundComponent } from "./crowdfunding/add-crowdfund/add-crowdfund.component";
-import { SingleCrowdComponent } from "./crowdfunding/single-crowd/single-crowd.component";
+// import { CrowdfundingComponent } from "./crowdfunding/crowdfunding.component";
+// import { AddCrowdfundComponent } from "./crowdfunding/add-crowdfund/add-crowdfund.component";
+// import { SingleCrowdComponent } from "./crowdfunding/single-crowd/single-crowd.component";
 import { AuthGuard } from "src/guards/auth.guard";
-import { CrowdsComponent } from "./crowdfunding/crowds/crowds.component";
-import { EditCrowdfundComponent } from "./crowdfunding/edit-crowdfund/edit-crowdfund.component";
+// import { CrowdsComponent } from "./crowdfunding/crowds/crowds.component";
+// import { EditCrowdfundComponent } from "./crowdfunding/edit-crowdfund/edit-crowdfund.component";
 import { LuckymeLandComponent } from "./luckyme-land/luckyme-land.component";
 import { ScholarshipLandComponent } from "./scholarship-land/scholarship-land.component";
 import { BusinessLandComponent } from "./business-land/business-land.component";
@@ -38,21 +38,21 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "crowdfunding", component: CrowdfundingComponent },
-  { path: "crowds", component: CrowdsComponent },
-  {
-    path: "add-crowdfunding",
-    component: AddCrowdfundComponent,
-    canActivate: [AuthGuard],
-  },
-  { path: "crowdfunding/:id", component: SingleCrowdComponent },
-  { path: "crowdfund/edit/:id", component: EditCrowdfundComponent },
-  { path: "luckyme", component: LuckymeLandComponent },
-  { path: "luckyme/get-started", component: LuckymeComponent },
-  { path: "scholarship", component: ScholarshipLandComponent },
-  { path: "scholarship/get-started", component: ScholarshipComponent },
-  { path: "business", component: BusinessLandComponent },
-  { path: "business/get-started", component: BusinessComponent },
+  // { path: "crowdfunding", component: CrowdfundingComponent },
+  // { path: "crowds", component: CrowdsComponent },
+  // {
+  //   path: "add-crowdfunding",
+  //   component: AddCrowdfundComponent,
+  //   canActivate: [AuthGuard],
+  // },
+  // { path: "crowdfunding/:id", component: SingleCrowdComponent },
+  // { path: "crowdfund/edit/:id", component: EditCrowdfundComponent },
+  { path: "luckyme", component: LuckymeComponent },
+  // { path: "luckyme/get-started", component: LuckymeComponent },
+  { path: "scholarship", component: ScholarshipComponent },
+  // { path: "scholarship/get-started", component: ScholarshipComponent },
+  { path: "business", component: BusinessComponent },
+  // { path: "business/get-started", component: BusinessComponent },
   { path: "insurance", component: InsuranceComponent },
   { path: "tnx", component: TnxluckymeComponent },
   {
