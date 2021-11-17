@@ -141,7 +141,7 @@ export class AdScholarshipsComponent implements OnInit {
     }
     this.isAddingPaymentRecord = true;
 
-    this.paymentService.addPaymentRecord('bus', amount, transactionId, this.selectedscholarship.transferId).subscribe(
+    this.paymentService.addPaymentRecord('business', amount, transactionId, this.selectedscholarship.transferId).subscribe(
       (response: any) => {
         this.paymentRecordMessage = response.message;
         this.isAddingPaymentRecord = false;
@@ -303,7 +303,7 @@ export class AdScholarshipsComponent implements OnInit {
 
   getPaymentRecord() {
     if (this.selectedscholarship.status == "completed") {
-      this.paymentService.getPaymentByDetails("sch", this.selectedscholarship.id).subscribe(
+      this.paymentService.getPaymentByDetails("scholarship", this.selectedscholarship.id).subscribe(
         response => {
           console.log(response);
           if (response) {

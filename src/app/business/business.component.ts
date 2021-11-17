@@ -120,7 +120,7 @@ export class BusinessComponent implements OnInit,AfterViewInit {
             //console.log(response);
             this.loading = false;
             //Get Congratulatory Message After the transaction is successfully completed
-            this.paymentService.getCongratulatoryMessage("bus", event.tx.txRef).subscribe((data => {
+            this.paymentService.getCongratulatoryMessage("business", event.tx.txRef).subscribe((data => {
               this.showCongratulatoryMessage(data.message);
             }).bind(this));
 

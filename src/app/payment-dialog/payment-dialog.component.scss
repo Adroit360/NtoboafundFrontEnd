@@ -20,7 +20,7 @@
     max-width: 41.7rem;
     border-radius: 0.3rem;
     position: relative;
-    margin: 1rem;
+    margin: 3rem;
     .closebtn {
       position: absolute;
       padding: 0.3rem;
@@ -35,6 +35,7 @@
       z-index: 2;
       box-shadow: var(--shadow);
       cursor: pointer;
+      z-index: 300;
       &:hover {
         color: red;
       }
@@ -88,6 +89,10 @@
           width: 100%;
           height: 100%;
           border: none;
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 200;
         }
         .paytypebox {
           padding: 1rem;

@@ -164,7 +164,7 @@ export class LuckymeComponent implements OnInit,AfterViewInit {
             this.loading = false;
 
             //Get Congratulatory Message After the transaction is successfully completed
-            this.paymentService.getCongratulatoryMessage("lkm", event.tx.txRef).subscribe((data => {
+            this.paymentService.getCongratulatoryMessage("luckyme", event.tx.txRef).subscribe((data => {
               this.showCongratulatoryMessage(data.message);
             }).bind(this));
             

@@ -201,7 +201,7 @@ export class AdbusinessesComponent implements OnInit {
 
     this.paymentService
       .addPaymentRecord(
-        "bus",
+        "business",
         amount,
         transactionId,
         this.selectedbusiness.transferId
@@ -373,7 +373,7 @@ export class AdbusinessesComponent implements OnInit {
   getPaymentRecord() {
     if (this.selectedbusiness.status == "completed") {
       this.paymentService
-        .getPaymentByDetails("bus", this.selectedbusiness.id)
+        .getPaymentByDetails("business", this.selectedbusiness.id)
         .subscribe((response) => {
           console.log(response);
           if (response) {

@@ -128,17 +128,17 @@ export class PaymentDialogComponent implements OnInit {
       this.paymentUrl = `${settings.currentApiUrl}/transaction/payforluckyme/${this.txRef}/${this.selectedPaymentMethod}/${this.momoStarVoucherOrEmail}`;
       this.verificationUrl = `${settings.currentApiUrl}/transaction/verifyLuckymePayment/${this.txRef}?paymentType=${this.selectedPaymentMethod}`;
       this.cancelationUrl = `${settings.currentApiUrl}/transaction/cancelluckymetransaction/${this.txRef}`;
-      this.stakeType = "lkm";
+      this.stakeType = "luckyme";
     } else if (this.stakeType == "Business") {
       this.paymentUrl = `${settings.currentApiUrl}/transaction/payforbusiness/${this.txRef}/${this.selectedPaymentMethod}/${this.momoStarVoucherOrEmail}`;
       this.verificationUrl = `${settings.currentApiUrl}/transaction/verifybusinessPayment/${this.txRef}?paymentType=${this.selectedPaymentMethod}`;
       this.cancelationUrl = `${settings.currentApiUrl}/transaction/cancelbusinesstransaction/${this.txRef}`;
-      this.stakeType = "bus";
+      this.stakeType = "business";
     } else if (this.stakeType == "Scholarship") {
       this.paymentUrl = `${settings.currentApiUrl}/transaction/payforscholarship/${this.txRef}/${this.selectedPaymentMethod}/${this.momoStarVoucherOrEmail}`;
       this.verificationUrl = `${settings.currentApiUrl}/transaction/verifyscholarshipPayment/${this.txRef}?paymentType=${this.selectedPaymentMethod}`;
       this.cancelationUrl = `${settings.currentApiUrl}/transaction/cancelscholarshiptransaction/${this.txRef}`;
-      this.stakeType = "sch";
+      this.stakeType = "scholarship";
     } else if (this.stakeType == "CrowdFund") {
       this.paymentUrl = `${settings.currentApiUrl}/transaction/payforcrowdfund/${this.txRef}/${this.selectedPaymentMethod}/${this.momoStarVoucherOrEmail}`;
       this.verificationUrl = `${settings.currentApiUrl}/transaction/verifyCrowfundPayment/${this.txRef}?paymentType=${this.selectedPaymentMethod}`;
@@ -310,7 +310,7 @@ export class PaymentDialogComponent implements OnInit {
 
   /**
    * Get and Show the congratulatory message for the current transaction
-   * @param stakeType The Stake Type shortname i.e lkm,bus,sch
+   * @param stakeType The Stake Type shortname i.e luckyme,business,scholarship
    * @param txRef The Unique reference of the current transaction
    */
   showCongratMessage(stakeType: string, txRef: string) {

@@ -93,7 +93,7 @@ export class PaymentService {
 
     /**
      * Returns a message congratulating the user on the current Contribution   
-     * @param type The type of Contribution i.e lkm,bus,or sch
+     * @param type The type of Contribution i.e luckyme,business,or scholarship
      * @param txref the transaction reference of the stake
      */
     getCongratulatoryMessage(type:string,txref:any):Observable<any>{

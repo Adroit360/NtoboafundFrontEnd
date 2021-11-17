@@ -141,7 +141,7 @@ export class AdluckymesComponent implements OnInit {
     }
     this.isAddingPaymentRecord = true;
 
-    this.paymentService.addPaymentRecord('lkm', amount, transactionId, this.selectedluckyme.transferId).subscribe(
+    this.paymentService.addPaymentRecord('luckyme', amount, transactionId, this.selectedluckyme.transferId).subscribe(
       (response: any) => {
         //console.log(response);
         this.paymentRecordMessage = response.message;
@@ -310,7 +310,7 @@ export class AdluckymesComponent implements OnInit {
 
   getPaymentRecord() {
     if (this.selectedluckyme.status == "completed") {
-      this.paymentService.getPaymentByDetails("lkm", this.selectedluckyme.id).subscribe(
+      this.paymentService.getPaymentByDetails("luckyme", this.selectedluckyme.id).subscribe(
         response => {
           console.log(response);
           if (response) {

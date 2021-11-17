@@ -207,7 +207,7 @@ export class ScholarshipComponent implements OnInit, AfterViewInit {
             //console.log(response);
             this.loading = false;
             this.paymentService
-              .getCongratulatoryMessage("sch", event.tx.txRef)
+              .getCongratulatoryMessage("scholarship", event.tx.txRef)
               .subscribe(
                 ((data) => {
                   this.showCongratulatoryMessage(data.message);

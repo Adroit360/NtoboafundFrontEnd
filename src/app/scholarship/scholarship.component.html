@@ -6,10 +6,10 @@
   <div class="scholarship-body__content">
     <div class="scholarship-body__content__header">
       <div class="scholarship-body__content__header__left">
-        <h6 class="main-header">WOULD YOU LIKE TO CONTRIBUTE IN OUR SCHOLARSHIP FUND?</h6>
-        <!-- <h3 class="sub-header">Invest Today, Win For Society</h3> -->
+        <h6 class="main-header">WOULD YOU LIKE TO PARTICIPATE IN OUR SCHOLARSHIP GAME?</h6>
+        
         <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && scholarshipSeconds>=0" class="countdown">
-          <div class="header">The next Scholarship Fund winners get selected in </div>
+          <div class="header">The next Scholarship winners get selected in </div>
           <div class="counters">
             <!-- <div class="ctd">{{scholarshipDays}} <span>Days</span></div> -->
             <div class="ctd">{{scholarshipDays}} <span>Days</span></div>
@@ -36,11 +36,11 @@
                 class="winner-item contribute-list">
                 <div class="winner-item__description list-item">
                   <strong class="winner-name">{{participant.userName}}</strong>
-                  <span class="contrib">CONTIBUTED</span>
+                  <span class="contrib">PLAYED</span>
                   <a class="amount-won">GH₵
                     {{participant.amountStaked}}</a>
                   <!-- <span class="winning-details">
-                    <span class="contrib">CONTIBUTED</span>
+                    <span class="contrib">PLAYED</span>
                     <span class="amount-won"> <span class="period"> </span>GH₵
                       {{participant.amountStaked}}</span>
                     <span class="amount-staked"> with GH₵ winner.amount</span>
@@ -93,7 +93,7 @@
         <div class="stake-box__body">
           <div class="stake-box__body__info">
             <div class="stake-box__body__info__head white">Select The Amount You Would Like To
-              Invest
+              Play
             </div>
             <div class="amount-box">
               <label for="20" class="amount-item">
@@ -135,7 +135,7 @@
             </div>
             <div style="color:#f44336;" *ngIf="error" class="potential-returns">{{error}}
             </div>
-            <div *ngIf="!error" class="potential-returns white">Potential returns for this contribution option is
+            <div *ngIf="!error" class="potential-returns white">Potential returns for this play option is
               <span *ngIf="potentialReturns" class="returns">{{potentialReturns}}</span>
             </div>
             <div class="arrow">
@@ -229,7 +229,7 @@
       <div class="win-prize">
         <span>Prizes Paid</span>
         <strong>GH₵ 220,000</strong>
-        <p>With Ntoboafund, the more you contribute the better your chances of winning BIG!.</p>
+        <p>With Ntoboafund, the more you play the better your chances of winning BIG!.</p>
       </div>
     </div>
     <!-- <section class="aritcles-sec">
