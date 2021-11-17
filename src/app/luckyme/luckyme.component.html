@@ -67,7 +67,7 @@
             <div *ngIf="!winnerSelectionService.isDailyDrawOngoing">
               <div *ngFor="let participant of signalRService.dailyLuckymeParticipants" class="list-item">
                 <strong>{{participant.userName}}</strong>
-                <span>CONTRIBUTED</span>
+                <span>PLAYED</span>
                 <a href="">GH₵ {{participant.amountStaked}}</a>
               </div>
               <!-- <div class="list-item p-winnerscount"><strong>{{signalRService.potentialDailyLuckymeWinnersCount}} potential
@@ -86,7 +86,7 @@
                       <div class="winner-item__description">
                         <span class="winner-name">{{participant.userName}}</span>
                         <span class="winning-details">
-                          <span class="amount-won"> Contributed <span class="period"> </span>GH₵
+                          <span class="amount-won"> Played <span class="period"> </span>GH₵
                             {{participant.amountStaked}}</span>
                         </span>
                       </div>
@@ -120,7 +120,7 @@
             <div *ngIf="!winnerSelectionService.isWeeklyDrawOngoing">
               <div *ngFor="let participant of signalRService.weeklyLuckymeParticipants" class="list-item">
                 <strong>{{participant.userName}}</strong>
-                <span>CONTRIBUTED</span>
+                <span>PLAYED</span>
                 <a href="">GH₵ {{participant.amountStaked}}</a>
               </div>
             </div>
@@ -139,7 +139,7 @@
                       <div class="winner-item__description">
                         <span class="winner-name">{{participant.userName}}</span>
                         <span class="winning-details">
-                          <span class="amount-won"> Contributed <span class="period"> </span>GH₵
+                          <span class="amount-won"> Played <span class="period"> </span>GH₵
                             {{participant.amountStaked}}</span>
                         </span>
                       </div>
@@ -172,7 +172,7 @@
             <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)">
               <div *ngFor="let participant of signalRService.monthlyLuckymeParticipants" class="list-item">
                 <strong>{{participant.userName}}</strong>
-                <span>CONTRIBUTED</span>
+                <span>PLAYED</span>
                 <a href="">GH₵ {{participant.amountStaked}}</a>
               </div>
             </div>
@@ -190,7 +190,7 @@
                       <div class="winner-item__description">
                         <span class="winner-name">{{participant.userName}}</span>
                         <span class="winning-details">
-                          <span class="amount-won"> Contributed <span class="period"> </span>GH₵
+                          <span class="amount-won"> Played <span class="period"> </span>GH₵
                             {{participant.amountStaked}}</span>
                         </span>
                       </div>
@@ -211,10 +211,10 @@
   <!-- Business Steps section Start -->
   <section class="business-steps">
     <div class="container">
-      <h6 class="text-center white">Contribute NOW in 3 steps</h6>
+      <h6 class="text-center white">Play NOW in 3 steps</h6>
       <form class="steps-wrap lucky-steps">
         <div class="step">
-          <h6 class="step-title white">1. Select the amount you would like to contribute</h6>
+          <h6 class="step-title white">1. Select the amount you would like to play</h6>
           <div class="tickets">
             <div class="radio-group">
               <input type="radio" id="radioG1" name="radio" [value]="1" [(ngModel)]="selectedChoice"
@@ -254,7 +254,7 @@
           </div>
         </div>
         <div class="step">
-          <h6 class="step-title white">2. SELECT Contribution PERIOD</h6>
+          <h6 class="step-title white">2. SELECT Play PERIOD</h6>
           <div class="contribution-period">
             <div class="radio-group">
               <input type="radio" id="period1" name="period" checked [value]="'daily'" [(ngModel)]="selectedPeriod"
@@ -274,13 +274,13 @@
           </div>
         </div>
         <div class="step">
-          <h6 class="step-title white">3. PRESS Contribute BUTTON AND START</h6>
+          <h6 class="step-title white">3. PRESS Play BUTTON AND START</h6>
           <button
             *ngIf="!winnerSelectionService.isDailyDrawOngoing && !winnerSelectionService.isWeeklyDrawOngoing && !(winnerSelectionService.isMonthlyDrawOngoing | async)"
-            (click)="paymentInitialized()" class="contribute-btn">Contribute</button>
+            (click)="paymentInitialized()" class="contribute-btn">Play</button>
         </div>
       </form>
-      <p *ngIf="selectedChoice" class="coupens-txt text-center">Potential returns for a contribution of  <strong>GHC {{selectedChoice}}</strong> 
+      <p *ngIf="selectedChoice" class="coupens-txt text-center white">Potential returns for a play of  <strong>GHC {{selectedChoice}}</strong> 
         is <strong>{{getReturnsText(selectedChoice)}}</strong></p>
     </div>
     <div class="ongoingdraw-container">
@@ -349,7 +349,7 @@
       <div class="win-prize">
         <span>Prizes Paid</span>
         <strong>GH₵ 220,000</strong>
-        <p>With Ntoboafund, the more you contribute the better your chances of winning BIG!.</p>
+        <p>With Ntoboafund, the more you play the better your chances of winning BIG!.</p>
       </div>
     </div>
   </section>

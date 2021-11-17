@@ -10,7 +10,7 @@
     <div class="counter-sec">
 
       <div class="container">
-        <h2>Would you like to Contribute to our business fund?</h2>
+        <h2>Would you like to Play to fund your business?</h2>
         <p class="desc">Next business Draw In</p>
         <div class="time-counter" id="timeCounter">
           <div><strong>{{businessDays}}</strong> <span>Days</span></div>
@@ -61,7 +61,7 @@
           <div class="contribute-list">
             <div *ngFor="let participant of signalRservice.businessParticipants" class="list-item">
               <strong>{{participant.userName}}</strong>
-              <span>CONTRIBUTED</span>
+              <span>PLAYED</span>
               <a href="">GH₵ {{participant.amountStaked}}</a>
             </div>
           </div>
@@ -74,10 +74,10 @@
   <!-- Business Steps section Start -->
   <section class="business-steps">
     <div class="container">
-      <h6 class="text-center white">CHOOSE AN OPTION TO Contribute</h6>
+      <h6 class="text-center white">CHOOSE AN OPTION TO PLAY</h6>
       <form class="steps-wrap">
         <div class="step">
-          <h6 class="step-title white">1. Select the amount you would like to contribute</h6>
+          <h6 class="step-title white">1. Select the amount you would like to play</h6>
           <div class="tickets">
             <div class="radio-group">
               <input type="radio" checked id="radioG1" name="radio" value="100"
@@ -102,14 +102,14 @@
           </div>
         </div>
         <div class="step">
-          <h6 class="step-title white">2. SELECT Contribution PERIOD</h6>
-          <p class="desc white">Potential returns for a contribution of <strong>GH₵ {{selectedAmount}}</strong> is <strong>GH₵
+          <h6 class="step-title white">2. SELECT PLAY PERIOD</h6>
+          <p class="desc white">Potential returns for a play of <strong>GH₵ {{selectedAmount}}</strong> is <strong>GH₵
               {{potentialReturns}}</strong>
           </p>
         </div>
         <div class="step">
-          <h6 class="step-title white">3. PRESS Contribute BUTTON AND START</h6>
-          <button (click)="pay()" class="contribute-btn">Contribute</button>
+          <h6 class="step-title white">3. PRESS Play BUTTON AND START</h6>
+          <button (click)="pay()" class="contribute-btn">Play</button>
         </div>
       </form>
     </div>
@@ -137,13 +137,13 @@
       <div class="win-prize">
         <span>Prizes Paid</span>
         <strong>GH₵ 220,000</strong>
-        <p>With Ntoboafund, the more you contribute the better your chances of winning BIG!.</p>
+        <p>With Ntoboafund, the more you play the better your chances of winning BIG!.</p>
       </div>
     </div>
   </section>
   <!-- Past-winners section End -->
   <!-- Articles section start -->
-  <section class="aritcles-sec">
+  <!-- <section class="aritcles-sec">
     <div class="container">
       <h6 class="text-center">NEW ARTICLES</h6>
       <div class="art-wrap article-slider">
@@ -169,7 +169,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
   <!-- Articles section End -->
   <app-footer></app-footer>
 </div>
