@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PdfViewerComponent implements OnInit {
 
-  pdfSource:string = "/assets/TERMS AND CONDITIONS -NTOBOA FUND.pdf";
+  pdfSource:string = "/assets/TERMS_AND_CONDITIONS.pdf";
 
   @Input("showHeader")showHeader = true;
   constructor() { }
@@ -16,7 +16,7 @@ export class PdfViewerComponent implements OnInit {
     //get the currrent page's url
     var path = window.location.href;
     if(path.includes("terms")){
-      this.pdfSource = "/assets/TERMS AND CONDITIONS -NTOBOA FUND.pdf";
+      this.pdfSource = "/assets/TERMS_AND_CONDITIONS.pdf";
     }else if(path.includes("cookiepolicy")){
       this.pdfSource = "/assets/PRIVACY & COOKIE POLICY.pdf";
     }

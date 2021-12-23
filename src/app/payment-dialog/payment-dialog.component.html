@@ -7,15 +7,15 @@
           <img src="assets/images/ntlog.png" alt="">
         </a>
       </div>
-      <div class="paymentbox__header--right">{{stakeType}} Contribution</div>
+      <div class="paymentbox__header--right bold">Pay Now - {{stakeType}}</div>
     </div>
     <div class="paymentbox__body">
       <app-busy [isWholePage]="false" [text]="''" [ngClass]="{'visible':paying,'invisible':!paying}"></app-busy>
       <div *ngIf="errorMessage" class="errorbox">{{errorMessage}}</div>
       <div *ngIf="successMessage" class="successbox">{{successMessage}}</div>
       <div class="paymentbox__body--top">
-        <div class="amount">{{amount}} Cedi<span *ngIf="amount != 1">s</span></div>
         <div class="username">{{username}}</div>
+        <div class="amount">{{amount}} Cedi<span *ngIf="amount != 1">s</span></div>
       </div>
       <div class="paymentbox__body--middle">
         <div *ngIf="selectedPaymentMethod == paymentMethods[0]" class="paytypebox">

@@ -143,8 +143,8 @@
                                         <div class="date"> {{luckyme.date}} </div>
                                     </div>
                                     <div class="recent-stake-item--bottom">
-                                        <div class="status">Status : {{luckyme.status}}</div>
-                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">To Win GHS {{luckyme.amountToWin}}
+                                        <!-- <div class="status">Status : {{luckyme.status}}</div> -->
+                                        <div *ngIf="luckyme.status == 'won'" class="amount-won">Won GHS {{luckyme.amountToWin}}
                                         </div>
                                         <div *ngIf="luckyme.status != 'won'" class="potential-returns">Potential Winning : GHS {{luckyme.amountToWin}}
                                         </div>
@@ -161,13 +161,13 @@
         <div class="d-body__box__main">
             <div class="head">
                 <div class="header-text">{{userDashboardService.headerText}}</div>
-                <div class="notification">
+                <!-- <div class="notification">
                     <div class="icon">
                         <svg>
                             <use href="assets/Icons/svgs.svg#icon-tools" />
                         </svg>
                     </div>
-                </div>
+                </div> -->
                 <div class="account-actions">
                     <div class="dropdown">
                         <!-- <input type="checkbox" id="dropdown-checker"> -->

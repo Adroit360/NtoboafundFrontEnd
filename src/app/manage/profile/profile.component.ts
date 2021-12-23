@@ -316,7 +316,7 @@ export class ProfileComponent implements OnInit {
     formData.append('currentPassword', currentPassword);
     formData.append('newPassword', confirmNewPassword);
 
-    this.httpClient.put(`${settings.currentApiUrl}/users/changepassword`, formData)
+    this.httpClient.post(`${settings.currentApiUrl}/users/changepassword`, formData)
       .subscribe((response: any) => {
         this.cpdbtnSubmitShown = true;
         this.passwordToggler.nativeElement.checked = false;

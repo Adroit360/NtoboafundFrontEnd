@@ -51,6 +51,31 @@
 
     }
 
+    .play-now-section{
+      text-align: center;
+      .play-now-btn{
+          color:white;
+          border:1px solid white;
+          border-radius: 1rem;
+          padding: 1rem 2rem;
+          font-size: 1.7rem;
+          text-transform: uppercase;
+          background-image: linear-gradient(to bottom, #ffad01,green);
+          outline: none;
+          animation: heartbeat .5s ease-in-out 0s infinite alternate;
+          transition: transform .2s;
+          font-weight: bold;
+          &:hover{
+            transform: scaleX(1.1);
+            background-image: linear-gradient(to bottom, green,#ffad01);
+          }
+          &:active{
+            outline: none;
+            
+          }
+      }
+    }
+
     &__link-cards {
       display: flex;
       justify-content:space-evenly;
@@ -130,6 +155,18 @@
             color:white;
             bottom: 1rem;
             box-shadow: var(--shadow);
+          }
+          .Invest-btn{
+            position: absolute;
+            padding: .5rem 1.5rem; 
+            background-color: orangered;
+            color:white;
+            bottom: 1rem;
+            box-shadow: var(--shadow);
+            transition:transform .2s;
+            &:hover{
+              transform: scaleX(1.3);
+            }
           }
         }
         &:hover{

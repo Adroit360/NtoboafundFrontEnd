@@ -94,13 +94,18 @@
     &__left {
       min-width: 30%;
       padding: 1rem;
-      background-color: #0098ff;
       color: white;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       font-size: 3rem;
       font-weight: bold;
+      background-color: #294050;
+      background-image: url(../../assets/images/logofade.png);
+        // background-color: rgba(59, 54, 54, 0.747);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
     @media screen and (max-width: 780px) {

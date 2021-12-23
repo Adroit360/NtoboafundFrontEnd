@@ -38,8 +38,10 @@ footer{
       >a{
         @extend %footer-item;
         display: block;
+        text-decoration: none;
+        color:white;
         &:link,&:active{
-            color:inherit;
+            color:white;
         }
         &:hover{
           text-decoration: underline;

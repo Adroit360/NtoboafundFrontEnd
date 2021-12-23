@@ -26,7 +26,8 @@ app-busy {
     top: 0;
     left: 0;
     z-index: var(--level-three);
-    min-width: 5rem;
+    // min-width: 5rem;
+    width: 100%;
     .main-nav {
       box-shadow: var(--shadow);
       .links {
@@ -34,8 +35,8 @@ app-busy {
         justify-content: space-evenly;
         flex-direction: column;
         li {
-          width: 5rem;
-          height: 5rem;
+          // width: 5rem;
+          // height: 5rem;
           & > label {
             background-color: #ffad01;
             display: inline-block;
@@ -95,10 +96,16 @@ app-busy {
           }
         }
         #cpassword-toggler {
+          height: 5rem;
+          width: 100%;
           &:hover {
             & > label {
               background-color: #7ab501;
             }
+          }
+
+          svg{
+            width: 5rem;
           }
 
           .bg {
@@ -168,6 +175,7 @@ app-busy {
   &__right {
     flex: 1 1;
     overflow:auto;
+    margin-top: 5rem;
     .profile-body {
       position: relative;
       display: flex;

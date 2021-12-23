@@ -12,7 +12,7 @@
   .paymentbox {
     margin: auto;
     background-color: white;
-    box-shadow: var(--shadow);
+    // box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
     min-width: 0rem;
@@ -33,7 +33,7 @@
       text-align: center;
       font-weight: bold;
       z-index: 2;
-      box-shadow: var(--shadow);
+      // box-shadow: var(--shadow);
       cursor: pointer;
       z-index: 300;
       &:hover {
@@ -42,7 +42,7 @@
     }
     &__header {
       height: 7rem;
-      box-shadow: var(--shadow);
+      // box-shadow: var(--shadow);
       z-index: 1;
       display: flex;
       justify-content: space-between;
@@ -53,11 +53,17 @@
       }
     }
     &__body {
-      background-color: #fef6e9;
+      
       padding: 20px 15px;
       position: relative;
       display: flex;
       flex-direction: column;
+      background-image: url(../../assets/images/logofade.png);
+      background-color: #fef6e9;
+        // background-color: rgba(59, 54, 54, 0.747);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
       .errorbox {
         color: rgb(150, 18, 18);
         font-weight: bold;
@@ -156,7 +162,7 @@
     border-radius: 0.3rem;
     width: 100%;
     border: none;
-    box-shadow: var(--shadow);
+    // box-shadow: var(--shadow);
     background-color: white;
   }
 }
@@ -172,7 +178,7 @@
   text-transform: uppercase;
   //font-weight: bold;
   border-radius: 0.3rem;
-  box-shadow: var(--shadow);
+  // box-shadow: var(--shadow);
   display: flex;
   justify-content: space-between;
   *:first-child {

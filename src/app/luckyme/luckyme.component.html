@@ -3,6 +3,98 @@
 <div class="luckyme-bg"></div>
 <app-header></app-header>
 <div class="luckyme">
+
+    <!-- Business Steps section Start -->
+    <section class="business-steps">
+      <div class="container">
+        <h6 class="text-center white">Play NOW in 3 steps</h6>
+        <form class="steps-wrap lucky-steps">
+          <div class="step">
+            <h6 class="step-title white">1. Select the amount you would like to play</h6>
+            <div class="tickets">
+              <div class="radio-group">
+                <input type="radio" id="radioG1" name="radio" [value]="1" [(ngModel)]="selectedChoice"
+                  (change)="resetTxRef()" />
+                <label for="radioG1">GH₵ 1</label>
+              </div>
+              <div class="radio-group">
+                <input type="radio" id="radioG2" name="radio" [value]="5" [(ngModel)]="selectedChoice"
+                  (change)="resetTxRef()" />
+                <label for="radioG2">GH₵ 5</label>
+              </div>
+              <div class="radio-group">
+                <input type="radio" id="radioG3" name="radio" [value]="10" [(ngModel)]="selectedChoice"
+                  (change)="resetTxRef()" />
+                <label for="radioG3">GH₵ 10</label>
+              </div>
+              <div class="radio-group">
+                <input type="radio" id="radioG4" name="radio" [value]="20" [(ngModel)]="selectedChoice"
+                  (change)="resetTxRef()" />
+                <label for="radioG4">GH₵ 20</label>
+              </div>
+              <div class="radio-group">
+                <input type="radio" id="radioG5" name="radio" [value]="50" [(ngModel)]="selectedChoice"
+                  (change)="resetTxRef()" />
+                <label for="radioG5">GH₵ 50</label>
+              </div>
+              <div class="radio-group">
+                <input type="radio" id="radioG6" name="radio" [value]="100" [(ngModel)]="selectedChoice"
+                  (change)="resetTxRef()" />
+                <label for="radioG6">GH₵ 100</label>
+              </div>
+              <div class="radio-group">
+                <input type="radio" id="radioG7" name="radio" [value]="500" [(ngModel)]="selectedChoice"
+                  (change)="resetTxRef()" />
+                <label for="radioG7">GH₵ 500</label>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <h6 class="step-title white">2. SELECT Play PERIOD</h6>
+            <div class="contribution-period">
+              <div class="radio-group">
+                <input type="radio" id="period1" name="period" checked [value]="'daily'" [(ngModel)]="selectedPeriod"
+                  (change)="resetTxRef()" />
+                <label for="period1"><span>Daily</span></label>
+              </div>
+              <div class="radio-group">
+                <input type="radio" id="period2" name="period" [value]="'weekly'" [(ngModel)]="selectedPeriod"
+                  (change)="resetTxRef()" />
+                <label for="period2"><span>Weekly</span></label>
+              </div>
+              <div class="radio-group">
+                <input type="radio" id="period3" name="period" [value]="'monthly'" [(ngModel)]="selectedPeriod"
+                  (change)="resetTxRef()" />
+                <label for="period3"><span>Monthly</span></label>
+              </div>
+            </div>
+          </div>
+          <div class="step">
+            <h6 class="step-title white">3. PRESS Play BUTTON AND START</h6>
+            <button
+              *ngIf="!winnerSelectionService.isDailyDrawOngoing && !winnerSelectionService.isWeeklyDrawOngoing && !(winnerSelectionService.isMonthlyDrawOngoing | async)"
+              (click)="paymentInitialized()" class="contribute-btn">Play</button>
+          </div>
+        </form>
+        <p *ngIf="selectedChoice" class="coupens-txt text-center white">Potential returns for a play of  <strong>GHC {{selectedChoice}}</strong> 
+          is <strong>{{getReturnsText(selectedChoice)}}</strong></p>
+      </div>
+      <div class="ongoingdraw-container">
+        <!-- *ngIf="winnerSelectionService.isDailyDrawOngoing" -->
+        <div class="ongoing-draw__info" *ngIf="winnerSelectionService.isDailyDrawOngoing">
+          <div class="text" style="background-color: #b9000a;">Daily Draw is ongoing</div>
+        </div>
+        <!-- *ngIf="winnerSelectionService.isWeeklyDrawOngoing" -->
+        <div class="ongoing-draw__info" *ngIf="winnerSelectionService.isWeeklyDrawOngoing">
+          <div class="text">Weekly Draw is ongoing</div>
+        </div>
+        <!-- *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)" -->
+        <div class="ongoing-draw__info" *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)">
+          <div class="text" style="background-color: #f57f17;">Monthly Draw is ongoing</div>
+        </div>
+      </div>
+    </section>
+    <!-- Business Steps section End -->
   <!-- <div>{{console(!winnerSelectionService.isDailyDrawOngoing  && winnerSelectionService.currentDailyLuckymeWinners)}}</div> -->
   <section class="business-counter">
     <div class="counter-sec lucky-counter">
@@ -208,97 +300,7 @@
     </div>
   </section>
 
-  <!-- Business Steps section Start -->
-  <section class="business-steps">
-    <div class="container">
-      <h6 class="text-center white">Play NOW in 3 steps</h6>
-      <form class="steps-wrap lucky-steps">
-        <div class="step">
-          <h6 class="step-title white">1. Select the amount you would like to play</h6>
-          <div class="tickets">
-            <div class="radio-group">
-              <input type="radio" id="radioG1" name="radio" [value]="1" [(ngModel)]="selectedChoice"
-                (change)="resetTxRef()" />
-              <label for="radioG1">GH₵ 1</label>
-            </div>
-            <div class="radio-group">
-              <input type="radio" id="radioG2" name="radio" [value]="5" [(ngModel)]="selectedChoice"
-                (change)="resetTxRef()" />
-              <label for="radioG2">GH₵ 5</label>
-            </div>
-            <div class="radio-group">
-              <input type="radio" id="radioG3" name="radio" [value]="10" [(ngModel)]="selectedChoice"
-                (change)="resetTxRef()" />
-              <label for="radioG3">GH₵ 10</label>
-            </div>
-            <div class="radio-group">
-              <input type="radio" id="radioG4" name="radio" [value]="20" [(ngModel)]="selectedChoice"
-                (change)="resetTxRef()" />
-              <label for="radioG4">GH₵ 20</label>
-            </div>
-            <div class="radio-group">
-              <input type="radio" id="radioG5" name="radio" [value]="50" [(ngModel)]="selectedChoice"
-                (change)="resetTxRef()" />
-              <label for="radioG5">GH₵ 50</label>
-            </div>
-            <div class="radio-group">
-              <input type="radio" id="radioG6" name="radio" [value]="100" [(ngModel)]="selectedChoice"
-                (change)="resetTxRef()" />
-              <label for="radioG6">GH₵ 100</label>
-            </div>
-            <div class="radio-group">
-              <input type="radio" id="radioG7" name="radio" [value]="500" [(ngModel)]="selectedChoice"
-                (change)="resetTxRef()" />
-              <label for="radioG7">GH₵ 500</label>
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <h6 class="step-title white">2. SELECT Play PERIOD</h6>
-          <div class="contribution-period">
-            <div class="radio-group">
-              <input type="radio" id="period1" name="period" checked [value]="'daily'" [(ngModel)]="selectedPeriod"
-                (change)="resetTxRef()" />
-              <label for="period1"><span>Daily</span></label>
-            </div>
-            <div class="radio-group">
-              <input type="radio" id="period2" name="period" [value]="'weekly'" [(ngModel)]="selectedPeriod"
-                (change)="resetTxRef()" />
-              <label for="period2"><span>Weekly</span></label>
-            </div>
-            <div class="radio-group">
-              <input type="radio" id="period3" name="period" [value]="'monthly'" [(ngModel)]="selectedPeriod"
-                (change)="resetTxRef()" />
-              <label for="period3"><span>Monthly</span></label>
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <h6 class="step-title white">3. PRESS Play BUTTON AND START</h6>
-          <button
-            *ngIf="!winnerSelectionService.isDailyDrawOngoing && !winnerSelectionService.isWeeklyDrawOngoing && !(winnerSelectionService.isMonthlyDrawOngoing | async)"
-            (click)="paymentInitialized()" class="contribute-btn">Play</button>
-        </div>
-      </form>
-      <p *ngIf="selectedChoice" class="coupens-txt text-center white">Potential returns for a play of  <strong>GHC {{selectedChoice}}</strong> 
-        is <strong>{{getReturnsText(selectedChoice)}}</strong></p>
-    </div>
-    <div class="ongoingdraw-container">
-      <!-- *ngIf="winnerSelectionService.isDailyDrawOngoing" -->
-      <div class="ongoing-draw__info" *ngIf="winnerSelectionService.isDailyDrawOngoing">
-        <div class="text" style="background-color: #b9000a;">Daily Draw is ongoing</div>
-      </div>
-      <!-- *ngIf="winnerSelectionService.isWeeklyDrawOngoing" -->
-      <div class="ongoing-draw__info" *ngIf="winnerSelectionService.isWeeklyDrawOngoing">
-        <div class="text">Weekly Draw is ongoing</div>
-      </div>
-      <!-- *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)" -->
-      <div class="ongoing-draw__info" *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)">
-        <div class="text" style="background-color: #f57f17;">Monthly Draw is ongoing</div>
-      </div>
-    </div>
-  </section>
-  <!-- Business Steps section End -->
+
   <!-- Past-winners section start -->
   <section class="past-winners lucky-winner-sec">
     <div class="winners">

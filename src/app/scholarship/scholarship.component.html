@@ -4,56 +4,6 @@
 <app-header></app-header>
 <div class="scholarship-body">
   <div class="scholarship-body__content">
-    <div class="scholarship-body__content__header">
-      <div class="scholarship-body__content__header__left">
-        <h6 class="main-header">WOULD YOU LIKE TO PARTICIPATE IN OUR SCHOLARSHIP GAME?</h6>
-        
-        <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && scholarshipSeconds>=0" class="countdown">
-          <div class="header">The next Scholarship winners get selected in </div>
-          <div class="counters">
-            <!-- <div class="ctd">{{scholarshipDays}} <span>Days</span></div> -->
-            <div class="ctd">{{scholarshipDays}} <span>Days</span></div>
-            <div class="ctd">{{scholarshipHours}} <span>Hours</span></div>
-            <div class="ctd">{{scholarshipMinutes}} <span>Minutes</span></div>
-            <div class="ctd">{{scholarshipSeconds}} <span>Seconds</span></div>
-          </div>
-        </div>
-
-      </div>
-      <div class="scholarship-page__content__header__right">
-        <div class="info-card-1 participants">
-          <div class="info-card-1__head">
-            <div class="contribute-title white">CURRENT PARTICIPANTS</div>
-          </div>
-          <div class="info-card-1__body">
-            <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
-            <div class="winner-group contribute-info">
-              <!-- <div class="winner-group__header">
-              Today
-            </div> -->
-              <!-- *ngFor="let winner of winnings[key]" -->
-              <div *ngFor="let participant of signalRservice.scholarshipParticipants"
-                class="winner-item contribute-list">
-                <div class="winner-item__description list-item">
-                  <strong class="winner-name">{{participant.userName}}</strong>
-                  <span class="contrib">PLAYED</span>
-                  <a class="amount-won">GH₵
-                    {{participant.amountStaked}}</a>
-                  <!-- <span class="winning-details">
-                    <span class="contrib">PLAYED</span>
-                    <span class="amount-won"> <span class="period"> </span>GH₵
-                      {{participant.amountStaked}}</span>
-                    <span class="amount-staked"> with GH₵ winner.amount</span>
-                  </span> -->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="info-card-1__footer">{{signalRservice.potentialScholarshipWinnersCount}} potential winner<span
-              *ngIf="signalRservice.potentialScholarshipWinnersCount != 1">s</span></div> -->
-        </div>
-      </div>
-    </div>
     <div id="stake-center" class="scholarship-body__content__middle">
       <div *ngIf="(winnerSelectionService.isQuaterlyDrawOngoing  | async)" class="ongoingdraw">
         <div class="header">Scholarship Draw is ongoing</div>
@@ -206,6 +156,58 @@
 
       </div>
     </div>
+    
+    <div class="scholarship-body__content__header">
+      <div class="scholarship-body__content__header__left">
+        <h6 class="main-header">WOULD YOU LIKE TO PARTICIPATE IN OUR SCHOLARSHIP GAME?</h6>
+        
+        <div *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && scholarshipSeconds>=0" class="countdown">
+          <div class="header">The next Scholarship winners get selected in </div>
+          <div class="counters">
+            <!-- <div class="ctd">{{scholarshipDays}} <span>Days</span></div> -->
+            <div class="ctd">{{scholarshipDays}} <span>Days</span></div>
+            <div class="ctd">{{scholarshipHours}} <span>Hours</span></div>
+            <div class="ctd">{{scholarshipMinutes}} <span>Minutes</span></div>
+            <div class="ctd">{{scholarshipSeconds}} <span>Seconds</span></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="scholarship-page__content__header__right">
+        <div class="info-card-1 participants">
+          <div class="info-card-1__head">
+            <div class="contribute-title white">CURRENT PARTICIPANTS</div>
+          </div>
+          <div class="info-card-1__body">
+            <!-- *ngFor="let key of ObjectKeys(winnings)"  -->
+            <div class="winner-group contribute-info">
+              <!-- <div class="winner-group__header">
+              Today
+            </div> -->
+              <!-- *ngFor="let winner of winnings[key]" -->
+              <div *ngFor="let participant of signalRservice.scholarshipParticipants"
+                class="winner-item contribute-list">
+                <div class="winner-item__description list-item">
+                  <strong class="winner-name">{{participant.userName}}</strong>
+                  <span class="contrib">PLAYED</span>
+                  <a class="amount-won">GH₵
+                    {{participant.amountStaked}}</a>
+                  <!-- <span class="winning-details">
+                    <span class="contrib">PLAYED</span>
+                    <span class="amount-won"> <span class="period"> </span>GH₵
+                      {{participant.amountStaked}}</span>
+                    <span class="amount-staked"> with GH₵ winner.amount</span>
+                  </span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="info-card-1__footer">{{signalRservice.potentialScholarshipWinnersCount}} potential winner<span
+              *ngIf="signalRservice.potentialScholarshipWinnersCount != 1">s</span></div> -->
+        </div>
+      </div>
+    </div>
+
 
     <section class="past-winners lucky-winner-sec">
       <div class="winners">
