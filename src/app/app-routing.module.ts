@@ -33,6 +33,8 @@ import { AuthGuard } from "src/guards/auth.guard";
 import { LuckymeLandComponent } from "./luckyme-land/luckyme-land.component";
 import { ScholarshipLandComponent } from "./scholarship-land/scholarship-land.component";
 import { BusinessLandComponent } from "./business-land/business-land.component";
+import { ContactComponent } from "./contact/contact.component";
+import { HowitworksComponent } from "./howitworks/howitworks.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -55,6 +57,8 @@ const routes: Routes = [
   // { path: "business/get-started", component: BusinessComponent },
   { path: "insurance", component: InsuranceComponent },
   { path: "tnx", component: TnxluckymeComponent },
+  { path: "contact", component: ContactComponent },
+  { path: "howitworks", component: HowitworksComponent },
   {
     path: "manage",
     component: ManageComponent,

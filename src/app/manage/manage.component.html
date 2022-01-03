@@ -161,6 +161,12 @@
         <div class="d-body__box__main">
             <div class="head">
                 <div class="header-text">{{userDashboardService.headerText}}</div>
+                <label *ngIf="userDashboardService.headerText == 'Profile'" class="change-password" for="changePswd">
+                    <svg>
+                      <use href="assets/Icons/svgs.svg#icon-lock" />
+                    </svg>
+                    <span class="OnRight">Change password</span>
+                  </label>
                 <!-- <div class="notification">
                     <div class="icon">
                         <svg>

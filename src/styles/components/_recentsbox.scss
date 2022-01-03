@@ -33,6 +33,11 @@
     background-color: rgba(#7c7cd0,.3);
     padding: .3rem;
     margin:.5rem;
+    &>*{
+      white-space: pre-wrap;
+      text-align: center;
+    }
+    
     &--top{
       display: flex;
       align-items: center;
@@ -57,7 +62,7 @@
       }
 
       &>div{
-        white-space: nowrap;
+        // white-space: nowrap;
       }
     }
     &--bottom{
@@ -71,7 +76,8 @@
         margin: .2rem;
       }
       &>div{
-        white-space: nowrap;
+        // white-space: nowrap;
       }
     }
+    
   }

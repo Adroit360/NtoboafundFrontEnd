@@ -183,7 +183,21 @@
           transform: translateY(.1rem);
         }
       }
+      @media screen and (max-width:405px) {
+        .link-card{
+          width: 80%;
+          max-width: 80% !important;
+          flex:1 1 80%;
+          &__bottom{
+            .cover-text{
+              margin-top: 20px;
+            }
+          }
+        }
+      }
     }
+
+    
   }
   .info-pane {
     display: flex;
@@ -203,6 +217,7 @@
       min-width: 30rem;
       margin: 2rem 1rem 2rem 2rem;
       overflow-y:auto;
+      cursor: pointer;
       &>div{
         display: flex;
         justify-content:center;

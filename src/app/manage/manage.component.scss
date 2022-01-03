@@ -5,7 +5,7 @@
   &__aside {
     background-color: white;
     min-width: 5rem;
-    max-width: 5rem;
+    max-width: 15rem;
     box-shadow: var(--right-spread-shadow);
     z-index: 5;
     display: flex;
@@ -19,15 +19,20 @@
         display:inline-block;
         margin:0px;
         padding: 1rem;
-        width:100%;
+        width:5rem;
         height:100%;
+        &:hover{
+          svg{
+            fill:#808080;
+          }
+        }
       }
     }
     .navlinks {
       flex: 1 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      // justify-content: center;
 
       .navlink {
         height: 5rem;
@@ -57,7 +62,7 @@
           }
         }
         &__text {
-          transform: translateX(-100%);
+          // transform: translateX(-100%);
           transition: transform 0.2s var(--zoom-bezier);
           transform-origin: 0%;
           //This line height is relate the padding on this element and the overall height of the container
@@ -84,7 +89,7 @@
   }
   &__box {
     width:100%;
-    margin-left: 5rem;
+    margin-left: 15rem;
     display: flex;
     height: calc(100vh - 3.5rem);
     &__preface {
@@ -226,13 +231,20 @@
   @media (max-width: 800px) {
     &__aside{
       z-index: 2000;
+      div{
+        font-size: 1.2rem !important;
+      }
+      .navlink__icon,svg{
+        width: 2rem;
+        min-width: auto !important;
+      }
     }
     &__box {
       flex-wrap: wrap;
       justify-content: center;
       overflow-y: auto;
      overflow-x: hidden;
-
+      margin-left: 10rem;
       &__preface {
         order: 1;
         width:100%;
@@ -255,7 +267,28 @@
       }
       &__info-card {
       }
+      .d-body__box__preface{
+        min-width: auto !important;
+      }
     }
   }
   overflow: none;
+}
+
+
+.change-password{
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  background-color: #cee0ef;
+  margin: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  svg{
+    width:2rem;
+  }
+  &:hover{
+    background-color: #a1cbec;
+  }
 }

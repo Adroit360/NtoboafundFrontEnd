@@ -96,7 +96,7 @@ app-busy {
           }
         }
         #cpassword-toggler {
-          height: 5rem;
+          // height: 5rem;
           width: 100%;
           &:hover {
             & > label {
@@ -175,7 +175,7 @@ app-busy {
   &__right {
     flex: 1 1;
     overflow:auto;
-    margin-top: 5rem;
+    // margin-top: 5rem;
     .profile-body {
       position: relative;
       display: flex;
