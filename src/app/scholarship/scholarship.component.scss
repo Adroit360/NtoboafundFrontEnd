@@ -95,6 +95,7 @@ app-busy {
           &:checked {
             & ~ .stake-box__body > .stake-box__body__info {
               transform: translateX(-100%);
+              opacity: 0;
             }
             & ~ .stake-box__body > .stake-box__body__staker {
               transform: translateX(-100%);

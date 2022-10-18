@@ -43,8 +43,8 @@
             </p>
           </div>
           <div class="step">
-            <h6 class="step-title white">3. PRESS Play BUTTON AND START</h6>
-            <button (click)="pay()" class="contribute-btn">Play</button>
+            <h6 class="step-title white">{{(winnerSelectionService.isMonthlyDrawOngoing | async)?'You can play after the ongoing draw':'3. PRESS Play BUTTON AND START'}}</h6>
+            <button *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" (click)="pay()" class="contribute-btn">Play</button>
           </div>
         </form>
       </div>
@@ -66,7 +66,7 @@
         </div>
       </div>
 
-      <div *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)" class="ongoingdraw">
+      <div style="margin:0 10%;" *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)" class="ongoingdraw">
         <div class="header">Business Draw is ongoing</div>
         <div class="drawbox">
           <div class="lds-hourglass loader"></div>
@@ -75,11 +75,13 @@
               <div class="winner-group">
                 <div *ngFor="let participant of signalRservice.businessParticipants" class="winner-item">
                   <div class="winner-item__description">
-                    <span class="winner-name">{{participant.userName}}</span>
-                    <span class="winning-details">
-                      <span class="amount-won"> staked <span class="period"> </span>GH₵
-                        {{participant.amountStaked}}</span>
-                    </span>
+                    <span class="winner-name">{{
+                      participant.userName|maskNumber
+                    }}</span>
+                    <span> Played </span>
+                    <span class="amount-staked"
+                      >GH₵{{ participant.amountStaked }}</span
+                    >
                   </div>
                 </div>
               </div>
@@ -88,7 +90,8 @@
         </div>
       </div>
 
-      <div
+      <!-- Latest Business Winners -->
+      <div style="margin:0 10%;"
         *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async) && winnerSelectionService.currentBusinessWinners"
         class="winnerbox">
         <div class="title">Latest Business Winners</div>
@@ -101,12 +104,12 @@
 
     </div>
     <div class="contribute-sec">
-      <div class="container">
+      <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)" class="container">
         <h6 class="contribute-title">Current Participants</h6>
         <div class="contribute-info values-slider">
           <div class="contribute-list">
             <div *ngFor="let participant of signalRservice.businessParticipants" class="list-item">
-              <strong>{{participant.userName}}</strong>
+              <strong>{{participant.userName|maskNumber}}</strong>
               <span>PLAYED</span>
               <a href="">GH₵ {{participant.amountStaked}}</a>
             </div>
@@ -136,13 +139,13 @@
         <!-- </div> -->
       </div>
     </div>
-    <div class="win-banner">
+    <!-- <div class="win-banner">
       <div class="win-prize">
         <span>Prizes Paid</span>
         <strong>GH₵ 220,000</strong>
         <p>With Ntoboafund, the more you play the better your chances of winning BIG!.</p>
       </div>
-    </div>
+    </div> -->
   </section>
   <!-- Past-winners section End -->
   <!-- Articles section start -->
@@ -219,7 +222,7 @@
 
 
 <app-payment-dialog [amount]="selectedAmount" [stakeType]="'Business'"
-  [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" [txRef]="this.raveOptions.txref"
+  [username]="authService.currentUser.firstName" [txRef]="this.raveOptions.txref"
   *ngIf="customPaymentDialogShown && this.raveOptions" (close)="closePaymentDialog()"
   (oncongratmessage)="showCongratulatoryMessage($event)">
 </app-payment-dialog>

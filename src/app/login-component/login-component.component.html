@@ -17,11 +17,11 @@
     <div class="login-box-wrapper__right">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-box">
         <div class="login-box__header">
-          <div>LOGIN WITH EMAIL</div>
+          <div>LOGIN WITH Phone Number</div>
         </div>
         <div class="login-box__body">
           <div class="c-input">
-            <input type="email" formControlName="email" placeholder="Email" />
+            <input type="text" formControlName="phoneNumber" placeholder="Phone Number" />
             <i class="c-addon fa fa-envelope"></i>
             <b class="val-msg"></b>
           </div>

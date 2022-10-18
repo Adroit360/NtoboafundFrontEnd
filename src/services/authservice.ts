@@ -38,8 +38,8 @@ export class AuthService {
         return this.http.put<any>(`${settings.currentApiUrl}/users/update`, formData);
     }
 
-    login(email: any, password: any) {
-        return this.http.post<any>(`${settings.currentApiUrl}/users/authenticate`, { email, password })
+    login(phoneNumber: any, password: any) {
+        return this.http.post<any>(`${settings.currentApiUrl}/users/authenticate`, { phoneNumber, password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
@@ -70,7 +70,7 @@ export class AuthService {
     hasPaymentDetails(data:string,showConfirmBox: boolean = false): boolean {
         if (!this.currentUser)
             return false;
-
+        debugger;
         var rMethod = this.currentUser.preferedMoneyReceptionMethod;
 
         if (rMethod) {
@@ -78,16 +78,16 @@ export class AuthService {
                 case "momo":
                     //Build the error message to show base on what info the user is missing
                     let momoError: string = "";
-                    if (!this.currentUser.momoDetails.country)
-                        momoError += "Please add your mobile money country\n";
-                    if (!this.currentUser.momoDetails.number)
+                    // if (!this.currentUser.momoDetails.country)
+                    //     momoError += "Please add your mobile money country\n";
+                    if (this.currentUser.momoDetails && !this.currentUser.momoDetails.number)
                         momoError += "Please add your mobile money number\n";
-                    if (!this.currentUser.momoDetails.network)
-                        momoError += "Please add your mobile money network\n";
+                    // if (!this.currentUser.momoDetails.network)
+                    //     momoError += "Please add your mobile money network\n";
 
                     //Return true if all bank details are present
 
-                    if (this.currentUser.momoDetails.country && this.currentUser.momoDetails.currency && this.currentUser.momoDetails.number && this.currentUser.momoDetails.network) {
+                    if (this.currentUser.momoDetails && this.currentUser.momoDetails.number) {
                         return true;
                     }//else show the show the error message
                     else if (showConfirmBox) {

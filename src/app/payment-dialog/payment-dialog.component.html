@@ -66,18 +66,11 @@
           </div>
         </div>
         <div *ngIf="selectedPaymentMethod == paymentMethods[2]" class="paytypebox">
-          <div class="rave-input">
-            <div class="head">Email Address</div>
-            <input [(ngModel)]="slydePayEmail" type="email">
+          <div *ngIf="(settings.paymentGateway == 'redde'||settings.paymentGateway == 'theTeller' ) && !checkoutUrl" class="ccgroup">
+            <button (click)="Pay(false,false)" *ngIf="txRef" class="rave-btn">
+              <span>Proceed to pay</span>
+            </button>
           </div>
-          <div class="rave-input" >
-            <div class="head">PhoneNumber</div>
-            <input [(ngModel)]="slydePayPhoneNumber" type="password">
-          </div>
-          <button (click)="Pay()" *ngIf="txRef" class="rave-btn">
-            <span>Pay {{amount}} Cedi<span *ngIf="amount != 1">s</span></span>
-            <span>&gt;</span>
-          </button>
         </div>
       </div>
     </div>
@@ -99,6 +92,15 @@
           </svg>
         </div>
         <div class="ptypebutton__text">Credit/Debit Card</div>
+      </div>
+      <div [ngClass]="{inverse:selectedPaymentMethod == paymentMethods[2]}" (click)="selectPaymentMethod(2)"
+        class="ptypebutton">
+        <div class="ptypebutton__icon">
+          <svg class="linkicon icon icon-mid">
+            <use href="assets/Icons/svgs.svg#icon-wallet" />
+          </svg>
+        </div>
+        <div class="ptypebutton__text">My Wallet</div>
       </div>
       <!-- <div [ngClass]="{inverse:selectedPaymentMethod == paymentMethods[2]}" (click)="selectPaymentMethod(2)"
         class="ptypebutton">

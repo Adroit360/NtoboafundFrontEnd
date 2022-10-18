@@ -1,14 +1,16 @@
 .winnerbox{
   background-color: white;
-  margin: 1rem;
+  // margin: 1rem;
   box-shadow: var(--shadow);
     .title{
       background-color: #007aff;
-      color:white;
-      padding: 1.5rem;
+      color: white;
+      padding: 0.5rem;
       text-align: center;
-      letter-spacing: .1rem;
+      letter-spacing: 0.1rem;
       text-transform: uppercase;
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
     }
     .body{
       text-align: center;

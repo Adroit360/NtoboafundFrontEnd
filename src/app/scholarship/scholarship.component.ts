@@ -86,9 +86,10 @@ export class ScholarshipComponent implements OnInit, AfterViewInit {
     });
 
     this.scholarshipForm = new FormGroup({
-      Institution: new FormControl("", Validators.required),
-      Program: new FormControl("", Validators.required),
-      StudentId: new FormControl("", Validators.required),
+      Institution: new FormControl("",),
+      Program: new FormControl("",),
+      StudentId: new FormControl(""),
+      StudentName: new FormControl("", Validators.required),
       PlayerType: new FormControl("", Validators.required),
     });
 
@@ -108,6 +109,7 @@ export class ScholarshipComponent implements OnInit, AfterViewInit {
         this.scholarshipForm.get("Program").setValue(splittedUrlData[1]);
         this.scholarshipForm.get("StudentId").setValue(splittedUrlData[2]);
         this.scholarshipForm.get("PlayerType").setValue(splittedUrlData[3]);
+        this.scholarshipForm.get("StudentName").setValue(splittedUrlData[4]);
         //this.ravePayBtn.nativeElement.click();
         // this.paymentInitialized();
       } catch {}
@@ -143,12 +145,13 @@ export class ScholarshipComponent implements OnInit, AfterViewInit {
       let institution = this.scholarshipForm.get("Institution").value;
       let program = this.scholarshipForm.get("Program").value;
       let studentId = this.scholarshipForm.get("StudentId").value;
+      let studentName = this.scholarshipForm.get("StudentName").value;
       let playerType = this.scholarshipForm.get("PlayerType").value;
       if (
         this.authService.hasPaymentDetails(
           `${institution}/*/${program}/*/${studentId}/*/${
             this.scholarshipForm.get("PlayerType").value
-          }`,
+          }/*/${studentName}`,
           true
         )
       ) {
@@ -159,6 +162,7 @@ export class ScholarshipComponent implements OnInit, AfterViewInit {
             institution,
             program,
             studentId,
+            studentName,
             playerType: playerType,
             userId: this.authService.currentUser.id,
             txRef: this.raveOptions.txref,

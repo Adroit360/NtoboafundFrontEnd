@@ -1,137 +1,211 @@
-<app-busy class="invisible" [ngClass]="{'visible':loading,'invisible':!loading}"></app-busy>
+<app-busy
+  class="invisible"
+  [ngClass]="{ visible: loading, invisible: !loading }"
+></app-busy>
 
 <div class="luckyme-bg"></div>
 <app-header></app-header>
 <div class="luckyme">
-
-    <!-- Business Steps section Start -->
-    <section class="business-steps">
-      <div class="container">
-        <h6 class="text-center white">Play NOW in 3 steps</h6>
-        <form class="steps-wrap lucky-steps">
-          <div class="step">
-            <h6 class="step-title white">1. Select the amount you would like to play</h6>
-            <div class="tickets">
-              <div class="radio-group">
-                <input type="radio" id="radioG1" name="radio" [value]="1" [(ngModel)]="selectedChoice"
-                  (change)="resetTxRef()" />
-                <label for="radioG1">GH₵ 1</label>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="radioG2" name="radio" [value]="5" [(ngModel)]="selectedChoice"
-                  (change)="resetTxRef()" />
-                <label for="radioG2">GH₵ 5</label>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="radioG3" name="radio" [value]="10" [(ngModel)]="selectedChoice"
-                  (change)="resetTxRef()" />
-                <label for="radioG3">GH₵ 10</label>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="radioG4" name="radio" [value]="20" [(ngModel)]="selectedChoice"
-                  (change)="resetTxRef()" />
-                <label for="radioG4">GH₵ 20</label>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="radioG5" name="radio" [value]="50" [(ngModel)]="selectedChoice"
-                  (change)="resetTxRef()" />
-                <label for="radioG5">GH₵ 50</label>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="radioG6" name="radio" [value]="100" [(ngModel)]="selectedChoice"
-                  (change)="resetTxRef()" />
-                <label for="radioG6">GH₵ 100</label>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="radioG7" name="radio" [value]="500" [(ngModel)]="selectedChoice"
-                  (change)="resetTxRef()" />
-                <label for="radioG7">GH₵ 500</label>
-              </div>
+  <!-- Business Steps section Start -->
+  <section class="business-steps">
+    <div class="container">
+      <h6 class="text-center white">Play NOW in 3 steps</h6>
+      <form class="steps-wrap lucky-steps">
+        <div class="step">
+          <h6 class="step-title white">
+            1. Select the amount you would like to play
+          </h6>
+          <div class="tickets">
+            <div class="radio-group">
+              <input
+                type="radio"
+                
+                id="radioG1"
+                name="radio"
+                [value]="2"
+                [(ngModel)]="selectedChoice"
+                (change)="resetTxRef()"
+              />
+              <label for="radioG1">GH₵ 2</label>
+            </div>
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="radioG2"
+                name="radio"
+                [value]="5"
+                [(ngModel)]="selectedChoice"
+                (change)="resetTxRef()"
+              />
+              <label for="radioG2">GH₵ 5</label>
+            </div>
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="radioG3"
+                name="radio"
+                [value]="10"
+                [(ngModel)]="selectedChoice"
+                (change)="resetTxRef()"
+              />
+              <label for="radioG3">GH₵ 10</label>
+            </div>
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="radioG4"
+                name="radio"
+                [value]="20"
+                [(ngModel)]="selectedChoice"
+                (change)="resetTxRef()"
+              />
+              <label for="radioG4">GH₵ 20</label>
+            </div>
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="radioG5"
+                name="radio"
+                [value]="50"
+                [(ngModel)]="selectedChoice"
+                (change)="resetTxRef()"
+              />
+              <label for="radioG5">GH₵ 50</label>
+            </div>
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="radioG6"
+                name="radio"
+                [value]="100"
+                [(ngModel)]="selectedChoice"
+                (change)="resetTxRef()"
+              />
+              <label for="radioG6">GH₵ 100</label>
+            </div>
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="radioG7"
+                name="radio"
+                [value]="500"
+                [(ngModel)]="selectedChoice"
+                (change)="resetTxRef()"
+              />
+              <label for="radioG7">GH₵ 500</label>
             </div>
           </div>
-          <div class="step">
-            <h6 class="step-title white">2. SELECT Play PERIOD</h6>
-            <div class="contribution-period">
-              <div class="radio-group">
-                <input type="radio" id="period1" name="period" checked [value]="'daily'" [(ngModel)]="selectedPeriod"
-                  (change)="resetTxRef()" />
-                <label for="period1"><span>Daily</span></label>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="period2" name="period" [value]="'weekly'" [(ngModel)]="selectedPeriod"
-                  (change)="resetTxRef()" />
-                <label for="period2"><span>Weekly</span></label>
-              </div>
-              <div class="radio-group">
-                <input type="radio" id="period3" name="period" [value]="'monthly'" [(ngModel)]="selectedPeriod"
-                  (change)="resetTxRef()" />
-                <label for="period3"><span>Monthly</span></label>
-              </div>
+        </div>
+        <div class="step">
+          <h6 class="step-title white">2. SELECT Play PERIOD</h6>
+          <div class="contribution-period">
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="period1"
+                name="period"
+                checked
+                [value]="'daily'"
+                [(ngModel)]="selectedPeriod"
+                (change)="resetTxRef()"
+              />
+              <label for="period1"><span>Daily</span></label>
+            </div>
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="period2"
+                name="period"
+                [value]="'weekly'"
+                [(ngModel)]="selectedPeriod"
+                (change)="resetTxRef()"
+              />
+              <label for="period2"><span>Weekly</span></label>
+            </div>
+            <div class="radio-group">
+              <input
+                type="radio"
+                id="period3"
+                name="period"
+                [value]="'monthly'"
+                [(ngModel)]="selectedPeriod"
+                (change)="resetTxRef()"
+              />
+              <label for="period3"><span>Monthly</span></label>
             </div>
           </div>
-          <div class="step">
-            <h6 class="step-title white">3. PRESS Play BUTTON AND START</h6>
-            <button
-              *ngIf="!winnerSelectionService.isDailyDrawOngoing && !winnerSelectionService.isWeeklyDrawOngoing && !(winnerSelectionService.isMonthlyDrawOngoing | async)"
-              (click)="paymentInitialized()" class="contribute-btn">Play</button>
-          </div>
-        </form>
-        <p *ngIf="selectedChoice" class="coupens-txt text-center white">Potential returns for a play of  <strong>GHC {{selectedChoice}}</strong> 
-          is <strong>{{getReturnsText(selectedChoice)}}</strong></p>
-      </div>
-      <div class="ongoingdraw-container">
-        <!-- *ngIf="winnerSelectionService.isDailyDrawOngoing" -->
+        </div>
+        <div class="step">
+          <h6 class="step-title white">3. PRESS Play BUTTON AND START</h6>
+          <button
+            *ngIf="
+              !winnerSelectionService.isDailyDrawOngoing &&
+              !winnerSelectionService.isWeeklyDrawOngoing &&
+              !(winnerSelectionService.isMonthlyDrawOngoing | async)
+            "
+            (click)="paymentInitialized()"
+            class="contribute-btn"
+          >
+            Play
+          </button>
+        </div>
+      </form>
+      <p *ngIf="selectedChoice" class="coupens-txt text-center white">
+        Potential returns for a play of
+        <strong>GHC {{ selectedChoice }}</strong> is
+        <strong>{{ getReturnsText(selectedChoice) }}</strong>
+      </p>
+    </div>
+    <!-- <div class="ongoingdraw-container">
         <div class="ongoing-draw__info" *ngIf="winnerSelectionService.isDailyDrawOngoing">
           <div class="text" style="background-color: #b9000a;">Daily Draw is ongoing</div>
         </div>
-        <!-- *ngIf="winnerSelectionService.isWeeklyDrawOngoing" -->
         <div class="ongoing-draw__info" *ngIf="winnerSelectionService.isWeeklyDrawOngoing">
           <div class="text">Weekly Draw is ongoing</div>
         </div>
-        <!-- *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)" -->
         <div class="ongoing-draw__info" *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)">
           <div class="text" style="background-color: #f57f17;">Monthly Draw is ongoing</div>
         </div>
-      </div>
-    </section>
-    <!-- Business Steps section End -->
+      </div> -->
+  </section>
+  <!-- Business Steps section End -->
   <!-- <div>{{console(!winnerSelectionService.isDailyDrawOngoing  && winnerSelectionService.currentDailyLuckymeWinners)}}</div> -->
   <section class="business-counter">
     <div class="counter-sec lucky-counter">
       <div class="container">
         <div class="time-counter time-counter-slider">
-          <div *ngIf="luckyMeDailySeconds>=0" class="lucky-timer">
+          <div *ngIf="luckyMeDailySeconds >= 0" class="lucky-timer">
             <p class="desc">NEXT <b>DAILY</b> LUCKYME DRAW IN</p>
             <div id="luckyCounterOne">
-              <strong>{{luckyMeDailyHours}}</strong>
+              <strong>{{ luckyMeDailyHours }}</strong>
               <span>Hours</span>
               <ul class="lucky-list">
-                <li>{{luckyMeDailyMinutes}} Minutes</li>
-                <li>{{luckyMeDailySeconds}} Seconds</li>
+                <li>{{ luckyMeDailyMinutes }} Minutes</li>
+                <li>{{ luckyMeDailySeconds }} Seconds</li>
               </ul>
             </div>
           </div>
-          <div *ngIf="luckyMeWeeklySeconds>=0" class="lucky-timer">
+          <div *ngIf="luckyMeWeeklySeconds >= 0" class="lucky-timer">
             <p class="desc">NEXT <b>WEEKLY</b> LUCKYME DRAW IN</p>
             <div id="luckyCounterTwo">
-              <strong>{{luckyMeWeeklyDays}}</strong>
+              <strong>{{ luckyMeWeeklyDays }}</strong>
               <span>Days</span>
               <ul class="lucky-list">
-                <li>{{luckyMeWeeklyHours}} Hours </li>
-                <li>{{luckyMeWeeklyMinutes}} Minutes</li>
-                <li>{{luckyMeWeeklySeconds}} Seconds</li>
+                <li>{{ luckyMeWeeklyHours }} Hours</li>
+                <li>{{ luckyMeWeeklyMinutes }} Minutes</li>
+                <li>{{ luckyMeWeeklySeconds }} Seconds</li>
               </ul>
             </div>
           </div>
-          <div *ngIf="luckyMeMonthlySeconds>=0" class="lucky-timer">
+          <div *ngIf="luckyMeMonthlySeconds >= 0" class="lucky-timer">
             <p class="desc">NEXT <b>MONTHLY</b> LUCKYME DRAW IN</p>
             <div id="luckyCounterThree">
-              <strong>{{luckyMeMonthlyDays}}</strong>
+              <strong>{{ luckyMeMonthlyDays }}</strong>
               <span>Days</span>
               <ul class="lucky-list">
-                <li>{{luckyMeMonthlyHours}} Hours </li>
-                <li>{{luckyMeMonthlyMinutes}} Minutes</li>
-                <li>{{luckyMeMonthlySeconds}} Seconds</li>
+                <li>{{ luckyMeMonthlyHours }} Hours</li>
+                <li>{{ luckyMeMonthlyMinutes }} Minutes</li>
+                <li>{{ luckyMeMonthlySeconds }} Seconds</li>
               </ul>
             </div>
           </div>
@@ -141,46 +215,76 @@
     <div class="contribute-sec lucky-contribute">
       <div class="container">
         <div class="contribute-info lucky-slider-nav">
-
-          <!-- <ng-template> -->
-          <div *ngIf="!winnerSelectionService.isDailyDrawOngoing  && winnerSelectionService.currentDailyLuckymeWinners"
-            class="contribute-list winnerbox">
-            <div class="title">Latest Daily Luckyme Winners</div>
-            <div class="body">
-              <div *ngFor="let winner of winnerSelectionService.currentDailyLuckymeWinners" class="winner">
-                <span>{{winner.userName}}</span>
+          <!-- Current Daily Participants && Latest Daily Luckyme Winners -->
+          <div
+            *ngIf="!winnerSelectionService.isDailyDrawOngoing"
+            class="contribute-list"
+          >
+            <!-- Latest Daily Luckyme Winners -->
+            <div
+              *ngIf="
+                !winnerSelectionService.isDailyDrawOngoing &&
+                winnerSelectionService.currentDailyLuckymeWinners
+              "
+              class="winnerbox"
+            >
+              <div class="title contribute-title">
+                Latest Daily Luckyme Winners
+              </div>
+              <div class="body">
+                <div
+                  *ngFor="
+                    let winner of winnerSelectionService.currentDailyLuckymeWinners
+                  "
+                  class="winner"
+                >
+                  <span>{{ winner.userName }}</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div *ngIf="!winnerSelectionService.isDailyDrawOngoing  && !winnerSelectionService.currentDailyLuckymeWinners"
-            class="contribute-list">
             <h6 class="contribute-title">Current Daily Participants</h6>
             <div *ngIf="!winnerSelectionService.isDailyDrawOngoing">
-              <div *ngFor="let participant of signalRService.dailyLuckymeParticipants" class="list-item">
-                <strong>{{participant.userName}}</strong>
+              <div
+                *ngFor="
+                  let participant of signalRService.dailyLuckymeParticipants
+                "
+                class="list-item"
+              >
+                <strong>{{ participant.userName|maskNumber }}</strong>
                 <span>PLAYED</span>
-                <a href="">GH₵ {{participant.amountStaked}}</a>
+                <a href="">GH₵ {{ participant.amountStaked }}</a>
               </div>
               <!-- <div class="list-item p-winnerscount"><strong>{{signalRService.potentialDailyLuckymeWinnersCount}} potential
                 winner(s)</strong></div> -->
             </div>
           </div>
 
-          <div *ngIf="winnerSelectionService.isDailyDrawOngoing" class="contribute-list ongoingdraw">
+          <!-- Daily Draw is ongoing -->
+          <div
+            *ngIf="winnerSelectionService.isDailyDrawOngoing"
+            class="contribute-list ongoingdraw"
+          >
             <div class="header">Daily Draw is ongoing</div>
             <div class="drawbox">
               <div class="lds-hourglass loader"></div>
               <div class="participants info-card">
                 <div class="info-card__body">
                   <div class="winner-group">
-                    <div *ngFor="let participant of signalRService.dailyLuckymeParticipants" class="winner-item">
+                    <div
+                      *ngFor="
+                        let participant of signalRService.dailyLuckymeParticipants
+                      "
+                      class="winner-item"
+                    >
                       <div class="winner-item__description">
-                        <span class="winner-name">{{participant.userName}}</span>
-                        <span class="winning-details">
-                          <span class="amount-won"> Played <span class="period"> </span>GH₵
-                            {{participant.amountStaked}}</span>
-                        </span>
+                        <span class="winner-name">{{
+                          participant.userName|maskNumber
+                        }}</span>
+                        <span> Played </span>
+                        <span class="amount-staked"
+                          >GH₵{{ participant.amountStaked }}</span
+                        >
                       </div>
                     </div>
                   </div>
@@ -189,51 +293,75 @@
             </div>
           </div>
 
-          <!-- </ng-template> -->
-
-          <!-- <ng-template> -->
-
-          <!-- !winnerSelectionService.isWeeklyDrawOngoing  && winnerSelectionService.currentWeeklyLuckymeWinners -->
+          <!-- Current Weekly Participants && Latest Weekly Luckyme Winners-->
           <div
-            *ngIf="!winnerSelectionService.isWeeklyDrawOngoing  && winnerSelectionService.currentWeeklyLuckymeWinners"
-            class="contribute-list winnerbox">
-            <div class="title">Latest Weekly Luckyme Winners</div>
-            <div class="body">
-              <div *ngFor="let winner of winnerSelectionService.currentWeeklyLuckymeWinners" class="winner">
-                <span>{{winner.userName}}</span>
+            *ngIf="
+              !winnerSelectionService.isWeeklyDrawOngoing
+            "
+            class="contribute-list"
+          >
+            <!-- Latest Weekly Luckyme Winners -->
+            <div
+              *ngIf="
+                !winnerSelectionService.isWeeklyDrawOngoing &&
+                winnerSelectionService.currentWeeklyLuckymeWinners
+              "
+              class="winnerbox"
+            >
+              <div class="title contribute-title">Latest Weekly Luckyme Winners</div>
+              <div class="body">
+                <div
+                  *ngFor="
+                    let winner of winnerSelectionService.currentWeeklyLuckymeWinners
+                  "
+                  class="winner"
+                >
+                  <span>{{ winner.userName }}</span>
+                </div>
               </div>
             </div>
-          </div>
-          <!-- !winnerSelectionService.isWeeklyDrawOngoing  && !winnerSelectionService.currentWeeklyLuckymeWinners -->
-          <div
-            *ngIf="!winnerSelectionService.isWeeklyDrawOngoing  && !winnerSelectionService.currentWeeklyLuckymeWinners"
-            class="contribute-list">
+
             <h6 class="contribute-title">Current Weekly Participants</h6>
             <div *ngIf="!winnerSelectionService.isWeeklyDrawOngoing">
-              <div *ngFor="let participant of signalRService.weeklyLuckymeParticipants" class="list-item">
-                <strong>{{participant.userName}}</strong>
+              <div
+                *ngFor="
+                  let participant of signalRService.weeklyLuckymeParticipants
+                "
+                class="list-item"
+              >
+                <strong>{{ participant.userName|maskNumber }}</strong>
                 <span>PLAYED</span>
-                <a href="">GH₵ {{participant.amountStaked}}</a>
+                <a href="">GH₵ {{ participant.amountStaked }}</a>
               </div>
             </div>
             <!-- <div class="p-winnerscount"><strong>{{signalRService.potentialWeeklyLuckymeWinnersCount}} potential winner(s)</strong></div> -->
           </div>
 
           <!-- winnerSelectionService.isWeeklyDrawOngoing -->
-          <div *ngIf="winnerSelectionService.isWeeklyDrawOngoing" class="contribute-list ongoingdraw">
+          <div
+            *ngIf="winnerSelectionService.isWeeklyDrawOngoing"
+            class="contribute-list ongoingdraw"
+          >
             <div class="header">Weekly Draw is ongoing</div>
             <div class="drawbox">
               <div class="lds-hourglass loader"></div>
               <div class="participants info-card">
                 <div class="info-card__body">
                   <div class="winner-group">
-                    <div *ngFor="let participant of signalRService.weeklyLuckymeParticipants" class="winner-item">
+                    <div
+                      *ngFor="
+                        let participant of signalRService.weeklyLuckymeParticipants
+                      "
+                      class="winner-item"
+                    >
                       <div class="winner-item__description">
-                        <span class="winner-name">{{participant.userName}}</span>
-                        <span class="winning-details">
-                          <span class="amount-won"> Played <span class="period"> </span>GH₵
-                            {{participant.amountStaked}}</span>
-                        </span>
+                        <span class="winner-name">{{
+                          participant.userName|maskNumber
+                        }}</span>
+                        <span> Played </span>
+                        <span class="amount-staked"
+                          >GH₵{{ participant.amountStaked }}</span
+                        >
                       </div>
                     </div>
                   </div>
@@ -242,49 +370,75 @@
             </div>
           </div>
 
-          <!-- </ng-template> -->
-
-          <!-- <ng-template> -->
-
+          <!-- Current Monthly Participants & Latest Monthly Luckyme Winners -->
           <div
-            *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)  && winnerSelectionService.currentMonthlyLuckymeWinners"
-            class="contribute-list winnerbox">
-            <div class="title">Latest Monthly Luckyme Winners</div>
-            <div class="body">
-              <div *ngFor="let winner of winnerSelectionService.currentMonthlyLuckymeWinners" class="winner">
-                <span>{{winner.userName}}</span>
+            *ngIf="
+              !(winnerSelectionService.isMonthlyDrawOngoing | async)
+            "
+            class="contribute-list"
+          >
+            <!-- Latest Monthly Luckyme Winners -->
+            <div
+              *ngIf="
+                !(winnerSelectionService.isMonthlyDrawOngoing | async) &&
+                winnerSelectionService.currentMonthlyLuckymeWinners
+              "
+              class="winnerbox"
+            >
+              <div class="title contribute-title">Latest Monthly Luckyme Winners</div>
+              <div class="body">
+                <div
+                  *ngFor="
+                    let winner of winnerSelectionService.currentMonthlyLuckymeWinners
+                  "
+                  class="winner"
+                >
+                  <span>{{ winner.userName }}</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div
-            *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)  && !winnerSelectionService.currentMonthlyLuckymeWinners"
-            class="contribute-list">
             <h6 class="contribute-title">Current Monthly Participants</h6>
             <div *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)">
-              <div *ngFor="let participant of signalRService.monthlyLuckymeParticipants" class="list-item">
-                <strong>{{participant.userName}}</strong>
+              <div
+                *ngFor="
+                  let participant of signalRService.monthlyLuckymeParticipants
+                "
+                class="list-item"
+              >
+                <strong>{{ participant.userName|maskNumber }}</strong>
                 <span>PLAYED</span>
-                <a href="">GH₵ {{participant.amountStaked}}</a>
+                <a href="">GH₵ {{ participant.amountStaked }}</a>
               </div>
             </div>
             <!-- <div class="p-winnerscount"><strong>{{signalRService.potentialMonthlyLuckymeWinnersCount}} potential winner(s)</strong></div> -->
           </div>
 
-          <div *ngIf="(winnerSelectionService.isMonthlyDrawOngoing | async)" class="contribute-list ongoingdraw">
+          <!-- Monthly Draw is ongoing -->
+          <div
+            *ngIf="winnerSelectionService.isMonthlyDrawOngoing | async"
+            class="contribute-list ongoingdraw"
+          >
             <div class="header">Monthly Draw is ongoing</div>
             <div class="drawbox">
               <div class="lds-hourglass loader"></div>
               <div class="participants info-card">
                 <div class="info-card__body">
                   <div class="winner-group">
-                    <div *ngFor="let participant of signalRService.monthlyLuckymeParticipants" class="winner-item">
+                    <div
+                      *ngFor="
+                        let participant of signalRService.monthlyLuckymeParticipants
+                      "
+                      class="winner-item"
+                    >
                       <div class="winner-item__description">
-                        <span class="winner-name">{{participant.userName}}</span>
-                        <span class="winning-details">
-                          <span class="amount-won"> Played <span class="period"> </span>GH₵
-                            {{participant.amountStaked}}</span>
-                        </span>
+                        <span class="winner-name">{{
+                          participant.userName|maskNumber
+                        }}</span>
+                        <span> Played </span>
+                        <span class="amount-staked"
+                          >GH₵{{ participant.amountStaked }}</span
+                        >
                       </div>
                     </div>
                   </div>
@@ -292,14 +446,10 @@
               </div>
             </div>
           </div>
-
-          <!-- </ng-template> -->
-
         </div>
       </div>
     </div>
   </section>
-
 
   <!-- Past-winners section start -->
   <section class="past-winners lucky-winner-sec">
@@ -311,48 +461,109 @@
           <li><a (click)="display('weekly')">Weekly</a></li>
           <li><a (click)="display('monthly')">Monthly</a></li>
         </ul>
-        <div *ngIf="ddisplay == 'daily' && winnerSelectionService.groupedDailyLuckymeWinners">
+        <div
+          *ngIf="
+            ddisplay == 'daily' &&
+            winnerSelectionService.groupedDailyLuckymeWinners
+          "
+        >
           <div class="win-list winner-slider">
-            <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedDailyLuckymeWinners)" class="win-item">
-              <strong class="price">{{winnerSelectionService.groupedDailyLuckymeWinners[key][0].amountToWin}}</strong>
+            <div
+              *ngFor="
+                let key of ObjectKeys(
+                  winnerSelectionService.groupedDailyLuckymeWinners
+                )
+              "
+              class="win-item"
+            >
+              <strong class="price">{{
+                winnerSelectionService.groupedDailyLuckymeWinners[key][0]
+                  .amountToWin
+              }}</strong>
               <span class="sign">GH₵</span>
-              <h5>{{winnerSelectionService.groupedDailyLuckymeWinners[key][0].userName}}</h5>
-              <p class="desc">{{key}}</p>
+              <h5>
+                {{
+                  winnerSelectionService.groupedDailyLuckymeWinners[key][0]
+                    .userName
+                }}
+              </h5>
+              <p class="desc">{{ key }}</p>
             </div>
           </div>
         </div>
 
-        <div *ngIf="ddisplay == 'weekly' && winnerSelectionService.groupedWeeklyLuckymeWinners">
+        <div
+          *ngIf="
+            ddisplay == 'weekly' &&
+            winnerSelectionService.groupedWeeklyLuckymeWinners
+          "
+        >
           <div class="win-list winner-slider">
-            <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedWeeklyLuckymeWinners)" class="win-item">
-              <strong class="price">{{winnerSelectionService.groupedWeeklyLuckymeWinners[key][0].amountToWin}}</strong>
+            <div
+              *ngFor="
+                let key of ObjectKeys(
+                  winnerSelectionService.groupedWeeklyLuckymeWinners
+                )
+              "
+              class="win-item"
+            >
+              <strong class="price">{{
+                winnerSelectionService.groupedWeeklyLuckymeWinners[key][0]
+                  .amountToWin
+              }}</strong>
               <span class="sign">GH₵</span>
-              <h5>{{winnerSelectionService.groupedWeeklyLuckymeWinners[key][0].userName}}</h5>
-              <p class="desc">{{key}}</p>
+              <h5>
+                {{
+                  winnerSelectionService.groupedWeeklyLuckymeWinners[key][0]
+                    .userName
+                }}
+              </h5>
+              <p class="desc">{{ key }}</p>
             </div>
           </div>
         </div>
 
-        <div *ngIf="ddisplay == 'monthly' && winnerSelectionService.groupedMonthlyLuckymeWinners">
+        <div
+          *ngIf="
+            ddisplay == 'monthly' &&
+            winnerSelectionService.groupedMonthlyLuckymeWinners
+          "
+        >
           <div class="win-list winner-slider">
-            <div *ngFor="let key of ObjectKeys(winnerSelectionService.groupedMonthlyLuckymeWinners)" class="win-item">
-              <strong class="price">{{winnerSelectionService.groupedMonthlyLuckymeWinners[key][0].amountToWin}}</strong>
+            <div
+              *ngFor="
+                let key of ObjectKeys(
+                  winnerSelectionService.groupedMonthlyLuckymeWinners
+                )
+              "
+              class="win-item"
+            >
+              <strong class="price">{{
+                winnerSelectionService.groupedMonthlyLuckymeWinners[key][0]
+                  .amountToWin
+              }}</strong>
               <span class="sign">GH₵</span>
-              <h5>{{winnerSelectionService.groupedMonthlyLuckymeWinners[key][0].userName}}</h5>
-              <p class="desc">{{key}}</p>
+              <h5>
+                {{
+                  winnerSelectionService.groupedMonthlyLuckymeWinners[key][0]
+                    .userName
+                }}
+              </h5>
+              <p class="desc">{{ key }}</p>
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
     <div class="win-banner lucky-banner">
-      <div class="win-prize">
+      <!-- <div class="win-prize">
         <span>Prizes Paid</span>
         <strong>GH₵ 220,000</strong>
-        <p>With Ntoboafund, the more you play the better your chances of winning BIG!.</p>
-      </div>
+        <p>
+          With Ntoboafund, the more you play the better your chances of winning
+          BIG!.
+        </p>
+      </div> -->
     </div>
   </section>
   <!-- Past-winners section End -->
@@ -392,7 +603,11 @@
   <app-footer></app-footer>
 </div>
 
-<div [ngClass]="{'visible':errorShown,'invisible':!errorShown}" class="popup regular" id="error-box">
+<div
+  [ngClass]="{ visible: errorShown, invisible: !errorShown }"
+  class="popup regular"
+  id="error-box"
+>
   <div class="popup__content">
     <div class="popup__content--toolbar">
       <div class="toolbar--left">Error !</div>
@@ -403,14 +618,18 @@
       </div>
     </div>
     <div class="popup__content--body">
-      {{error}}
+      {{ error }}
     </div>
     <div class="popup__content--footer"></div>
   </div>
 </div>
 
 <!-- [ngClass]="{'visible':congratShown,'invisible':!congratShown}" -->
-<div [ngClass]="{'visible':congratShown,'invisible':!congratShown}" class="popup regular visible" id="congrats-box">
+<div
+  [ngClass]="{ visible: congratShown, invisible: !congratShown }"
+  class="popup regular visible"
+  id="congrats-box"
+>
   <div class="popup__content">
     <!-- <div class="popup__content--toolbar">
       <div class="toolbar--left">Error !</div>
@@ -422,7 +641,7 @@
     </div> -->
     <div class="popup__content--body">
       <div class="top">Congratulations</div>
-      <div class="body">{{congratMsg}}</div>
+      <div class="body">{{ congratMsg }}</div>
     </div>
     <div class="popup__content--footer">
       <button (click)="closeCongratPopup()">Ok</button>
@@ -430,24 +649,30 @@
   </div>
 </div>
 
-
-
-
 <!-- Actual -->
-<app-payment-dialog [amount]="selectedChoice" [stakeType]="'Luckyme'"
-  [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName" (close)="closePaymentDialog()"
-  (oncongratmessage)="showCongratulatoryMessage($event)" [txRef]="this.raveOptions.txref"
-  *ngIf="customPaymentDialogShown && this.raveOptions"></app-payment-dialog>
-
-<!-- Test -->
-<!-- <app-payment-dialog [amount]="selectedChoice" [stakeType]="'Luckyme'" [username]="authService.currentUser.firstName +' '+ authService.currentUser.lastName"   (close)="closePaymentDialog()" (oncongratmessage)="showCongratulatoryMessage($event)"></app-payment-dialog> -->
+<app-payment-dialog
+  [amount]="selectedChoice"
+  [stakeType]="'Luckyme'"
+  [username]="
+    authService.currentUser.firstName
+  "
+  (close)="closePaymentDialog()"
+  (oncongratmessage)="showCongratulatoryMessage($event)"
+  [txRef]="this.raveOptions.txref"
+  *ngIf="customPaymentDialogShown && this.raveOptions"
+></app-payment-dialog>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157438990-1"></script>
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=UA-157438990-1"
+></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
 
-  gtag('config', 'UA-157438990-1');
+  gtag("config", "UA-157438990-1");
 </script>

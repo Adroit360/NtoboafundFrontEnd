@@ -99,7 +99,7 @@
 
           </div> -->
           <div [ngClass]="{disabled:!isEditMode}" class="c-input">
-            <input type="text" placeholder="First Name" [formControlName]="'firstName'" />
+            <input type="text" placeholder="Name" [formControlName]="'firstName'" />
             <i class="c-addon fa fa-user"></i>
             <b class="val-msg">
               <p *ngIf="!registrationForm.get('firstName').valid && registrationForm.get('firstName').touched">This
@@ -107,23 +107,15 @@
                 Required</p>
             </b>
           </div>
-          <div [ngClass]="{disabled:!isEditMode}" class="c-input">
-            <input type="text" placeholder="Last Name" formControlName="lastName" />
-            <i class="c-addon fa fa-user"></i>
-            <b class="val-msg">
-              <p *ngIf="!registrationForm.get('lastName').valid && registrationForm.get('lastName').touched">This Field
-                Is
-                Required</p>
-            </b>
-          </div>
-          <div [ngClass]="{disabled:!isEditMode}" class="c-input">
+          
+          <!-- <div [ngClass]="{disabled:!isEditMode}" class="c-input">
             <input type="email" placeholder="Email" formControlName="email" />
             <i class="c-addon fa fa-envelope"></i>
             <b class="val-msg">
               <p *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched">This Field Is
                 Required</p>
             </b>
-          </div>
+          </div> -->
           <div [ngClass]="{disabled:!isEditMode}" class="c-input">
             <input type="text" placeholder="Phone Number" formControlName="phoneNumber" />
             <i class="c-addon fa fa-phone"></i>
@@ -146,21 +138,21 @@
                             else.</small> -->
           </div>
         
-          <div [ngClass]="{disabled:!isEditMode}" class="form-group">
+          <!-- <div [ngClass]="{disabled:!isEditMode}" class="form-group">
             <label for="cboCountries">Country</label>
             <select #ctrySelect (change)="countryChanged($event)" formControlName="country" class="form-control" id="cboCountries">
               <option value="">Choose your mobile money country</option>
               <option *ngFor="let prop of objectKeys(allNetworks)" [attr.data-networks]="allNetworks[prop]" [attr.data-currency]="allCurrencies[prop]" [value]="prop">{{prop}}</option>
-              <!-- <option [attr.data-networks]="''" [attr.data-currency]="'KES'" value="Kenya">Kenya</option>
+              <option [attr.data-networks]="''" [attr.data-currency]="'KES'" value="Kenya">Kenya</option>
               <option [attr.data-networks]="'UGX'" [attr.data-currency]="'UGX'" value="Uganda">Uganda</option>
               <option [attr.data-networks]="'MTN'" [attr.data-currency]="'ZMW'"  value="Zambia">Zambia</option>
-              <option [attr.data-networks]="'RWF'" [attr.data-currency]="'RWF'" value="Rwanda">Rwanda</option> -->
+              <option [attr.data-networks]="'RWF'" [attr.data-currency]="'RWF'" value="Rwanda">Rwanda</option>
             </select>
-          </div>
+          </div> -->
 
           <div [ngClass]="{disabled:!isEditMode}" *ngIf="networks && networks.length > 0" class="form-group">
             <label for="cboNetworks">Network</label>
-            <select formControlName="network" class="form-control" id="cboNetworks">
+            <select formControlName="network" (change)="networkChanged($event)" class="form-control" id="cboNetworks">
                 <option *ngFor="let network of networks" [value]="network">{{network}}</option>
             </select>
           </div>

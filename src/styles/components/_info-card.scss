@@ -80,22 +80,16 @@
             font-weight: 400;
             white-space: nowrap;
             color: rgba(white, 0.6);
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
-          .winning-details {
             font-size: 1.3rem;
             > * {
               white-space: nowrap;
             }
-            .amount-won {
-              color: white;
-              .period {
-                color: #00f0ff;
-              }
+            span{
+              color:white;
             }
-            .amount-staked {
-              color: #03c85a;
-            }
-          }
         }
       }
       .winner-item {
@@ -267,29 +261,22 @@
           flex: 1 1;
           margin: 0rem 1rem;
           .winner-name {
-            //letter-spacing: 0.15rem;
-            //font-weight: 400;
+            text-overflow: ellipsis;
+             overflow: hidden;
             white-space: nowrap;
             //color: rgba(white, 0.6);
           }
-          .winning-details {
+          // .winning-details {
             font-size: 1.3rem;
             > * {
               white-space: nowrap;
             }
-            .contrib{
-              color:#487A29;
+
+            span{
+              color:white;
             }
-            .amount-won {
-              color: #89E353;;
-              .period {
-                color: #00f0ff;
-              }
-            }
-            .amount-staked {
-              color: #03c85a;
-            }
-          }
+           
+          // }
         }
       }
       .winner-item {

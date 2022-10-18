@@ -135,6 +135,7 @@ export class SignalRService {
 
     initiateGetDailyLuckymeParticipants() {
         this.stakersHubConnection.on('getCurrentDailyLuckymeParticipants', (data: LuckymeParticipant[]) => {
+            console.log("Daily Luckyme Participants",data);
             this.dailyLuckymeParticipants = data;
             //Invoke the get PotentialScholarshipWinnerCount Endpoint on the server
             this.stakersHubConnection.invoke("getPotentialDailyLuckymeWinnersCount");

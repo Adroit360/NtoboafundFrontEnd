@@ -4,7 +4,7 @@ import { Scholarship } from 'src/models/scholarship';
 import { ScholarshipParticipant } from 'src/models/Dtos/scholarshipParticipant';
 import { BusinessParticipant } from 'src/models/Dtos/businessParticpant';
 import { LuckymeParticipant } from 'src/models/Dtos/luckymeParticipant';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { groupBy } from 'src/operations';
 
 export class WinnerSelectionService {
@@ -13,8 +13,8 @@ export class WinnerSelectionService {
 
     isDailyDrawOngoing = false;
     isWeeklyDrawOngoing = false;
-    isMonthlyDrawOngoing: Subject<boolean> = new Subject();
-    isQuaterlyDrawOngoing: Subject<boolean> = new Subject();
+    isMonthlyDrawOngoing: Subject<boolean> = new BehaviorSubject(false);
+    isQuaterlyDrawOngoing: Subject<boolean> = new BehaviorSubject(false);
 
     scholarshipDrawEnded: Subject<boolean>;
 
@@ -23,14 +23,29 @@ export class WinnerSelectionService {
     scholarshipWinners: ScholarshipParticipant[] = [];
 
     currentBusinessWinners: BusinessParticipant[];
+
     groupedBusinessWinners:any;
-    businessWinners: BusinessParticipant[] = [];
+    businessWinners: BusinessParticipant[];
 
     currentDailyLuckymeWinners: LuckymeParticipant[];
+    //  = [
+    //    {
+    //     id:1,
+    //     userName:"banku",
+    //     userId:"23",
+    //     amountStaked:"string",
+    //     amountToWin:"string",
+    //     luckyme:"any",
+    //     dateDeclared:"string",
+    //     txRef:"string",
+    //     status:"string"
+    //    }
+    // ];
     groupedDailyLuckymeWinners:any;
     dailyLuckymeWinners: LuckymeParticipant[] = [];
 
     currentWeeklyLuckymeWinners: LuckymeParticipant[];
+
     groupedWeeklyLuckymeWinners:any;
     weeklyLuckymeWinners: LuckymeParticipant[] = [];
 
@@ -155,6 +170,7 @@ export class WinnerSelectionService {
 
     initiateGetBusinessWinners() {
         this.winnerSelectionHubConnection.on('getCurrentBusinessWinners', (data: BusinessParticipant[]) => {
+            console.log("Business Winners",data);
             this.businessWinners = data;
             this.groupedBusinessWinners = groupBy("dateDeclared")(data);
         });
@@ -184,6 +200,7 @@ export class WinnerSelectionService {
     initiateGetDailyLuckymeWinners() {
         this.winnerSelectionHubConnection.on('getCurrentDailyLuckymeWinners', (data: LuckymeParticipant[]) => {
             this.dailyLuckymeWinners = data;
+            console.log("Luckyme Winners",data);
             this.groupedDailyLuckymeWinners = groupBy("dateDeclared")(data);
             console.log(this.groupedDailyLuckymeWinners);
 

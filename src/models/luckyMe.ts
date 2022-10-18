@@ -11,4 +11,5 @@ export class LuckyMe{
     dateDeclared:boolean;
     transferId:number;
     user:User
+    txRef:string;
 }

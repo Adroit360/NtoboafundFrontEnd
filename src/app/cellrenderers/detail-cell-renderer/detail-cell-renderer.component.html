@@ -6,13 +6,11 @@
       <div class="data-container__body">
         <div class="data-container__body--left">
           <p>First Name</p>
-          <p>Last Name</p>
           <p>Phone Number</p>
           <p>Pay Me With</p>
         </div>
         <div class="data-container__body--right">
             <p>{{data.user.firstName}}</p>
-            <p>{{data.user.lastName}}</p>
             <p>{{data.user.phoneNumber}}</p>
             <p>{{data.user.preferedMoneyReceptionMethod}}</p>
         </div>
@@ -44,13 +42,11 @@
       <div class="data-container__body">
         <div class="data-container__body--left">
           <p>FirstName</p>
-          <p>LastName</p>
           <p>PhoneNumber</p>
           <p>PreferedMoneyReceptionMethod</p>
         </div>
         <div *ngIf="data.user" class="data-container__body--right">
             <p>{{data.user.firstName}}</p>
-            <p>{{data.user.lastName}}</p>
             <p>{{data.user.phoneNumber}}</p>
             <p>{{data.user.preferedMoneyReceptionMethod}}</p>
         </div>

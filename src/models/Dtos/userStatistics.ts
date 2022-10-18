@@ -4,4 +4,5 @@ export class UserStatistics{
     totalScholarshipStakes:number= 0;
     totalLuckymeStakes:number= 0;
     totalBusinessStakes:number= 0;
+    wallet:number = 0;
 }

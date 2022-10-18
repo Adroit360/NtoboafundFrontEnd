@@ -17,7 +17,7 @@ export class PaymentDialogComponent implements OnInit {
   verificationUrl = "";
   cancelationUrl = "";
   settings = settings;
-  paymentMethods: string[] = ["MobileMoney", "CreditCard", "SlydePay"];
+  paymentMethods: string[] = ["MobileMoney", "CreditCard", "wallet"];
   selectedPaymentMethod: string = "MobileMoney";
   @Input("amount") amount: number;
   @Input("username") username: string;
@@ -152,7 +152,7 @@ export class PaymentDialogComponent implements OnInit {
       (response) => {
         console.log(response);
 
-        if (this.selectedPaymentMethod == this.paymentMethods[0]) {
+        if (this.selectedPaymentMethod == this.paymentMethods[0] || this.selectedPaymentMethod == this.paymentMethods[2]) {
           this.setSuccessMessage("Prompt Sent...Waiting for confirmation..");
           this.verifyPayment();
         } else if (this.selectedPaymentMethod == this.paymentMethods[1]) {
@@ -190,7 +190,7 @@ export class PaymentDialogComponent implements OnInit {
         this.paying = false;
         if (xhr.error) {
           this.setErrorMessage(xhr.error.message);
-        } else this.setErrorMessage("Sorry and error occured");
+        } else this.setErrorMessage("Sorry an error occured");
         console.log(xhr);
         this.closeSlowly();
       }

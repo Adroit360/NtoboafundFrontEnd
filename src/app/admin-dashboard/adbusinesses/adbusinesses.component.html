@@ -193,8 +193,7 @@
 <div [ngClass]="{'visible':paymentBoxShown,'invisible':!paymentBoxShown}" class="popup regular" id="payment-box">
   <div *ngIf="selectedbusiness" class="popup__content">
     <div class="popup__content--toolbar">
-      <div *ngIf="selectedbusiness.user" class="toolbar--left">Pay {{selectedbusiness.user.firstName}}
-        {{selectedbusiness.user.lastName}}</div>
+      <div *ngIf="selectedbusiness.user" class="toolbar--left">Pay {{selectedbusiness.user.firstName}}</div>
       <div class="toolbar--right">
         <a (click)="closePaymentBox()" class="closebtn">
           <span class="fa fa-times"></span>

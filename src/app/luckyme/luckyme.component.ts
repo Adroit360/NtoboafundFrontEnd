@@ -23,7 +23,7 @@ export class LuckymeComponent implements OnInit,AfterViewInit {
 
   ObjectKeys = Object.keys;
   console = console.log;
-  selectedChoice: number = 1;
+  selectedChoice: number = 2;
   selectedPeriod = 'daily';
   loading = false;
   error = null;

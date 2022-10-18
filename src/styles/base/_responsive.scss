@@ -15,6 +15,7 @@
  @media only screen and (max-width: 1199px) {
 	.contribute-list {
 	    width: 31%;
+		
 	}
 	.radio-group label {
 		width: 122px;
@@ -588,6 +589,7 @@
 	}
 	.lucky-contribute .contribute-list {
 	    padding: 2px 2px 12px;
+		width: 100% !important;
 	}
 	.lucky-counter .lucky-timer {
 		padding: 0 10px 10px;

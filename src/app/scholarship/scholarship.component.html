@@ -5,8 +5,9 @@
 <div class="scholarship-body">
   <div class="scholarship-body__content">
     <div id="stake-center" class="scholarship-body__content__middle">
+      <!-- Scholarship Draw is ongoing -->
       <div *ngIf="(winnerSelectionService.isQuaterlyDrawOngoing  | async)" class="ongoingdraw">
-        <div class="header">Scholarship Draw is ongoing</div>
+        <div style="color: white;" class="header">Scholarship Draw is ongoing</div>
         <div class="drawbox">
           <div class="lds-hourglass loader"></div>
           <div class="participants info-card">
@@ -14,26 +15,15 @@
               <div class="winner-group">
                 <div *ngFor="let participant of signalRservice.scholarshipParticipants" class="winner-item">
                   <div class="winner-item__description">
-                    <span class="winner-name">{{participant.userName}}</span>
+                    <span class="winner-name">{{participant.userName|maskNumber}}</span>
                     <span class="winning-details">
-                      <span class="amount-won"> staked <span class="period"> </span>GH₵
+                      <span class="amount-won"> Played <span class="period"> </span>GH₵
                         {{participant.amountStaked}}</span>
                     </span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && winnerSelectionService.currentScholarshipWinners"
-        class="winnerbox">
-        <div class="title">Latest Scholarship Winners</div>
-        <div class="body">
-          <div *ngFor="let winner of winnerSelectionService.currentScholarshipWinners" class="winner">
-            <span>{{winner.userName}}</span>
           </div>
         </div>
       </div>
@@ -100,31 +90,40 @@
             <div class="content">
               <form class="stake-form" [formGroup]="scholarshipForm">
                 <div class="form-group">
-                  <label for="exampleInputInstitution" class="white">Which institution do you belong to</label>
+                  <div class="form-group">
+                    <label for="exampleInputStudentName" class="white">What is your Student Name</label>
+                    <input type="text" class="form-control" id="exampleInputStudentName" aria-describedby="StudentNameHelp"
+                      placeholder="Enter Student Name" formControlName="StudentName">
+                    <span>
+                      <small *ngIf="!scholarshipForm.get('StudentName').valid && scholarshipForm.touched"
+                        class="form-text white">Your student Name is required !!</small>
+                    </span>
+                  </div>
+                  <label for="exampleInputInstitution" class="white">Which institution do you belong to (optional)</label>
                   <input type="text" class="form-control" id="exampleInputInstitution" formControlName="Institution"
                     aria-describedby="InstitutionHelp" placeholder="Enter Institution">
-                  <span>
+                  <!-- <span>
                     <small *ngIf="!scholarshipForm.get('Institution').valid && scholarshipForm.touched"
                       class="form-text white">The institution name is required !!</small>
-                  </span>
+                  </span> -->
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputProgram" class="white">Which program do you offer</label>
+                  <label for="exampleInputProgram" class="white">Which program do you offer (optional)</label>
                   <input type="text" class="form-control" id="exampleInputProgram" aria-describedby="ProgramHelp"
                     placeholder="Enter Program" formControlName="Program">
-                  <span>
+                  <!-- <span>
                     <small *ngIf="!scholarshipForm.get('Program').valid && scholarshipForm.touched"
                       class="form-text white">Your offered program is required !!</small>
-                  </span>
+                  </span> -->
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputStudentId" class="white">What is your student Id number</label>
+                  <label for="exampleInputStudentId" class="white">What is your Student Id (optional)</label>
                   <input type="text" class="form-control" id="exampleInputStudentId" aria-describedby="StudentIdHelp"
                     placeholder="Enter Student Id" formControlName="StudentId">
-                  <span>
+                  <!-- <span>
                     <small *ngIf="!scholarshipForm.get('StudentId').valid && scholarshipForm.touched"
-                      class="form-text white">Your student id is required !!</small>
-                  </span>
+                      class="form-text white">Your student ID is required !!</small>
+                  </span> -->
                 </div>
                 <div class="form-group">
                   <label for="exampleInputStudentId" class="white">Select your player type</label>
@@ -174,6 +173,17 @@
 
       </div>
       <div class="scholarship-page__content__header__right">
+        <div
+        *ngIf="!(winnerSelectionService.isQuaterlyDrawOngoing | async) && winnerSelectionService.currentScholarshipWinners"
+        class="winnerbox">
+        <div class="title">Latest Scholarship Winners</div>
+        <div class="body">
+          <div *ngFor="let winner of winnerSelectionService.currentScholarshipWinners" class="winner">
+            <span>{{winner.userName}}</span>
+          </div>
+        </div>
+      </div>
+
         <div class="info-card-1 participants">
           <div class="info-card-1__head">
             <div class="contribute-title white">CURRENT PARTICIPANTS</div>
@@ -188,16 +198,10 @@
               <div *ngFor="let participant of signalRservice.scholarshipParticipants"
                 class="winner-item contribute-list">
                 <div class="winner-item__description list-item">
-                  <strong class="winner-name">{{participant.userName}}</strong>
+                  <strong class="winner-name">{{participant.userName|maskNumber}}</strong>
                   <span class="contrib">PLAYED</span>
                   <a class="amount-won">GH₵
                     {{participant.amountStaked}}</a>
-                  <!-- <span class="winning-details">
-                    <span class="contrib">PLAYED</span>
-                    <span class="amount-won"> <span class="period"> </span>GH₵
-                      {{participant.amountStaked}}</span>
-                    <span class="amount-staked"> with GH₵ winner.amount</span>
-                  </span> -->
                 </div>
               </div>
             </div>
@@ -228,11 +232,11 @@
     </section>
 
     <div class="win-banner">
-      <div class="win-prize">
+      <!-- <div class="win-prize">
         <span>Prizes Paid</span>
         <strong>GH₵ 220,000</strong>
         <p>With Ntoboafund, the more you play the better your chances of winning BIG!.</p>
-      </div>
+      </div> -->
     </div>
     <!-- <section class="aritcles-sec">
       <div class="container">

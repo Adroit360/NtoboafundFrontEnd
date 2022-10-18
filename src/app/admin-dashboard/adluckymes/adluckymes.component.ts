@@ -141,7 +141,7 @@ export class AdluckymesComponent implements OnInit {
     }
     this.isAddingPaymentRecord = true;
 
-    this.paymentService.addPaymentRecord('luckyme', amount, transactionId, this.selectedluckyme.transferId).subscribe(
+    this.paymentService.addPaymentRecord('luckyme', amount, transactionId, this.selectedluckyme.txRef).subscribe(
       (response: any) => {
         //console.log(response);
         this.paymentRecordMessage = response.message;
@@ -149,12 +149,14 @@ export class AdluckymesComponent implements OnInit {
         this.isPaymentInputsDisabled = true;
         this.getUnpaidWinnersCount();
         this.showUnpaidWinners(false);
+
         //console.log(response);
       },
       xhr => {
         //console.log(xhr);
         this.paymentRecordMessage = xhr;
         this.isAddingPaymentRecord = false;
+        
       }
     )
   }

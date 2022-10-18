@@ -79,23 +79,23 @@ export class ProfileComponent implements OnInit {
     this.returnUrl = this.activatedRoute.snapshot.queryParams["returnUrl"];
     this.urlData = this.activatedRoute.snapshot.queryParams["urldata"];
 
-    this.momoCurrency = this.currentUser.momoDetails.currency;
+    // this.momoCurrency = this.currentUser.momoDetails.currency;
 
-    this.setNetworks(this.allNetworks[this.currentUser.momoDetails.country]);
+    // this.setNetworks(this.allNetworks[this.currentUser.momoDetails.country]);
 
     this.registrationForm = new FormGroup({
       'firstName': new FormControl(this.currentUser.firstName, Validators.required),
-      'lastName': new FormControl(this.currentUser.lastName, Validators.required),
-      'email': new FormControl(this.currentUser.email, [Validators.required, Validators.email]),
+      'lastName': new FormControl(this.currentUser.lastName),
+      'email': new FormControl(this.currentUser.email),
       'phoneNumber': new FormControl(this.currentUser.phoneNumber, Validators.required),
 
-      'country': new FormControl(this.currentUser.momoDetails.country),
-      'mobileMoneyNumber': new FormControl(this.currentUser.momoDetails.number),
-      'network': new FormControl(this.currentUser.momoDetails.network),
+      'country': new FormControl(""),
+      'mobileMoneyNumber': new FormControl(this.currentUser.momoDetails?this.currentUser.momoDetails.number:""),
+      'network': new FormControl(this.currentUser.momoDetails?this.currentUser.momoDetails.network:""),
 
-      'bankName': new FormControl(this.currentUser.bankDetails.bankName),
-      'accountNumber': new FormControl(this.currentUser.bankDetails.accountNumber),
-      'swiftCode': new FormControl(this.currentUser.bankDetails.swiftCode),
+      'bankName': new FormControl(this.currentUser.bankDetails?this.currentUser.bankDetails.bankName:""),
+      'accountNumber': new FormControl(this.currentUser.bankDetails?this.currentUser.bankDetails.accountNumber:""),
+      'swiftCode': new FormControl(this.currentUser.bankDetails?this.currentUser.bankDetails.swiftCode:""),
 
       'preferredReceptionMethod': new FormControl(this.currentUser.preferedMoneyReceptionMethod)
 
@@ -125,16 +125,6 @@ export class ProfileComponent implements OnInit {
     if(this.registrationForm.value['preferredReceptionMethod'] == "momo"){
       if(!this.registrationForm.value['mobileMoneyNumber']){
         this.showMessage("Please enter your mobile money number");
-        this.loading =false;
-        return;
-      }
-      else if(!this.registrationForm.value['country']){
-        this.showMessage("Please choose your mobile money country");
-        this.loading =false;
-        return;
-      }
-      else if(!this.registrationForm.value['network']){
-        this.showMessage("Please choose your mobile money network");
         this.loading =false;
         return;
       }
@@ -169,10 +159,10 @@ export class ProfileComponent implements OnInit {
       formData.append('lastName', this.registrationForm.value["lastName"]);
       formData.append('email', this.registrationForm.value["email"]);
       formData.append('phoneNumber', this.registrationForm.value["phoneNumber"]);
-      formData.append('country', this.registrationForm.value['country']);
+      formData.append('country', 'Ghana');
       formData.append('mobileMoneyNumber', this.registrationForm.value['mobileMoneyNumber']);
-      formData.append('network', this.registrationForm.value['network']);
-      formData.append('currency', this.momoCurrency);
+      formData.append('network', "");
+      formData.append('currency', "GHS");
       formData.append('bankName', this.registrationForm.value['bankName']);
       formData.append('accountNumber', this.registrationForm.value['accountNumber']);
       formData.append('swiftCode', this.registrationForm.value['swiftCode']);
@@ -219,33 +209,42 @@ export class ProfileComponent implements OnInit {
     this.selectedImages = event.file;
   }
 
-  countryChanged(event) {
-    this.networks = [];
-    var supportedNetworks: String = event.target.selectedOptions[0].dataset.networks;
+  // countryChanged(event) {
+  //   this.networks = [];
+  //   var supportedNetworks: String = event.target.selectedOptions[0].dataset.networks;
 
-    this.setNetworks(supportedNetworks);
+  //   this.setNetworks(supportedNetworks);
 
-    this.momoCurrency = event.target.selectedOptions[0].dataset.currency;
+  //   this.momoCurrency = event.target.selectedOptions[0].dataset.currency;
 
-    this.setCurrency(this.momoCurrency)
-    //console.log(this.momoCurrency);
+  //   this.setCurrency(this.momoCurrency)
+  //   //console.log(this.momoCurrency);
+  // }
+
+  networkChanged(event){
+    this.registrationForm.patchValue({
+      'network': event.target.selectedOptions[0].value
+    })
+
+    // console.dir(event.target.selectedOptions[0].value);
+    // console.log(this.registrationForm.value);
   }
 
-  setNetworks(supportedNetworks: any) {
-    if (supportedNetworks) {
+  // setNetworks(supportedNetworks: any) {
+  //   if (supportedNetworks) {
 
-      if (supportedNetworks.length > 0 && supportedNetworks.includes(','))
-        this.networks = supportedNetworks.split(',');
+  //     if (supportedNetworks.length > 0 && supportedNetworks.includes(','))
+  //       this.networks = supportedNetworks.split(',');
 
-      else if (supportedNetworks.length > 0)
-        this.networks = [supportedNetworks]
+  //     else if (supportedNetworks.length > 0)
+  //       this.networks = [supportedNetworks]
 
-    }
-  }
+  //   }
+  // }
 
-  setCurrency(currency) {
-    this.momoCurrency = currency;
-  }
+  // setCurrency(currency) {
+  //   this.momoCurrency = currency;
+  // }
 
   isSelected(page) {
     if (page == this.page)
@@ -323,8 +322,14 @@ export class ProfileComponent implements OnInit {
         this.cPasswordForm.reset();
         this.showMessage(response.message)
       }, xhr => {
-        this.changePasswordError = xhr.error.message.description;
         this.cpdbtnSubmitShown = true;
+        if(xhr.error){
+          this.changePasswordError = xhr.error.message.description;
+        }else{
+          this.changePasswordError = xhr;
+        }
+        
+        
       });
   }
 }

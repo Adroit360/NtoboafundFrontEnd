@@ -51,7 +51,7 @@ export class PaymentService {
     }
 
     getUniqueCode(user: User) {
-            var userCode = user.firstName.substr(0, 2) + user.lastName.substr(0, 2);
+            var userCode = user.firstName.substr(0, 2);
             var timeStamp = new Date().getTime();
             return `inv.${userCode}.${this.createUUID()}`;
     }

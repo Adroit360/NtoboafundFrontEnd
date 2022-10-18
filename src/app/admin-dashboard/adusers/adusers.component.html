@@ -77,7 +77,7 @@
                     <input type="radio" name="user" [id]="'selector' + user.id">
                     <label (click)="changeSelectedUser(user)" [for]="'selector' + user.id" class="user-item__detail">
                         <span>User ID : {{user.id}}</span>
-                        <div class="name">Name : {{user.firstName}} {{user.lastName}}</div>
+                        <div class="name">Name : {{user.firstName}}</div>
                         <span>Email : {{user.email}}</span>
                     </label>
                 </div> -->
@@ -367,10 +367,7 @@
           <div class="label">First Name :</div>
           <div class="text">{{ selectedUser.firstName }}</div>
         </div>
-        <div class="record">
-          <div class="label">Last Name :</div>
-          <div class="text">{{ selectedUser.lastName }}</div>
-        </div>
+        
         <div class="record">
           <div class="label">Email :</div>
           <div class="text">{{ selectedUser.email }}</div>

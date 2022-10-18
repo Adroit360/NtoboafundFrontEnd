@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      'email': new FormControl('', [Validators.required]),
+      'phoneNumber': new FormControl('', [Validators.required]),
       'password': new FormControl('', [Validators.required])
     });
     // reset login status
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.loginForm.value['email'], this.loginForm.value['password'])
+    this.authenticationService.login(this.loginForm.value['phoneNumber'], this.loginForm.value['password'])
       .pipe(first())
       .subscribe(
         data => {

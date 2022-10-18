@@ -125,14 +125,14 @@ export class AdusersComponent implements OnInit {
 
 
   deleteUser() {
-    if (confirm(`Are you sure you want to delete ${this.selectedUser.firstName + " " + this.selectedUser.lastName} ?`)) {
+    if (confirm(`Are you sure you want to delete ${this.selectedUser.firstName } ?`)) {
 
       return;
     }
   }
 
   suspendUser() {
-    if (confirm(`Are you sure you want to Suspend ${this.selectedUser.firstName + " " + this.selectedUser.lastName} ?`)) {
+    if (confirm(`Are you sure you want to Suspend ${this.selectedUser.firstName } ?`)) {
 
       return;
     }

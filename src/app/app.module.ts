@@ -65,6 +65,7 @@ import { LuckymeLandComponent } from "./luckyme-land/luckyme-land.component";
 import { BusinessLandComponent } from "./business-land/business-land.component";
 import { ScholarshipLandComponent } from "./scholarship-land/scholarship-land.component";
 import { CookImagePipe } from "src/pipes/cook-image.pipe";
+import { MaskNumberPipe } from "src/pipes/maskNumber.pipe";
 
 @NgModule({
   declarations: [
@@ -111,7 +112,8 @@ import { CookImagePipe } from "src/pipes/cook-image.pipe";
     LuckymeLandComponent,
     BusinessLandComponent,
     ScholarshipLandComponent,
-    CookImagePipe
+    CookImagePipe,
+    MaskNumberPipe,
   ],
   imports: [
     BrowserModule,
@@ -128,6 +130,7 @@ import { CookImagePipe } from "src/pipes/cook-image.pipe";
     BrowserAnimationsModule,
     AngularEditorModule,
     NgbModule,
+    
   ],
   exports: [ChartsModule],
   providers: [

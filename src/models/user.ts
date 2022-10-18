@@ -18,6 +18,7 @@ export class User {
     preferedMoneyReceptionMethod:string;
     points:number;
     userType:number;
+    wallet:number;
 }
 
 class MomoDetails{
