@@ -1,82 +1,82 @@
 /* You can add global styles to this file, and also import other style files */
 //Css Resets
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-@import "~@ag-grid-enterprise/all-modules/dist/styles/ag-grid.css";
-@import "~@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham.css";
+// @import "~@ag-grid-enterprise/all-modules/dist/styles/ag-grid.css";
+// @import "~@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham.css";
 
-//abstract
-@import "abstracts/variables";
-@import "abstracts/functions";
-@import "abstracts/mixins";
+// //abstract
+// @import "abstracts/variables";
+// @import "abstracts/functions";
+// @import "abstracts/mixins";
 
-//base
-@import "base/base";
-@import "base/utilities";
-@import "base/typography";
-@import "base/animations";
-//components
-@import "components/misc";
-@import "components/button";
-@import "components/c-inputs";
-@import "components/svgs";
-@import "components/tooltip";
-@import "components/popup";
-@import "components/info-card";
-@import "components/recentsbox";
-@import "components/_countdown";
-@import "components/loaders";
-@import "components/panel";
-@import "components/ongoingdraw";
-@import "components/winnerbox";
-@import "components/record";
-@import "components/message";
-@import "components/flatradiobtns";
-@import "components/badge";
-@import "components/data-container";
-@import "components/scroll-view";
-@import "components/panview";
+// //base
+// @import "base/base";
+// @import "base/utilities";
+// @import "base/typography";
+// @import "base/animations";
+// //components
+// @import "components/misc";
+// @import "components/button";
+// @import "components/c-inputs";
+// @import "components/svgs";
+// @import "components/tooltip";
+// @import "components/popup";
+// @import "components/info-card";
+// @import "components/recentsbox";
+// @import "components/_countdown";
+// @import "components/loaders";
+// @import "components/panel";
+// @import "components/ongoingdraw";
+// @import "components/winnerbox";
+// @import "components/record";
+// @import "components/message";
+// @import "components/flatradiobtns";
+// @import "components/badge";
+// @import "components/data-container";
+// @import "components/scroll-view";
+// @import "components/panview";
 
-//Responsive
-@import "base/responsive";
+// //Responsive
+// @import "base/responsive";
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-  //  background-color: #F5F5F5;
-}
+// ::-webkit-scrollbar {
+//   width: 8px;
+//   height: 8px;
+//   //  background-color: #F5F5F5;
+// }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-  border: none;
-}
+// ::-webkit-scrollbar-track {
+//   background: transparent;
+//   border: none;
+// }
 
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: linear-gradient(to left, #fff, #e4e4e4);
-  border: 1px solid #aaa;
-}
+// ::-webkit-scrollbar-thumb {
+//   border-radius: 10px;
+//   background: linear-gradient(to left, #fff, #e4e4e4);
+//   border: 1px solid #aaa;
+// }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #fff;
-}
+// ::-webkit-scrollbar-thumb:hover {
+//   background: #fff;
+// }
 
-::-webkit-scrollbar-thumb:active {
-  background: linear-gradient(to left, grey, rgba(grey, 0.8));
-}
+// ::-webkit-scrollbar-thumb:active {
+//   background: linear-gradient(to left, grey, rgba(grey, 0.8));
+// }
 
-.crowd_description {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 5; /* number of lines to show */
-  -webkit-box-orient: vertical;
-}
+// .crowd_description {
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   display: -webkit-box;
+//   -webkit-line-clamp: 5; /* number of lines to show */
+//   -webkit-box-orient: vertical;
+// }
 
-.bold{
-  font-weight: bold;
-}
+// .bold{
+//   font-weight: bold;
+// }
 
 // "angular-rave": "^1.2.1",
 // "bootstrap": "^4.3.1",

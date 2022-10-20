@@ -1,195 +1,1843 @@
-<app-header></app-header>
-<div class="home">
-  <!-- Home Banner section Start -->
-  <section class="home-banner">
-    <div class="banner-slider">
-      <div class="banner-item">
-        <img src="assets/images/banner-img.jpg" alt="" />
-        <div class="overlay"></div>
-        <div class="container banner-content">
-          <h2 class="banner-title">Crowdfund Your Business With Us</h2>
-          <p class="banner-desc">Ghana's Premier Crowdfunding Platform for Businesses &amp; Individuals</p>
-        </div>
-      </div>
-      <!-- <div class="banner-item">
-        <img src="assets/images/banner-img.jpg" alt="" />
-        <div class="container banner-content">
-          <h2 class="banner-title">Crowdfund Your Business With Us</h2>
-          <p class="banner-desc">Ghana's Premier Crowdfunding Platform for Businesses &amp; Individuals</p>
-        </div>
-      </div>
-      <div class="banner-item">
-        <img src="assets/images/banner-img.jpg" alt="" />
-        <div class="container banner-content">
-          <h2 class="banner-title">Crowdfund Your Business With Us</h2>
-          <p class="banner-desc">Ghana's Premier Crowdfunding Platform for Businesses &amp; Individuals</p>
-        </div>
-      </div> -->
-      <!-- <div class="banner-item">
-        <img src="assets/images/banner-img.jpg" alt="" />
-        <div class="container banner-content">
-          <h2 class="banner-title">Crowdfund Your Business With Us</h2>
-          <p class="banner-desc">Ghana's Premier Crowdfunding Platform for Businesses &amp; Individuals</p>
-        </div>
-      </div> -->
-    </div>
+<!-- preloader start -->
+<!--<div id="preloader"></div>-->
+<!-- preloader end -->
 
-  </section>
-  <!-- Home Banner section End -->
-  <!--Who we are-->
-  <section class="about_section">
-    <div class="row d-flex align-items-center justify-content-center">
-      <div class="col-lg-2 about_title">
-        <h1>Who We Are</h1>
+<div class="main-light-version">
+  <!--  header-section start  -->
+  <header
+    #header
+    class="header-section"
+    [ngClass]="{ 'animated fadeInDown menu-fixed header-close': sticky }"
+  >
+    <div class="header-bottom">
+      <div class="container">
+        <nav class="navbar navbar-expand-xl">
+          <a class="site-logo site-title" href="home-one.html"
+            ><img src="assets/images/ntlog.png" alt="site-logo"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="menu-toggle"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav main-menu ml-auto">
+              <li><a href="home-one.html">Lucky Me</a></li>
+              <li><a href="lottery-result.html">Bussiness</a></li>
+              <li><a href="contact.html">Scholarship</a></li>
+              <li><a href="contact.html">How to play</a></li>
+              <li><a href="contact.html">Join Team</a></li>
+            </ul>
+            <div class="header-join-part">
+              <button
+                type="button"
+                class="cmn-btn"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                Login
+              </button>
+            </div>
+          </div>
+        </nav>
       </div>
-      <div class="col-lg-6 about_desc">
-        <p>We are Ghana’s #1 Crowdfunding Platform. Through our innovative approach, creators share new visions
-          for creative work with the communities that will come together to fund them. We do this by leveraging the
-          collective resources of the crowd.</p>
+    </div>
+    <!-- header-bottom end -->
+  </header>
+  <!--  header-section end  -->
+  <!--login registration Modal -->
+  <div
+    class="modal fade login-registration-modal"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="login-registration-area">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  id="login-tab"
+                  data-toggle="tab"
+                  href="#login"
+                  role="tab"
+                  aria-controls="login"
+                  aria-selected="true"
+                  >Login</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="registration-tab"
+                  data-toggle="tab"
+                  href="#registration"
+                  role="tab"
+                  aria-controls="registration"
+                  aria-selected="false"
+                  >Registration</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="login"
+                role="tabpanel"
+                aria-labelledby="login-tab"
+              >
+                <form class="login-form cmn-frm">
+                  <div class="frm-group">
+                    <label>Username or Email Address</label>
+                    <input
+                      type="email"
+                      name="login_email"
+                      id="login_email"
+                      placeholder="Username or Email Address"
+                    />
+                    <i class="fa fa-user"></i>
+                  </div>
+                  <div class="frm-group">
+                    <label>Password</label>
+                    <input
+                      type="password"
+                      name="login_pass"
+                      id="login_pass"
+                      placeholder="Enter Password"
+                    />
+                    <i class="fa fa-lock"></i>
+                  </div>
+                  <div class="frm-group">
+                    <input
+                      type="submit"
+                      name="registration_submit2"
+                      id="registration_submit2"
+                      value="login"
+                    />
+                  </div>
+                  <div class="frm-group">
+                    <div class="checkbox-area">
+                      <input type="checkbox" id="login_remember_pass" />
+                      <label for="login_remember_pass">Remember Password</label>
+                    </div>
+                    <div class="forgot-pass-area">
+                      <a href="#0">Forgot Password?</a>
+                    </div>
+                  </div>
+                  <div class="frm-group">
+                    <div class="or-text">
+                      <span>Or login with</span>
+                    </div>
+                  </div>
+                  <div class="frm-group">
+                    <div class="login-with-area">
+                      <a href="#" class="facebook"
+                        ><i class="fa fa-facebook-f"></i>facebook</a
+                      >
+                      <a href="#" class="google"
+                        ><i class="fa fa-google-plus"></i>facebook</a
+                      >
+                      <a href="#" class="twitter"
+                        ><i class="fa fa-twitter"></i>facebook</a
+                      >
+                    </div>
+                  </div>
+                </form>
+                <div class="have-not-account">
+                  <p>You don’t have an account?<a href="#0">Register Now</a></p>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="registration"
+                role="tabpanel"
+                aria-labelledby="registration-tab"
+              >
+                <form class="registration-form cmn-frm">
+                  <div class="frm-group">
+                    <label>Username or Email Address</label>
+                    <input
+                      type="email"
+                      name="registration_email"
+                      id="registration_email"
+                      placeholder="Username or Email Address"
+                    />
+                    <i class="fa fa-user"></i>
+                  </div>
+                  <div class="frm-group">
+                    <label>Password</label>
+                    <input
+                      type="password"
+                      name="registration_pass"
+                      id="registration_pass"
+                      placeholder="Enter Password"
+                    />
+                    <i class="fa fa-lock"></i>
+                  </div>
+                  <div class="frm-group">
+                    <label>Confirm Password</label>
+                    <input
+                      type="password"
+                      name="registration_re_pass"
+                      id="registration_re_pass"
+                      placeholder="Enter Password"
+                    />
+                    <i class="fa fa-lock"></i>
+                  </div>
+                  <div class="frm-group">
+                    <input
+                      type="submit"
+                      name="registration_submit"
+                      id="registration_submit"
+                      value="Registration"
+                    />
+                  </div>
+                  <div class="frm-group">
+                    <div class="checkbox-area">
+                      <input type="checkbox" id="registration_remember_pass" />
+                      <label for="registration_remember_pass"
+                        >I Agree with the Terms of Use</label
+                      >
+                    </div>
+                    <div class="forgot-pass-area">
+                      <a href="#0">Forgot Password?</a>
+                    </div>
+                  </div>
+                  <div class="frm-group">
+                    <div class="or-text">
+                      <span>Or login with</span>
+                    </div>
+                  </div>
+                  <div class="frm-group">
+                    <div class="login-with-area">
+                      <a href="#" class="facebook"
+                        ><i class="fa fa-facebook-f"></i>facebook</a
+                      >
+                      <a href="#" class="google"
+                        ><i class="fa fa-google-plus"></i>facebook</a
+                      >
+                      <a href="#" class="twitter"
+                        ><i class="fa fa-twitter"></i>facebook</a
+                      >
+                    </div>
+                  </div>
+                </form>
+                <div class="have-not-account">
+                  <p>Already have an account?<a href="#0">Login</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- banner-section start -->
+  <section class="banner-section">
+    <div
+      class="banner-elements-part has_bg_image"
+      data-background="assets/update/assets/images/elements/vector-bg.jpg"
+    >
+      <div class="element-one">
+        <img
+          src="assets/update/assets/images/elements/box.png"
+          alt="vector-image"
+        />
+      </div>
+
+      <div class="element-two">
+        <img
+          src="assets/update/assets/images/elements/car.png"
+          alt="vector-image"
+        />
+      </div>
+
+      <div class="element-three">
+        <img
+          src="assets/update/assets/images/elements/chart.png"
+          alt="vector-image"
+        />
+      </div>
+
+      <div class="element-four">
+        <img
+          src="assets/update/assets/images/elements/dollars.png"
+          alt="vector-image"
+        />
+      </div>
+
+      <div class="element-five">
+        <img
+          src="assets/update/assets/images/elements/laptop.png"
+          alt="vector-image"
+        />
+      </div>
+
+      <div class="element-six">
+        <img
+          src="assets/update/assets/images/elements/money-2.png"
+          alt="vector-image"
+        />
+      </div>
+
+      <div class="element-seven">
+        <img
+          src="assets/update/assets/images/elements/person.png"
+          alt="vector-image"
+        />
+      </div>
+
+      <div class="element-eight">
+        <img
+          src="assets/update/assets/images/elements/person-2.png"
+          alt="vector-image"
+        />
+      </div>
+
+      <div class="element-nine">
+        <img
+          src="assets/update/assets/images/elements/power.png"
+          alt="vector-image"
+        />
+      </div>
+    </div>
+    <div class="banner-content-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="banner-content">
+              <h1 class="title">Take the chance to change your life</h1>
+              <p>
+                Sorteo is online lottery platform inspired by few sorteo lover's
+                fantasy of the ultimate lottery platfrom.
+              </p>
+              <a href="#0" class="cmn-btn">play now !</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-  <!--Who we are End-->
-  <!-- Services section Start -->
-  <section id="contributions" class="services-sec">
+  <!-- banner-section end -->
+
+  <!-- lottery-timer-section start -->
+  <section class="lottery-timer-section">
     <div class="container">
-      <h6 class="text-center">OUR SERVICES</h6>
-      <div class="services-wrap">
-        <div class="service">
-          <span class="service-icn"><img src="assets/svgs/jackpot-icn.svg" alt="jackpot-icn" /></span>
-          <h5 class="service-title">Lucky Me</h5>
-          <p class="desc">Ntoboafund offers huge jackpot prizes that you can easily win when you contribute. Play
-            online
-            safely and securely with Ntoboafund.</p>
-          <a routerLink="luckyme" class="primary-btn">VISIT</a>
+      <div class="row justify-content-between">
+        <div class="col-xl-5">
+          <div class="timer-content">
+            <h3 class="title">Buy Lottery Tickets Online</h3>
+            <p>
+              Buy lottery tickets online to the biggest lotteries in the world
+              offering huge jackpot prizes that you can win when you play online
+              lottery.
+            </p>
+          </div>
         </div>
-        <div class="service">
-          <span class="service-icn"><img src="assets/svgs/bulb-icon.svg" alt="bulb-icon" /></span>
-          <h5 class="service-title">Business</h5>
-          <p class="desc">Ntoboafund gives you an opportunity to fund your business. Fund that business idea now by
-            playing with us.</p>
-          <a routerLink="business" class="primary-btn">VISIT</a>
+        <div class="col-xl-5 text-center">
+          <div class="timer-part">
+            <div class="clock">
+              <!--<JSB-flipclock
+                [HoursTensPlace]="HoursTensPlace"
+                [HoursOnesPlace]="HoursOnesPlace"
+                [MinutesTensPlace]="MinutesTensPlace"
+                [MinutesOnesPlace]="MinutesOnesPlace"
+                [SecondsTensPlace]="SecondsTensPlace"
+                [SecondsOnesPlace]="SecondsOnesPlace"
+              ></JSB-flipclock> -->
+            </div>
+          </div>
         </div>
-        <div class="service">
-          <span class="service-icn"><img src="assets/svgs/paper-icon.svg" alt="paper-icon" /></span>
-          <h5 class="service-title">Scholarship</h5>
-          <p class="desc">You can win a scholarship with Ntoboafund by playing with as low as 10 cedis. With
-            Ntoboafund you can start schooling today.</p>
-          <a routerLink="scholarship" class="primary-btn">VISIT</a>
+        <div class="col-xl-2">
+          <div class="link-area text-center">
+            <a href="#0" class="border-btn">register & play</a>
+            <a href="#0" class="text-btn">view all offer</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- Services section End -->
-  <!-- Past-winners section start -->
-  <!-- <section class="win-banner price-banner-home">
-    <div class="win-prize">
-      <span>Prizes Paid</span>
-      <strong>GH₵ 220,000</strong>
-      <p>With Ntoboafund, the more you contribute the better your chances of winning BIG!.</p>
-      <a href="#investments" class="primary-btn">INVEST WITH US</a>
+  <!-- lottery-timer-section end -->
+
+  <!-- jackpot-section start -->
+  <section class="jackpot-section section-padding">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <div class="section-header text-center">
+            <h2 class="section-title">Lottery Jackpots</h2>
+            <p>
+              Choose from the Powerball, Mega Millions, Lotto or Lucky Day Lotto
+              and try for a chance to win a big cash prize
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="jackpot-item text-center">
+            <img
+              src="assets/update/assets/images/elements/jackpot-1.png"
+              alt="image"
+            />
+            <span class="amount">€161,557,581</span>
+            <h5 class="title">US Powerball</h5>
+            <p class="next-draw-time">
+              Next Draw : <span id="remainTime1"></span>
+            </p>
+            <a href="#0" class="cmn-btn">play now!</a>
+          </div>
+        </div>
+        <!-- jackpot-item end -->
+        <div class="col-lg-4 col-md-6">
+          <div class="jackpot-item text-center">
+            <img
+              src="assets/update/assets/images/elements/jackpot-2.png"
+              alt="image"
+            />
+            <span class="amount">€161,557,581</span>
+            <h5 class="title">Cancer Charity</h5>
+            <p class="next-draw-time">
+              Next Draw : <span id="remainTime2"></span>
+            </p>
+            <a href="#0" class="cmn-btn">play now!</a>
+          </div>
+        </div>
+        <!-- jackpot-item end -->
+        <div class="col-lg-4 col-md-6">
+          <div class="jackpot-item text-center">
+            <img
+              src="assets/update/assets/images/elements/jackpot-3.png"
+              alt="image"
+            />
+            <span class="amount">€161,557,581</span>
+            <h5 class="title">EuroJackpot</h5>
+            <p class="next-draw-time">
+              Next Draw : <span id="remainTime3"></span>
+            </p>
+            <a href="#0" class="cmn-btn">play now!</a>
+          </div>
+        </div>
+        <!-- jackpot-item end -->
+        <div class="col-lg-12 text-center">
+          <a href="#0" class="text-btn">Show all lotteries</a>
+        </div>
+      </div>
     </div>
-  </section> -->
-  <section class="gamechanger">
-    <p class="text-center changer_title">
-      A Game Changer for Crowdfunds
-    </p>
-    <div class="changer_body">
-      <div class="row d-flex justify-content-center align-items-center">
+  </section>
+  <!-- jackpot-section start -->
+
+  <!-- lottery-result-section start -->
+  <section
+    class="lottery-result-section section-padding has_bg_image"
+    data-background="assets/update/assets/images/bg-one.jpg"
+  >
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+          <div class="section-header text-center">
+            <h2 class="section-title">Latest Lottery Results</h2>
+            <p>
+              Check your lotto results online, find all the lotto winning
+              numbers and see if you won the latest lotto jackpots!
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="lottery-winning-num-part">
+            <div class="lottery-winning-num-table">
+              <h3 class="block-title">lottery winning numbers</h3>
+              <div class="lottery-winning-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="name">lottery</th>
+                      <th class="date">draw date</th>
+                      <th class="numbers">winning numbers</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="winner-details">
+                          <img
+                            src="assets/update/assets/images/flag/1.jpg"
+                            alt="flag"
+                          /><span class="winner-name">cancer charity</span>
+                        </div>
+                      </td>
+                      <td><span class="winning-date">30/05/2018</span></td>
+                      <td>
+                        <ul class="number-list">
+                          <li>19</li>
+                          <li>31</li>
+                          <li>21</li>
+                          <li class="active">69</li>
+                          <li>99</li>
+                          <li>77</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="winner-details">
+                          <img
+                            src="assets/update/assets/images/flag/2.jpg"
+                            alt="flag"
+                          /><span class="winner-name">US Powerball</span>
+                        </div>
+                      </td>
+                      <td><span class="winning-date">30/05/2018</span></td>
+                      <td>
+                        <ul class="number-list">
+                          <li>19</li>
+                          <li>31</li>
+                          <li>21</li>
+                          <li class="active">69</li>
+                          <li>99</li>
+                          <li class="active">77</li>
+                          <li>65</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="winner-details">
+                          <img
+                            src="assets/update/assets/images/flag/3.jpg"
+                            alt="flag"
+                          /><span class="winner-name">Mega Millions</span>
+                        </div>
+                      </td>
+                      <td><span class="winning-date">30/05/2018</span></td>
+                      <td>
+                        <ul class="number-list">
+                          <li>19</li>
+                          <li>31</li>
+                          <li class="active">21</li>
+                          <li class="active">69</li>
+                          <li>99</li>
+                          <li class="active">77</li>
+                          <li>66</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="winner-details">
+                          <img
+                            src="assets/update/assets/images/flag/1.jpg"
+                            alt="flag"
+                          /><span class="winner-name">UK Lotto</span>
+                        </div>
+                      </td>
+                      <td><span class="winning-date">30/05/2018</span></td>
+                      <td>
+                        <ul class="number-list">
+                          <li>19</li>
+                          <li>31</li>
+                          <li>21</li>
+                          <li class="active">69</li>
+                          <li>99</li>
+                          <li>77</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="winner-details">
+                          <img
+                            src="assets/update/assets/images/flag/3.jpg"
+                            alt="flag"
+                          /><span class="winner-name">Mega Millions</span>
+                        </div>
+                      </td>
+                      <td><span class="winning-date">30/05/2018</span></td>
+                      <td>
+                        <ul class="number-list">
+                          <li>19</li>
+                          <li>31</li>
+                          <li class="active">21</li>
+                          <li class="active">69</li>
+                          <li>99</li>
+                          <li class="active">77</li>
+                          <li>66</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="winner-part">
+            <h3 class="block-title">our winners</h3>
+            <div class="winner-list">
+              <div class="winner-single">
+                <div class="winner-header">
+                  <img
+                    src="assets/update/assets/images/flag/1.jpg"
+                    alt="flag"
+                  /><span class="name">vola pitmar</span>
+                </div>
+                <p>
+                  <span class="lottery-name">Cancer Charity</span
+                  ><span class="date">30/05/2018</span>
+                </p>
+                <h5 class="prize-amount">€500.00</h5>
+              </div>
+              <!-- winner-single end -->
+              <div class="winner-single">
+                <div class="winner-header">
+                  <img
+                    src="assets/update/assets/images/flag/4.jpg"
+                    alt="flag"
+                  /><span class="name">cay colon</span>
+                </div>
+                <p>
+                  <span class="lottery-name">Powerball</span
+                  ><span class="date">30/05/2018</span>
+                </p>
+                <h5 class="prize-amount">€340.00</h5>
+              </div>
+              <!-- winner-single end -->
+              <div class="winner-single">
+                <div class="winner-header">
+                  <img
+                    src="assets/update/assets/images/flag/5.jpg"
+                    alt="flag"
+                  /><span class="name">irez newtkon</span>
+                </div>
+                <p>
+                  <span class="lottery-name">Powerball</span
+                  ><span class="date">30/05/2018</span>
+                </p>
+                <h5 class="prize-amount">€130.00</h5>
+              </div>
+              <!-- winner-single end -->
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 text-center">
+          <a href="#" class="text-btn">see all result</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- lottery-result-section end -->
+
+  <!-- choose-us-section start -->
+  <section class="choose-us-section section-padding">
+    <div class="choose-us-image">
+      <img src="assets/update/assets/images/elements/mouse.png" alt="image" />
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
         <div class="col-lg-6">
-          <img src="../../assets/images/pexels-tima-miroshnichenko-6694898.jpg" alt="">
+          <div class="section-header text-center">
+            <h2 class="section-title">Why Choose Us?</h2>
+            <p>
+              Sorteo makes playing the world's largest lotteries easy and fun.
+            </p>
+          </div>
         </div>
-        <div class="changer_text col-lg-6">
-          <p class="changer_head">Are you keen to bring creative projects and ideas to life?</p>
-          <p>With Ntoboa Funds crowdfunding, you can kiss financial hardships goodbye. You can use funding from Ntoboa
-            Fund to:</p>
-
-          <!-- <ul>
-            <li>Pay for Tuition Fees</li>
-            <li>Pay for Tuition Fees</li>
-            <li>Pay for Tuition Fees</li>
-          </ul> -->
-
-
-
+      </div>
+      <div class="row">
+        <div class="col-lg-9" style="margin: auto">
+          <div class="row mt-mb-15">
+            <div class="col-lg-4 col-sm-6">
+              <div class="choose-item text-center">
+                <div class="front">
+                  <div class="icon">
+                    <img
+                      src="assets/update/assets/images/svg-icons/choose-us-icons/1.svg"
+                      alt="icon"
+                    />
+                  </div>
+                  <h4 class="title">Biggest lottery jackpots</h4>
+                </div>
+                <div class="back">
+                  <p>
+                    One of the core advantages of playing an online lotto is
+                    that it is both safe and secure. So, there is no need for
+                    you to queue, or visit a retail store, to get tickets.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- choose-item end -->
+            <div class="col-lg-4 col-sm-6">
+              <div class="choose-item text-center">
+                <div class="front">
+                  <div class="icon">
+                    <img
+                      src="assets/update/assets/images/svg-icons/choose-us-icons/2.svg"
+                      alt="icon"
+                    />
+                  </div>
+                  <h4 class="title">No commission on Winnings</h4>
+                </div>
+                <div class="back">
+                  <p>
+                    One of the core advantages of playing an online lotto is
+                    that it is both safe and secure. So, there is no need for
+                    you to queue, or visit a retail store, to get tickets.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- choose-item end -->
+            <div class="col-lg-4 col-sm-6">
+              <div class="choose-item text-center">
+                <div class="front">
+                  <div class="icon">
+                    <img
+                      src="assets/update/assets/images/svg-icons/choose-us-icons/3.svg"
+                      alt="icon"
+                    />
+                  </div>
+                  <h4 class="title">Safe and Secure Playing</h4>
+                </div>
+                <div class="back">
+                  <p>
+                    One of the core advantages of playing an online lotto is
+                    that it is both safe and secure. So, there is no need for
+                    you to queue, or visit a retail store, to get tickets.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- choose-item end -->
+            <div class="col-lg-4 col-sm-6">
+              <div class="choose-item text-center">
+                <div class="front">
+                  <div class="icon">
+                    <img
+                      src="assets/update/assets/images/svg-icons/choose-us-icons/4.svg"
+                      alt="icon"
+                    />
+                  </div>
+                  <h4 class="title">Instant payout system</h4>
+                </div>
+                <div class="back">
+                  <p>
+                    One of the core advantages of playing an online lotto is
+                    that it is both safe and secure. So, there is no need for
+                    you to queue, or visit a retail store, to get tickets.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- choose-item end -->
+            <div class="col-lg-4 col-sm-6">
+              <div class="choose-item text-center">
+                <div class="front">
+                  <div class="icon">
+                    <img
+                      src="assets/update/assets/images/svg-icons/choose-us-icons/5.svg"
+                      alt="icon"
+                    />
+                  </div>
+                  <h4 class="title">Performance Bonuses</h4>
+                </div>
+                <div class="back">
+                  <p>
+                    One of the core advantages of playing an online lotto is
+                    that it is both safe and secure. So, there is no need for
+                    you to queue, or visit a retail store, to get tickets.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- choose-item end -->
+            <div class="col-lg-4 col-sm-6">
+              <div class="choose-item text-center">
+                <div class="front">
+                  <div class="icon">
+                    <img
+                      src="assets/update/assets/images/svg-icons/choose-us-icons/6.svg"
+                      alt="icon"
+                    />
+                  </div>
+                  <h4 class="title">Dedicated Support</h4>
+                </div>
+                <div class="back">
+                  <p>
+                    One of the core advantages of playing an online lotto is
+                    that it is both safe and secure. So, there is no need for
+                    you to queue, or visit a retail store, to get tickets.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- choose-item end -->
+          </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- Past-winners section End -->
-  <!-- Our Values section Start -->
-  <section class="services-sec our-values">
+  <!-- choose-us-section end -->
+
+  <!-- work-steps-section strat -->
+  <section class="work-steps-section section-padding border-top">
     <div class="container">
-      <h6 class="text-center">OUR VALUES</h6>
-      <div class="services-wrap values-slider">
-        <div class="service">
-          <span class="service-icn"><img src="assets/svgs/credit-black.svg" alt="credit-black" /></span>
-          <h5 class="service-title">Convenience</h5>
-          <p class="desc">Ntoboafund is easy to use as it supports card and mobile money payments accross the globe.</p>
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+          <div class="section-header text-center">
+            <h2 class="section-title">how it works</h2>
+            <p>
+              Sorteo is the best way to play these exciting lotteries from
+              anywhere in the world.
+            </p>
+          </div>
         </div>
-        <div class="service">
-          <span class="service-icn"><img src="assets/svgs/lock-round.svg" alt="lock-round" /></span>
-          <h5 class="service-title">Security</h5>
-          <p class="desc">Ntoboafund ensures that data of all clients are safe and protected.</p>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="work-steps-items-part d-flex">
+            <div class="line">
+              <img
+                src="assets/update/assets/images/elements/line.png"
+                alt="line-image"
+              />
+            </div>
+            <div class="work-steps-item">
+              <div class="work-steps-item-inner">
+                <div class="icon">
+                  <img
+                    src="assets/update/assets/images/svg-icons/how-work-icons/1.svg"
+                    alt="icon"
+                  />
+                  <span class="count-num">01</span>
+                </div>
+                <h4 class="title">choose</h4>
+                <p>Choose your lottery & pick your numbers</p>
+              </div>
+            </div>
+            <!-- work-steps-item end -->
+            <div class="work-steps-item">
+              <div class="work-steps-item-inner">
+                <div class="icon">
+                  <img
+                    src="assets/update/assets/images/svg-icons/how-work-icons/2.svg"
+                    alt="icon"
+                  />
+                  <span class="count-num">02</span>
+                </div>
+                <h4 class="title">buy</h4>
+                <p>Complete your purchase</p>
+              </div>
+            </div>
+            <!-- work-steps-item end -->
+            <div class="work-steps-item">
+              <div class="work-steps-item-inner">
+                <div class="icon">
+                  <img
+                    src="assets/update/assets/images/svg-icons/how-work-icons/3.svg"
+                    alt="icon"
+                  />
+                  <span class="count-num">01</span>
+                </div>
+                <h4 class="title">win</h4>
+                <p>Start dreaming, you're almost there</p>
+              </div>
+            </div>
+            <!-- work-steps-item end -->
+          </div>
         </div>
-        <div class="service">
-          <span class="service-icn"><img src="assets/svgs/ice-cream.svg" alt="ice-cream" /></span>
-          <h5 class="service-title">Guarantee</h5>
-          <p class="desc">We've partnered with reputable organizations, your funds are safe.</p>
-        </div>
-        <div class="service">
-          <span class="service-icn"><img src="assets/svgs/headset-with-microphone.svg"
-              alt="headset-with-microphone" /></span>
-          <h5 class="service-title">Customer Support</h5>
-          <p class="desc">Kindly contact customer care for any assistance or support.</p>
+        <div class="col-lg-6">
+          <div class="work-steps-thumb-part">
+            <img
+              src="assets/update/assets/images/elements/step.png"
+              alt="work-step-image"
+            />
+            <a
+              href="https://www.youtube.com/embed/aFYlAzQHnY4"
+              data-rel="lightcase:myCollection"
+              class="play-btn"
+              ><i class="fa fa-play"></i
+            ></a>
+          </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- Our Values section End -->
-  <!-- Articles section start -->
-  <!-- <section class="aritcles-sec">
+  <!-- work-steps-section strat -->
+
+  <!-- online-ticket-section start -->
+  <section
+    class="online-ticket-section section-padding has_bg_image"
+    data-background="assets/update/assets/images/bg-two.jpg"
+  >
     <div class="container">
-      <h6 class="text-center">NEW ARTICLES</h6>
-      <div class="art-wrap article-slider">
-        <div class="art-item">
-          <figure><img src="assets/images/article-img01.jpg" alt="article-img01" /></figure>
-          <div class="info">
-            <h5>Crowdfunding Legal Issues for Small Businesses</h5>
-            <p class="profile-date">BY <strong>JEAN MURRAY</strong>, <span>Updated June 25, 2019</span></p>
-            <p class="desc">Most crowdfunding websites allow individuals or companies to present an idea to others, who
-              donate money with no expectation of anything (other than a small token gift) in return. One of the largest
-              crowdfunding sites, Kickstarter, sets itself as a middleman between creative types.</p>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="section-header text-center">
+            <h2 class="section-title">Buy Lottery Tickets Online</h2>
+            <p>
+              Play the lottery online safely and securely at theLotter, the
+              leading lottery ticket purchasing service in the world
+            </p>
           </div>
         </div>
-        <div class="art-item">
-          <figure><img src="assets/images/article-img02.jpg" alt="article-img02" /></figure>
-          <div class="info">
-            <h5>Peer-to-peer Lending as Crowdfunding Model</h5>
-            <p class="profile-date">BY <strong>JEAN MURRAY</strong>, <span>Updated June 25, 2019</span></p>
-            <p class="desc">Before you get too excited about this new way to raise money for your business, you should
-              be aware of the potential legal issues involved. As usual, when a new idea gets ahead of current
-              regulation and laws, some issues arise. This article addresses some of those issues.</p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="online-ticket-table-part">
+            <div class="online-ticket-table">
+              <h3 class="block-title">Select your winning lottery numbers</h3>
+              <div class="online-ticket-table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="name">lottery</th>
+                      <th class="jackpot">jackpot</th>
+                      <th class="price">price</th>
+                      <th class="draw-time">time to draw</th>
+                      <th class="sold-num">sold</th>
+                      <th class="status">status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="winner-details">
+                          <img
+                            src="assets/update/assets/images/flag/1.jpg"
+                            alt="flag"
+                          /><span class="winner-name">cancer charity</span>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="jackpot-price">€ 53,000,000</span>
+                      </td>
+                      <td>
+                        <span class="price">€3.9</span>
+                      </td>
+                      <td>
+                        <div class="draw-timer"></div>
+                      </td>
+                      <td>
+                        <div class="progressbar" data-perc="50%">
+                          <div class="bar"></div>
+                          <span class="label">50</span>
+                        </div>
+                      </td>
+                      <td>
+                        <a href="#" class="cmn-btn">buy ticket</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="winner-details">
+                          <img
+                            src="assets/update/assets/images/flag/2.jpg"
+                            alt="flag"
+                          /><span class="winner-name">US Powerball</span>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="jackpot-price">€ 53,000,000</span>
+                      </td>
+                      <td>
+                        <span class="price">€3.9</span>
+                      </td>
+                      <td>
+                        <div class="draw-timer"></div>
+                      </td>
+                      <td>
+                        <div class="progressbar" data-perc="50%">
+                          <div class="bar"></div>
+                          <span class="label">50</span>
+                        </div>
+                      </td>
+                      <td>
+                        <a href="#" class="cmn-btn">buy ticket</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="winner-details">
+                          <img
+                            src="assets/update/assets/images/flag/3.jpg"
+                            alt="flag"
+                          /><span class="winner-name">Mega Millions</span>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="jackpot-price">€ 53,000,000</span>
+                      </td>
+                      <td>
+                        <span class="price">€3.9</span>
+                      </td>
+                      <td>
+                        <div class="draw-timer"></div>
+                      </td>
+                      <td>
+                        <div class="progressbar" data-perc="50%">
+                          <div class="bar"></div>
+                          <span class="label">50</span>
+                        </div>
+                      </td>
+                      <td>
+                        <a href="#" class="cmn-btn">buy ticket</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="winner-details">
+                          <img
+                            src="assets/update/assets/images/flag/1.jpg"
+                            alt="flag"
+                          /><span class="winner-name">UK Lotto</span>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="jackpot-price">€ 53,000,000</span>
+                      </td>
+                      <td>
+                        <span class="price">€3.9</span>
+                      </td>
+                      <td>
+                        <div class="draw-timer"></div>
+                      </td>
+                      <td>
+                        <div class="progressbar" data-perc="50%">
+                          <div class="bar"></div>
+                          <span class="label">50</span>
+                        </div>
+                      </td>
+                      <td>
+                        <a href="#" class="cmn-btn">buy ticket</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="winner-details">
+                          <img
+                            src="assets/update/assets/images/flag/3.jpg"
+                            alt="flag"
+                          /><span class="winner-name">Mega Millions</span>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="jackpot-price">€ 53,000,000</span>
+                      </td>
+                      <td>
+                        <span class="price">€3.9</span>
+                      </td>
+                      <td>
+                        <div class="draw-timer"></div>
+                      </td>
+                      <td>
+                        <div class="progressbar" data-perc="50%">
+                          <div class="bar"></div>
+                          <span class="label">50</span>
+                        </div>
+                      </td>
+                      <td>
+                        <a href="#" class="cmn-btn">buy ticket</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 text-center">
+          <a href="#" class="text-btn">view all lotteries</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- online-ticket-section end -->
+
+  <!-- affiliate-section start -->
+  <section class="affiliate-section section-padding">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="section-header text-center">
+            <h2 class="section-title">Affiliate Programs</h2>
+            <p>
+              Tell A Friend is our unique lottery friends promotion club that
+              enables you to earn amazing bonus money rewards for inviting
+              friends to play the world’s biggest jackpots!
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row m-bottom-not-30">
+        <div class="col-lg-3 col-sm-6">
+          <div class="affiliate-item text-center">
+            <div class="icon">
+              <div class="icon-inner">
+                <img
+                  src="assets/update/assets/images/svg-icons/affiliate-icons/1.svg"
+                  alt="icon"
+                />
+              </div>
+            </div>
+            <div class="content">
+              <h4 class="title">High Revenues</h4>
+              <p>
+                We offer the best commissions in the market and provide proven.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- affiliate-item end -->
+        <div class="col-lg-3 col-sm-6">
+          <div class="affiliate-item text-center">
+            <div class="icon">
+              <div class="icon-inner">
+                <img
+                  src="assets/update/assets/images/svg-icons/affiliate-icons/4.svg"
+                  alt="icon"
+                />
+              </div>
+            </div>
+            <div class="content">
+              <h4 class="title">Reliable Payments</h4>
+              <p>Payments are made monthly via a variety of payment methods.</p>
+            </div>
+          </div>
+        </div>
+        <!-- affiliate-item end -->
+        <div class="col-lg-3 col-sm-6">
+          <div class="affiliate-item text-center">
+            <div class="icon">
+              <div class="icon-inner">
+                <img
+                  src="assets/update/assets/images/svg-icons/affiliate-icons/2.svg"
+                  alt="icon"
+                />
+              </div>
+            </div>
+            <div class="content">
+              <h4 class="title">Unlimited Affiliates</h4>
+              <p>
+                Thee is no limit for your number of affiliates and no earning
+                limit.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- affiliate-item end -->
+        <div class="col-lg-3 col-sm-6">
+          <div class="affiliate-item text-center">
+            <div class="icon">
+              <div class="icon-inner">
+                <img
+                  src="assets/update/assets/images/svg-icons/affiliate-icons/3.svg"
+                  alt="icon"
+                />
+              </div>
+            </div>
+            <div class="content">
+              <h4 class="title">Dedicated Support</h4>
+              <p>
+                Our dedicated technical support team works with you to
+                understand and identify
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- affiliate-item end -->
+      </div>
+    </div>
+  </section>
+  <!-- affiliate-section end -->
+
+  <!-- payment-method-section start -->
+  <section class="payment-method-section section-padding border-top">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="section-header text-center">
+            <h2 class="section-title">Payment Method</h2>
+            <p>
+              Buy international lottery tickets online using any of the payment
+              methods available on Sorteo Play now and win big!
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="payment-method-area d-flex">
+            <div class="payment-item">
+              <a href="#0"
+                ><img
+                  src="assets/update/assets/images/payment-methods/1.jpg"
+                  alt="payment-method-image"
+              /></a>
+            </div>
+            <!-- payment-item end -->
+            <div class="payment-item">
+              <a href="#0"
+                ><img
+                  src="assets/update/assets/images/payment-methods/2.jpg"
+                  alt="payment-method-image"
+              /></a>
+            </div>
+            <!-- payment-item end -->
+            <div class="payment-item">
+              <a href="#0"
+                ><img
+                  src="assets/update/assets/images/payment-methods/3.jpg"
+                  alt="payment-method-image"
+              /></a>
+            </div>
+            <!-- payment-item end -->
+            <div class="payment-item">
+              <a href="#0"
+                ><img
+                  src="assets/update/assets/images/payment-methods/4.jpg"
+                  alt="payment-method-image"
+              /></a>
+            </div>
+            <!-- payment-item end -->
+            <div class="payment-item">
+              <a href="#0"
+                ><img
+                  src="assets/update/assets/images/payment-methods/5.jpg"
+                  alt="payment-method-image"
+              /></a>
+            </div>
+            <!-- payment-item end -->
+            <div class="payment-item">
+              <a href="#0"
+                ><img
+                  src="assets/update/assets/images/payment-methods/6.jpg"
+                  alt="payment-method-image"
+              /></a>
+            </div>
+            <!-- payment-item end -->
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="commission-area d-flex align-items-center">
+            <div class="title-area">
+              <h3 class="title">Referral commission</h3>
+            </div>
+            <div class="commission-items-wrapper d-flex align-items-center">
+              <div class="commission-items d-flex align-items-center">
+                <div class="icon">
+                  <img
+                    src="assets/update/assets/images/payment-methods/cm1.png"
+                    alt="image"
+                  />
+                </div>
+                <div class="content">
+                  <span class="percentage">10%</span>
+                  <p>1st Level</p>
+                </div>
+              </div>
+              <!-- commission-items end -->
+              <div class="commission-items d-flex align-items-center">
+                <div class="icon">
+                  <img
+                    src="assets/update/assets/images/payment-methods/cm2.png"
+                    alt="image"
+                  />
+                </div>
+                <div class="content">
+                  <span class="percentage">05%</span>
+                  <p>2nd Level</p>
+                </div>
+              </div>
+              <!-- commission-items end -->
+              <div class="commission-items d-flex align-items-center">
+                <div class="icon">
+                  <img
+                    src="assets/update/assets/images/payment-methods/cm3.png"
+                    alt="image"
+                  />
+                </div>
+                <div class="content">
+                  <span class="percentage">03%</span>
+                  <p>3rd Level</p>
+                </div>
+              </div>
+              <!-- commission-items end -->
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section> -->
-  <!-- Articles section End -->
-  <app-footer></app-footer>
+  </section>
+  <!-- payment-method-section end -->
+
+  <!-- active-user-section end -->
+
+  <!-- testimonial-section start -->
+  <section class="testimonial-section section-padding border-top">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-lg-6">
+          <div class="testimonial-content">
+            <h5 class="sub-title">hat they think about us</h5>
+            <h2 class="title">Testimonials</h2>
+            <div class="total-ratings">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <span class="ratings-count-num">3.4M Reviews</span>
+            </div>
+            <p>
+              With over 12 years of experience as the world’s leading online
+              lottery service provider, Sorteo has catered to over a million
+              users. Find out what our members have to say about us!
+            </p>
+            <div class="testimonial-slider-arrows d-flex">
+              <div class="button-next">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+              </div>
+              <div class="button-prev">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="testimonial-slider swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="testimonial-slide">
+                  <div class="testimonial-slide-header d-flex">
+                    <div class="client-thumb">
+                      <img
+                        src="assets/update/assets/images/testimonial/1.png"
+                        alt="image"
+                      />
+                    </div>
+                    <div class="client-details">
+                      <h5 class="name">Albert G.</h5>
+                      <div class="ratings">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>5.00</span>
+                      </div>
+                      <p>
+                        <span class="place">France</span
+                        ><span class="date">15th June, 2018</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="testimonial-slide-body">
+                    <p>
+                      I've played with Sorteo for several years and really
+                      appreciate the site. All of my wins have been credited to
+                      my account. Thanks to the entire team at Sorteo!"
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="testimonial-slide">
+                  <div class="testimonial-slide-header d-flex">
+                    <div class="client-thumb">
+                      <img
+                        src="assets/update/assets/images/testimonial/2.png"
+                        alt="image"
+                      />
+                    </div>
+                    <div class="client-details">
+                      <h5 class="name">Edward L.</h5>
+                      <div class="ratings">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>5.00</span>
+                      </div>
+                      <p>
+                        <span class="place">France</span
+                        ><span class="date">15th June, 2018</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="testimonial-slide-body">
+                    <p>
+                      I've played with Sorteo for several years and really
+                      appreciate the site. All of my wins have been credited to
+                      my account. Thanks to the entire team at Sorteo!"
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!--swiper-slide end -->
+              <div class="swiper-slide">
+                <div class="testimonial-slide">
+                  <div class="testimonial-slide-header d-flex">
+                    <div class="client-thumb">
+                      <img
+                        src="assets/update/assets/images/testimonial/1.png"
+                        alt="image"
+                      />
+                    </div>
+                    <div class="client-details">
+                      <h5 class="name">Albert G.</h5>
+                      <div class="ratings">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>5.00</span>
+                      </div>
+                      <p>
+                        <span class="place">France</span
+                        ><span class="date">15th June, 2018</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="testimonial-slide-body">
+                    <p>
+                      I've played with Sorteo for several years and really
+                      appreciate the site. All of my wins have been credited to
+                      my account. Thanks to the entire team at Sorteo!"
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="testimonial-slide">
+                  <div class="testimonial-slide-header d-flex">
+                    <div class="client-thumb">
+                      <img
+                        src="assets/update/assets/images/testimonial/2.png"
+                        alt="image"
+                      />
+                    </div>
+                    <div class="client-details">
+                      <h5 class="name">Edward L.</h5>
+                      <div class="ratings">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>5.00</span>
+                      </div>
+                      <p>
+                        <span class="place">France</span
+                        ><span class="date">15th June, 2018</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="testimonial-slide-body">
+                    <p>
+                      I've played with Sorteo for several years and really
+                      appreciate the site. All of my wins have been credited to
+                      my account. Thanks to the entire team at Sorteo!"
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="testimonial-slide">
+                  <div class="testimonial-slide-header d-flex">
+                    <div class="client-thumb">
+                      <img
+                        src="assets/update/assets/images/testimonial/1.png"
+                        alt="image"
+                      />
+                    </div>
+                    <div class="client-details">
+                      <h5 class="name">Albert G.</h5>
+                      <div class="ratings">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>5.00</span>
+                      </div>
+                      <p>
+                        <span class="place">France</span
+                        ><span class="date">15th June, 2018</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="testimonial-slide-body">
+                    <p>
+                      I've played with Sorteo for several years and really
+                      appreciate the site. All of my wins have been credited to
+                      my account. Thanks to the entire team at Sorteo!"
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- testimonial-section end -->
+
+  <!-- team-section start -->
+  <section class="team-section section-padding section-bg border-top">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="section-header text-center">
+            <h2 class="section-title">Our Management Team</h2>
+            <p>
+              Our team of creative programmers, marketing experts, and members
+              of the global lottery community have worked together to build the
+              ultimate lottery site, and every win and happy customer reminds us
+              how lucky we are to be doing what we love.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row m-bottom-not-30">
+        <div class="col-lg-3 col-sm-6">
+          <div class="team-single text-center">
+            <div class="thumb">
+              <img
+                src="assets/update/assets/images/team/1.png"
+                alt="team-image"
+              />
+              <ul class="team-social-link d-flex justify-content-center">
+                <li>
+                  <a href="#"><i class="fa fa-facebook-f"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-google-plus"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="content">
+              <h3 class="name">Philip Brower</h3>
+              <span class="designation">Co-Founder & CEO</span>
+            </div>
+          </div>
+        </div>
+        <!-- team-single end -->
+        <div class="col-lg-3 col-sm-6">
+          <div class="team-single text-center">
+            <div class="thumb">
+              <img
+                src="assets/update/assets/images/team/2.png"
+                alt="team-image"
+              />
+              <ul class="team-social-link d-flex justify-content-center">
+                <li>
+                  <a href="#"><i class="fa fa-facebook-f"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-google-plus"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="content">
+              <h3 class="name">Penny Tool</h3>
+              <span class="designation">IT Specialist</span>
+            </div>
+          </div>
+        </div>
+        <!-- team-single end -->
+        <div class="col-lg-3 col-sm-6">
+          <div class="team-single text-center">
+            <div class="thumb">
+              <img
+                src="assets/update/assets/images/team/3.png"
+                alt="team-image"
+              />
+              <ul class="team-social-link d-flex justify-content-center">
+                <li>
+                  <a href="#"><i class="fa fa-facebook-f"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-google-plus"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="content">
+              <h3 class="name">Conrad Berry</h3>
+              <span class="designation">Consultant</span>
+            </div>
+          </div>
+        </div>
+        <!-- team-single end -->
+        <div class="col-lg-3 col-sm-6">
+          <div class="team-single text-center">
+            <div class="thumb">
+              <img
+                src="assets/update/assets/images/team/4.png"
+                alt="team-image"
+              />
+              <ul class="team-social-link d-flex justify-content-center">
+                <li>
+                  <a href="#"><i class="fa fa-facebook-f"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-google-plus"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="content">
+              <h3 class="name">Alexis Brady</h3>
+              <span class="designation">Financial Adviser</span>
+            </div>
+          </div>
+        </div>
+        <!-- team-single end -->
+      </div>
+    </div>
+  </section>
+  <!-- team-section end -->
+
+  <!-- contact-section start -->
+  <section
+    class="contact-section border-top overflow-hidden has_bg_image"
+    data-background="assets/update/assets/images/bg-three.jpg"
+  >
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-lg-6">
+          <div class="section-header text-center">
+            <h5 class="top-title">We answer all of your questions</h5>
+            <h2 class="section-title text-uppercase">Contact us</h2>
+            <p>
+              If you have any questions or queries our helpful support team will
+              be more than happy to assist.
+            </p>
+          </div>
+          <div class="contact-form-area">
+            <form class="contact-form">
+              <div class="form-grp">
+                <input
+                  type="text"
+                  name="contact_name"
+                  id="contact_name"
+                  placeholder="Full Name"
+                />
+              </div>
+              <div class="form-grp">
+                <input
+                  type="email"
+                  name="contact_email"
+                  id="contact_email"
+                  placeholder="Email Address"
+                />
+              </div>
+              <div class="form-grp">
+                <input
+                  type="tel"
+                  name="contact_phone"
+                  id="contact_phone"
+                  placeholder="Phone No"
+                />
+              </div>
+              <div class="form-grp">
+                <textarea
+                  name="contact_message"
+                  id="contact_message"
+                  placeholder="Message"
+                ></textarea>
+              </div>
+              <div class="form-grp">
+                <input class="submit-btn" type="submit" value="sent message" />
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="contact-thumb">
+            <img
+              src="assets/update/assets/images/elements/contact.png"
+              alt="image"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- contact-section end -->
+
+  <!-- footer-section start -->
+  <footer class="footer-section">
+    <div
+      class="footer-top border-top border-bottom has_bg_image"
+      data-background="assets/update/assets/images/bg-four.jpg"
+    >
+      <div class="footer-top-first">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-md-5 col-sm-4 text-center text-sm-left">
+              <a href="home-one.html" class="site-logo"
+                ><img src="assets/update/assets/images/logo.png" alt="logo"
+              /></a>
+            </div>
+            <div class="col-lg-6 col-md-7 col-sm-8">
+              <div class="number-count-part d-flex">
+                <div class="number-count-item">
+                  <span class="number">2,3402,233</span>
+                  <p>TOTAL MEMBERS</p>
+                </div>
+                <div class="number-count-item">
+                  <span class="number">1,9402,575</span>
+                  <p>TOTAL winner</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-top-second">
+        <div class="container">
+          <div class="row justify-content-between">
+            <div class="col-xl-2 col-lg-3 col-md-3 col-sm-6">
+              <div class="footer-widget widget-about">
+                <h3 class="widget-title">About Sorteo</h3>
+                <ul class="footer-list-menu">
+                  <li><a href="#0">About us</a></li>
+                  <li><a href="#0">How it Works</a></li>
+                  <li><a href="#0">Our services</a></li>
+                  <li><a href="#0">Blog</a></li>
+                  <li><a href="#0">Contact us</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-sm-6">
+              <div class="footer-widget widget-links">
+                <h3 class="widget-title">Quick links</h3>
+                <ul class="footer-list-menu">
+                  <li><a href="#0">My Account</a></li>
+                  <li><a href="#0">Affiliate Program</a></li>
+                  <li><a href="#0">Terms & Conditions</a></li>
+                  <li><a href="#0">Privacy Policy</a></li>
+                  <li><a href="#0">Sorteo Licenses</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              <div class="footer-widget widget-subscribe">
+                <h3 class="widget-title">email newsletters</h3>
+                <div class="subscribe-part">
+                  <p>
+                    Subscribe now and receive weekly newsletter for latest draw
+                    and offer news and much more!
+                  </p>
+                  <form class="subscribe-form">
+                    <input
+                      type="email"
+                      name="subs_email"
+                      id="subs_email"
+                      placeholder="Email address"
+                    />
+                    <input type="submit" value="subscribe" />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-lg-6 col-sm-7">
+            <div class="copy-right-text">
+              <p>© 2019 <a href="#">Sorteo</a> - All Rights Reserved.</p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-sm-5">
+            <ul class="footer-social-links d-flex justify-content-end">
+              <li>
+                <a href="#0"><i class="fa fa-facebook"></i></a>
+              </li>
+              <li>
+                <a href="#0"><i class="fa fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href="#0"><i class="fa fa-google-plus"></i></a>
+              </li>
+              <li>
+                <a href="#0"><i class="fa fa-instagram"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- footer-section end -->
 </div>
-<div class="bg"></div>
-<app-faq></app-faq>
 
-<!-- Start of HubSpot Embed Code -->
-<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/6721552.js"></script>
-<!-- End of HubSpot Embed Code -->
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157438990-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
+<!-- scroll-to-top start -->
+<div class="scroll-to-top" (click)="scrollToTop()">
+  <span class="scroll-icon">
+    <i class="fa fa-angle-up"></i>
+  </span>
+</div>
 
-  gtag('config', 'UA-157438990-1');
-</script>
+<!--<script>
+  var clock = $(".clock").FlipClock(99000 * 24 * 3, {
+    clockFace: "DailyCounter",
+    countdown: true,
+  });
+  jQuery(document).ready(function () {
+    jQuery("#vmap").vectorMap({
+      map: "world_en",
+      color: "#eaedef",
+      backgroundColor: "#f7fcff",
+      hoverOpacity: 0.8,
+      selectedColor: "#eaedef",
+      scaleColors: ["#f7fcff", "#f7fcff"],
+      normalizeFunction: "polynomial",
+    });
+  });
+</script> -->

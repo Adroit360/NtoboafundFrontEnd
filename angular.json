@@ -22,19 +22,38 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/font-awesome/css/font-awesome.min.css",
-              "src/styles/styles.scss"
+              "src/styles/styles.scss",
+              "src/assets/update/assets/css/animate.css",
+              "src/assets/update/assets/css/bootstrap.min.css",
+              "src/assets/update/assets/css/flipclock.css",
+              "src/assets/update/assets/css/fontawesome.min.css",
+              "src/assets/update/assets/css/global.css",
+              "src/assets/update/assets/css/jqvmap.min.css",
+              "src/assets/update/assets/css/lightcase.css",
+              "src/assets/update/assets/css/reset.css",
+              "src/assets/update/assets/css/responsive.css",
+              "src/assets/update/assets/css/slick.css",
+              "src/assets/update/assets/css/style.css",
+              "src/assets/update/assets/css/swiper.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/chart.js/dist/Chart.min.js"
+              "node_modules/chart.js/dist/Chart.min.js",
+              "src/assets/update/assets/js/flipclock.min.js",
+              "src/assets/update/assets/js/jquery-3.3.1.min.js",
+              "src/assets/update/assets/js/jquery.countdown.min.js",
+              "src/assets/update/assets/js/jquery.vmap.min.js",
+              "src/assets/update/assets/js/jquery.vmap.world.js",
+              "src/assets/update/assets/js/lightcase.js",
+              "src/assets/update/assets/js/main.js",
+              "src/assets/update/assets/js/slick.min.js",
+              "src/assets/update/assets/js/swiper.min.js",
+              "src/assets/update/assets/js/wow.min.js"
             ],
             "es5BrowserSupport": true
           },
@@ -98,22 +117,14 @@
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/bootstrap/js/dist/dropdown.js"
             ],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "assets": ["src/favicon.ico", "src/assets"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -139,9 +150,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

@@ -66,6 +66,7 @@ import { BusinessLandComponent } from "./business-land/business-land.component";
 import { ScholarshipLandComponent } from "./scholarship-land/scholarship-land.component";
 import { CookImagePipe } from "src/pipes/cook-image.pipe";
 import { MaskNumberPipe } from "src/pipes/maskNumber.pipe";
+import { JSBAngularFlipClockModule } from "jsb-angular-flip-clock";
 
 @NgModule({
   declarations: [
@@ -130,7 +131,7 @@ import { MaskNumberPipe } from "src/pipes/maskNumber.pipe";
     BrowserAnimationsModule,
     AngularEditorModule,
     NgbModule,
-    
+    JSBAngularFlipClockModule,
   ],
   exports: [ChartsModule],
   providers: [
