@@ -15,7 +15,7 @@
     //transform: scale(0.6);
   }
   .nav-links {
-    flex:1 1;
+    flex: 1 1;
     ul {
       list-style: none;
       display: flex;
@@ -38,8 +38,8 @@
             color: black;
             padding: 1rem;
             display: inline-block;
-            &:hover{
-              color:#0098FF;
+            &:hover {
+              color: #0098ff;
             }
           }
         }
@@ -76,7 +76,7 @@
     display: flex;
     justify-content: flex-end;
     .dropdown-toggle {
-      font-size: 1.4rem;
+      font-size: 1rem;
       display: flex;
       align-items: center;
       cursor: pointer;
@@ -147,15 +147,15 @@
     }
   }
 
-  input[id=toggler-check] {
+  input[id="toggler-check"] {
     display: none;
   }
 }
 
 @media screen and (max-width: 960px) {
   .header-body {
-    .account-actions{
-      flex:1 1;
+    .account-actions {
+      flex: 1 1;
     }
     input[id="toggler-check"]:checked {
       & ~ .nav-links {
@@ -166,15 +166,15 @@
         box-shadow: var(--shadow);
         .icon {
           background-color: white;
-          width:60%;
-          transition: all .2s;
+          width: 60%;
+          transition: all 0.2s;
           &::after {
-            transform:translateX(-45%) rotate(-45deg);
-            margin-top:0rem;
+            transform: translateX(-45%) rotate(-45deg);
+            margin-top: 0rem;
             transition: inherit;
           }
           &::before {
-            transform:translateX(-45%) rotate(45deg);
+            transform: translateX(-45%) rotate(45deg);
             margin-top: 0rem;
             transition: inherit;
           }
@@ -189,9 +189,9 @@
       left: 0%;
       width: calc(100vw);
       transform-origin: top;
-      transform:scaleY(0);
+      transform: scaleY(0);
       z-index: 1000;
-      transition: opacity 0.4s, transform 0.4s cubic-bezier(0.26, -0.03, 0.3, 1.00);
+      transition: opacity 0.4s, transform 0.4s cubic-bezier(0.26, -0.03, 0.3, 1);
       backface-visibility: hidden;
       overflow: auto;
       background-color: var(--white);

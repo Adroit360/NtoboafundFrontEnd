@@ -5,6 +5,7 @@ app-busy {
   width: calc(100vw);
   height: calc(100vh);
 }
+
 .luckyme-bg {
   position: fixed;
   // background-image: url(../../assets/images/luckyme2.jpg);
@@ -23,26 +24,41 @@ app-busy {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 0;
-  background:url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png) center center no-repeat #2a9ae5;
-
+  background: url("/assets/update/assets/images/inner-page-banner.jpg") center
+    center no-repeat #2a9ae5;
 }
-// app-header {
-//   color: white;
+app-header {
+  color: white;
+}
+
+// .luckyme {
+//   position: relative;
+//   //padding-top: 6rem;
+//   top: 6rem;
+//   height: calc(100vh - 0rem);
+//   width: calc(100vw);
+//   overflow: auto;
+//   z-index: var(--level-three);
+//   .business-counter {
+//     color: white;
+//   }
 // }
 
-.luckyme {
-  position: relative;
-  //padding-top: 6rem;
-  top: 6rem;
-  height: calc(100vh - 0rem);
-  width: calc(100vw);
-  overflow: auto;
-  z-index: var(--level-three);
-  .business-counter {
-    color: white;
-  }
+.business-steps {
+  background: url("https://pixner.net/sorteo/Sorteo/assets/images/inner-page-banner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-.luckyme-body {
+
+.container {
+  max-width: 1350px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/*.luckyme-body {
   //background-color: rgba(#00796b,.9);
   position: relative;
   //padding-top: 6rem;
@@ -443,3 +459,4 @@ app-busy {
     color: var(--light);
   }
 }
+*/

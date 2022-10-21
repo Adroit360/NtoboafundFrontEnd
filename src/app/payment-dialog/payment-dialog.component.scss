@@ -53,17 +53,16 @@
       }
     }
     &__body {
-      
       padding: 20px 15px;
       position: relative;
       display: flex;
       flex-direction: column;
       background-image: url(../../assets/images/logofade.png);
       background-color: #fef6e9;
-        // background-color: rgba(59, 54, 54, 0.747);
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
+      // background-color: rgba(59, 54, 54, 0.747);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
       .errorbox {
         color: rgb(150, 18, 18);
         font-weight: bold;
@@ -152,7 +151,7 @@
   input {
     // padding: 1.9rem 1rem 0.5rem 1.5rem;
     padding: 1rem;
-    font-size: 1.4rem;
+    font-size: 1rem;
   }
   select {
     padding: 1.9rem 1rem 0.5rem 1rem;

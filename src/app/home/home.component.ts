@@ -24,7 +24,6 @@ import { Participant } from "src/models/Dtos/participant";
   // styleUrls: ["../../oldsite/HomePage/homepage.scss"],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  @ViewChild("header") menuElement: ElementRef;
   sticky = false;
   winnings: any;
   ObjectKeys = Object.keys;
@@ -84,16 +83,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     // this.countDownService.DailyHoursTime.unsubscribe();
     // this.countDownService.DailyMinutesTime.unsubscribe();
     // this.countDownService.DailySecondsTime.unsubscribe();
-  }
-
-  @HostListener("window:scroll", ["$event"])
-  handleScroll() {
-    const windowScroll = window.pageYOffset;
-    if (windowScroll >= 450) {
-      this.sticky = true;
-    } else {
-      this.sticky = false;
-    }
   }
 
   scrollToTop() {

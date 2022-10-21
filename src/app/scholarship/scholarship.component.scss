@@ -24,8 +24,8 @@ app-busy {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 0;
-  background:url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png) center center no-repeat #00300a;
-
+  background: url(https://s3.amazonaws.com/cdn.powerball.com/drupal/themes/rapid/images/shared/draw-summary-hero-bg.png)
+    center center no-repeat #00300a;
 }
 // app-header {
 //   color: white;
@@ -138,7 +138,7 @@ app-busy {
               display: flex;
               flex-wrap: wrap;
               flex: 1 1 25%;
-              width:auto;
+              width: auto;
               .amount-item {
                 cursor: pointer;
                 transition: all 0.3s;
@@ -206,15 +206,15 @@ app-busy {
                 }
               }
             }
-            @media screen and (max-width:1038px) {
+            @media screen and (max-width: 1038px) {
               flex-wrap: wrap;
               justify-content: center;
               flex-direction: column;
               margin-top: 5rem;
-              &__head{
-                top:-8rem;
+              &__head {
+                top: -8rem;
               }
-              .arrow{
+              .arrow {
                 transform: rotate(90deg);
               }
             }
@@ -249,7 +249,7 @@ app-busy {
                     color: black;
                   }
                   input {
-                    font-size: 1.4rem;
+                    font-size: 1rem;
                   }
                 }
               }

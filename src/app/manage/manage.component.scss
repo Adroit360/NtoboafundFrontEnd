@@ -10,20 +10,20 @@
     z-index: 5;
     display: flex;
     flex-direction: column;
-   // height: calc(100vh);
-    height:100%;
+    // height: calc(100vh);
+    height: 100%;
     position: fixed;
     .brand-image {
       height: 6rem;
-      .back_button{
-        display:inline-block;
-        margin:0px;
+      .back_button {
+        display: inline-block;
+        margin: 0px;
         padding: 1rem;
-        width:5rem;
-        height:100%;
-        &:hover{
-          svg{
-            fill:#808080;
+        width: 5rem;
+        height: 100%;
+        &:hover {
+          svg {
+            fill: #808080;
           }
         }
       }
@@ -88,14 +88,14 @@
     }
   }
   &__box {
-    width:100%;
+    width: 100%;
     margin-left: 15rem;
     display: flex;
     height: calc(100vh - 3.5rem);
     &__preface {
       background-color: #f7f8fd;
       min-width: 35rem;
-      overflow:auto;
+      overflow: auto;
       .recentsbox {
         margin: 1rem 0.5rem;
         background-color: white;
@@ -112,7 +112,7 @@
     }
     &__main {
       // width: calc(100vw - 35rem);
-      width:100%;
+      width: 100%;
       background-color: white;
       z-index: 5;
       box-shadow: var(--left-spread-shadow);
@@ -146,7 +146,7 @@
           align-items: center;
           justify-content: center;
           .dropdown-toggle {
-            font-size: 1.4rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             cursor: pointer;
@@ -229,12 +229,13 @@
   }
 
   @media (max-width: 800px) {
-    &__aside{
+    &__aside {
       z-index: 2000;
-      div{
+      div {
         font-size: 1.2rem !important;
       }
-      .navlink__icon,svg{
+      .navlink__icon,
+      svg {
         width: 2rem;
         min-width: auto !important;
       }
@@ -243,15 +244,15 @@
       flex-wrap: wrap;
       justify-content: center;
       overflow-y: auto;
-     overflow-x: hidden;
+      overflow-x: hidden;
       margin-left: 10rem;
       &__preface {
         order: 1;
-        width:100%;
+        width: 100%;
         max-width: 100%;
       }
-      &__main{
-        width:100%;
+      &__main {
+        width: 100%;
         max-width: 100%;
         .head {
           position: fixed;
@@ -259,15 +260,15 @@
           width: calc(100% - 5rem);
           z-index: 2000;
         }
-        .body{
+        .body {
           height: auto;
           //overflow:auto;
-          margin-top:6rem;
+          margin-top: 6rem;
         }
       }
       &__info-card {
       }
-      .d-body__box__preface{
+      .d-body__box__preface {
         min-width: auto !important;
       }
     }
@@ -275,8 +276,7 @@
   overflow: none;
 }
 
-
-.change-password{
+.change-password {
   display: flex;
   align-items: center;
   font-size: 1.2rem;
@@ -285,10 +285,10 @@
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   cursor: pointer;
-  svg{
-    width:2rem;
+  svg {
+    width: 2rem;
   }
-  &:hover{
+  &:hover {
     background-color: #a1cbec;
   }
 }

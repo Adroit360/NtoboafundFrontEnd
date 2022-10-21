@@ -4,257 +4,251 @@
 //          <b class="val-msg"></b>
 // </div>
 
-  .c-input {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    min-width: 5rem;
-    margin: 0 auto;
-    border-radius: .2rem;
-    padding: 0 1rem !important;
-    background: var(--input-background);
-    height: 3.5rem;
-    font-size: 1.5rem;  
-    border:1px solid var(--light-white);
-    box-shadow: var(--shadow);
-    input{
-      font-size: inherit;
-      background:transparent;
-      &.ng-invalid.ng-touched{
-       
-        &~.val-msg{
-          background-color:#c74545;
-          color:white;
-        }
-        
+.c-input {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  min-width: 5rem;
+  margin: 0 auto;
+  border-radius: 0.2rem;
+  padding: 0 1rem !important;
+  background: var(--input-background);
+  height: 3.5rem;
+  font-size: 1.5rem;
+  border: 1px solid var(--light-white);
+  box-shadow: var(--shadow);
+  input {
+    font-size: inherit;
+    background: transparent;
+    &.ng-invalid.ng-touched {
+      & ~ .val-msg {
+        background-color: #c74545;
+        color: white;
       }
     }
-    & .val-msg {
-      position: absolute;
+  }
+  & .val-msg {
+    position: absolute;
+    left: 0rem;
+    right: 0rem;
+    top: 90%;
+    z-index: 999;
+    min-height: 0.2rem;
+    font-size: 1rem;
+    text-align: center;
+    border-bottom-left-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+    background-position: 0% 0%;
+    background-color: white;
+    margin: 0% 5% !important;
+    color: white;
+    & * {
       left: 0rem;
       right: 0rem;
-      top: 90%;
-      z-index: 999;
-      min-height: .2rem;
-      font-size: 1rem;
-      text-align: center;
-      border-bottom-left-radius: .2rem;
-      border-bottom-right-radius: .2rem;
-      background-position: 0% 0%;
-      background-color: white;
-      margin: 0% 5% !important;
-      color: white;
-      & * {
-        left: 0rem;
-        right: 0rem;
-        position: absolute;
-        background-color: #a03030;
-        
-        margin: 0% .2rem !important;
-      }
-      //background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
-    }
-    &.checkbox::after {
-      content: "";
-      width: 1rem;
-      height: 1rem;
-      background-color: transparent;
       position: absolute;
-      right: 1.5rem;
-      border-left: .3rem solid #625f59;
-      border-bottom: .3rem solid #625959;
-      -webkit-transform: rotate(-45deg);
-      transform: rotate(-45deg);
-      top: .9rem;
-    } 
+      background-color: #a03030;
+
+      margin: 0% 0.2rem !important;
+    }
+    //background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
+  }
+  &.checkbox::after {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    background-color: transparent;
+    position: absolute;
+    right: 1.5rem;
+    border-left: 0.3rem solid #625f59;
+    border-bottom: 0.3rem solid #625959;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    top: 0.9rem;
+  }
+}
+
+.c-input.disabled {
+  background: white;
+  border: 1px solid black;
+}
+
+.c-input input {
+  flex-grow: 1;
+  color: var(--input-text-active);
+  line-height: 1.5rem;
+  vertical-align: middle;
+  overflow: hidden;
+  font-size: 1.5rem;
+  &::-webkit-input-placeholder {
+    color: var(--input-text-inactive);
+  }
+}
+
+.c-input select {
+  position: absolute;
+  top: 0.3rem;
+  width: calc(100% - 1rem);
+  left: 0.5rem;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 0.1rem;
+  text-overflow: "";
+  background-color: transparent;
+  color: var(--input-text-active);
+  padding-left: 3% !important;
+  font-size: 1rem;
+  &:select::-ms-expand {
+    display: none; /* hide the default arrow in ie10 and ie11 */
   }
 
-  .c-input.disabled{
-    background:white;
-    border:1px solid black;
-  }
-  
-  .c-input input {
-    flex-grow: 1;
-    color: var(--input-text-active);
-    line-height: 1.5rem;
-    vertical-align: middle;
-    overflow: hidden;
-    font-size: 1.5rem;
-    &::-webkit-input-placeholder {
-      color: var(--input-text-inactive);
-    }
-  }
-  
-  .c-input select {
-    position: absolute;
-    top: .3rem;
-    width: calc(100% - 1rem);
-    left: .5rem;
+  &:focus {
     border: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    text-indent: .1rem;
-    text-overflow: "";
     background-color: transparent;
     color: var(--input-text-active);
-    padding-left: 3% !important;
-    font-size: 1.4rem;
-    &:select::-ms-expand {
-      display: none; /* hide the default arrow in ie10 and ie11 */
-    }
-  
-    &:focus {
-      border: none;
-      background-color: transparent;
-      color: var(--input-text-active);
-      box-shadow: none;
-    }
+    box-shadow: none;
   }
-  
-  .c-input .c-addon {
-    color: var(--input-text-inactive);
-    font-size: 1.5rem;
-    vertical-align: middle;
-    transition: color 0.25s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 0 0 1rem;
-    &:hover {
-      color: var(--input-text-active);
-    }
+}
+
+.c-input .c-addon {
+  color: var(--input-text-inactive);
+  font-size: 1.5rem;
+  vertical-align: middle;
+  transition: color 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 1rem;
+  &:hover {
+    color: var(--input-text-active);
   }
-  
-  //Custom Button
-  .cbtn {
-    padding: .5rem;
-    margin: .5rem;
-    background-color: var(--input-background);
-  }
-  
-  //Custom Checkbox
-  .c-checkbox {
-    margin: 1rem;
-    position: relative;
-    padding-left: 2.5rem;
-    //user-select: none;
-    cursor: pointer;
-    //get the current heirachical selector into a variable
-    $c-checkbox: &;
-  
-    & > input[type="checkbox"] {
-      display: none;
-  
-      &:checked ~ span {
-        background-color: var(--royalBlue) !important;
-        &::after{
-          display: inline-block;
-        }
+}
+
+//Custom Button
+.cbtn {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  background-color: var(--input-background);
+}
+
+//Custom Checkbox
+.c-checkbox {
+  margin: 1rem;
+  position: relative;
+  padding-left: 2.5rem;
+  //user-select: none;
+  cursor: pointer;
+  //get the current heirachical selector into a variable
+  $c-checkbox: &;
+
+  & > input[type="checkbox"] {
+    display: none;
+
+    &:checked ~ span {
+      background-color: var(--royalBlue) !important;
+      &::after {
+        display: inline-block;
       }
     }
-  
-    & > span {
-      transition: all .2s;
-      display: inline-block;
+  }
+
+  & > span {
+    transition: all 0.2s;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0.4rem;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--lightGrey);
+    border-radius: 0.3rem;
+
+    &::after {
+      display: none;
+      content: "";
+      border-left: 0.2rem solid white;
+      border-bottom: 0.2rem solid white;
+      width: 60%;
+      height: 30%;
+      top: 26%;
+      left: 20%;
       position: absolute;
-      top: 0;
-      left: .4rem;
-      width: 2rem;
-      height: 2rem;
-      background-color: var(--lightGrey);
-      border-radius: .3rem;
-  
-      &::after{
-        display: none;
-        content: "";
-        border-left:.2rem solid white;
-        border-bottom:.2rem solid white;
-        width: 60%;
-        height: 30%;
-        top: 26%;
-        left: 20%;
-        position: absolute;
-        transform: rotate(-45deg);
-      }
+      transform: rotate(-45deg);
     }
-
-    &:hover > span {
-      background-color:var(--deepGrey);
-    }
-
   }
 
+  &:hover > span {
+    background-color: var(--deepGrey);
+  }
+}
 
-  .c-checkbox-action {
-    margin: 1rem;
-    position: relative;
-    //padding-left: 2.5rem;
-    //user-select: none;
-    cursor: pointer;
-    //get the current heirachical selector into a variable
-    $c-checkbox: &;
-  
-    & > input[type="radio"] {
+.c-checkbox-action {
+  margin: 1rem;
+  position: relative;
+  //padding-left: 2.5rem;
+  //user-select: none;
+  cursor: pointer;
+  //get the current heirachical selector into a variable
+  $c-checkbox: &;
+
+  & > input[type="radio"] {
+    display: none;
+
+    &:checked ~ span {
+      background-color: var(--game-green-dark) !important;
+      &::after {
+        display: inline-block;
+      }
+    }
+  }
+
+  & > span {
+    transition: all 0.2s;
+    display: inline-block;
+    //position: absolute;
+    top: 0;
+    left: 0.4rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: var(--lightGrey);
+    border-radius: 0.5rem;
+
+    &::after {
       display: none;
-  
-      &:checked ~ span {
-        background-color: var(--game-green-dark) !important;
-        &::after{
-          display: inline-block;
-        }
-      }
+      content: "";
+      border-left: 0.2rem solid white;
+      border-bottom: 0.2rem solid white;
+      width: 67%;
+      height: 30%;
+      top: 17%;
+      left: 18%;
+      position: absolute;
+      transform: rotate(-52deg);
     }
-  
-    & > span {
-      transition: all .2s;
-      display: inline-block;
-      //position: absolute;
-      top: 0;
-      left: .4rem;
-      width: 3.5rem;
-      height: 3.5rem;
-      background-color: var(--lightGrey);
-      border-radius: .5rem;
-  
-      &::after{
-        display: none;
-        content: "";
-        border-left: .2rem solid white;
-        border-bottom: .2rem solid white;
-        width: 67%;
-        height: 30%;
-        top: 17%;
-        left: 18%;
-        position: absolute;
-        transform: rotate(-52deg);
-      }
-    }
-
-    &:hover > span {
-      background-color:var(--deepGrey);
-    }
-
   }
 
-  .c-file-input{
-    
+  &:hover > span {
+    background-color: var(--deepGrey);
   }
+}
 
-  /**
+.c-file-input {
+}
+
+/**
   Transparent TextBox That takes the size of its container
   */
-  .tb-styless{
-    color: var(--input-text-active);
-    line-height: 1.5rem;
-    vertical-align: middle;
-    overflow: hidden;
-    font-size: 1.3rem;
-    border: none;
-    padding: 1rem;
-    width: 100%;
-    height: 100%;
-    &::-webkit-input-placeholder {
-      color: var(--input-text-inactive);
-    }
+.tb-styless {
+  color: var(--input-text-active);
+  line-height: 1.5rem;
+  vertical-align: middle;
+  overflow: hidden;
+  font-size: 1.3rem;
+  border: none;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  &::-webkit-input-placeholder {
+    color: var(--input-text-inactive);
   }
+}

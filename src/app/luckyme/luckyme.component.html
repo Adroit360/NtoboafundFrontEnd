@@ -3,23 +3,22 @@
   [ngClass]="{ visible: loading, invisible: !loading }"
 ></app-busy>
 
-<div class="luckyme-bg"></div>
+<!--<div class="luckyme-bg"></div>-->
 <app-header></app-header>
 <div class="luckyme">
   <!-- Business Steps section Start -->
   <section class="business-steps">
     <div class="container">
-      <h6 class="text-center white">Play NOW in 3 steps</h6>
+      <h6 class="text-center">Play NOW in 3 steps</h6>
       <form class="steps-wrap lucky-steps">
         <div class="step">
-          <h6 class="step-title white">
+          <h6 class="step-title black">
             1. Select the amount you would like to play
           </h6>
           <div class="tickets">
             <div class="radio-group">
               <input
                 type="radio"
-                
                 id="radioG1"
                 name="radio"
                 [value]="2"
@@ -97,7 +96,7 @@
           </div>
         </div>
         <div class="step">
-          <h6 class="step-title white">2. SELECT Play PERIOD</h6>
+          <h6 class="step-title black">2. SELECT Play PERIOD</h6>
           <div class="contribution-period">
             <div class="radio-group">
               <input
@@ -136,7 +135,7 @@
           </div>
         </div>
         <div class="step">
-          <h6 class="step-title white">3. PRESS Play BUTTON AND START</h6>
+          <h6 class="step-title black">3. PRESS Play BUTTON AND START</h6>
           <button
             *ngIf="
               !winnerSelectionService.isDailyDrawOngoing &&
@@ -144,13 +143,13 @@
               !(winnerSelectionService.isMonthlyDrawOngoing | async)
             "
             (click)="paymentInitialized()"
-            class="contribute-btn"
+            class="cmn-btn"
           >
             Play
           </button>
         </div>
       </form>
-      <p *ngIf="selectedChoice" class="coupens-txt text-center white">
+      <p *ngIf="selectedChoice" class="coupens-txt text-center">
         Potential returns for a play of
         <strong>GHC {{ selectedChoice }}</strong> is
         <strong>{{ getReturnsText(selectedChoice) }}</strong>
@@ -251,7 +250,7 @@
                 "
                 class="list-item"
               >
-                <strong>{{ participant.userName|maskNumber }}</strong>
+                <strong>{{ participant.userName | maskNumber }}</strong>
                 <span>PLAYED</span>
                 <a href="">GH₵ {{ participant.amountStaked }}</a>
               </div>
@@ -279,7 +278,7 @@
                     >
                       <div class="winner-item__description">
                         <span class="winner-name">{{
-                          participant.userName|maskNumber
+                          participant.userName | maskNumber
                         }}</span>
                         <span> Played </span>
                         <span class="amount-staked"
@@ -295,9 +294,7 @@
 
           <!-- Current Weekly Participants && Latest Weekly Luckyme Winners-->
           <div
-            *ngIf="
-              !winnerSelectionService.isWeeklyDrawOngoing
-            "
+            *ngIf="!winnerSelectionService.isWeeklyDrawOngoing"
             class="contribute-list"
           >
             <!-- Latest Weekly Luckyme Winners -->
@@ -308,7 +305,9 @@
               "
               class="winnerbox"
             >
-              <div class="title contribute-title">Latest Weekly Luckyme Winners</div>
+              <div class="title contribute-title">
+                Latest Weekly Luckyme Winners
+              </div>
               <div class="body">
                 <div
                   *ngFor="
@@ -329,7 +328,7 @@
                 "
                 class="list-item"
               >
-                <strong>{{ participant.userName|maskNumber }}</strong>
+                <strong>{{ participant.userName | maskNumber }}</strong>
                 <span>PLAYED</span>
                 <a href="">GH₵ {{ participant.amountStaked }}</a>
               </div>
@@ -356,7 +355,7 @@
                     >
                       <div class="winner-item__description">
                         <span class="winner-name">{{
-                          participant.userName|maskNumber
+                          participant.userName | maskNumber
                         }}</span>
                         <span> Played </span>
                         <span class="amount-staked"
@@ -372,9 +371,7 @@
 
           <!-- Current Monthly Participants & Latest Monthly Luckyme Winners -->
           <div
-            *ngIf="
-              !(winnerSelectionService.isMonthlyDrawOngoing | async)
-            "
+            *ngIf="!(winnerSelectionService.isMonthlyDrawOngoing | async)"
             class="contribute-list"
           >
             <!-- Latest Monthly Luckyme Winners -->
@@ -385,7 +382,9 @@
               "
               class="winnerbox"
             >
-              <div class="title contribute-title">Latest Monthly Luckyme Winners</div>
+              <div class="title contribute-title">
+                Latest Monthly Luckyme Winners
+              </div>
               <div class="body">
                 <div
                   *ngFor="
@@ -406,7 +405,7 @@
                 "
                 class="list-item"
               >
-                <strong>{{ participant.userName|maskNumber }}</strong>
+                <strong>{{ participant.userName | maskNumber }}</strong>
                 <span>PLAYED</span>
                 <a href="">GH₵ {{ participant.amountStaked }}</a>
               </div>
@@ -433,7 +432,7 @@
                     >
                       <div class="winner-item__description">
                         <span class="winner-name">{{
-                          participant.userName|maskNumber
+                          participant.userName | maskNumber
                         }}</span>
                         <span> Played </span>
                         <span class="amount-staked"
@@ -653,9 +652,7 @@
 <app-payment-dialog
   [amount]="selectedChoice"
   [stakeType]="'Luckyme'"
-  [username]="
-    authService.currentUser.firstName
-  "
+  [username]="authService.currentUser.firstName"
   (close)="closePaymentDialog()"
   (oncongratmessage)="showCongratulatoryMessage($event)"
   [txRef]="this.raveOptions.txref"

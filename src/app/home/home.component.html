@@ -2,252 +2,16 @@
 <!--<div id="preloader"></div>-->
 <!-- preloader end -->
 
-<div class="main-light-version">
-  <!--  header-section start  -->
-  <header
-    #header
-    class="header-section"
-    [ngClass]="{ 'animated fadeInDown menu-fixed header-close': sticky }"
-  >
-    <div class="header-bottom">
-      <div class="container">
-        <nav class="navbar navbar-expand-xl">
-          <a class="site-logo site-title" href="home-one.html"
-            ><img src="assets/images/ntlog.png" alt="site-logo"
-          /></a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="menu-toggle"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav main-menu ml-auto">
-              <li><a href="home-one.html">Lucky Me</a></li>
-              <li><a href="lottery-result.html">Bussiness</a></li>
-              <li><a href="contact.html">Scholarship</a></li>
-              <li><a href="contact.html">How to play</a></li>
-              <li><a href="contact.html">Join Team</a></li>
-            </ul>
-            <div class="header-join-part">
-              <button
-                type="button"
-                class="cmn-btn"
-                data-toggle="modal"
-                data-target="#exampleModal"
-              >
-                Login
-              </button>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </div>
-    <!-- header-bottom end -->
-  </header>
-  <!--  header-section end  -->
-  <!--login registration Modal -->
-  <div
-    class="modal fade login-registration-modal"
-    id="exampleModal"
-    tabindex="-1"
-    role="dialog"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="login-registration-area">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  id="login-tab"
-                  data-toggle="tab"
-                  href="#login"
-                  role="tab"
-                  aria-controls="login"
-                  aria-selected="true"
-                  >Login</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  id="registration-tab"
-                  data-toggle="tab"
-                  href="#registration"
-                  role="tab"
-                  aria-controls="registration"
-                  aria-selected="false"
-                  >Registration</a
-                >
-              </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-              <div
-                class="tab-pane fade show active"
-                id="login"
-                role="tabpanel"
-                aria-labelledby="login-tab"
-              >
-                <form class="login-form cmn-frm">
-                  <div class="frm-group">
-                    <label>Username or Email Address</label>
-                    <input
-                      type="email"
-                      name="login_email"
-                      id="login_email"
-                      placeholder="Username or Email Address"
-                    />
-                    <i class="fa fa-user"></i>
-                  </div>
-                  <div class="frm-group">
-                    <label>Password</label>
-                    <input
-                      type="password"
-                      name="login_pass"
-                      id="login_pass"
-                      placeholder="Enter Password"
-                    />
-                    <i class="fa fa-lock"></i>
-                  </div>
-                  <div class="frm-group">
-                    <input
-                      type="submit"
-                      name="registration_submit2"
-                      id="registration_submit2"
-                      value="login"
-                    />
-                  </div>
-                  <div class="frm-group">
-                    <div class="checkbox-area">
-                      <input type="checkbox" id="login_remember_pass" />
-                      <label for="login_remember_pass">Remember Password</label>
-                    </div>
-                    <div class="forgot-pass-area">
-                      <a href="#0">Forgot Password?</a>
-                    </div>
-                  </div>
-                  <div class="frm-group">
-                    <div class="or-text">
-                      <span>Or login with</span>
-                    </div>
-                  </div>
-                  <div class="frm-group">
-                    <div class="login-with-area">
-                      <a href="#" class="facebook"
-                        ><i class="fa fa-facebook-f"></i>facebook</a
-                      >
-                      <a href="#" class="google"
-                        ><i class="fa fa-google-plus"></i>facebook</a
-                      >
-                      <a href="#" class="twitter"
-                        ><i class="fa fa-twitter"></i>facebook</a
-                      >
-                    </div>
-                  </div>
-                </form>
-                <div class="have-not-account">
-                  <p>You don’t have an account?<a href="#0">Register Now</a></p>
-                </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="registration"
-                role="tabpanel"
-                aria-labelledby="registration-tab"
-              >
-                <form class="registration-form cmn-frm">
-                  <div class="frm-group">
-                    <label>Username or Email Address</label>
-                    <input
-                      type="email"
-                      name="registration_email"
-                      id="registration_email"
-                      placeholder="Username or Email Address"
-                    />
-                    <i class="fa fa-user"></i>
-                  </div>
-                  <div class="frm-group">
-                    <label>Password</label>
-                    <input
-                      type="password"
-                      name="registration_pass"
-                      id="registration_pass"
-                      placeholder="Enter Password"
-                    />
-                    <i class="fa fa-lock"></i>
-                  </div>
-                  <div class="frm-group">
-                    <label>Confirm Password</label>
-                    <input
-                      type="password"
-                      name="registration_re_pass"
-                      id="registration_re_pass"
-                      placeholder="Enter Password"
-                    />
-                    <i class="fa fa-lock"></i>
-                  </div>
-                  <div class="frm-group">
-                    <input
-                      type="submit"
-                      name="registration_submit"
-                      id="registration_submit"
-                      value="Registration"
-                    />
-                  </div>
-                  <div class="frm-group">
-                    <div class="checkbox-area">
-                      <input type="checkbox" id="registration_remember_pass" />
-                      <label for="registration_remember_pass"
-                        >I Agree with the Terms of Use</label
-                      >
-                    </div>
-                    <div class="forgot-pass-area">
-                      <a href="#0">Forgot Password?</a>
-                    </div>
-                  </div>
-                  <div class="frm-group">
-                    <div class="or-text">
-                      <span>Or login with</span>
-                    </div>
-                  </div>
-                  <div class="frm-group">
-                    <div class="login-with-area">
-                      <a href="#" class="facebook"
-                        ><i class="fa fa-facebook-f"></i>facebook</a
-                      >
-                      <a href="#" class="google"
-                        ><i class="fa fa-google-plus"></i>facebook</a
-                      >
-                      <a href="#" class="twitter"
-                        ><i class="fa fa-twitter"></i>facebook</a
-                      >
-                    </div>
-                  </div>
-                </form>
-                <div class="have-not-account">
-                  <p>Already have an account?<a href="#0">Login</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div>
+  <app-header></app-header>
 
   <!-- banner-section start -->
   <section class="banner-section">
     <div
-      class="banner-elements-part has_bg_image"
-      data-background="assets/update/assets/images/elements/vector-bg.jpg"
+      class="banner-elements-part"
+      style="
+        background: url('assets/update/assets/images/elements/vector-bg.jpg');
+      "
     >
       <div class="element-one">
         <img
@@ -319,10 +83,10 @@
             <div class="banner-content">
               <h1 class="title">Take the chance to change your life</h1>
               <p>
-                Sorteo is online lottery platform inspired by few sorteo lover's
-                fantasy of the ultimate lottery platfrom.
+                Ntoboafund creates a platform to help individuals and businesses
+                gain financial support through gaming.
               </p>
-              <a href="#0" class="cmn-btn">play now !</a>
+              <a routerLink="/luckyme" class="cmn-btn">play now !</a>
             </div>
           </div>
         </div>
@@ -388,51 +152,66 @@
         <div class="col-lg-4 col-md-6">
           <div class="jackpot-item text-center">
             <img
-              src="assets/update/assets/images/elements/jackpot-1.png"
+              src="assets/update/assets/images/earnings.png"
+              class="image"
               alt="image"
             />
-            <span class="amount">€161,557,581</span>
-            <h5 class="title">US Powerball</h5>
+            <div class="content">
+              <h4 class="title">Lucky Me</h4>
+              <p>
+                Ntoboafund offers huge jackpot prizes that you can easily win
+                when you play. Play online safely and securely with Ntoboafund.
+              </p>
+            </div>
             <p class="next-draw-time">
               Next Draw : <span id="remainTime1"></span>
             </p>
-            <a href="#0" class="cmn-btn">play now!</a>
+            <a routerLink="/luckyme" class="cmn-btn">play now!</a>
           </div>
         </div>
         <!-- jackpot-item end -->
         <div class="col-lg-4 col-md-6">
           <div class="jackpot-item text-center">
             <img
-              src="assets/update/assets/images/elements/jackpot-2.png"
+              src="assets/update/assets/images/bussiness.png"
+              class="image"
               alt="image"
             />
-            <span class="amount">€161,557,581</span>
-            <h5 class="title">Cancer Charity</h5>
+            <div class="content">
+              <h4 class="title">Bussiness</h4>
+              <p>
+                Ntoboafund gives you an opportunity to fund your business. Fund
+                that business idea now by playing with us.
+              </p>
+            </div>
             <p class="next-draw-time">
-              Next Draw : <span id="remainTime2"></span>
+              Next Draw : <span id="remainTime1"></span>
             </p>
-            <a href="#0" class="cmn-btn">play now!</a>
+            <a routerLink="/business" class="cmn-btn">play now!</a>
           </div>
         </div>
         <!-- jackpot-item end -->
         <div class="col-lg-4 col-md-6">
           <div class="jackpot-item text-center">
             <img
-              src="assets/update/assets/images/elements/jackpot-3.png"
+              src="assets/update/assets/images/scholarhsip.png"
+              class="image"
               alt="image"
             />
-            <span class="amount">€161,557,581</span>
-            <h5 class="title">EuroJackpot</h5>
+            <div class="content">
+              <h4 class="title">Scholarship</h4>
+              <p>
+                You can win a scholarship with Ntoboafund by playing with as low
+                as 10 cedis. With Ntoboafund you can start schooling today.
+              </p>
+            </div>
             <p class="next-draw-time">
-              Next Draw : <span id="remainTime3"></span>
+              Next Draw : <span id="remainTime1"></span>
             </p>
-            <a href="#0" class="cmn-btn">play now!</a>
+            <a routerLink="/scholarship" class="cmn-btn">play now!</a>
           </div>
         </div>
         <!-- jackpot-item end -->
-        <div class="col-lg-12 text-center">
-          <a href="#0" class="text-btn">Show all lotteries</a>
-        </div>
       </div>
     </div>
   </section>
@@ -879,626 +658,7 @@
   </section>
   <!-- work-steps-section strat -->
 
-  <!-- online-ticket-section start -->
-  <section
-    class="online-ticket-section section-padding has_bg_image"
-    data-background="assets/update/assets/images/bg-two.jpg"
-  >
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="section-header text-center">
-            <h2 class="section-title">Buy Lottery Tickets Online</h2>
-            <p>
-              Play the lottery online safely and securely at theLotter, the
-              leading lottery ticket purchasing service in the world
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-10">
-          <div class="online-ticket-table-part">
-            <div class="online-ticket-table">
-              <h3 class="block-title">Select your winning lottery numbers</h3>
-              <div class="online-ticket-table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th class="name">lottery</th>
-                      <th class="jackpot">jackpot</th>
-                      <th class="price">price</th>
-                      <th class="draw-time">time to draw</th>
-                      <th class="sold-num">sold</th>
-                      <th class="status">status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="winner-details">
-                          <img
-                            src="assets/update/assets/images/flag/1.jpg"
-                            alt="flag"
-                          /><span class="winner-name">cancer charity</span>
-                        </div>
-                      </td>
-                      <td>
-                        <span class="jackpot-price">€ 53,000,000</span>
-                      </td>
-                      <td>
-                        <span class="price">€3.9</span>
-                      </td>
-                      <td>
-                        <div class="draw-timer"></div>
-                      </td>
-                      <td>
-                        <div class="progressbar" data-perc="50%">
-                          <div class="bar"></div>
-                          <span class="label">50</span>
-                        </div>
-                      </td>
-                      <td>
-                        <a href="#" class="cmn-btn">buy ticket</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="winner-details">
-                          <img
-                            src="assets/update/assets/images/flag/2.jpg"
-                            alt="flag"
-                          /><span class="winner-name">US Powerball</span>
-                        </div>
-                      </td>
-                      <td>
-                        <span class="jackpot-price">€ 53,000,000</span>
-                      </td>
-                      <td>
-                        <span class="price">€3.9</span>
-                      </td>
-                      <td>
-                        <div class="draw-timer"></div>
-                      </td>
-                      <td>
-                        <div class="progressbar" data-perc="50%">
-                          <div class="bar"></div>
-                          <span class="label">50</span>
-                        </div>
-                      </td>
-                      <td>
-                        <a href="#" class="cmn-btn">buy ticket</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="winner-details">
-                          <img
-                            src="assets/update/assets/images/flag/3.jpg"
-                            alt="flag"
-                          /><span class="winner-name">Mega Millions</span>
-                        </div>
-                      </td>
-                      <td>
-                        <span class="jackpot-price">€ 53,000,000</span>
-                      </td>
-                      <td>
-                        <span class="price">€3.9</span>
-                      </td>
-                      <td>
-                        <div class="draw-timer"></div>
-                      </td>
-                      <td>
-                        <div class="progressbar" data-perc="50%">
-                          <div class="bar"></div>
-                          <span class="label">50</span>
-                        </div>
-                      </td>
-                      <td>
-                        <a href="#" class="cmn-btn">buy ticket</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="winner-details">
-                          <img
-                            src="assets/update/assets/images/flag/1.jpg"
-                            alt="flag"
-                          /><span class="winner-name">UK Lotto</span>
-                        </div>
-                      </td>
-                      <td>
-                        <span class="jackpot-price">€ 53,000,000</span>
-                      </td>
-                      <td>
-                        <span class="price">€3.9</span>
-                      </td>
-                      <td>
-                        <div class="draw-timer"></div>
-                      </td>
-                      <td>
-                        <div class="progressbar" data-perc="50%">
-                          <div class="bar"></div>
-                          <span class="label">50</span>
-                        </div>
-                      </td>
-                      <td>
-                        <a href="#" class="cmn-btn">buy ticket</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="winner-details">
-                          <img
-                            src="assets/update/assets/images/flag/3.jpg"
-                            alt="flag"
-                          /><span class="winner-name">Mega Millions</span>
-                        </div>
-                      </td>
-                      <td>
-                        <span class="jackpot-price">€ 53,000,000</span>
-                      </td>
-                      <td>
-                        <span class="price">€3.9</span>
-                      </td>
-                      <td>
-                        <div class="draw-timer"></div>
-                      </td>
-                      <td>
-                        <div class="progressbar" data-perc="50%">
-                          <div class="bar"></div>
-                          <span class="label">50</span>
-                        </div>
-                      </td>
-                      <td>
-                        <a href="#" class="cmn-btn">buy ticket</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-12 text-center">
-          <a href="#" class="text-btn">view all lotteries</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- online-ticket-section end -->
-
-  <!-- affiliate-section start -->
-  <section class="affiliate-section section-padding">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="section-header text-center">
-            <h2 class="section-title">Affiliate Programs</h2>
-            <p>
-              Tell A Friend is our unique lottery friends promotion club that
-              enables you to earn amazing bonus money rewards for inviting
-              friends to play the world’s biggest jackpots!
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="row m-bottom-not-30">
-        <div class="col-lg-3 col-sm-6">
-          <div class="affiliate-item text-center">
-            <div class="icon">
-              <div class="icon-inner">
-                <img
-                  src="assets/update/assets/images/svg-icons/affiliate-icons/1.svg"
-                  alt="icon"
-                />
-              </div>
-            </div>
-            <div class="content">
-              <h4 class="title">High Revenues</h4>
-              <p>
-                We offer the best commissions in the market and provide proven.
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- affiliate-item end -->
-        <div class="col-lg-3 col-sm-6">
-          <div class="affiliate-item text-center">
-            <div class="icon">
-              <div class="icon-inner">
-                <img
-                  src="assets/update/assets/images/svg-icons/affiliate-icons/4.svg"
-                  alt="icon"
-                />
-              </div>
-            </div>
-            <div class="content">
-              <h4 class="title">Reliable Payments</h4>
-              <p>Payments are made monthly via a variety of payment methods.</p>
-            </div>
-          </div>
-        </div>
-        <!-- affiliate-item end -->
-        <div class="col-lg-3 col-sm-6">
-          <div class="affiliate-item text-center">
-            <div class="icon">
-              <div class="icon-inner">
-                <img
-                  src="assets/update/assets/images/svg-icons/affiliate-icons/2.svg"
-                  alt="icon"
-                />
-              </div>
-            </div>
-            <div class="content">
-              <h4 class="title">Unlimited Affiliates</h4>
-              <p>
-                Thee is no limit for your number of affiliates and no earning
-                limit.
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- affiliate-item end -->
-        <div class="col-lg-3 col-sm-6">
-          <div class="affiliate-item text-center">
-            <div class="icon">
-              <div class="icon-inner">
-                <img
-                  src="assets/update/assets/images/svg-icons/affiliate-icons/3.svg"
-                  alt="icon"
-                />
-              </div>
-            </div>
-            <div class="content">
-              <h4 class="title">Dedicated Support</h4>
-              <p>
-                Our dedicated technical support team works with you to
-                understand and identify
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- affiliate-item end -->
-      </div>
-    </div>
-  </section>
-  <!-- affiliate-section end -->
-
-  <!-- payment-method-section start -->
-  <section class="payment-method-section section-padding border-top">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6">
-          <div class="section-header text-center">
-            <h2 class="section-title">Payment Method</h2>
-            <p>
-              Buy international lottery tickets online using any of the payment
-              methods available on Sorteo Play now and win big!
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-10">
-          <div class="payment-method-area d-flex">
-            <div class="payment-item">
-              <a href="#0"
-                ><img
-                  src="assets/update/assets/images/payment-methods/1.jpg"
-                  alt="payment-method-image"
-              /></a>
-            </div>
-            <!-- payment-item end -->
-            <div class="payment-item">
-              <a href="#0"
-                ><img
-                  src="assets/update/assets/images/payment-methods/2.jpg"
-                  alt="payment-method-image"
-              /></a>
-            </div>
-            <!-- payment-item end -->
-            <div class="payment-item">
-              <a href="#0"
-                ><img
-                  src="assets/update/assets/images/payment-methods/3.jpg"
-                  alt="payment-method-image"
-              /></a>
-            </div>
-            <!-- payment-item end -->
-            <div class="payment-item">
-              <a href="#0"
-                ><img
-                  src="assets/update/assets/images/payment-methods/4.jpg"
-                  alt="payment-method-image"
-              /></a>
-            </div>
-            <!-- payment-item end -->
-            <div class="payment-item">
-              <a href="#0"
-                ><img
-                  src="assets/update/assets/images/payment-methods/5.jpg"
-                  alt="payment-method-image"
-              /></a>
-            </div>
-            <!-- payment-item end -->
-            <div class="payment-item">
-              <a href="#0"
-                ><img
-                  src="assets/update/assets/images/payment-methods/6.jpg"
-                  alt="payment-method-image"
-              /></a>
-            </div>
-            <!-- payment-item end -->
-          </div>
-        </div>
-        <div class="col-lg-12">
-          <div class="commission-area d-flex align-items-center">
-            <div class="title-area">
-              <h3 class="title">Referral commission</h3>
-            </div>
-            <div class="commission-items-wrapper d-flex align-items-center">
-              <div class="commission-items d-flex align-items-center">
-                <div class="icon">
-                  <img
-                    src="assets/update/assets/images/payment-methods/cm1.png"
-                    alt="image"
-                  />
-                </div>
-                <div class="content">
-                  <span class="percentage">10%</span>
-                  <p>1st Level</p>
-                </div>
-              </div>
-              <!-- commission-items end -->
-              <div class="commission-items d-flex align-items-center">
-                <div class="icon">
-                  <img
-                    src="assets/update/assets/images/payment-methods/cm2.png"
-                    alt="image"
-                  />
-                </div>
-                <div class="content">
-                  <span class="percentage">05%</span>
-                  <p>2nd Level</p>
-                </div>
-              </div>
-              <!-- commission-items end -->
-              <div class="commission-items d-flex align-items-center">
-                <div class="icon">
-                  <img
-                    src="assets/update/assets/images/payment-methods/cm3.png"
-                    alt="image"
-                  />
-                </div>
-                <div class="content">
-                  <span class="percentage">03%</span>
-                  <p>3rd Level</p>
-                </div>
-              </div>
-              <!-- commission-items end -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- payment-method-section end -->
-
   <!-- active-user-section end -->
-
-  <!-- testimonial-section start -->
-  <section class="testimonial-section section-padding border-top">
-    <div class="container">
-      <div class="row justify-content-between">
-        <div class="col-lg-6">
-          <div class="testimonial-content">
-            <h5 class="sub-title">hat they think about us</h5>
-            <h2 class="title">Testimonials</h2>
-            <div class="total-ratings">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <span class="ratings-count-num">3.4M Reviews</span>
-            </div>
-            <p>
-              With over 12 years of experience as the world’s leading online
-              lottery service provider, Sorteo has catered to over a million
-              users. Find out what our members have to say about us!
-            </p>
-            <div class="testimonial-slider-arrows d-flex">
-              <div class="button-next">
-                <i class="fa fa-angle-left" aria-hidden="true"></i>
-              </div>
-              <div class="button-prev">
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-5">
-          <div class="testimonial-slider swiper-container">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="testimonial-slide">
-                  <div class="testimonial-slide-header d-flex">
-                    <div class="client-thumb">
-                      <img
-                        src="assets/update/assets/images/testimonial/1.png"
-                        alt="image"
-                      />
-                    </div>
-                    <div class="client-details">
-                      <h5 class="name">Albert G.</h5>
-                      <div class="ratings">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <span>5.00</span>
-                      </div>
-                      <p>
-                        <span class="place">France</span
-                        ><span class="date">15th June, 2018</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="testimonial-slide-body">
-                    <p>
-                      I've played with Sorteo for several years and really
-                      appreciate the site. All of my wins have been credited to
-                      my account. Thanks to the entire team at Sorteo!"
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="testimonial-slide">
-                  <div class="testimonial-slide-header d-flex">
-                    <div class="client-thumb">
-                      <img
-                        src="assets/update/assets/images/testimonial/2.png"
-                        alt="image"
-                      />
-                    </div>
-                    <div class="client-details">
-                      <h5 class="name">Edward L.</h5>
-                      <div class="ratings">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <span>5.00</span>
-                      </div>
-                      <p>
-                        <span class="place">France</span
-                        ><span class="date">15th June, 2018</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="testimonial-slide-body">
-                    <p>
-                      I've played with Sorteo for several years and really
-                      appreciate the site. All of my wins have been credited to
-                      my account. Thanks to the entire team at Sorteo!"
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!--swiper-slide end -->
-              <div class="swiper-slide">
-                <div class="testimonial-slide">
-                  <div class="testimonial-slide-header d-flex">
-                    <div class="client-thumb">
-                      <img
-                        src="assets/update/assets/images/testimonial/1.png"
-                        alt="image"
-                      />
-                    </div>
-                    <div class="client-details">
-                      <h5 class="name">Albert G.</h5>
-                      <div class="ratings">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <span>5.00</span>
-                      </div>
-                      <p>
-                        <span class="place">France</span
-                        ><span class="date">15th June, 2018</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="testimonial-slide-body">
-                    <p>
-                      I've played with Sorteo for several years and really
-                      appreciate the site. All of my wins have been credited to
-                      my account. Thanks to the entire team at Sorteo!"
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="testimonial-slide">
-                  <div class="testimonial-slide-header d-flex">
-                    <div class="client-thumb">
-                      <img
-                        src="assets/update/assets/images/testimonial/2.png"
-                        alt="image"
-                      />
-                    </div>
-                    <div class="client-details">
-                      <h5 class="name">Edward L.</h5>
-                      <div class="ratings">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <span>5.00</span>
-                      </div>
-                      <p>
-                        <span class="place">France</span
-                        ><span class="date">15th June, 2018</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="testimonial-slide-body">
-                    <p>
-                      I've played with Sorteo for several years and really
-                      appreciate the site. All of my wins have been credited to
-                      my account. Thanks to the entire team at Sorteo!"
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="testimonial-slide">
-                  <div class="testimonial-slide-header d-flex">
-                    <div class="client-thumb">
-                      <img
-                        src="assets/update/assets/images/testimonial/1.png"
-                        alt="image"
-                      />
-                    </div>
-                    <div class="client-details">
-                      <h5 class="name">Albert G.</h5>
-                      <div class="ratings">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <span>5.00</span>
-                      </div>
-                      <p>
-                        <span class="place">France</span
-                        ><span class="date">15th June, 2018</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="testimonial-slide-body">
-                    <p>
-                      I've played with Sorteo for several years and really
-                      appreciate the site. All of my wins have been credited to
-                      my account. Thanks to the entire team at Sorteo!"
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- testimonial-section end -->
 
   <!-- team-section start -->
   <section class="team-section section-padding section-bg border-top">
@@ -1638,74 +798,6 @@
   </section>
   <!-- team-section end -->
 
-  <!-- contact-section start -->
-  <section
-    class="contact-section border-top overflow-hidden has_bg_image"
-    data-background="assets/update/assets/images/bg-three.jpg"
-  >
-    <div class="container">
-      <div class="row justify-content-between">
-        <div class="col-lg-6">
-          <div class="section-header text-center">
-            <h5 class="top-title">We answer all of your questions</h5>
-            <h2 class="section-title text-uppercase">Contact us</h2>
-            <p>
-              If you have any questions or queries our helpful support team will
-              be more than happy to assist.
-            </p>
-          </div>
-          <div class="contact-form-area">
-            <form class="contact-form">
-              <div class="form-grp">
-                <input
-                  type="text"
-                  name="contact_name"
-                  id="contact_name"
-                  placeholder="Full Name"
-                />
-              </div>
-              <div class="form-grp">
-                <input
-                  type="email"
-                  name="contact_email"
-                  id="contact_email"
-                  placeholder="Email Address"
-                />
-              </div>
-              <div class="form-grp">
-                <input
-                  type="tel"
-                  name="contact_phone"
-                  id="contact_phone"
-                  placeholder="Phone No"
-                />
-              </div>
-              <div class="form-grp">
-                <textarea
-                  name="contact_message"
-                  id="contact_message"
-                  placeholder="Message"
-                ></textarea>
-              </div>
-              <div class="form-grp">
-                <input class="submit-btn" type="submit" value="sent message" />
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="col-lg-5">
-          <div class="contact-thumb">
-            <img
-              src="assets/update/assets/images/elements/contact.png"
-              alt="image"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- contact-section end -->
-
   <!-- footer-section start -->
   <footer class="footer-section">
     <div
@@ -1717,7 +809,7 @@
           <div class="row">
             <div class="col-lg-6 col-md-5 col-sm-4 text-center text-sm-left">
               <a href="home-one.html" class="site-logo"
-                ><img src="assets/update/assets/images/logo.png" alt="logo"
+                ><img src="assets/images/ntlog.png" alt="logo"
               /></a>
             </div>
             <div class="col-lg-6 col-md-7 col-sm-8">
